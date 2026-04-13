@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import LMS from "./LMS";
+import { supabase } from "./supabase";
 
 const COURSES = [
   {
@@ -11,7 +12,7 @@ const COURSES = [
     level: "Beginner",
     icon: "📝",
     tag: "Most Popular",
-    color: "#E85D3A",
+    color: "#7C3AED",
     image: "https://images.unsplash.com/photo-1751257983922-a627088d4c21?ixlib=rb-4.1.0&w=600&h=340&fit=crop",
   },
   {
@@ -162,18 +163,45 @@ function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
 
 export default function App() {
   const [view, setView] = useState("landing");
-  const [user, setUser] = useState(() => {
-    try { const u = localStorage.getItem("sf-user"); return u ? JSON.parse(u) : null; } catch { return null; }
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  function handleLogin(userData) {
-    localStorage.setItem("sf-user", JSON.stringify(userData));
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        loadProfile(session.user);
+      }
+      setLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        loadProfile(session.user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function loadProfile(authUser) {
+    const { data } = await supabase.from("profiles").select("*").eq("id", authUser.id).single();
+    setUser({
+      id: authUser.id,
+      email: authUser.email,
+      firstName: data?.first_name || authUser.user_metadata?.first_name || "Learner",
+      lastName: data?.last_name || authUser.user_metadata?.last_name || "",
+      phone: data?.phone || "",
+      interests: data?.interests || [],
+    });
+  }
+
+  async function handleLogin(userData) {
     setUser(userData);
     setView("lms");
   }
 
-  function handleLogout() {
-    localStorage.removeItem("sf-user");
+  async function handleLogout() {
+    await supabase.auth.signOut();
     setUser(null);
     setView("landing");
   }
@@ -182,6 +210,8 @@ export default function App() {
     if (user) { setView("lms"); }
     else { setView("auth"); }
   }
+
+  if (loading) return <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "#FAFAF7", fontFamily: "'DM Sans', sans-serif" }}><div style={{ textAlign: "center" }}><div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", transform: "rotate(-3deg)", marginBottom: 16 }}>L</div><p style={{ color: "#999", fontSize: 14 }}>Loading...</p></div></div>;
 
   if (view === "lms" && user) return <LMS onBack={() => setView("landing")} user={user} onLogout={handleLogout} />;
   if (view === "auth") return <AuthScreen onLogin={handleLogin} onBack={() => setView("landing")} />;
@@ -194,6 +224,7 @@ function AuthScreen({ onLogin, onBack }) {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", password: "", interests: [] });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPw, setShowPw] = useState(false);
 
   const interests = [
     { id: "leadership", label: "Leadership & Management", icon: "\u{1F451}" },
@@ -206,7 +237,7 @@ function AuthScreen({ onLogin, onBack }) {
     { id: "ops", label: "Operations & Business", icon: "\u{1F4CB}" },
   ];
 
-  function handleSignup(e) {
+  async function handleSignup(e) {
     e.preventDefault();
     setError("");
     if (step === 1) {
@@ -226,30 +257,48 @@ function AuthScreen({ onLogin, onBack }) {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      const users = JSON.parse(localStorage.getItem("sf-users") || "[]");
-      if (users.find(u => u.email === form.email)) {
-        setError("An account with this email already exists. Please log in.");
-        setLoading(false);
-        return;
-      }
-      const newUser = {
-        id: Date.now().toString(),
-        firstName: form.firstName,
-        lastName: form.lastName,
+    try {
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email: form.email,
-        phone: form.phone,
-        interests: form.interests,
-        joined: new Date().toISOString(),
-      };
-      users.push({ ...newUser, password: form.password });
-      localStorage.setItem("sf-users", JSON.stringify(users));
-      setLoading(false);
-      onLogin(newUser);
-    }, 800);
+        password: form.password,
+        options: {
+          data: { first_name: form.firstName, last_name: form.lastName },
+        },
+      });
+      if (signUpError) { setError(signUpError.message); setLoading(false); return; }
+      if (data.user) {
+        // Create profile
+        await supabase.from("profiles").upsert({
+          id: data.user.id,
+          first_name: form.firstName,
+          last_name: form.lastName,
+          phone: form.phone,
+          interests: form.interests,
+        });
+        // If email confirmation is required, session will be null
+        if (!data.session) {
+          setError("");
+          setStep(1);
+          setMode("login");
+          setForm(prev => ({ ...prev, password: "" }));
+          setLoading(false);
+          alert("Account created! Please check your email to confirm, then log in.");
+          return;
+        }
+        onLogin({
+          id: data.user.id,
+          email: form.email,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          phone: form.phone,
+          interests: form.interests,
+        });
+      }
+    } catch (err) { setError(err.message); }
+    setLoading(false);
   }
 
-  function handleLoginSubmit(e) {
+  async function handleLoginSubmit(e) {
     e.preventDefault();
     setError("");
     if (!form.email.trim() || !form.password.trim()) {
@@ -257,18 +306,26 @@ function AuthScreen({ onLogin, onBack }) {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      const users = JSON.parse(localStorage.getItem("sf-users") || "[]");
-      const found = users.find(u => u.email === form.email && u.password === form.password);
-      if (!found) {
-        setError("Invalid email or password.");
-        setLoading(false);
-        return;
+    try {
+      const { data, error: loginError } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
+      if (loginError) { setError(loginError.message); setLoading(false); return; }
+      // Profile will be loaded by onAuthStateChange in App
+      if (data.user) {
+        const { data: profile } = await supabase.from("profiles").select("*").eq("id", data.user.id).single();
+        onLogin({
+          id: data.user.id,
+          email: data.user.email,
+          firstName: profile?.first_name || data.user.user_metadata?.first_name || "Learner",
+          lastName: profile?.last_name || data.user.user_metadata?.last_name || "",
+          phone: profile?.phone || "",
+          interests: profile?.interests || [],
+        });
       }
-      const { password, ...userData } = found;
-      setLoading(false);
-      onLogin(userData);
-    }, 600);
+    } catch (err) { setError(err.message); }
+    setLoading(false);
   }
 
   function toggleInterest(id) {
@@ -297,14 +354,14 @@ function AuthScreen({ onLogin, onBack }) {
         }
         .auth-card::before {
           content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-          background: linear-gradient(90deg, #E85D3A, #F4A261, #45B69C, #2D7DD2);
+          background: linear-gradient(90deg, #7C3AED, #F4A261, #45B69C, #2D7DD2);
         }
         .auth-input {
           width: 100%; padding: 14px 18px; border: 1.5px solid #E8E8E8; border-radius: 14px;
           font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none;
           transition: border-color 0.2s, box-shadow 0.2s; background: #FAFAF7;
         }
-        .auth-input:focus { border-color: #E85D3A; box-shadow: 0 0 0 3px rgba(232,93,58,0.1); }
+        .auth-input:focus { border-color: #7C3AED; box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
         .auth-input::placeholder { color: #BBB; }
         .auth-btn {
           width: 100%; padding: 15px; border: none; border-radius: 50px;
@@ -312,10 +369,10 @@ function AuthScreen({ onLogin, onBack }) {
           transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .auth-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .auth-btn-primary { background: #E85D3A; color: white; }
-        .auth-btn-primary:hover:not(:disabled) { background: #D14E2E; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232,93,58,0.3); }
+        .auth-btn-primary { background: #7C3AED; color: white; }
+        .auth-btn-primary:hover:not(:disabled) { background: #6D28D9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,58,237,0.3); }
         .auth-toggle {
-          background: none; border: none; color: #E85D3A; font-size: 14px;
+          background: none; border: none; color: #7C3AED; font-size: 14px;
           font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
         }
         .auth-toggle:hover { text-decoration: underline; }
@@ -325,12 +382,12 @@ function AuthScreen({ onLogin, onBack }) {
           transition: all 0.2s; background: white; font-size: 14px; font-weight: 500;
         }
         .interest-chip:hover { border-color: #CCC; }
-        .interest-chip.selected { border-color: #E85D3A; background: #FFF3EE; color: #E85D3A; }
+        .interest-chip.selected { border-color: #7C3AED; background: #F3EDFF; color: #7C3AED; }
         .step-dots { display: flex; gap: 8px; justify-content: center; }
         .step-dot {
           width: 8px; height: 8px; border-radius: 4px; background: #E8E8E8; transition: all 0.3s;
         }
-        .step-dot.active { width: 24px; background: #E85D3A; }
+        .step-dot.active { width: 24px; background: #7C3AED; }
         .step-dot.done { background: #10B981; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         .auth-animate { animation: fadeInUp 0.4s ease forwards; }
@@ -353,7 +410,7 @@ function AuthScreen({ onLogin, onBack }) {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
             <div style={{
-              width: 42, height: 42, background: "#E85D3A", borderRadius: 12,
+              width: 42, height: 42, background: "#7C3AED", borderRadius: 12,
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif",
               transform: "rotate(-3deg)",
@@ -395,7 +452,10 @@ function AuthScreen({ onLogin, onBack }) {
             </div>
             <div style={{ marginBottom: 24 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>Password</label>
-              <input className="auth-input" type="password" placeholder="Enter your password" value={form.password} onChange={e => up("password", e.target.value)} />
+              <div style={{ position: "relative" }}>
+                <input className="auth-input" type={showPw ? "text" : "password"} placeholder="Enter your password" value={form.password} onChange={e => up("password", e.target.value)} style={{ paddingRight: 44 }} />
+                <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#999", padding: 4 }} aria-label={showPw ? "Hide password" : "Show password"}>{showPw ? "\u{1F441}\uFE0F" : "\u{1F441}\u200D\u{1F5E8}"}</button>
+              </div>
             </div>
             <button type="submit" className="auth-btn auth-btn-primary" disabled={loading}>
               {loading ? <><div className="spinner" /> Signing in...</> : "Sign In"}
@@ -468,7 +528,10 @@ function AuthScreen({ onLogin, onBack }) {
           <form onSubmit={handleSignup} className="auth-animate">
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>Create Password *</label>
-              <input className="auth-input" type="password" placeholder="At least 6 characters" value={form.password} onChange={e => up("password", e.target.value)} />
+              <div style={{ position: "relative" }}>
+                <input className="auth-input" type={showPw ? "text" : "password"} placeholder="At least 6 characters" value={form.password} onChange={e => up("password", e.target.value)} style={{ paddingRight: 44 }} />
+                <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#999", padding: 4 }} aria-label={showPw ? "Hide password" : "Show password"}>{showPw ? "\u{1F441}\uFE0F" : "\u{1F441}\u200D\u{1F5E8}"}</button>
+              </div>
               <div style={{ marginTop: 8, display: "flex", gap: 6 }}>
                 {[1, 2, 3, 4].map(i => (
                   <div key={i} style={{
@@ -554,7 +617,7 @@ function Landing({ onExploreCourses }) {
           display: flex; align-items: center; gap: 10px;
         }
         .nav-logo-mark {
-          width: 36px; height: 36px; background: #E85D3A; border-radius: 10px;
+          width: 36px; height: 36px; background: #7C3AED; border-radius: 10px;
           display: flex; align-items: center; justify-content: center;
           color: white; font-size: 18px; font-weight: 900;
           transform: rotate(-3deg);
@@ -564,13 +627,13 @@ function Landing({ onExploreCourses }) {
           text-decoration: none; color: #555; font-size: 14px; font-weight: 500;
           transition: color 0.2s;
         }
-        .nav-links a:hover { color: #E85D3A; }
+        .nav-links a:hover { color: #7C3AED; }
         .nav-cta {
           background: #1A1A1A; color: white !important; padding: 10px 24px;
           border-radius: 50px; font-size: 13px !important; font-weight: 600 !important;
           transition: all 0.3s !important;
         }
-        .nav-cta:hover { background: #E85D3A !important; transform: translateY(-1px); }
+        .nav-cta:hover { background: #7C3AED !important; transform: translateY(-1px); }
         
         .hamburger {
           display: none; background: none; border: none; cursor: pointer;
@@ -597,7 +660,7 @@ function Landing({ onExploreCourses }) {
           font-size: 24px; color: #1A1A1A; text-decoration: none; font-weight: 500;
           transition: color 0.2s;
         }
-        .mobile-menu a:hover { color: #E85D3A; }
+        .mobile-menu a:hover { color: #7C3AED; }
 
         @media (max-width: 768px) {
           .nav-links { display: none; }
@@ -614,12 +677,12 @@ function Landing({ onExploreCourses }) {
         }
         .hero-badge {
           display: inline-flex; align-items: center; gap: 8px;
-          background: #FFF3EE; color: #E85D3A; font-size: 13px; font-weight: 600;
+          background: #F3EDFF; color: #7C3AED; font-size: 13px; font-weight: 600;
           padding: 8px 18px; border-radius: 50px; margin-bottom: 24px;
           animation: fadeInUp 0.8s ease-out;
         }
         .hero-badge::before {
-          content: ''; width: 8px; height: 8px; background: #E85D3A;
+          content: ''; width: 8px; height: 8px; background: #7C3AED;
           border-radius: 50%; animation: pulse 2s infinite;
         }
         @keyframes pulse {
@@ -632,8 +695,8 @@ function Landing({ onExploreCourses }) {
           animation: fadeInUp 0.8s ease-out 0.1s both;
         }
         .hero h1 em {
-          font-style: italic; color: #E85D3A;
-          background: linear-gradient(135deg, #E85D3A, #F4A261);
+          font-style: italic; color: #7C3AED;
+          background: linear-gradient(135deg, #7C3AED, #F4A261);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .hero p {
@@ -647,11 +710,11 @@ function Landing({ onExploreCourses }) {
         }
         @media (max-width: 900px) { .hero-actions { justify-content: center; } }
         .btn-primary {
-          background: #E85D3A; color: white; border: none; padding: 16px 36px;
+          background: #7C3AED; color: white; border: none; padding: 16px 36px;
           border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer;
           transition: all 0.3s; font-family: inherit;
         }
-        .btn-primary:hover { background: #d14e2e; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,93,58,0.3); }
+        .btn-primary:hover { background: #d14e2e; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.3); }
         .btn-secondary {
           background: transparent; color: #1A1A1A; border: 2px solid #E0E0E0; padding: 14px 36px;
           border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer;
@@ -668,7 +731,7 @@ function Landing({ onExploreCourses }) {
         }
         .hero-card::before {
           content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-          background: linear-gradient(90deg, #E85D3A, #2D7DD2, #45B69C, #9B5DE5);
+          background: linear-gradient(90deg, #7C3AED, #2D7DD2, #45B69C, #9B5DE5);
         }
         .hero-card-grid {
           display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
@@ -701,7 +764,7 @@ function Landing({ onExploreCourses }) {
         .stat-item { text-align: center; }
         .stat-num {
           font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px);
-          font-weight: 900; color: #E85D3A;
+          font-weight: 900; color: #7C3AED;
         }
         .stat-label { font-size: 14px; color: #999; margin-top: 4px; }
 
@@ -711,7 +774,7 @@ function Landing({ onExploreCourses }) {
         }
         .section-label {
           font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
-          color: #E85D3A; margin-bottom: 12px;
+          color: #7C3AED; margin-bottom: 12px;
         }
         .section-title {
           font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 46px);
@@ -776,7 +839,7 @@ function Landing({ onExploreCourses }) {
           cursor: pointer; transition: all 0.3s; font-size: 18px;
         }
         .course-card:hover .course-enroll-btn {
-          background: #E85D3A; border-color: #E85D3A; color: white;
+          background: #7C3AED; border-color: #7C3AED; color: white;
         }
 
         .features-grid {
@@ -788,7 +851,7 @@ function Landing({ onExploreCourses }) {
         }
         .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
         .feature-icon {
-          width: 56px; height: 56px; border-radius: 16px; background: #FFF3EE;
+          width: 56px; height: 56px; border-radius: 16px; background: #F3EDFF;
           display: flex; align-items: center; justify-content: center;
           font-size: 26px; margin-bottom: 20px;
         }
@@ -804,7 +867,7 @@ function Landing({ onExploreCourses }) {
         .inperson-section::before {
           content: ''; position: absolute; top: -40%; right: -10%;
           width: 500px; height: 500px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(232,93,58,0.15), transparent 70%);
+          background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%);
         }
         .inperson-section .section-label { color: #F4A261; }
         .inperson-section h2 {
@@ -836,9 +899,9 @@ function Landing({ onExploreCourses }) {
         }
         .testimonial-author { display: flex; align-items: center; gap: 14px; }
         .testimonial-avatar {
-          width: 44px; height: 44px; border-radius: 50%; background: #E85D3A;
+          width: 44px; height: 44px; border-radius: 50%; background: #7C3AED;
           color: white; display: flex; align-items: center; justify-content: center;
-          font-weight: 700; font-size: 14px; border: 2px solid #FFF3EE;
+          font-weight: 700; font-size: 14px; border: 2px solid #F3EDFF;
         }
         .testimonial-name { font-weight: 700; font-size: 15px; }
         .testimonial-role { font-size: 13px; color: #999; }
@@ -868,7 +931,7 @@ function Landing({ onExploreCourses }) {
         .footer-desc { font-size: 14px; color: #888; line-height: 1.6; }
         .footer h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; color: #999; }
         .footer a { display: block; color: #DDD; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
-        .footer a:hover { color: #E85D3A; }
+        .footer a:hover { color: #7C3AED; }
         .footer-bottom {
           border-top: 1px solid #333; margin-top: 48px; padding-top: 24px;
           display: flex; justify-content: space-between; max-width: 1300px; margin-left: auto; margin-right: auto;
@@ -907,7 +970,7 @@ function Landing({ onExploreCourses }) {
           width: 100%; padding: 14px 18px; border: 1.5px solid #E8E8E8; border-radius: 14px;
           font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.2s;
         }
-        .form-group input:focus { border-color: #E85D3A; }
+        .form-group input:focus { border-color: #7C3AED; }
         .modal .btn-primary { width: 100%; }
 
         .success-msg {
@@ -960,7 +1023,7 @@ function Landing({ onExploreCourses }) {
         <a
           href="#enroll"
           onClick={() => setMenuOpen(false)}
-          style={{ color: "#E85D3A" }}
+          style={{ color: "#7C3AED" }}
         >
           Enroll Now
         </a>
@@ -987,8 +1050,8 @@ function Landing({ onExploreCourses }) {
         </div>
         <div className="hero-visual">
           <img
-            src="https://plus.unsplash.com/premium_photo-1705700638872-efb5a1be9a99?ixlib=rb-4.1.0&w=700&h=500&fit=crop"
-            alt="Students collaborating on creative projects"
+            src="https://plus.unsplash.com/premium_photo-1667516599086-af387f7c62b1?ixlib=rb-4.1.0&w=700&h=500&fit=crop"
+            alt="Creative team collaborating in a brainstorm meeting"
             style={{
               width: "100%",
               borderRadius: 24,
@@ -1211,7 +1274,7 @@ function Landing({ onExploreCourses }) {
         <div className="section-label">Ready to Start?</div>
         <h2>
           Your Next Chapter{" "}
-          <span style={{ fontStyle: "italic", color: "#E85D3A" }}>
+          <span style={{ fontStyle: "italic", color: "#7C3AED" }}>
             Starts Here
           </span>
         </h2>
