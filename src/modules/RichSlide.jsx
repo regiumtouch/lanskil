@@ -5,7 +5,7 @@ const PURPLE = "#7C3AED";
 const PURPLE_LIGHT = "#F3EDFF";
 const ORANGE = "#F4A261";
 
-export default function RichSlide({ slide, T, present }) {
+export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) {
   const p = present ? 1.25 : 1; // scale factor for present mode
 
   const styles = {
@@ -275,28 +275,67 @@ export default function RichSlide({ slide, T, present }) {
         </div>
       );
 
-    case "quiz":
+    case "quiz": {
+      const answers = rqa || {};
+      const selectAnswer = (qIdx, optIdx) => {
+        if (!setRqa) return;
+        const key = slideIdx + ":" + qIdx;
+        if (answers[key] !== undefined) return; // already answered, lock it
+        setRqa(prev => ({ ...prev, [key]: optIdx }));
+      };
+      const answeredCount = slide.questions.filter((_, i) => answers[slideIdx + ":" + i] !== undefined).length;
+      const correctCount = slide.questions.filter((q, i) => answers[slideIdx + ":" + i] === q.correct).length;
       return (
         <div style={styles.wrap}>
-          <div style={styles.eyebrow}>Knowledge Check</div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
+            <div style={styles.eyebrow}>Interactive Knowledge Check</div>
+            <div style={{ fontSize: 11 * p, color: T.text3, fontWeight: 600 }}>{answeredCount}/{slide.questions.length} answered {answeredCount === slide.questions.length && "• " + correctCount + "/" + slide.questions.length + " correct"}</div>
+          </div>
           <h1 style={styles.h1}>{slide.title}</h1>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 16 }}>
-            {slide.questions.map((q, i) => (
-              <div key={i} style={{ padding: 18, borderRadius: 12, background: T.subtle, border: "1px solid " + T.border }}>
-                <div style={{ fontSize: 14 * p, fontWeight: 700, color: T.text, marginBottom: 10 }}>Q{i + 1}. {q.q}</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {q.opts.map((o, j) => (
-                    <div key={j} style={{ fontSize: 12.5 * p, color: T.text2, padding: "6px 10px", borderRadius: 8 }}>
-                      {String.fromCharCode(65 + j)}) {o}
-                    </div>
-                  ))}
+          <p style={{ fontSize: 13 * p, color: T.text3, marginBottom: 20 }}>Click an answer to see immediate feedback. Your score counts toward the module evaluation.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {slide.questions.map((q, i) => {
+              const key = slideIdx + ":" + i;
+              const selected = answers[key];
+              const answered = selected !== undefined;
+              const isCorrect = answered && selected === q.correct;
+              return (
+                <div key={i} style={{ padding: 18, borderRadius: 14, background: T.subtle, border: "1.5px solid " + (answered ? (isCorrect ? "#10B981" : "#EF4444") : T.border), transition: "border-color .3s" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 12 }}>
+                    <div style={{ fontSize: 14 * p, fontWeight: 700, color: T.text, flex: 1 }}>Q{i + 1}. {q.q}</div>
+                    {answered && <div style={{ fontSize: 11 * p, fontWeight: 700, color: isCorrect ? "#10B981" : "#EF4444", whiteSpace: "nowrap" }}>{isCorrect ? "✓ Correct" : "✗ Wrong"}</div>}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    {q.opts.map((o, j) => {
+                      const isSelected = selected === j;
+                      const showCorrect = answered && j === q.correct;
+                      const showWrong = answered && isSelected && !isCorrect;
+                      let bg = T.card, border = T.border, color = T.text2, weight = 400;
+                      if (showCorrect) { bg = "#F0FDF4"; border = "#10B981"; color = "#059669"; weight = 600; }
+                      else if (showWrong) { bg = "#FEF2F2"; border = "#EF4444"; color = "#DC2626"; weight = 600; }
+                      else if (isSelected) { bg = PURPLE_LIGHT; border = PURPLE; color = PURPLE; weight = 600; }
+                      return (
+                        <div
+                          key={j}
+                          onClick={() => selectAnswer(i, j)}
+                          style={{ fontSize: 12.5 * p, color, padding: "10px 14px", borderRadius: 10, background: bg, border: "1.5px solid " + border, cursor: answered ? "default" : "pointer", transition: "all .2s", fontWeight: weight, display: "flex", alignItems: "center", gap: 10 }}
+                        >
+                          <span style={{ width: 22, height: 22, borderRadius: "50%", background: showCorrect ? "#10B981" : (showWrong ? "#EF4444" : (isSelected ? PURPLE : "transparent")), border: "1.5px solid " + (showCorrect ? "#10B981" : (showWrong ? "#EF4444" : (isSelected ? PURPLE : T.border))), color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0 }}>
+                            {showCorrect ? "✓" : (showWrong ? "✗" : (isSelected ? String.fromCharCode(65 + j) : String.fromCharCode(65 + j)))}
+                          </span>
+                          <span>{o}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           {slide.scoring && <p style={{ marginTop: 20, fontSize: 12 * p, color: T.text3, textAlign: "center", fontStyle: "italic" }}>{slide.scoring}</p>}
         </div>
       );
+    }
 
     case "exercise":
       return (
