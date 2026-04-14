@@ -506,7 +506,9 @@ export default function LMS({ onBack, user, onLogout }) {
   function scr(){window.scrollTo({top:0,behavior:"smooth"});}
   function osk(s){setSk(s);setLs(null);setV("skill");setMd("browse");setSbo(false);scr();}
   function ols(l){setLs(l);setV("lesson");setMd("browse");setSi(0);setQa({});setQs(false);scr();}
+  function oskl(s,l){setSk(s);setLs(l);setV("lesson");setMd("browse");setSi(0);setQa({});setQs(false);setSbo(false);scr();}
   function nxt(){if(!sk||!ls)return null;var idx=sk.lessons.indexOf(ls);return idx<sk.lessons.length-1?sk.lessons[idx+1]:null;}
+  var _qScore=useState(null),qScore=_qScore[0],setQScore=_qScore[1];
 
   return (
     <div style={{fontFamily:"'DM Sans',sans-serif",background:T.bg,color:T.text,minHeight:"100vh",overflowX:"hidden",transition:"background .3s,color .3s"}}>
@@ -536,13 +538,13 @@ export default function LMS({ onBack, user, onLogout }) {
         {user&&<div style={{borderTop:"1px solid "+T.border,padding:"16px 16px",margin:"0"}}><div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}><div style={{width:34,height:34,borderRadius:50,background:"linear-gradient(135deg,#7C3AED,#F4A261)",display:"flex",alignItems:"center",justifyContent:"center",color:"white",fontSize:14,fontWeight:700,flexShrink:0}}>{(user.firstName||"U").charAt(0)}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{user.firstName}{user.lastName?" "+user.lastName:""}</div><div style={{fontSize:11,color:T.text3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{user.email}</div></div></div><button className="bt" onClick={onLogout} style={{width:"100%",padding:"8px 0",borderRadius:10,background:T.hover,color:T.text2,fontSize:12,fontWeight:500,border:"none",textAlign:"center",transition:"all .2s"}}>{"\u{1F6AA}"} Sign Out</button></div>}
       </div>
       <div className="mn">
-        {v==="dash"&&<Dash ft={ft} sr={sr} setSr={setSr} fc={fc} fl={fl} setFl={setFl} osk={osk} gp={gp} op={op} tl={tl} dc={dc} dn={dn} user={user} T={T} dark={dark}/>}
+        {v==="dash"&&<Dash ft={ft} sr={sr} setSr={setSr} fc={fc} fl={fl} setFl={setFl} osk={osk} oskl={oskl} gp={gp} op={op} tl={tl} dc={dc} dn={dn} user={user} T={T} dark={dark}/>}
         {v==="skill"&&sk&&<SkV sk={sk} gb={function(){setV("dash");setSk(null);}} ols={ols} dn={dn} gp={gp} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="slides"&&<SlV ls={ls} sk={sk} si={si} setSi={setSi} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="ready"&&<ReadyV ls={ls} sk={sk} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
-        {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T}/>}
-        {v==="lesson"&&ls&&sk&&md==="results"&&<ResV ls={ls} sk={sk} mk={mk} dn={dn} setMd={setMd} gb={function(){setV("skill");setLs(null);scr();}} nxt={nxt()} ols={ols} goDash={function(){setV("dash");setSk(null);setLs(null);scr();}} user={user} T={T}/>}
+        {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T} setQScore={setQScore}/>}
+        {v==="lesson"&&ls&&sk&&md==="results"&&<ResV ls={ls} sk={sk} mk={mk} dn={dn} setMd={setMd} gb={function(){setV("skill");setLs(null);scr();}} nxt={nxt()} ols={ols} goDash={function(){setV("dash");setSk(null);setLs(null);scr();}} user={user} T={T} qScore={qScore}/>}
       </div>
     </div>
   );
@@ -552,9 +554,17 @@ function Rng(props){var p=props.p,sz=props.sz||44,sw=props.sw||3.5,c=props.c||"#
 
 function Bar(props){var p=props.p,c=props.c||"#7C3AED",h=props.h||5;return <div style={{width:"100%",height:h,background:"#E8E8E8",borderRadius:h}}><div style={{width:p+"%",height:"100%",background:c,borderRadius:h,transition:"width .4s"}}/></div>;}
 
-function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,fl=props.fl,setFl=props.setFl,osk=props.osk,gp=props.gp,op=props.op,tl=props.tl,dc=props.dc,dn=props.dn,user=props.user,T=props.T,dark=props.dark;
+function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,fl=props.fl,setFl=props.setFl,osk=props.osk,oskl=props.oskl,gp=props.gp,op=props.op,tl=props.tl,dc=props.dc,dn=props.dn,user=props.user,T=props.T,dark=props.dark;
   var inProg=SKILLS.filter(function(s){var p=gp(s);return p>0&&p<100;}).length;
   var comp=SKILLS.filter(function(s){return gp(s)===100;}).length;
+  // Build Continue Learning list - skills with progress > 0, showing next uncompleted lesson
+  var continueList=SKILLS.map(function(s){
+    var progress=gp(s);
+    if(progress<=0||progress>=100)return null;
+    var nextLesson=s.lessons.find(function(l){return !dn[l.id];});
+    if(!nextLesson)return null;
+    return {skill:s,lesson:nextLesson,progress:progress};
+  }).filter(Boolean).slice(0,3);
   return <div>
   {/* Welcome Banner */}
   <div style={{background:"linear-gradient(135deg,#1A1A1A 0%,#2D2D2D 100%)",borderRadius:24,padding:"36px 40px",marginBottom:28,position:"relative",overflow:"hidden"}}>
@@ -574,6 +584,39 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
     <div className="stat-card" style={{background:dark?"linear-gradient(135deg,"+T.statBg3+","+T.card+")":"linear-gradient(135deg,#ECFDF5,#FFFFFF)",border:"1px solid "+(dark?"#1A3D2A":"#A7F3D0")}}><div style={{fontSize:11,color:"#059669",fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",marginBottom:8}}>Completed</div><div style={{fontSize:32,fontWeight:800,color:"#059669",fontFamily:"'Playfair Display',serif",lineHeight:1}}>{comp}</div><div style={{fontSize:12,color:T.text3,marginTop:8}}>of {SKILLS.length} skills</div></div>
     <div className="stat-card" style={{background:dark?"linear-gradient(135deg,"+T.statBg4+","+T.card+")":"linear-gradient(135deg,#EFF6FF,#FFFFFF)",border:"1px solid "+(dark?"#1A2540":"#BFDBFE")}}><div style={{fontSize:11,color:"#2563EB",fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",marginBottom:8}}>Lessons Done</div><div style={{fontSize:32,fontWeight:800,color:"#2563EB",fontFamily:"'Playfair Display',serif",lineHeight:1}}>{dc}</div><div style={{fontSize:12,color:T.text3,marginTop:8}}>of {tl} total</div></div>
   </div>
+
+  {/* Continue Learning */}
+  {continueList.length>0&&<div style={{marginBottom:28}}>
+    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:14}}>
+      <div style={{display:"flex",alignItems:"center",gap:10}}>
+        <div style={{width:36,height:36,borderRadius:10,background:"linear-gradient(135deg,#7C3AED,#F4A261)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{"\u{1F4CD}"}</div>
+        <div><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,lineHeight:1.2,color:T.text}}>Continue Learning</h2><p style={{fontSize:12,color:T.text3}}>Pick up where you left off</p></div>
+      </div>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:14}}>
+      {continueList.map(function(item){
+        var s=item.skill,l=item.lesson,p=item.progress;
+        return <div key={s.id} className="c" onClick={function(){oskl(s,l);}} style={{padding:20,cursor:"pointer",borderLeft:"4px solid "+s.color,background:"linear-gradient(135deg,"+s.color+"08,"+T.card+")"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,gap:10}}>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:10,fontWeight:800,color:s.color,textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>{s.name}</div>
+              <h4 style={{fontFamily:"'Playfair Display',serif",fontSize:15,fontWeight:700,color:T.text,marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{l.title}</h4>
+              <div style={{fontSize:11.5,color:T.text3,display:"flex",alignItems:"center",gap:6}}>
+                <span>{"\u23F1"} {l.duration}</span>
+                <span>{"\u2022"}</span>
+                <span>{l.type}</span>
+              </div>
+            </div>
+            <div style={{fontSize:20,color:s.color}}>{"\u25B6"}</div>
+          </div>
+          <div style={{display:"flex",alignItems:"center",gap:10}}>
+            <div style={{flex:1}}><Bar p={p} c={s.color} h={5}/></div>
+            <span style={{fontSize:11.5,fontWeight:700,color:s.color,whiteSpace:"nowrap"}}>{p}%</span>
+          </div>
+        </div>;
+      })}
+    </div>
+  </div>}
 
   {/* Search & Filter */}
   <div style={{display:"flex",gap:12,marginBottom:24,flexWrap:"wrap",alignItems:"center"}}>
@@ -745,7 +788,7 @@ function ReadyV(props){
   </div>;
 }
 
-function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd;
+function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd,setQScore=props.setQScore;
   var qz=useMemo(function(){return getQuiz(ls);},[ls]);var _x=useState(0),qi=_x[0],setQi=_x[1];
   useEffect(function(){if(!qz.length)setMd("results");},[qz.length]);
   if(!qz.length)return null;var q=qz[qi];var sel=qa[qi];var all=Object.keys(qa).length===qz.length;var sc=qz.reduce(function(a,q2,i){return a+(qa[i]===q2.correct?1:0);},0);var pass=sc>=Math.ceil(qz.length*.66);
@@ -771,7 +814,7 @@ function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs
       </div>
 
       <div style={{display:"flex",gap:12,justifyContent:"center"}}>
-        {pass?<button className="bt" onClick={function(){setMd("results");}} style={{padding:"14px 36px",borderRadius:50,background:"#10B981",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 16px rgba(16,185,129,.3)"}}>{"\u2713"} Complete Lesson</button>
+        {pass?<button className="bt" onClick={function(){if(setQScore)setQScore({correct:sc,total:qz.length,pct:Math.round(sc/qz.length*100)});setMd("results");}} style={{padding:"14px 36px",borderRadius:50,background:"#10B981",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 16px rgba(16,185,129,.3)"}}>{"\u2713"} Complete Lesson</button>
         :<button className="bt" onClick={function(){setQa({});setQs(false);setQi(0);}} style={{padding:"14px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:600,border:"none"}}>{"\u21BB"} Try Again</button>}
       </div>
     </div>
@@ -789,7 +832,7 @@ function Confetti(){var colors=["#7C3AED","#F4A261","#10B981","#2563EB","#EC4899
 
 function printCert(user,sk){var w=window.open("","_blank","width=900,height=650");if(!w)return;var name=(user?user.firstName+" "+(user.lastName||""):"Learner").trim();var date=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});w.document.write('<!DOCTYPE html><html><head><title>Certificate - '+sk.name+'</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#F5F5F5;font-family:"DM Sans",sans-serif}@media print{body{background:white}.no-print{display:none!important}}.cert{width:800px;padding:60px;background:white;border:3px solid #7C3AED;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.1)}.cert::before{content:"";position:absolute;inset:8px;border:1.5px solid #F4A261;pointer-events:none}.logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}.logo-mark{width:40px;height:40px;background:#7C3AED;border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;font-weight:900;font-family:"Playfair Display",serif;transform:rotate(-3deg)}.logo-text{font-family:"Playfair Display",serif;font-weight:900;font-size:24px}.sub{text-align:center;color:#AAA;font-size:12px;margin-bottom:32px}.title{text-align:center;font-size:14px;color:#999;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px}.name{text-align:center;font-family:"Playfair Display",serif;font-size:42px;font-weight:800;color:#1A1A1A;margin-bottom:8px;line-height:1.2}.course{text-align:center;font-size:16px;color:#555;margin-bottom:6px}.skill{text-align:center;font-family:"Playfair Display",serif;font-size:24px;font-weight:700;color:#7C3AED;margin-bottom:24px}.date{text-align:center;font-size:14px;color:#999;margin-bottom:32px}.footer{display:flex;justify-content:space-between;align-items:flex-end;padding-top:24px;border-top:1px solid #EEE}.sig{text-align:center}.sig-line{width:160px;border-top:1.5px solid #CCC;margin-bottom:6px}.sig-name{font-size:12px;color:#999}.actions{text-align:center;margin-top:20px}.actions button{padding:12px 32px;border-radius:50px;border:none;background:#7C3AED;color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:"DM Sans",sans-serif;margin:0 8px}</style></head><body><div class="cert"><div class="logo"><div class="logo-mark">L</div><div class="logo-text">LanSkil</div></div><div class="sub">by Regium Touch</div><div class="title">Certificate of Completion</div><div class="name">'+name+'</div><div class="course">has successfully completed</div><div class="skill">'+sk.name+'</div><div class="date">'+date+'</div><div class="footer"><div class="sig"><div class="sig-line"></div><div class="sig-name">Program Director</div></div><div class="sig"><div class="sig-line"></div><div class="sig-name">'+date+'</div></div></div></div><div class="actions no-print"><button onclick="window.print()">Print / Save as PDF</button><button onclick="window.close()" style="background:#888">Close</button></div></body></html>');w.document.close();}
 
-function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=props.setMd,gb=props.gb,nxt=props.nxt,ols=props.ols,goDash=props.goDash,user=props.user,T=props.T;
+function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=props.setMd,gb=props.gb,nxt=props.nxt,ols=props.ols,goDash=props.goDash,user=props.user,T=props.T,qScore=props.qScore;
   var _cf=useState(true),showConf=_cf[0],setShowConf=_cf[1];
   useEffect(function(){if(!dn[ls.id])mk(ls.id);var t=setTimeout(function(){setShowConf(false);},3000);return function(){clearTimeout(t);};},[ls.id]);
   var allDone=!nxt;
@@ -802,6 +845,13 @@ function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=p
         <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:800,marginBottom:10}}>{allDone?"Skill Complete!":"Lesson Complete!"}</h1>
         <p style={{color:"#555",fontSize:15,marginBottom:6}}>You finished <strong style={{color:"#1A1A1A"}}>{ls.title}</strong></p>
         <p style={{color:"#999",fontSize:13,marginBottom:28}}>Progress saved automatically</p>
+
+        {/* Big score display */}
+        {qScore&&<div style={{marginBottom:24,padding:"24px 20px",borderRadius:20,background:"linear-gradient(135deg,"+sk.color+"15,"+sk.color+"08)",border:"1px solid "+sk.color+"30"}}>
+          <div style={{fontSize:11,fontWeight:800,color:sk.color,textTransform:"uppercase",letterSpacing:1.5,marginBottom:8}}>Your Quiz Score</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:52,fontWeight:900,color:sk.color,lineHeight:1}}>{qScore.pct}%</div>
+          <div style={{fontSize:13,color:"#666",marginTop:6}}>{qScore.correct} out of {qScore.total} correct</div>
+        </div>}
 
         {/* Stats */}
         <div style={{display:"flex",gap:12,justifyContent:"center",marginBottom:28,flexWrap:"wrap"}}>
