@@ -8,6 +8,14 @@ export const psychologyModule = {
   duration: "90 min",
   desc: "Master the cognitive biases, emotional triggers, and decision-making science behind every high-converting piece of copy.",
   topics: ["Reciprocity", "Scarcity & Urgency", "Social Proof", "Anchoring", "Loss Aversion", "Authority"],
+  quiz: [
+    { q: 'Which principle does "Only 2 seats remaining" leverage?', opts: ["Reciprocity", "Scarcity", "Anchoring", "Social Proof"], correct: 1 },
+    { q: "A company offers a free SEO audit before pitching their $2,000/mo service. Which principle?", opts: ["Anchoring — high price first", "Scarcity — limited audit", "Reciprocity — free value creates obligation", "Social Proof — others used it"], correct: 2 },
+    { q: '"Stop losing $47/day in wasted ad spend" uses which framing technique?', opts: ["Gain framing", "Authority signaling", "Loss aversion framing", "Social proof"], correct: 2 },
+    { q: "On a pricing page, showing the $249/mo plan first before the $79/mo plan uses:", opts: ["Scarcity", "Loss Aversion", "Anchoring", "Reciprocity"], correct: 2 },
+    { q: "Which testimonial is most effective?", opts: ['"Great product, love it!" — S.K.', '"This tool saved us $43,000 in Q3 alone" — Sarah K., CMO at Acme', '"5 stars, would recommend" — Anonymous', '"It works pretty well for what we need" — Marketing Dept.'], correct: 1 },
+    { q: "The formula for persuasive copy structure is:", opts: ["Logic → Emotion → Logic", "Emotion → Logic → Emotion (lead with feeling, justify, close with feeling)", "All emotion, no logic", "All logic, no emotion"], correct: 1 },
+  ],
   slides: [
     {
       type: "cover",
@@ -293,25 +301,6 @@ export const psychologyModule = {
         ["Authority", "Show credentials", '"Recommended by Forbes"', "Trust bars, checkout, footer"],
       ],
       footer: "GOLDEN RULE: Never use just one principle. The most powerful copy layers 2-3 triggers in every section. Scarcity + Social Proof + Anchoring is the classic conversion trifecta.",
-    },
-    {
-      type: "quiz",
-      title: "Module 1 Quiz — Part 1",
-      questions: [
-        { q: 'Which principle does "Only 2 seats remaining" leverage?', opts: ["Reciprocity", "Scarcity", "Anchoring", "Social Proof"], correct: 1 },
-        { q: "A company offers a free SEO audit before pitching their $2,000/mo service. Which principle?", opts: ["Anchoring — high price first", "Scarcity — limited audit", "Reciprocity — free value creates obligation", "Social Proof — others used it"], correct: 2 },
-        { q: '"Stop losing $47/day in wasted ad spend" uses which framing technique?', opts: ["Gain framing", "Authority signaling", "Loss aversion framing", "Social proof"], correct: 2 },
-      ],
-    },
-    {
-      type: "quiz",
-      title: "Module 1 Quiz — Part 2",
-      questions: [
-        { q: "On a pricing page, showing the $249/mo plan first before the $79/mo plan uses:", opts: ["Scarcity", "Loss Aversion", "Anchoring", "Reciprocity"], correct: 2 },
-        { q: "Which testimonial is most effective?", opts: ['"Great product, love it!" — S.K.', '"This tool saved us $43,000 in Q3 alone" — Sarah K., CMO at Acme', '"5 stars, would recommend" — Anonymous', '"It works pretty well for what we need" — Marketing Dept.'], correct: 1 },
-        { q: "The formula for persuasive copy structure is:", opts: ["Logic → Emotion → Logic", "Emotion → Logic → Emotion (lead with feeling, justify, close with feeling)", "All emotion, no logic", "All logic, no emotion"], correct: 1 },
-      ],
-      scoring: "6/6 = Expert  |  5/6 = Advanced  |  4/6 = Proficient  |  3/6 = Review  |  ≤2 = Re-study this module",
     },
     {
       type: "takeaways",

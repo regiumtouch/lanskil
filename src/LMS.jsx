@@ -456,6 +456,7 @@ function genSlides(ls) {
 }
 
 function getQuiz(ls) {
+  if (ls.rich && ls.rich.quiz) return ls.rich.quiz;
   if (QZ[ls.id]) return QZ[ls.id];
   var t = ls.topics || [];
   if (t.length < 2) return [];
@@ -539,6 +540,7 @@ export default function LMS({ onBack, user, onLogout }) {
         {v==="skill"&&sk&&<SkV sk={sk} gb={function(){setV("dash");setSk(null);}} ols={ols} dn={dn} gp={gp} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="slides"&&<SlV ls={ls} sk={sk} si={si} setSi={setSi} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
+        {v==="lesson"&&ls&&sk&&md==="ready"&&<ReadyV ls={ls} sk={sk} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="results"&&<ResV ls={ls} sk={sk} mk={mk} dn={dn} setMd={setMd} gb={function(){setV("skill");setLs(null);scr();}} nxt={nxt()} ols={ols} goDash={function(){setV("dash");setSk(null);setLs(null);scr();}} user={user} T={T}/>}
       </div>
@@ -622,25 +624,6 @@ function SlV(props){
   var isRich=!!ls.rich;
   var slides=useMemo(function(){return isRich?ls.rich.slides:genSlides(ls);},[ls,isRich]);
   var s=slides[si];var last=si===slides.length-1;var pr=Math.round((si+1)/slides.length*100);
-  var _rqa=useState({}),rqa=_rqa[0],setRqa=_rqa[1];
-  // Aggregate rich quiz stats
-  var richQuizStats=useMemo(function(){
-    if(!isRich)return null;
-    var total=0,correct=0,answered=0;
-    slides.forEach(function(sl,sIdx){
-      if(sl.type==="quiz"&&sl.questions){
-        sl.questions.forEach(function(q,qIdx){
-          total++;
-          var key=sIdx+":"+qIdx;
-          if(rqa[key]!==undefined){
-            answered++;
-            if(rqa[key]===q.correct)correct++;
-          }
-        });
-      }
-    });
-    return {total:total,correct:correct,answered:answered,allAnswered:answered===total&&total>0,pass:correct>=Math.ceil(total*0.66)};
-  },[slides,rqa,isRich]);
   var _pm=useState(false),present=_pm[0],setPresent=_pm[1];
   var containerRef=useRef(null);
 
@@ -678,7 +661,7 @@ function SlV(props){
     return <div ref={containerRef} style={{position:"fixed",inset:0,background:"#000",zIndex:9999,display:"flex",flexDirection:"column",fontFamily:"'DM Sans',sans-serif"}}>
       <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
         <div key={si} className="slide-enter" style={{width:"100%",maxWidth:1280,aspectRatio:"16/9",background:"white",borderRadius:12,overflow:"hidden",boxShadow:"0 20px 80px rgba(0,0,0,0.5)",display:"flex",flexDirection:"column"}}>
-          {isRich?<RichSlide slide={s} T={T} present={true} slideIdx={si} rqa={rqa} setRqa={setRqa}/>:<LegacySlide s={s} sk={sk} T={T} present={true}/>}
+          {isRich?<RichSlide slide={s} T={T} present={true} slideIdx={si}/>:<LegacySlide s={s} sk={sk} T={T} present={true}/>}
         </div>
       </div>
       <div style={{padding:"14px 24px",background:"rgba(0,0,0,0.8)",display:"flex",alignItems:"center",justifyContent:"space-between",color:"white"}}>
@@ -711,31 +694,17 @@ function SlV(props){
     </div>
 
     {isRich?
-      <div key={si} className="slide-enter" style={{marginBottom:20,borderRadius:20,overflow:"hidden",border:"1px solid "+(T.border||"#ECECEC")}}><RichSlide slide={s} T={T} present={false} slideIdx={si} rqa={rqa} setRqa={setRqa}/></div>
+      <div key={si} className="slide-enter" style={{marginBottom:20,borderRadius:20,overflow:"hidden",border:"1px solid "+(T.border||"#ECECEC")}}><RichSlide slide={s} T={T} present={false} slideIdx={si}/></div>
       :
       <div key={si} className="c slide-enter" style={{padding:0,overflow:"hidden",marginBottom:20,minHeight:360}}><div style={{background:"linear-gradient(135deg,"+sk.color+"15,"+sk.color+"08)",padding:"28px 36px 20px",borderBottom:"1px solid #E8E8E8"}}><div style={{fontSize:40,marginBottom:10}}>{s.icon}</div>{s.type==="intro"&&<div><span className="bg" style={{background:sk.color+"20",color:sk.color}}>{s.subtitle}</span><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:800,marginTop:6}}>{s.title}</h2></div>}{s.type==="topic"&&<div><span className="bg" style={{background:"#E8E8E8",color:"#777"}}>Topic {s.num} of {s.total}</span><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:800,marginTop:6}}>{s.title}</h2></div>}{s.type==="summary"&&<h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:800}}>Key Takeaways</h2>}</div>
       <div style={{padding:"24px 36px 32px"}}>{s.type==="intro"&&<p style={{fontSize:15,color:"#555",lineHeight:1.8}}>{s.body}</p>}{s.type==="topic"&&<div><p style={{fontSize:14.5,color:"#555",lineHeight:1.7,marginBottom:20}}>{s.body}</p><div style={{display:"flex",flexDirection:"column",gap:12}}>{(s.bullets||[]).map(function(b,i){return <div key={i} style={{display:"flex",gap:12,alignItems:"flex-start"}}><div style={{width:28,height:28,borderRadius:8,background:sk.color+"15",color:sk.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,flexShrink:0}}>{i+1}</div><p style={{fontSize:13.5,color:"#444",lineHeight:1.6,paddingTop:4}}>{b}</p></div>;})}</div></div>}{s.type==="summary"&&<div style={{display:"flex",flexDirection:"column",gap:10}}>{(s.topics||[]).map(function(t,i){return <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"12px 16px",borderRadius:10,background:"#F5F5F5"}}><div style={{color:"#10B981",fontSize:16}}>{"\u2713"}</div><span style={{fontSize:14,color:"#444",fontWeight:500}}>{t}</span></div>;})}</div>}</div></div>
     }
 
-    {isRich&&richQuizStats&&richQuizStats.total>0&&<div style={{marginBottom:14,padding:"10px 16px",borderRadius:12,background:richQuizStats.allAnswered?(richQuizStats.pass?"#F0FDF4":"#FEF2F2"):T.subtle,border:"1px solid "+(richQuizStats.allAnswered?(richQuizStats.pass?"#BBF7D0":"#FECACA"):T.border),display:"flex",alignItems:"center",justifyContent:"space-between",fontSize:12.5,flexWrap:"wrap",gap:8}}>
-      <span style={{fontWeight:600,color:T.text}}>{"\u{1F4DD}"} Module Quiz Progress</span>
-      <span style={{color:richQuizStats.allAnswered?(richQuizStats.pass?"#059669":"#DC2626"):T.text2,fontWeight:600}}>
-        {richQuizStats.answered}/{richQuizStats.total} answered
-        {richQuizStats.answered>0&&" • "+richQuizStats.correct+" correct"}
-        {richQuizStats.allAnswered&&" • "+(richQuizStats.pass?"PASSED":"NOT PASSED (need "+Math.ceil(richQuizStats.total*0.66)+")")}
-      </span>
-    </div>}
     <div style={{display:"flex",justifyContent:"space-between",gap:12}}>
       <button className="bt" onClick={function(){setSi(Math.max(0,si-1));}} style={{padding:"12px 24px",borderRadius:50,background:T.hover||"#E8E8E8",color:si===0?"#CCC":(T.text||"#1A1A1A"),fontSize:13,fontWeight:600,border:"none",opacity:si===0?.5:1}}>{"\u2190"} Previous</button>
-      {last?(
-        isRich?
-          <button className="bt" onClick={function(){
-            if(richQuizStats&&!richQuizStats.allAnswered){alert("Please answer all "+richQuizStats.total+" quiz questions before finishing.");return;}
-            setMd("results");
-          }} disabled={richQuizStats&&!richQuizStats.allAnswered} style={{padding:"12px 32px",borderRadius:50,background:(richQuizStats&&richQuizStats.allAnswered)?sk.color:"#CCC",color:"white",fontSize:13,fontWeight:700,border:"none",cursor:(richQuizStats&&richQuizStats.allAnswered)?"pointer":"not-allowed"}}>{"\u2713"} Finish Lesson {"\u2192"}</button>
-          :
-          <button className="bt" onClick={function(){setMd("quiz");setQa({});setQs(false);}} style={{padding:"12px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:13,fontWeight:700,border:"none"}}>Take Quiz {"\u2192"}</button>
-      ):
+      {last?
+        <button className="bt" onClick={function(){setMd("ready");}} style={{padding:"12px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:13,fontWeight:700,border:"none"}}>{"\u{1F3AF}"} Finish Slides {"\u2192"}</button>
+      :
         <button className="bt" onClick={function(){setSi(si+1);}} style={{padding:"12px 24px",borderRadius:50,background:sk.color,color:"white",fontSize:13,fontWeight:600,border:"none"}}>Next {"\u2192"}</button>
       }
     </div>
@@ -744,6 +713,37 @@ function SlV(props){
 }
 
 function LegacySlide(props){var s=props.s,sk=props.sk;return <div style={{padding:"40px 60px"}}><h2>{s.title}</h2><p>{s.body}</p></div>;}
+
+function ReadyV(props){
+  var ls=props.ls,sk=props.sk,setMd=props.setMd,setQa=props.setQa,setQs=props.setQs,T=props.T||{card:"#FFFFFF",text:"#1A1A1A",text2:"#555",text3:"#888",border:"#ECECEC",subtle:"#F5F5F5"};
+  var quizCount=ls.rich&&ls.rich.quiz?ls.rich.quiz.length:0;
+  return <div className="fi" style={{maxWidth:640,margin:"40px auto 0"}}>
+    <div className="c" style={{padding:"48px 40px",textAlign:"center",borderTop:"4px solid "+sk.color,position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:"-40%",right:"-20%",width:260,height:260,borderRadius:"50%",background:"radial-gradient(circle,"+sk.color+"15,transparent 70%)",pointerEvents:"none"}}/>
+      <div style={{position:"relative",zIndex:1}}>
+        <div style={{fontSize:64,marginBottom:12}}>{"\u{1F3AF}"}</div>
+        <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:800,marginBottom:10,color:T.text}}>Slides Complete!</h1>
+        <p style={{color:T.text2,fontSize:15,lineHeight:1.7,marginBottom:8}}>You've finished all the material for <strong style={{color:T.text}}>{ls.title}</strong>.</p>
+        <p style={{color:T.text3,fontSize:14,marginBottom:28}}>Ready to test your knowledge with a {quizCount}-question evaluation?</p>
+
+        <div style={{padding:"16px 22px",borderRadius:14,background:T.subtle,border:"1px solid "+T.border,marginBottom:28,textAlign:"left"}}>
+          <div style={{fontSize:11,fontWeight:700,color:T.text3,textTransform:"uppercase",letterSpacing:1,marginBottom:10}}>How the quiz works</div>
+          <div style={{display:"flex",flexDirection:"column",gap:8,fontSize:13,color:T.text2}}>
+            <div>{"\u2022"} Answer all {quizCount} questions in any order</div>
+            <div>{"\u2022"} Your answers stay hidden until you submit</div>
+            <div>{"\u2022"} Full review with correct answers shown after submission</div>
+            <div>{"\u2022"} Pass with 67% or higher to complete the lesson</div>
+          </div>
+        </div>
+
+        <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+          <button className="bt" onClick={function(){setMd("quiz");setQa({});setQs(false);}} style={{padding:"14px 36px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 6px 24px "+sk.color+"40"}}>{"\u{1F4DD}"} Take the Quiz {"\u2192"}</button>
+          <button className="bt" onClick={function(){setMd("slides");}} style={{padding:"14px 26px",borderRadius:50,background:T.hover||"#F0F0F0",color:T.text2,fontSize:14,fontWeight:600,border:"none"}}>{"\u2190"} Review Slides</button>
+        </div>
+      </div>
+    </div>
+  </div>;
+}
 
 function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd;
   var qz=useMemo(function(){return getQuiz(ls);},[ls]);var _x=useState(0),qi=_x[0],setQi=_x[1];
