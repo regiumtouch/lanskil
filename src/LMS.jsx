@@ -862,6 +862,18 @@ function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=p
   var _cf=useState(true),showConf=_cf[0],setShowConf=_cf[1];
   useEffect(function(){if(!dn[ls.id])mk(ls.id);var t=setTimeout(function(){setShowConf(false);},3000);return function(){clearTimeout(t);};},[ls.id]);
   var allDone=!nxt;
+  var totalLessons=sk.lessons.length;
+  var doneCount=sk.lessons.filter(function(l){return dn[l.id]||l.id===ls.id;}).length;
+  var remaining=totalLessons-doneCount;
+  var pctDone=Math.round(doneCount/totalLessons*100);
+  var remainingLessons=sk.lessons.filter(function(l){return !dn[l.id]&&l.id!==ls.id;});
+  var upNext=remainingLessons.slice(1,4);
+  var nudgeMsg;
+  if(remaining===0){nudgeMsg="You\u2019ve finished every lesson in "+sk.name+". Certificate time.";}
+  else if(remaining===1){nudgeMsg="\u{1F525} One lesson away from your "+sk.name+" certificate. Don\u2019t stop now.";}
+  else if(doneCount===1){nudgeMsg="\u{1F680} Great first step! "+remaining+" more to unlock your "+sk.name+" certificate.";}
+  else if(pctDone>=50){nudgeMsg="\u{1F4AA} Over halfway there \u2014 "+remaining+" lessons left. Keep the momentum.";}
+  else {nudgeMsg="\u{1F525} "+doneCount+" down, "+remaining+" to go. Keep your streak alive.";}
   return <div className="fi" style={{textAlign:"center",paddingTop:40}}>
     {showConf&&<Confetti/>}
     <div className="c" style={{padding:"52px 48px",maxWidth:540,margin:"0 auto",borderTop:"4px solid #10B981",position:"relative",overflow:"hidden"}}>
@@ -886,7 +898,33 @@ function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=p
           <div style={{background:"#F5F5F5",borderRadius:14,padding:"14px 22px",minWidth:90}}><div style={{fontSize:22,fontWeight:800,color:"#2563EB"}}>{ls.duration}</div><div style={{fontSize:11,color:"#999",fontWeight:500}}>Duration</div></div>
         </div>
 
-        {nxt&&<div style={{marginBottom:24}}><button className="bt" onClick={function(){ols(nxt);}} style={{padding:"15px 40px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 6px 24px "+sk.color+"35",transition:"all .3s"}}>Next: {nxt.title} {"\u2192"}</button></div>}
+        {!allDone&&<div style={{marginBottom:20,padding:"18px 22px",borderRadius:16,background:sk.color+"08",border:"1px dashed "+sk.color+"55"}}>
+          <div style={{fontSize:11,fontWeight:800,color:sk.color,textTransform:"uppercase",letterSpacing:1.5,marginBottom:10,textAlign:"center"}}>{sk.name} Progress</div>
+          <div style={{display:"flex",alignItems:"baseline",gap:8,marginBottom:10,justifyContent:"center"}}>
+            <span style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:900,color:sk.color,lineHeight:1}}>{doneCount}/{totalLessons}</span>
+            <span style={{fontSize:13,color:"#666"}}>lessons complete \u2022 {pctDone}%</span>
+          </div>
+          <div style={{height:8,borderRadius:4,background:"#F0F0F0",overflow:"hidden",marginBottom:12}}>
+            <div style={{height:"100%",background:"linear-gradient(90deg,"+sk.color+","+sk.color+"BB)",width:pctDone+"%",transition:"width .8s ease"}}/>
+          </div>
+          <p style={{fontSize:13,color:"#444",fontWeight:600,textAlign:"center",marginBottom:0}}>{nudgeMsg}</p>
+        </div>}
+
+        {nxt&&<div style={{marginBottom:16}}><button className="bt" onClick={function(){ols(nxt);}} style={{padding:"15px 40px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 6px 24px "+sk.color+"35",transition:"all .3s"}}>Next: {nxt.title} \u2022 {nxt.duration} {"\u2192"}</button></div>}
+
+        {!allDone&&upNext.length>0&&<div style={{marginBottom:24,textAlign:"left"}}>
+          <div style={{fontSize:11,fontWeight:800,color:"#999",textTransform:"uppercase",letterSpacing:1.5,marginBottom:10,textAlign:"center"}}>Then These Are Waiting</div>
+          <div style={{display:"flex",flexDirection:"column",gap:8}}>
+            {upNext.map(function(l,i){return <div key={l.id} onClick={function(){ols(l);}} style={{padding:"12px 16px",borderRadius:12,background:"#FAFAFA",border:"1px solid #EEE",display:"flex",alignItems:"center",gap:12,cursor:"pointer",transition:"all .2s"}}>
+              <div style={{width:28,height:28,borderRadius:"50%",background:"#E5E5E5",color:"#999",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0}}>{doneCount+i+2}</div>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontSize:13.5,fontWeight:600,color:"#1A1A1A",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{l.title}</div>
+                <div style={{fontSize:11.5,color:"#999",marginTop:2}}>{l.duration} \u2022 {l.type}</div>
+              </div>
+              <span style={{color:"#CCC",fontSize:16,fontWeight:700}}>{"\u2192"}</span>
+            </div>;})}
+          </div>
+        </div>}
         {allDone&&<div style={{marginBottom:24}}>
           <div style={{padding:"18px 28px",borderRadius:16,background:"linear-gradient(135deg,#F0FDF4,#ECFDF5)",border:"1px solid #BBF7D0",marginBottom:16}}><p style={{color:"#15803D",fontSize:15,fontWeight:700,marginBottom:4}}>{"\u{1F389}"} All lessons complete!</p><p style={{color:"#059669",fontSize:13}}>You've mastered {sk.name}</p></div>
           <button className="bt" onClick={function(){printCert(user,sk);}} style={{padding:"14px 36px",borderRadius:50,background:"linear-gradient(135deg,#7C3AED,#6D28D9)",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 20px rgba(124,58,237,.3)"}}>{"\u{1F4DC}"} Download Certificate</button>
