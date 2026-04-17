@@ -3,6 +3,18 @@ import { supabase } from "./supabase";
 import { psychologyModule } from "./modules/psychology";
 import RichSlide from "./modules/RichSlide";
 
+const CAT_IMAGES = {
+  lead: "https://plus.unsplash.com/premium_photo-1661413166847-47e3ecc668a3?w=600&h=300&fit=crop",
+  brand: "https://plus.unsplash.com/premium_photo-1705091981891-6a3819ead86e?w=600&h=300&fit=crop",
+  content: "https://plus.unsplash.com/premium_photo-1673984259547-c172743ef0d0?w=600&h=300&fit=crop",
+  video: "https://plus.unsplash.com/premium_photo-1663040591141-1cfd3c29b4aa?w=600&h=300&fit=crop",
+  post: "https://plus.unsplash.com/premium_photo-1724628171742-6b9133410603?w=600&h=300&fit=crop",
+  web: "https://plus.unsplash.com/premium_photo-1690303193898-f9c721d0770b?w=600&h=300&fit=crop",
+  digi: "https://plus.unsplash.com/premium_photo-1661340603772-1ae4ff9afcb1?w=600&h=300&fit=crop",
+  ops: "https://plus.unsplash.com/premium_photo-1723291321795-1ca7dc9525df?w=600&h=300&fit=crop",
+  train: "https://plus.unsplash.com/premium_photo-1714340369405-9baa43b0149e?w=600&h=300&fit=crop",
+};
+
 const CATS = [
   { id: "lead", name: "Leadership & Management", icon: "\u{1F451}", color: "#7C3AED" },
   { id: "brand", name: "Branding & Design", icon: "\u{1F3A8}", color: "#EC4899" },
