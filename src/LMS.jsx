@@ -6,6 +6,7 @@ import { frameworksModule } from "./modules/frameworks";
 import { storytellingModule } from "./modules/storytelling";
 import { objectionsModule } from "./modules/objections";
 import { closeModule } from "./modules/close";
+import { contentStrategyFoundationsModule } from "./modules/content-strategy";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -38,6 +39,7 @@ const SKILL_IMG = {
   "brand-identity": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=400&fit=crop",
   "design-fundamentals": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=400&fit=crop",
   "copywriting": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
+  "content-strategy": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=400&fit=crop",
   "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
   "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
   "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
@@ -370,6 +372,9 @@ const SKILLS = [
     { id: "df03", title: "Typography", type: "Hands-on", duration: "1.5h", desc: "Typefaces, pairing, readability.", topics: ["Typeface anatomy", "Font categories", "Pairing rules"] },
     { id: "df04", title: "Color Theory", type: "Workshop", duration: "1.5h", desc: "Color wheel, harmonies, emotions.", topics: ["Color wheel", "Color harmonies", "Emotional associations"] },
     { id: "df05", title: "Hierarchy & Layout", type: "Hands-on", duration: "1h", desc: "Guide eye through design.", topics: ["Hierarchy systems", "Grid structures", "F & Z patterns"] },
+  ]},
+  { id: "content-strategy", name: "Content Strategy", cat: "content", lv: "Beginner", icon: "\u{1F4CB}", color: "#7C3AED", dur: "90 min", roles: ["Content Strategist", "Marketing Manager"], desc: "Build content systems that serve business outcomes \u2014 and survive the AI-slop era.", lessons: [
+    { id: "csf01", title: contentStrategyFoundationsModule.title, type: contentStrategyFoundationsModule.type, duration: contentStrategyFoundationsModule.duration, desc: contentStrategyFoundationsModule.desc, topics: contentStrategyFoundationsModule.topics, rich: contentStrategyFoundationsModule },
   ]},
   { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },
