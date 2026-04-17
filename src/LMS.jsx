@@ -3,6 +3,8 @@ import { supabase } from "./supabase";
 import { psychologyModule } from "./modules/psychology";
 import { headlinesModule } from "./modules/headlines";
 import { frameworksModule } from "./modules/frameworks";
+import { storytellingModule } from "./modules/storytelling";
+import { objectionsModule } from "./modules/objections";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -341,6 +343,8 @@ const SKILLS = [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },
     { id: "hdln01", title: headlinesModule.title, type: headlinesModule.type, duration: headlinesModule.duration, desc: headlinesModule.desc, topics: headlinesModule.topics, rich: headlinesModule },
     { id: "frmk01", title: frameworksModule.title, type: frameworksModule.type, duration: frameworksModule.duration, desc: frameworksModule.desc, topics: frameworksModule.topics, rich: frameworksModule },
+    { id: "stry01", title: storytellingModule.title, type: storytellingModule.type, duration: storytellingModule.duration, desc: storytellingModule.desc, topics: storytellingModule.topics, rich: storytellingModule },
+    { id: "objc01", title: objectionsModule.title, type: objectionsModule.type, duration: objectionsModule.duration, desc: objectionsModule.desc, topics: objectionsModule.topics, rich: objectionsModule },
     { id: "cw01", title: "Fundamentals", type: "Lecture", duration: "1h", desc: "Clarity, persuasion, action.", topics: ["Copy vs content", "AIDA framework", "Value proposition writing"] },
     { id: "cw03", title: "Social Copy", type: "Workshop", duration: "1.5h", desc: "Platform-specific copy.", topics: ["Platform voice", "Caption structure", "Hashtag strategy"] },
     { id: "cw04", title: "Web Copy", type: "Hands-on", duration: "1.5h", desc: "Landing pages that convert.", topics: ["Hero sections", "Feature-benefit copy", "CTA writing"] },
