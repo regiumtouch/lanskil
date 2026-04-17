@@ -666,8 +666,24 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   {ft.length===0&&<div style={{textAlign:"center",padding:"80px 20px"}}><div style={{fontSize:56,marginBottom:16}}>{"\u{1F50D}"}</div><h3 style={{fontFamily:"'Playfair Display',serif",fontSize:20,fontWeight:700,marginBottom:8}}>No skills found</h3><p style={{color:"#888",fontSize:15}}>Try adjusting your search or filters.</p></div>}
 
   {/* Categories & Skills */}
-  {(fc==="All"?CATS:CATS.filter(function(c){return c.id===fc;})).map(function(cat){var cs=ft.filter(function(s){return s.cat===cat.id;});if(!cs.length)return null;return <div key={cat.id} style={{marginBottom:36}}>
-    <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}><div style={{width:36,height:36,borderRadius:10,background:cat.color+"12",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{cat.icon}</div><div><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,lineHeight:1.2,color:T.text}}>{cat.name}</h2><p style={{fontSize:12,color:T.text3}}>{cs.length} {cs.length===1?"module":"modules"}</p></div></div>
+  {(fc==="All"?CATS:CATS.filter(function(c){return c.id===fc;})).map(function(cat,idx){var cs=ft.filter(function(s){return s.cat===cat.id;});if(!cs.length)return null;return <div key={cat.id} style={{marginBottom:48}}>
+    {idx>0&&<div style={{display:"flex",alignItems:"center",gap:14,marginBottom:36,marginTop:8}}>
+      <div style={{flex:1,height:1,background:"linear-gradient(90deg,transparent 0%,"+T.border+" 50%,"+T.border+" 100%)"}}/>
+      <div style={{display:"flex",gap:4}}><span style={{width:4,height:4,borderRadius:2,background:cat.color,opacity:.6}}/><span style={{width:4,height:4,borderRadius:2,background:cat.color,opacity:.85}}/><span style={{width:4,height:4,borderRadius:2,background:cat.color}}/></div>
+      <div style={{flex:1,height:1,background:"linear-gradient(270deg,transparent 0%,"+T.border+" 50%,"+T.border+" 100%)"}}/>
+    </div>}
+    <div style={{marginBottom:22,paddingBottom:18,borderBottom:"2px solid "+cat.color+"1E",position:"relative"}}>
+      <div style={{position:"absolute",left:0,bottom:-2,width:88,height:2,background:"linear-gradient(90deg,"+cat.color+","+cat.color+"40)",borderRadius:2}}/>
+      <div style={{display:"flex",alignItems:"center",gap:16}}>
+        <div style={{width:54,height:54,borderRadius:15,background:"linear-gradient(135deg,"+cat.color+"22,"+cat.color+"08)",border:"1.5px solid "+cat.color+"2A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:25,flexShrink:0,boxShadow:"0 4px 14px "+cat.color+"14"}}>{cat.icon}</div>
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:3}}>
+            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:23,fontWeight:800,lineHeight:1.1,color:T.text,letterSpacing:-.2}}>{cat.name}</h2>
+            <span style={{background:cat.color+"14",color:cat.color,fontSize:10.5,fontWeight:800,padding:"4px 11px",borderRadius:20,letterSpacing:.8,textTransform:"uppercase",whiteSpace:"nowrap"}}>{cs.length} {cs.length===1?"Module":"Modules"}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:16}}>
       {cs.map(function(s){var pr=gp(s);return <div key={s.id} className="c" onClick={function(){osk(s);}} style={{padding:0,cursor:"pointer",overflow:"hidden"}}>
         <div style={{padding:"20px 24px 16px",borderBottom:"1px solid "+T.border}}>
