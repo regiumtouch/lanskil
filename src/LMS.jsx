@@ -708,26 +708,48 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       </div>
       <div style={{height:1,background:"linear-gradient(90deg,"+cat.color+"55 0%,"+cat.color+"22 35%,"+T.border+" 100%)",marginTop:18}}/>
     </div>
-    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:24}}>
-      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];return <article key={s.id} onClick={function(){osk(s);}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:2,overflow:"hidden",transition:"border-color .25s, transform .25s",display:"flex",flexDirection:"column"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=s.color;}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;}}>
-        <div style={{position:"relative",width:"100%",paddingTop:"52%",background:"#E5E5E5",overflow:"hidden"}}>
-          <img src={img} alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(12%) contrast(1.03)"}}/>
-          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 100%)"}}/>
-          <div style={{position:"absolute",top:14,left:14,background:"rgba(255,255,255,.92)",padding:"3px 10px",fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:10.5,fontWeight:600,color:"#1A1A1A",letterSpacing:2,textTransform:"uppercase"}}>{s.lv}</div>
+    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;return <article key={s.id} role="button" tabIndex={0} aria-label={(started?"Continue ":"Begin ")+s.name} onClick={function(){osk(s);}} onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();osk(s);}}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=s.color;e.currentTarget.style.boxShadow="0 10px 28px rgba(0,0,0,.08)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+        {/* Hero image with level chip + progress overlay */}
+        <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
+          <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(10%) contrast(1.03)"}}/>
+          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.25) 100%)"}}/>
+          <div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 10px",fontFamily:"'DM Sans',sans-serif",fontSize:10.5,fontWeight:700,color:"white",letterSpacing:1.5,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>
+          {started&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.25)"}}><div style={{height:"100%",background:s.color,width:pr+"%",transition:"width .4s"}}/></div>}
         </div>
-        <div style={{padding:"22px 26px 20px",flex:1,display:"flex",flexDirection:"column"}}>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:10.5,color:T.text3,letterSpacing:2.5,textTransform:"uppercase",marginBottom:8}}>{s.lessons.length} Lessons \u00B7 {s.dur}</div>
-          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:800,lineHeight:1.15,color:T.text,letterSpacing:-.2,marginBottom:10}}>{s.name}</h3>
-          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.6,marginBottom:20,fontFamily:"'DM Sans',sans-serif"}}>{s.desc}</p>
-          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
-            <div style={{flex:1,minWidth:0}}>
-              <div style={{height:1,background:T.border,position:"relative",marginBottom:6}}>
-                <div style={{height:1,background:s.color,width:pr+"%",transition:"width .4s"}}/>
-              </div>
-              <div style={{fontSize:10.5,color:T.text3,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",letterSpacing:1.5,textTransform:"uppercase"}}>{pr>0?pr+"% Read":"Not Yet Begun"}</div>
-            </div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:13,fontWeight:600,color:s.color,whiteSpace:"nowrap",letterSpacing:.3}}>Begin \u2014 {"\u2192"}</div>
+
+        {/* Body */}
+        <div style={{padding:"22px 24px 22px",flex:1,display:"flex",flexDirection:"column"}}>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12,color:cat.color,letterSpacing:2.2,textTransform:"uppercase",fontWeight:500,marginBottom:7}}>{cat.name}</div>
+          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:24,fontWeight:700,lineHeight:1.15,color:T.text,letterSpacing:-.3,marginBottom:10}}>{s.name}</h3>
+          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.6,marginBottom:18,fontFamily:"'DM Sans',sans-serif"}}>{s.desc}</p>
+
+          {/* What you'll learn */}
+          {s.lessons&&s.lessons.length>0&&<div style={{marginBottom:18}}>
+            <div style={{fontSize:9.5,fontWeight:700,color:T.text3,letterSpacing:2,textTransform:"uppercase",fontFamily:"'DM Sans',sans-serif",marginBottom:8}}>What You'll Learn</div>
+            <ul style={{listStyle:"none",padding:0,margin:0}}>
+              {s.lessons.slice(0,3).map(function(l){return <li key={l.id} style={{display:"flex",gap:10,fontSize:12.5,color:T.text2,lineHeight:1.55,marginBottom:5,fontFamily:"'DM Sans',sans-serif"}}>
+                <span style={{color:s.color,flexShrink:0,fontWeight:700}}>{"\u2014"}</span>
+                <span style={{flex:1,overflow:"hidden"}}>{l.title}</span>
+              </li>;})}
+              {s.lessons.length>3&&<li style={{fontSize:11.5,color:T.text3,fontStyle:"italic",fontFamily:"'Cormorant Garamond',serif",marginTop:4,marginLeft:20}}>and {s.lessons.length-3} more</li>}
+            </ul>
+          </div>}
+
+          {/* Metadata row */}
+          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:started?10:16,fontSize:11.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>
+            <span>{s.lessons.length} Lessons</span>
+            <span style={{color:T.border}}>{"\u00B7"}</span>
+            <span>{s.dur}</span>
+            <span style={{color:T.border}}>{"\u00B7"}</span>
+            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12.5,color:"#B8860B"}}>{"\u2720"} Certificate</span>
           </div>
+
+          {/* Progress label if started */}
+          {started&&<div style={{fontSize:11,color:T.text3,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete \u2014 Continue where you left off</div>}
+
+          {/* CTA */}
+          <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"12px 18px",borderRadius:3,background:started?s.color:"#1A1A1A",color:"white",fontSize:13,fontWeight:600,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.4,cursor:"pointer",width:"100%"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>
         </div>
       </article>;})}
     </div>
