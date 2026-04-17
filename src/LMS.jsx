@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { supabase } from "./supabase";
 import { psychologyModule } from "./modules/psychology";
+import { headlinesModule } from "./modules/headlines";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -337,8 +338,8 @@ const SKILLS = [
   ]},
   { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "11.5h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },
+    { id: "hdln01", title: headlinesModule.title, type: headlinesModule.type, duration: headlinesModule.duration, desc: headlinesModule.desc, topics: headlinesModule.topics, rich: headlinesModule },
     { id: "cw01", title: "Fundamentals", type: "Lecture", duration: "1h", desc: "Clarity, persuasion, action.", topics: ["Copy vs content", "AIDA framework", "Value proposition writing"] },
-    { id: "cw02", title: "Headlines & Hooks", type: "Practice", duration: "1.5h", desc: "Grab attention and pull in.", topics: ["Headline formulas", "Power words", "A/B testing hooks"] },
     { id: "cw03", title: "Social Copy", type: "Workshop", duration: "1.5h", desc: "Platform-specific copy.", topics: ["Platform voice", "Caption structure", "Hashtag strategy"] },
     { id: "cw04", title: "Web Copy", type: "Hands-on", duration: "1.5h", desc: "Landing pages that convert.", topics: ["Hero sections", "Feature-benefit copy", "CTA writing"] },
     { id: "cw05", title: "Email Copy", type: "Workshop", duration: "1h", desc: "Subject lines and sequences.", topics: ["Subject lines", "Email structure", "Sequence writing"] },
