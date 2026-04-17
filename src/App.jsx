@@ -223,7 +223,7 @@ export default function App() {
     else { setView("auth"); }
   }
 
-  if (loading) return <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "#FAFAF7", fontFamily: "'DM Sans', sans-serif" }}><div style={{ textAlign: "center" }}><div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", transform: "rotate(-3deg)", marginBottom: 16 }}>L</div><p style={{ color: "#999", fontSize: 14 }}>Loading...</p></div></div>;
+  if (loading) return <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "#FAFAF7", fontFamily: "'DM Sans', sans-serif" }}><div style={{ textAlign: "center" }}><div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Cormorant Garamond', serif", transform: "rotate(-3deg)", marginBottom: 16 }}>L</div><p style={{ color: "#999", fontSize: 14 }}>Loading...</p></div></div>;
 
   if (view === "lms" && user) return <LMS onBack={() => setView("landing")} user={user} onLogout={handleLogout} />;
   if (view === "auth") return <AuthScreen onLogin={handleLogin} onBack={() => setView("landing")} />;
@@ -259,7 +259,7 @@ function ResetPasswordScreen({ onDone }) {
       display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
     }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         .auth-card { background: white; border-radius: 28px; padding: clamp(32px, 5vw, 52px); max-width: 480px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
         .auth-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #7C3AED, #F4A261, #45B69C, #2D7DD2); }
@@ -276,8 +276,8 @@ function ResetPasswordScreen({ onDone }) {
       <div className="auth-card">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", transform: "rotate(-3deg)" }}>L</div>
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: 24 }}>LanSkil</span>
+            <div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Cormorant Garamond', serif", transform: "rotate(-3deg)" }}>L</div>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 900, fontSize: 24 }}>LanSkil</span>
           </div>
           <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Choose a new password for your account</p>
         </div>
@@ -457,7 +457,7 @@ function AuthScreen({ onLogin, onBack }) {
       display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
     }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         .auth-card {
           background: white; border-radius: 28px; padding: clamp(32px, 5vw, 52px);
@@ -524,10 +524,10 @@ function AuthScreen({ onLogin, onBack }) {
             <div style={{
               width: 42, height: 42, background: "#7C3AED", borderRadius: 12,
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif",
+              color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Cormorant Garamond', serif",
               transform: "rotate(-3deg)",
             }}>L</div>
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: 24 }}>LanSkil</span>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 900, fontSize: 24 }}>LanSkil</span>
           </div>
           <div style={{ fontSize: 11, color: "#BBB", fontWeight: 500, marginTop: -4, marginBottom: 4 }}>by Regium Touch</div>
           {mode === "signup" && step === 1 && <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Create your account to start learning</p>}
@@ -742,7 +742,7 @@ function Landing({ onExploreCourses }) {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -754,7 +754,7 @@ function Landing({ onExploreCourses }) {
           height: 72px; display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo {
-          font-family: 'Playfair Display', serif; font-weight: 900;
+          font-family: 'Cormorant Garamond', serif; font-weight: 900;
           font-size: 22px; color: #1A1A1A; text-decoration: none;
           display: flex; align-items: center; gap: 10px;
         }
@@ -832,7 +832,7 @@ function Landing({ onExploreCourses }) {
           50% { opacity: 0.5; transform: scale(1.3); }
         }
         .hero h1 {
-          font-family: 'Playfair Display', serif; font-size: clamp(38px, 5.5vw, 68px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 5.5vw, 68px);
           font-weight: 900; line-height: 1.05; margin-bottom: 24px;
           animation: fadeInUp 0.8s ease-out 0.1s both;
         }
@@ -905,7 +905,7 @@ function Landing({ onExploreCourses }) {
         }
         .stat-item { text-align: center; }
         .stat-num {
-          font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px);
           font-weight: 900; color: #7C3AED;
         }
         .stat-label { font-size: 14px; color: #999; margin-top: 4px; }
@@ -919,7 +919,7 @@ function Landing({ onExploreCourses }) {
           color: #7C3AED; margin-bottom: 12px;
         }
         .section-title {
-          font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 46px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 46px);
           font-weight: 800; margin-bottom: 16px; line-height: 1.15;
         }
         .section-desc {
@@ -962,7 +962,7 @@ function Landing({ onExploreCourses }) {
         }
         .course-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
         .course-card h3 {
-          font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800;
+          font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 800;
           margin-bottom: 12px; line-height: 1.25;
         }
         .course-card p { font-size: 14px; color: #888; line-height: 1.65; margin-bottom: 24px; }
@@ -1013,7 +1013,7 @@ function Landing({ onExploreCourses }) {
         }
         .inperson-section .section-label { color: #F4A261; }
         .inperson-section h2 {
-          font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 42px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 42px);
           font-weight: 800; margin-bottom: 20px; line-height: 1.15;
         }
         .inperson-section p { color: #CCC; font-size: 15px; line-height: 1.7; margin-bottom: 32px; }
@@ -1053,7 +1053,7 @@ function Landing({ onExploreCourses }) {
           max-width: 700px; margin: 0 auto;
         }
         .cta-section h2 {
-          font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 46px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 46px);
           font-weight: 900; margin-bottom: 16px; line-height: 1.1;
         }
         .cta-section p { color: #777; font-size: 16px; line-height: 1.7; margin-bottom: 36px; }
@@ -1067,7 +1067,7 @@ function Landing({ onExploreCourses }) {
         }
         @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
         .footer-brand {
-          font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900;
+          font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 900;
           margin-bottom: 12px;
         }
         .footer-desc { font-size: 14px; color: #888; line-height: 1.6; }
@@ -1100,7 +1100,7 @@ function Landing({ onExploreCourses }) {
         }
         .modal-close:hover { background: #E0E0E0; }
         .modal h2 {
-          font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800;
+          font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 800;
           margin-bottom: 8px;
         }
         .modal .modal-sub { font-size: 14px; color: #888; margin-bottom: 32px; }
@@ -1119,7 +1119,7 @@ function Landing({ onExploreCourses }) {
           text-align: center; padding: 40px 0;
         }
         .success-icon { font-size: 56px; margin-bottom: 16px; display: block; }
-        .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; }
+        .success-msg h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 8px; }
         .success-msg p { color: #888; font-size: 14px; }
       `}</style>
 

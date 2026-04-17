@@ -29,7 +29,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
       marginBottom: 12,
     },
     h1: {
-      fontFamily: "'Playfair Display', serif",
+      fontFamily: "'Cormorant Garamond', serif",
       fontSize: (32 * p) + "px",
       fontWeight: 800,
       lineHeight: 1.15,
@@ -37,7 +37,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
       color: T.text,
     },
     h2: {
-      fontFamily: "'Playfair Display', serif",
+      fontFamily: "'Cormorant Garamond', serif",
       fontSize: (22 * p) + "px",
       fontWeight: 700,
       marginBottom: 12,
@@ -55,7 +55,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
           <div style={{ position: "absolute", bottom: "-20%", left: "20%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle,rgba(244,162,97,0.15),transparent 70%)" }} />
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12 * p, fontWeight: 800, color: ORANGE, letterSpacing: 3, marginBottom: 16 }}>{slide.module}</div>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: (56 * p) + "px", fontWeight: 900, lineHeight: 1.05, marginBottom: 8, color: "white" }}>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: (56 * p) + "px", fontWeight: 900, lineHeight: 1.05, marginBottom: 8, color: "white" }}>
               {slide.title}<br />
               <span style={{ background: "linear-gradient(135deg," + PURPLE + "," + ORANGE + ")", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontStyle: "italic" }}>{slide.titleAccent}</span>
             </h1>
@@ -74,7 +74,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginBottom: 32 }}>
             {slide.stats.map((s, i) => (
               <div key={i} style={{ padding: 24, borderRadius: 16, background: PURPLE_LIGHT, border: "1px solid " + PURPLE + "30" }}>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 42 * p, fontWeight: 900, color: PURPLE, lineHeight: 1 }}>{s.num}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42 * p, fontWeight: 900, color: PURPLE, lineHeight: 1 }}>{s.num}</div>
                 <div style={{ fontSize: 13 * p, color: T.text2, marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
               </div>
             ))}
@@ -102,7 +102,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
               <div key={i} style={{ padding: 22, borderRadius: 16, background: T.subtle, border: "1.5px solid " + T.border, position: "relative" }}>
                 <div style={{ position: "absolute", top: 14, right: 16, fontSize: 10 * p, fontWeight: 800, color: PURPLE, letterSpacing: 1 }}>{item.num}</div>
                 <div style={{ fontSize: 28 * p, marginBottom: 10 }}>{item.icon}</div>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 16 * p, fontWeight: 700, color: T.text, marginBottom: 6 }}>{item.title}</h3>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16 * p, fontWeight: 700, color: T.text, marginBottom: 6 }}>{item.title}</h3>
                 <p style={{ fontSize: 12.5 * p, color: T.text2, lineHeight: 1.5 }}>{item.desc}</p>
               </div>
             ))}
@@ -115,7 +115,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
       return (
         <div style={styles.wrap}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: PURPLE, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 * p, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>{slide.num}</div>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: PURPLE, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 * p, fontWeight: 900, fontFamily: "'Cormorant Garamond', serif" }}>{slide.num}</div>
             <h1 style={{ ...styles.h1, marginBottom: 0, fontSize: (26 * p) + "px" }}>{slide.title}</h1>
           </div>
           {slide.intro && <p style={styles.sub}>{slide.intro}</p>}
@@ -164,7 +164,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
                   <div key={i} style={{ padding: 18, borderRadius: 14, background: t.highlight ? PURPLE_LIGHT : T.subtle, border: t.highlight ? "2px solid " + PURPLE : "1px solid " + T.border, position: "relative" }}>
                     {t.badge && <div style={{ position: "absolute", top: -10, left: "50%", transform: "translateX(-50%)", background: PURPLE, color: "white", fontSize: 9.5 * p, fontWeight: 800, padding: "4px 12px", borderRadius: 20, letterSpacing: 1 }}>{t.badge}</div>}
                     <div style={{ fontSize: 14 * p, fontWeight: 700, color: T.text, marginBottom: 6 }}>{t.name}</div>
-                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 30 * p, fontWeight: 800, color: t.highlight ? PURPLE : T.text }}>{t.price}<span style={{ fontSize: 12 * p, fontWeight: 500, color: T.text3 }}>{t.period}</span></div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 30 * p, fontWeight: 800, color: t.highlight ? PURPLE : T.text }}>{t.price}<span style={{ fontSize: 12 * p, fontWeight: 500, color: T.text3 }}>{t.period}</span></div>
                     <div style={{ marginTop: 10, borderTop: "1px solid " + T.border, paddingTop: 10 }}>
                       {t.features.map((f, j) => <div key={j} style={{ fontSize: 11.5 * p, color: T.text2, marginBottom: 4 }}>✓ {f}</div>)}
                     </div>
@@ -222,7 +222,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
               <div style={{ fontSize: 16 * p, fontWeight: 700, color: T.text, marginBottom: 6 }}>{slide.product.name}</div>
               <div style={{ fontSize: 11.5 * p, color: T.text3, marginBottom: 10 }}>⭐⭐⭐⭐⭐ {slide.product.rating}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 10 }}>
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 28 * p, fontWeight: 800, color: T.text }}>{slide.product.price}</span>
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28 * p, fontWeight: 800, color: T.text }}>{slide.product.price}</span>
                 <span style={{ fontSize: 13 * p, color: T.text3, textDecoration: "line-through" }}>{slide.product.oldPrice}</span>
                 <span style={{ background: "#EF4444", color: "white", fontSize: 10 * p, fontWeight: 700, padding: "2px 8px", borderRadius: 4 }}>{slide.product.discount}</span>
               </div>
@@ -365,7 +365,7 @@ export default function RichSlide({ slide, T, present, slideIdx, rqa, setRqa }) 
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 20 }}>
             {slide.items.map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", padding: 14, borderRadius: 12, background: T.subtle }}>
-                <div style={{ width: 30, height: 30, borderRadius: 8, background: "linear-gradient(135deg," + PURPLE + "," + ORANGE + ")", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 * p, fontWeight: 800, flexShrink: 0, fontFamily: "'Playfair Display', serif" }}>{i + 1}</div>
+                <div style={{ width: 30, height: 30, borderRadius: 8, background: "linear-gradient(135deg," + PURPLE + "," + ORANGE + ")", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 * p, fontWeight: 800, flexShrink: 0, fontFamily: "'Cormorant Garamond', serif" }}>{i + 1}</div>
                 <p style={{ fontSize: 13.5 * p, color: T.text2, lineHeight: 1.6, paddingTop: 4 }}>{item}</p>
               </div>
             ))}
@@ -393,7 +393,7 @@ function ExampleCard({ ex, T, p }) {
       {ex.heading && <div style={{ fontSize: 13 * p, fontWeight: 600, color: T.text, marginBottom: 4 }}>{ex.heading}</div>}
       {ex.price && (
         <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
-          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 22 * p, fontWeight: 800, color: PURPLE }}>{ex.price}</span>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22 * p, fontWeight: 800, color: PURPLE }}>{ex.price}</span>
           {ex.oldPrice && <span style={{ fontSize: 12 * p, color: T.text3, textDecoration: "line-through" }}>{ex.oldPrice}</span>}
         </div>
       )}
