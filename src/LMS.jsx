@@ -32,6 +32,32 @@ const CATS = [
   { id: "train", name: "Training & Education", icon: "\u{1F393}", color: "#0EA5E9" },
 ];
 
+const SKILL_IMG = {
+  "strategic-planning": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=400&fit=crop",
+  "team-leadership": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop",
+  "brand-identity": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=400&fit=crop",
+  "design-fundamentals": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=400&fit=crop",
+  "copywriting": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
+  "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
+  "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
+  "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
+  "color-grading": "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?w=800&h=400&fit=crop",
+  "motion-graphics": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=400&fit=crop",
+  "html-css": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop",
+  "wordpress-cms": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop",
+};
+const CAT_IMG = {
+  lead: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=400&fit=crop",
+  brand: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=400&fit=crop",
+  content: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
+  video: "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
+  post: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
+  web: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop",
+  digi: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+  ops: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=400&fit=crop",
+  train: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=400&fit=crop",
+};
+
 const LC = { Beginner: "#10B981", Intermediate: "#F59E0B", Advanced: "#EF4444" };
 const TC = { Lecture: "#7C3AED", Workshop: "#2563EB", "Hands-on": "#059669", Practice: "#059669", Project: "#DC2626", "Case Study": "#D97706", "Role Play": "#EC4899", Capstone: "#B91C1C" };
 const ICO = ["\u{1F3AF}", "\u{1F4A1}", "\u{1F511}", "\u{1F4CA}", "\u{1F9E9}", "\u26A1", "\u{1F3D7}\uFE0F", "\u{1F50D}", "\u{1F4D0}", "\u{1F393}"];
@@ -682,20 +708,28 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       </div>
       <div style={{height:1,background:"linear-gradient(90deg,"+cat.color+"55 0%,"+cat.color+"22 35%,"+T.border+" 100%)",marginTop:18}}/>
     </div>
-    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:16}}>
-      {cs.map(function(s){var pr=gp(s);return <div key={s.id} className="c" onClick={function(){osk(s);}} style={{padding:0,cursor:"pointer",overflow:"hidden"}}>
-        <div style={{padding:"20px 24px 16px",borderBottom:"1px solid "+T.border}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
-            <div style={{display:"flex",gap:10,alignItems:"center"}}><div style={{width:44,height:44,borderRadius:14,background:s.color+"12",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>{s.icon}</div><div><h3 style={{fontFamily:"'Playfair Display',serif",fontSize:16,fontWeight:700,marginBottom:3}}>{s.name}</h3><div style={{display:"flex",gap:6}}><span className="bg" style={{background:LC[s.lv]+"15",color:LC[s.lv]}}>{s.lv}</span><span className="bg" style={{background:T.subtle,color:T.text3}}>{s.lessons.length} lessons</span></div></div></div>
-            <Rng p={pr} sz={48} c={s.color}/>
+    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:24}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];return <article key={s.id} onClick={function(){osk(s);}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:2,overflow:"hidden",transition:"border-color .25s, transform .25s",display:"flex",flexDirection:"column"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=s.color;}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;}}>
+        <div style={{position:"relative",width:"100%",paddingTop:"52%",background:"#E5E5E5",overflow:"hidden"}}>
+          <img src={img} alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(12%) contrast(1.03)"}}/>
+          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 100%)"}}/>
+          <div style={{position:"absolute",top:14,left:14,background:"rgba(255,255,255,.92)",padding:"3px 10px",fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:10.5,fontWeight:600,color:"#1A1A1A",letterSpacing:2,textTransform:"uppercase"}}>{s.lv}</div>
+        </div>
+        <div style={{padding:"22px 26px 20px",flex:1,display:"flex",flexDirection:"column"}}>
+          <div style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:10.5,color:T.text3,letterSpacing:2.5,textTransform:"uppercase",marginBottom:8}}>{s.lessons.length} Lessons \u00B7 {s.dur}</div>
+          <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:800,lineHeight:1.15,color:T.text,letterSpacing:-.2,marginBottom:10}}>{s.name}</h3>
+          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.6,marginBottom:20,fontFamily:"'DM Sans',sans-serif"}}>{s.desc}</p>
+          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{height:1,background:T.border,position:"relative",marginBottom:6}}>
+                <div style={{height:1,background:s.color,width:pr+"%",transition:"width .4s"}}/>
+              </div>
+              <div style={{fontSize:10.5,color:T.text3,fontFamily:"'Playfair Display',serif",fontStyle:"italic",letterSpacing:1.5,textTransform:"uppercase"}}>{pr>0?pr+"% Read":"Not Yet Begun"}</div>
+            </div>
+            <div style={{fontFamily:"'Playfair Display',serif",fontSize:13,fontWeight:600,color:s.color,whiteSpace:"nowrap",letterSpacing:.3}}>Begin \u2014 {"\u2192"}</div>
           </div>
-          <p style={{fontSize:13,color:T.text2,lineHeight:1.55}}>{s.desc}</p>
         </div>
-        <div style={{padding:"12px 24px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-          <div style={{flex:1,marginRight:16}}><Bar p={pr} c={s.color} h={5}/></div>
-          <span style={{fontSize:12,fontWeight:600,color:s.color,whiteSpace:"nowrap"}}>{pr>0?pr+"% done":"Start"} {"\u2192"}</span>
-        </div>
-      </div>;})}
+      </article>;})}
     </div>
   </div>;})}
   </div>;}
