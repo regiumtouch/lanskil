@@ -173,7 +173,11 @@ export default function App() {
       }
       setLoading(false);
     });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        setView("reset-password");
+        return;
+      }
       if (session) {
         loadProfile(session.user);
       } else {
@@ -215,7 +219,87 @@ export default function App() {
 
   if (view === "lms" && user) return <LMS onBack={() => setView("landing")} user={user} onLogout={handleLogout} />;
   if (view === "auth") return <AuthScreen onLogin={handleLogin} onBack={() => setView("landing")} />;
+  if (view === "reset-password") return <ResetPasswordScreen onDone={async () => { await supabase.auth.signOut(); setUser(null); setView("auth"); }} />;
   return <Landing onExploreCourses={handleExploreCourses} user={user} onEnterLMS={() => setView("lms")} />;
+}
+
+function ResetPasswordScreen({ onDone }) {
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError(""); setInfo("");
+    if (password.length < 6) { setError("Password must be at least 6 characters."); return; }
+    if (password !== confirm) { setError("Passwords do not match."); return; }
+    setLoading(true);
+    try {
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+      if (updateError) { setError(updateError.message); setLoading(false); return; }
+      setInfo("Password updated! Redirecting to sign in...");
+      setTimeout(() => { onDone(); }, 1500);
+    } catch (err) { setError(err.message); setLoading(false); }
+  }
+
+  return (
+    <div style={{
+      fontFamily: "'DM Sans', sans-serif", background: "#FAFAF7", minHeight: "100vh",
+      display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+    }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .auth-card { background: white; border-radius: 28px; padding: clamp(32px, 5vw, 52px); max-width: 480px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+        .auth-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #7C3AED, #F4A261, #45B69C, #2D7DD2); }
+        .auth-input { width: 100%; padding: 14px 18px; border: 1.5px solid #E8E8E8; border-radius: 14px; font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #FAFAF7; }
+        .auth-input:focus { border-color: #7C3AED; box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+        .auth-btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .auth-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .auth-btn-primary { background: #7C3AED; color: white; }
+        .auth-btn-primary:hover:not(:disabled) { background: #6D28D9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124,58,237,0.3); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
+      `}</style>
+
+      <div className="auth-card">
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <div style={{ width: 42, height: 42, background: "#7C3AED", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", transform: "rotate(-3deg)" }}>L</div>
+            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: 24 }}>LanSkil</span>
+          </div>
+          <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Choose a new password for your account</p>
+        </div>
+
+        {error && (
+          <div style={{ background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 12, padding: "12px 16px", marginBottom: 20, color: "#DC2626", fontSize: 13, fontWeight: 500 }}>{error}</div>
+        )}
+        {info && (
+          <div style={{ background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: 12, padding: "12px 16px", marginBottom: 20, color: "#059669", fontSize: 13, fontWeight: 500 }}>{info}</div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>New Password</label>
+            <div style={{ position: "relative" }}>
+              <input className="auth-input" type={showPw ? "text" : "password"} placeholder="At least 6 characters" value={password} onChange={e => { setPassword(e.target.value); setError(""); }} style={{ paddingRight: 44 }} />
+              <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#999", padding: 4 }} aria-label={showPw ? "Hide password" : "Show password"}>{showPw ? "\u{1F441}\uFE0F" : "\u{1F441}\u200D\u{1F5E8}"}</button>
+            </div>
+          </div>
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>Confirm Password</label>
+            <input className="auth-input" type={showPw ? "text" : "password"} placeholder="Re-enter password" value={confirm} onChange={e => { setConfirm(e.target.value); setError(""); }} />
+          </div>
+          <button type="submit" className="auth-btn auth-btn-primary" disabled={loading}>
+            {loading ? <><div className="spinner" /> Updating...</> : "Update password"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 function AuthScreen({ onLogin, onBack }) {
@@ -340,7 +424,7 @@ function AuthScreen({ onLogin, onBack }) {
     setLoading(true);
     try {
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(form.email, {
-        redirectTo: `${window.location.origin}/reset-password`,
+        redirectTo: window.location.origin,
       });
       if (resetError) { setError(resetError.message); setLoading(false); return; }
       setInfo("Check your email for a password reset link.");
