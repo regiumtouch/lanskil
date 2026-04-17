@@ -587,6 +587,8 @@ function Rng(props){var p=props.p,sz=props.sz||44,sw=props.sw||3.5,c=props.c||"#
 
 function Bar(props){var p=props.p,c=props.c||"#7C3AED",h=props.h||5;return <div style={{width:"100%",height:h,background:"#E8E8E8",borderRadius:h}}><div style={{width:p+"%",height:"100%",background:c,borderRadius:h,transition:"width .4s"}}/></div>;}
 
+function toRoman(n){var map=[["M",1000],["CM",900],["D",500],["CD",400],["C",100],["XC",90],["L",50],["XL",40],["X",10],["IX",9],["V",5],["IV",4],["I",1]];var out="";for(var i=0;i<map.length;i++){while(n>=map[i][1]){out+=map[i][0];n-=map[i][1];}}return out;}
+
 function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,fl=props.fl,setFl=props.setFl,osk=props.osk,oskl=props.oskl,gp=props.gp,op=props.op,tl=props.tl,dc=props.dc,dn=props.dn,user=props.user,T=props.T,dark=props.dark;
   var inProg=SKILLS.filter(function(s){var p=gp(s);return p>0&&p<100;}).length;
   var comp=SKILLS.filter(function(s){return gp(s)===100;}).length;
@@ -666,23 +668,19 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   {ft.length===0&&<div style={{textAlign:"center",padding:"80px 20px"}}><div style={{fontSize:56,marginBottom:16}}>{"\u{1F50D}"}</div><h3 style={{fontFamily:"'Playfair Display',serif",fontSize:20,fontWeight:700,marginBottom:8}}>No skills found</h3><p style={{color:"#888",fontSize:15}}>Try adjusting your search or filters.</p></div>}
 
   {/* Categories & Skills */}
-  {(fc==="All"?CATS:CATS.filter(function(c){return c.id===fc;})).map(function(cat,idx){var cs=ft.filter(function(s){return s.cat===cat.id;});if(!cs.length)return null;return <div key={cat.id} style={{marginBottom:48}}>
-    {idx>0&&<div style={{display:"flex",alignItems:"center",gap:14,marginBottom:36,marginTop:8}}>
-      <div style={{flex:1,height:1,background:"linear-gradient(90deg,transparent 0%,"+T.border+" 50%,"+T.border+" 100%)"}}/>
-      <div style={{display:"flex",gap:4}}><span style={{width:4,height:4,borderRadius:2,background:cat.color,opacity:.6}}/><span style={{width:4,height:4,borderRadius:2,background:cat.color,opacity:.85}}/><span style={{width:4,height:4,borderRadius:2,background:cat.color}}/></div>
-      <div style={{flex:1,height:1,background:"linear-gradient(270deg,transparent 0%,"+T.border+" 50%,"+T.border+" 100%)"}}/>
+  {(fc==="All"?CATS:CATS.filter(function(c){return c.id===fc;})).map(function(cat,idx){var cs=ft.filter(function(s){return s.cat===cat.id;});if(!cs.length)return null;var rn=toRoman(idx+1);return <div key={cat.id} style={{marginBottom:52}}>
+    {idx>0&&<div style={{display:"flex",alignItems:"center",gap:20,margin:"44px 0 40px"}}>
+      <div style={{flex:1,height:1,background:T.border}}/>
+      <span style={{fontFamily:"'Playfair Display',serif",fontSize:18,color:T.text3,fontWeight:400,lineHeight:1}}>{"\u00A7"}</span>
+      <div style={{flex:1,height:1,background:T.border}}/>
     </div>}
-    <div style={{marginBottom:22,paddingBottom:18,borderBottom:"2px solid "+cat.color+"1E",position:"relative"}}>
-      <div style={{position:"absolute",left:0,bottom:-2,width:88,height:2,background:"linear-gradient(90deg,"+cat.color+","+cat.color+"40)",borderRadius:2}}/>
+    <div style={{marginBottom:28}}>
+      <div style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:11,fontWeight:500,color:cat.color,letterSpacing:3.5,textTransform:"uppercase",marginBottom:10}}>Part {rn}  \u00B7  {cs.length} {cs.length===1?"Module":"Modules"}</div>
       <div style={{display:"flex",alignItems:"center",gap:16}}>
-        <div style={{width:54,height:54,borderRadius:15,background:"linear-gradient(135deg,"+cat.color+"22,"+cat.color+"08)",border:"1.5px solid "+cat.color+"2A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:25,flexShrink:0,boxShadow:"0 4px 14px "+cat.color+"14"}}>{cat.icon}</div>
-        <div style={{flex:1,minWidth:0}}>
-          <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:3}}>
-            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:23,fontWeight:800,lineHeight:1.1,color:T.text,letterSpacing:-.2}}>{cat.name}</h2>
-            <span style={{background:cat.color+"14",color:cat.color,fontSize:10.5,fontWeight:800,padding:"4px 11px",borderRadius:20,letterSpacing:.8,textTransform:"uppercase",whiteSpace:"nowrap"}}>{cs.length} {cs.length===1?"Module":"Modules"}</span>
-          </div>
-        </div>
+        <div style={{width:46,height:46,background:cat.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0,borderRadius:3,filter:"grayscale(0)"}}>{cat.icon}</div>
+        <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:30,fontWeight:800,lineHeight:1.05,color:T.text,letterSpacing:-.4}}>{cat.name}</h2>
       </div>
+      <div style={{height:1,background:"linear-gradient(90deg,"+cat.color+"55 0%,"+cat.color+"22 35%,"+T.border+" 100%)",marginTop:18}}/>
     </div>
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:16}}>
       {cs.map(function(s){var pr=gp(s);return <div key={s.id} className="c" onClick={function(){osk(s);}} style={{padding:0,cursor:"pointer",overflow:"hidden"}}>
