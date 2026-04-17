@@ -5,6 +5,7 @@ import { headlinesModule } from "./modules/headlines";
 import { frameworksModule } from "./modules/frameworks";
 import { storytellingModule } from "./modules/storytelling";
 import { objectionsModule } from "./modules/objections";
+import { closeModule } from "./modules/close";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -339,17 +340,13 @@ const SKILLS = [
     { id: "df04", title: "Color Theory", type: "Workshop", duration: "1.5h", desc: "Color wheel, harmonies, emotions.", topics: ["Color wheel", "Color harmonies", "Emotional associations"] },
     { id: "df05", title: "Hierarchy & Layout", type: "Hands-on", duration: "1h", desc: "Guide eye through design.", topics: ["Hierarchy systems", "Grid structures", "F & Z patterns"] },
   ]},
-  { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "11.5h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
+  { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },
     { id: "hdln01", title: headlinesModule.title, type: headlinesModule.type, duration: headlinesModule.duration, desc: headlinesModule.desc, topics: headlinesModule.topics, rich: headlinesModule },
     { id: "frmk01", title: frameworksModule.title, type: frameworksModule.type, duration: frameworksModule.duration, desc: frameworksModule.desc, topics: frameworksModule.topics, rich: frameworksModule },
     { id: "stry01", title: storytellingModule.title, type: storytellingModule.type, duration: storytellingModule.duration, desc: storytellingModule.desc, topics: storytellingModule.topics, rich: storytellingModule },
     { id: "objc01", title: objectionsModule.title, type: objectionsModule.type, duration: objectionsModule.duration, desc: objectionsModule.desc, topics: objectionsModule.topics, rich: objectionsModule },
-    { id: "cw01", title: "Fundamentals", type: "Lecture", duration: "1h", desc: "Clarity, persuasion, action.", topics: ["Copy vs content", "AIDA framework", "Value proposition writing"] },
-    { id: "cw03", title: "Social Copy", type: "Workshop", duration: "1.5h", desc: "Platform-specific copy.", topics: ["Platform voice", "Caption structure", "Hashtag strategy"] },
-    { id: "cw04", title: "Web Copy", type: "Hands-on", duration: "1.5h", desc: "Landing pages that convert.", topics: ["Hero sections", "Feature-benefit copy", "CTA writing"] },
-    { id: "cw05", title: "Email Copy", type: "Workshop", duration: "1h", desc: "Subject lines and sequences.", topics: ["Subject lines", "Email structure", "Sequence writing"] },
-    { id: "cw06", title: "Ad Copy", type: "Hands-on", duration: "1.5h", desc: "Ads within character limits.", topics: ["Ad copy formulas", "Character limits", "Testing variations"] },
+    { id: "clse01", title: closeModule.title, type: closeModule.type, duration: closeModule.duration, desc: closeModule.desc, topics: closeModule.topics, rich: closeModule },
   ]},
   { id: "camera-operation", name: "Camera Operation", cat: "video", lv: "Beginner", icon: "\u{1F4F7}", color: "#EF4444", dur: "10h", roles: ["Videographer"], desc: "Master cameras for pro video.", lessons: [
     { id: "co01", title: "Camera Anatomy", type: "Lecture", duration: "1h", desc: "Sensors, lenses, formats.", topics: ["Sensor sizes", "Lens mounts", "Recording codecs"] },
