@@ -484,17 +484,21 @@ function getQuiz(ls) {
 }
 
 export default function LMS({ onBack, user, onLogout }) {
-  var _a = useState("dash"), v = _a[0], setV = _a[1];
-  var _b = useState(null), sk = _b[0], setSk = _b[1];
-  var _c = useState(null), ls = _c[0], setLs = _c[1];
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem("lsk-lms") || "{}"); } catch(e){}
+  var initSk = saved.skId ? SKILLS.find(function(s){return s.id===saved.skId;}) : null;
+  var initLs = initSk && saved.lsId ? initSk.lessons.find(function(l){return l.id===saved.lsId;}) : null;
+  var _a = useState(saved.v || "dash"), v = _a[0], setV = _a[1];
+  var _b = useState(initSk), sk = _b[0], setSk = _b[1];
+  var _c = useState(initLs), ls = _c[0], setLs = _c[1];
   var _d = useState({}), dn = _d[0], setDn = _d[1];
   var _progLoaded = useState(false), progLoaded = _progLoaded[0], setProgLoaded = _progLoaded[1];
   var _e = useState(""), sr = _e[0], setSr = _e[1];
   var _f = useState("All"), fc = _f[0], setFc = _f[1];
   var _g = useState("All"), fl = _g[0], setFl = _g[1];
   var _h = useState(false), sbo = _h[0], setSbo = _h[1];
-  var _i = useState(0), si = _i[0], setSi = _i[1];
-  var _j = useState("browse"), md = _j[0], setMd = _j[1];
+  var _i = useState(saved.si || 0), si = _i[0], setSi = _i[1];
+  var _j = useState(saved.md || "browse"), md = _j[0], setMd = _j[1];
   var _k = useState({}), qa = _k[0], setQa = _k[1];
   var _l = useState(false), qs = _l[0], setQs = _l[1];
   var _toast = useState(null), toast = _toast[0], setToast = _toast[1];
@@ -502,6 +506,9 @@ export default function LMS({ onBack, user, onLogout }) {
   function toggleDark(){setDark(function(d){localStorage.setItem("sf-dark",d?"0":"1");return !d;});}
   var T = dark ? {bg:"#111318",card:"#1A1D24",text:"#E5E5E5",text2:"#AAA",text3:"#777",border:"#2A2D35",subtle:"#1E2128",hover:"#252830",inputBg:"#1A1D24",activeBg:"#2A1A10",activeText:"#F4A261",statBg1:"#1F1410",statBg2:"#1F1A0F",statBg3:"#0F1F18",statBg4:"#0F1520",bannerBg:"linear-gradient(135deg,#0D0E12,#1A1D24)"} : {bg:"#FAFAF7",card:"#FFFFFF",text:"#1A1A1A",text2:"#888",text3:"#999",border:"#ECECEC",subtle:"#F5F5F5",hover:"#F0F0F0",inputBg:"#FFFFFF",activeBg:"#F3EDFF",activeText:"#7C3AED",statBg1:"#FFF5F2",statBg2:"#FFFBEB",statBg3:"#ECFDF5",statBg4:"#EFF6FF",bannerBg:"linear-gradient(135deg,#1A1A1A,#2D2D2D)"};
   var _qScores=useState({}),quizScores=_qScores[0],setQuizScores=_qScores[1];
+  useEffect(function(){
+    try{localStorage.setItem("lsk-lms",JSON.stringify({v:v,skId:sk?sk.id:null,lsId:ls?ls.id:null,md:md,si:si}));}catch(e){}
+  },[v,sk,ls,md,si]);
   // Load progress and quiz scores from Supabase on mount
   useEffect(function(){
     if(!user)return;

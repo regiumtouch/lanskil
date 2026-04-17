@@ -167,9 +167,17 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    try { localStorage.setItem("lsk-view", view); } catch {}
+  }, [view]);
+
+  useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         loadProfile(session.user);
+        try {
+          const saved = localStorage.getItem("lsk-view");
+          if (saved === "lms") setView("lms");
+        } catch {}
       }
       setLoading(false);
     });
