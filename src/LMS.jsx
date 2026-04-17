@@ -500,18 +500,28 @@ export default function LMS({ onBack, user, onLogout }) {
   var _dm = useState(function(){try{return localStorage.getItem("sf-dark")==="1";}catch(e){return false;}}), dark = _dm[0], setDark = _dm[1];
   function toggleDark(){setDark(function(d){localStorage.setItem("sf-dark",d?"0":"1");return !d;});}
   var T = dark ? {bg:"#111318",card:"#1A1D24",text:"#E5E5E5",text2:"#AAA",text3:"#777",border:"#2A2D35",subtle:"#1E2128",hover:"#252830",inputBg:"#1A1D24",activeBg:"#2A1A10",activeText:"#F4A261",statBg1:"#1F1410",statBg2:"#1F1A0F",statBg3:"#0F1F18",statBg4:"#0F1520",bannerBg:"linear-gradient(135deg,#0D0E12,#1A1D24)"} : {bg:"#FAFAF7",card:"#FFFFFF",text:"#1A1A1A",text2:"#888",text3:"#999",border:"#ECECEC",subtle:"#F5F5F5",hover:"#F0F0F0",inputBg:"#FFFFFF",activeBg:"#F3EDFF",activeText:"#7C3AED",statBg1:"#FFF5F2",statBg2:"#FFFBEB",statBg3:"#ECFDF5",statBg4:"#EFF6FF",bannerBg:"linear-gradient(135deg,#1A1A1A,#2D2D2D)"};
-  // Load progress from Supabase on mount
+  var _qScores=useState({}),quizScores=_qScores[0],setQuizScores=_qScores[1];
+  // Load progress and quiz scores from Supabase on mount
   useEffect(function(){
     if(!user)return;
     supabase.from("progress").select("lesson_id").eq("user_id",user.id).then(function(res){
+      if(res.error){console.error("progress load error:",res.error);}
       if(res.data){var obj={};res.data.forEach(function(r){obj[r.lesson_id]=true;});setDn(obj);}
       setProgLoaded(true);
+    });
+    supabase.from("quiz_scores").select("lesson_id,score_pct,correct,total").eq("user_id",user.id).then(function(res){
+      if(res.error){console.error("quiz_scores load error:",res.error);return;}
+      if(res.data){var obj={};res.data.forEach(function(r){obj[r.lesson_id]={pct:r.score_pct,correct:r.correct,total:r.total};});setQuizScores(obj);}
     });
   },[user]);
   var mk = useCallback(function(id){
     setDn(function(p){var n={};Object.keys(p).forEach(function(k){n[k]=p[k]});n[id]=true;return n;});
-    if(user){supabase.from("progress").upsert({user_id:user.id,lesson_id:id},{onConflict:"user_id,lesson_id"});}
+    if(user){supabase.from("progress").upsert({user_id:user.id,lesson_id:id},{onConflict:"user_id,lesson_id"}).then(function(res){if(res.error)console.error("progress save error:",res.error);});}
     setToast("Lesson marked complete!");setTimeout(function(){setToast(null);},2500);
+  },[user]);
+  var saveQuizScore = useCallback(function(lessonId,score){
+    setQuizScores(function(p){var n={};Object.keys(p).forEach(function(k){n[k]=p[k]});n[lessonId]=score;return n;});
+    if(user){supabase.from("quiz_scores").upsert({user_id:user.id,lesson_id:lessonId,score_pct:score.pct,correct:score.correct,total:score.total,attempted_at:new Date().toISOString()},{onConflict:"user_id,lesson_id"}).then(function(res){if(res.error)console.error("quiz_score save error:",res.error);});}
   },[user]);
   var tl = useMemo(function(){return SKILLS.reduce(function(a,s){return a+s.lessons.length;},0);},[]);
   var dc = Object.values(dn).filter(Boolean).length;
@@ -558,8 +568,8 @@ export default function LMS({ onBack, user, onLogout }) {
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="slides"&&<SlV ls={ls} sk={sk} si={si} setSi={setSi} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="ready"&&<ReadyV ls={ls} sk={sk} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
-        {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T} setQScore={setQScore}/>}
-        {v==="lesson"&&ls&&sk&&md==="results"&&<ResV ls={ls} sk={sk} mk={mk} dn={dn} setMd={setMd} gb={function(){setV("skill");setLs(null);scr();}} nxt={nxt()} ols={ols} goDash={function(){setV("dash");setSk(null);setLs(null);scr();}} user={user} T={T} qScore={qScore}/>}
+        {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T} setQScore={setQScore} saveQuizScore={saveQuizScore}/>}
+        {v==="lesson"&&ls&&sk&&md==="results"&&<ResV ls={ls} sk={sk} mk={mk} dn={dn} setMd={setMd} gb={function(){setV("skill");setLs(null);scr();}} nxt={nxt()} ols={ols} goDash={function(){setV("dash");setSk(null);setLs(null);scr();}} user={user} T={T} qScore={qScore||quizScores[ls.id]}/>}
       </div>
     </div>
   );
@@ -803,7 +813,7 @@ function ReadyV(props){
   </div>;
 }
 
-function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd,setQScore=props.setQScore;
+function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd,setQScore=props.setQScore,saveQuizScore=props.saveQuizScore;
   var qz=useMemo(function(){return getQuiz(ls);},[ls]);var _x=useState(0),qi=_x[0],setQi=_x[1];
   useEffect(function(){if(!qz.length)setMd("results");},[qz.length]);
   if(!qz.length)return null;var q=qz[qi];var sel=qa[qi];var all=Object.keys(qa).length===qz.length;var sc=qz.reduce(function(a,q2,i){return a+(qa[i]===q2.correct?1:0);},0);var pass=sc>=Math.ceil(qz.length*.66);
@@ -829,7 +839,7 @@ function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs
       </div>
 
       <div style={{display:"flex",gap:12,justifyContent:"center"}}>
-        {pass?<button className="bt" onClick={function(){if(setQScore)setQScore({correct:sc,total:qz.length,pct:Math.round(sc/qz.length*100)});setMd("results");}} style={{padding:"14px 36px",borderRadius:50,background:"#10B981",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 16px rgba(16,185,129,.3)"}}>{"\u2713"} Complete Lesson</button>
+        {pass?<button className="bt" onClick={function(){var score={correct:sc,total:qz.length,pct:Math.round(sc/qz.length*100)};if(setQScore)setQScore(score);if(saveQuizScore)saveQuizScore(ls.id,score);setMd("results");}} style={{padding:"14px 36px",borderRadius:50,background:"#10B981",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 16px rgba(16,185,129,.3)"}}>{"\u2713"} Complete Lesson</button>
         :<button className="bt" onClick={function(){setQa({});setQs(false);setQi(0);}} style={{padding:"14px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:600,border:"none"}}>{"\u21BB"} Try Again</button>}
       </div>
     </div>
