@@ -302,19 +302,5 @@ export const psychologyModule = {
       ],
       footer: "GOLDEN RULE: Never use just one principle. The most powerful copy layers 2-3 triggers in every section. Scarcity + Social Proof + Anchoring is the classic conversion trifecta.",
     },
-    {
-      type: "takeaways",
-      title: "Module 1 — Key Takeaways",
-      items: [
-        "95% of decisions are subconscious — your copy must trigger emotional responses before logical justification.",
-        "Layer 2-3 psychological principles per section. Scarcity + Social Proof + Anchoring is the conversion trifecta.",
-        "Specificity is persuasion: \"12,847 users\" beats \"thousands\" every time. Real numbers = real trust.",
-        "Reframe every benefit as a loss avoided — \"Stop losing $47/day\" outperforms \"Save money\" by 2x.",
-        "Authority signals belong at decision points — near CTAs, pricing pages, and checkout flows.",
-        "Give before you ask. The more valuable your free content, the stronger the reciprocity obligation.",
-        "Test everything. Psychology gives you hypotheses; data gives you answers.",
-      ],
-      next: "NEXT UP: Module 2 — Headline Mastery  |  Proven formulas that turn scrollers into readers",
-    },
   ],
 };

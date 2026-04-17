@@ -241,32 +241,5 @@ export const headlinesModule = {
         { num: "4", copy: '"New Features Available Now"', answer: 'Benefit-led. Sample: "Build Reports in 30 Seconds \u2014 3 New AI Features That Auto-Draft Everything"' },
       ],
     },
-    {
-      type: "quiz",
-      title: "Module 2 Knowledge Check",
-      questions: [
-        { q: '"How to Double Your Leads Without Spending More on Ads" uses which formula?', opts: ["4U Formula", "Number + Adjective", "How-To Formula", "Curiosity Gap"], correct: 2 },
-        { q: "Which headline scores highest on the 4U Formula?", opts: ['"Great Marketing Tips for Your Business"', '"5 Marketing Hacks That Work"', '"Boost Email Opens by 47% This Week With 3 Free Templates"', '"Learn to Market Better"'], correct: 2 },
-        { q: "Why do odd numbers outperform even numbers in headlines?", opts: ["They're easier to read", "They feel more authentic and less manufactured", "They look more attractive visually", "Search engines prefer them"], correct: 1 },
-        { q: "Which email subject line would likely get the highest open rate?", opts: ['"Monthly Newsletter \u2014 April Edition"', '"You\'re losing $47/day to this common SEO error"', '"Update from our team"', '"New blog post available"'], correct: 1 },
-        { q: "David Ogilvy's rule about headlines suggests:", opts: ["Headlines should always be short (under 6 words)", "Headlines account for 80 cents of every advertising dollar spent", "Never use numbers in headlines", "Always use questions as headlines"], correct: 1 },
-        { q: "When A/B testing headlines, which element should you test FIRST?", opts: ["Font size and color", "The core promise (benefit vs feature, gain vs loss framing)", "Punctuation choices", "The author byline"], correct: 1 },
-      ],
-      scoring: "6/6 = Expert  |  5/6 = Advanced  |  4/6 = Proficient  |  3/6 = Review  |  \u22642 = Re-study this module",
-    },
-    {
-      type: "takeaways",
-      title: "Module 2 \u2014 Key Takeaways",
-      items: [
-        "80% of readers never get past the headline \u2014 it's your single most important line of copy.",
-        "Use the 4U Formula as a diagnostic tool: score every headline on Useful, Urgent, Ultra-Specific, and Unique.",
-        "The How-To Formula makes the reader the hero and pre-empts their biggest objection.",
-        "Odd numbers outperform even numbers. Use digits (7) not words (seven). Specificity wins (11 not 10).",
-        "Power words trigger emotional responses \u2014 use 1\u20132 per headline from the fear, greed, or curiosity categories.",
-        "Write 25+ variants for important headlines. Ogilvy wrote 104 for a single ad. Your first idea is never your best.",
-        "A/B test everything \u2014 the difference between a good and great headline can be 278% more conversions.",
-      ],
-      next: "NEXT UP: Module 3 \u2014 AIDA & PAS Frameworks  |  The two copy structures that power every high-converting page.",
-    },
   ],
 };

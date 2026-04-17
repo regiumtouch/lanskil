@@ -208,32 +208,5 @@ export const frameworksModule = {
         { num: "4", copy: '"Transform your customer experience and drive real results."', answer: 'Missing: the actual problem, the actual result. Fix: "Customers churn at month 11 \u2014 not month 1. We rebuilt our playbook around that. Here\'s what happened."' },
       ],
     },
-    {
-      type: "quiz",
-      title: "Module 3 Knowledge Check",
-      questions: [
-        { q: "AIDA stands for:", opts: ["Attention, Intent, Demand, Action", "Attention, Interest, Desire, Action", "Authority, Insight, Decision, Acceptance", "Audience, Intent, Device, Ad"], correct: 1 },
-        { q: "The Agitation step in PAS is designed to:", opts: ["List all product features in detail", "Push on the reader's pain so the solution feels urgent", "Apologise for the problem existing", "Introduce the brand's backstory"], correct: 1 },
-        { q: "Which of these is a tell-tale sign of AI-generated copy?", opts: ["A specific dollar figure", "A named customer and outcome", 'Vague adjectives like "cutting-edge", "seamless", "powerful"', "A counterintuitive claim"], correct: 2 },
-        { q: 'The test "If I removed the product name, would it still be distinct?" catches:', opts: ["Spelling errors", "Interchangeable, generic copy that could apply to any competitor", "Overly long headlines", "Missing CTAs"], correct: 1 },
-        { q: "The best way to use AI in a copywriting workflow is to:", opts: ["Accept the first draft as final", "Use it for structure, then replace every vague line with specificity, proof, and insight only you would know", "Use it only for grammar checks", "Avoid it entirely"], correct: 1 },
-        { q: "Which landing page opener shows the strongest human edge?", opts: ['"Revolutionise the way your team works"', '"Unlock the full potential of your business"', '"Your team loses 4.2 hours a week to status meetings. We cut that to 12 minutes."', '"The best project tool for modern companies"'], correct: 2 },
-      ],
-      scoring: "6/6 = Expert  |  5/6 = Advanced  |  4/6 = Proficient  |  3/6 = Review  |  \u22642 = Re-study this module",
-    },
-    {
-      type: "takeaways",
-      title: "Module 3 \u2014 Key Takeaways",
-      items: [
-        "AIDA and PAS are free. The competitive edge is the thinking you do before you fill them in.",
-        "AI writes from the statistical average of the internet \u2014 it defaults to generic by design.",
-        "The tell-tale signs of AI slop: vague adjectives, no proper nouns, hedging language, parallel sentence structure, cliché openers.",
-        "Every section must earn one specific: a number, a name, a mechanism, a time frame. No exceptions.",
-        "The most powerful test: remove your brand name from the copy. If it still fits your competitor, it's generic \u2014 rewrite.",
-        "Ask 3 questions before writing: What's the specific tension? What do I know that no one else does? What's the ONE belief the reader needs?",
-        "Use AI as scaffolding, not as ceiling. 5-step workflow: structure \u2192 kill adjectives \u2192 add specifics \u2192 add insider knowledge \u2192 read aloud.",
-      ],
-      next: "NEXT UP: Module 4 \u2014 Storytelling for Conversion  |  How narrative structure turns a flat pitch into an irresistible read.",
-    },
   ],
 };
