@@ -223,6 +223,7 @@ function AuthScreen({ onLogin, onBack }) {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", password: "", interests: [] });
   const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPw, setShowPw] = useState(false);
 
@@ -328,6 +329,25 @@ function AuthScreen({ onLogin, onBack }) {
     setLoading(false);
   }
 
+  async function handleForgotPassword(e) {
+    e.preventDefault();
+    setError("");
+    setInfo("");
+    if (!form.email.trim()) {
+      setError("Please enter your email address.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(form.email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+      if (resetError) { setError(resetError.message); setLoading(false); return; }
+      setInfo("Check your email for a password reset link.");
+    } catch (err) { setError(err.message); }
+    setLoading(false);
+  }
+
   function toggleInterest(id) {
     setForm(prev => ({
       ...prev,
@@ -337,7 +357,7 @@ function AuthScreen({ onLogin, onBack }) {
     }));
   }
 
-  function up(field, val) { setForm(prev => ({ ...prev, [field]: val })); setError(""); }
+  function up(field, val) { setForm(prev => ({ ...prev, [field]: val })); setError(""); setInfo(""); }
 
   return (
     <div style={{
@@ -422,6 +442,7 @@ function AuthScreen({ onLogin, onBack }) {
           {mode === "signup" && step === 2 && <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>What are you interested in?</p>}
           {mode === "signup" && step === 3 && <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Set a password to secure your account</p>}
           {mode === "login" && <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Welcome back! Sign in to continue</p>}
+          {mode === "reset" && <p style={{ color: "#888", fontSize: 14, marginTop: 4 }}>Enter your email to receive a reset link</p>}
         </div>
 
         {/* Step indicators for signup */}
@@ -443,6 +464,16 @@ function AuthScreen({ onLogin, onBack }) {
           </div>
         )}
 
+        {/* Info */}
+        {info && (
+          <div style={{
+            background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: 12,
+            padding: "12px 16px", marginBottom: 20, color: "#059669", fontSize: 13, fontWeight: 500,
+          }}>
+            {info}
+          </div>
+        )}
+
         {/* LOGIN FORM */}
         {mode === "login" && (
           <form onSubmit={handleLoginSubmit} className="auth-animate">
@@ -451,7 +482,10 @@ function AuthScreen({ onLogin, onBack }) {
               <input className="auth-input" type="email" placeholder="you@example.com" value={form.email} onChange={e => up("email", e.target.value)} />
             </div>
             <div style={{ marginBottom: 24 }}>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>Password</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                <label style={{ fontSize: 13, fontWeight: 600, color: "#666" }}>Password</label>
+                <button type="button" className="auth-toggle" style={{ fontSize: 12 }} onClick={() => { setMode("reset"); setError(""); setInfo(""); }}>Forgot password?</button>
+              </div>
               <div style={{ position: "relative" }}>
                 <input className="auth-input" type={showPw ? "text" : "password"} placeholder="Enter your password" value={form.password} onChange={e => up("password", e.target.value)} style={{ paddingRight: 44 }} />
                 <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#999", padding: 4 }} aria-label={showPw ? "Hide password" : "Show password"}>{showPw ? "\u{1F441}\uFE0F" : "\u{1F441}\u200D\u{1F5E8}"}</button>
@@ -462,7 +496,23 @@ function AuthScreen({ onLogin, onBack }) {
             </button>
             <div style={{ textAlign: "center", marginTop: 20 }}>
               <span style={{ color: "#888", fontSize: 14 }}>Don't have an account? </span>
-              <button type="button" className="auth-toggle" onClick={() => { setMode("signup"); setStep(1); setError(""); }}>Sign Up</button>
+              <button type="button" className="auth-toggle" onClick={() => { setMode("signup"); setStep(1); setError(""); setInfo(""); }}>Sign Up</button>
+            </div>
+          </form>
+        )}
+
+        {/* RESET PASSWORD FORM */}
+        {mode === "reset" && (
+          <form onSubmit={handleForgotPassword} className="auth-animate">
+            <div style={{ marginBottom: 24 }}>
+              <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#666", marginBottom: 8 }}>Email</label>
+              <input className="auth-input" type="email" placeholder="you@example.com" value={form.email} onChange={e => up("email", e.target.value)} />
+            </div>
+            <button type="submit" className="auth-btn auth-btn-primary" disabled={loading}>
+              {loading ? <><div className="spinner" /> Sending...</> : "Send reset link"}
+            </button>
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button type="button" className="auth-toggle" onClick={() => { setMode("login"); setError(""); setInfo(""); }}>{"\u2190"} Back to sign in</button>
             </div>
           </form>
         )}
