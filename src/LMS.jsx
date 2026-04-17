@@ -58,6 +58,11 @@ const CAT_IMG = {
   train: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=400&fit=crop",
 };
 
+const RT_PURPLE = "#7C3AED";
+const RT_ORANGE = "#F4A261";
+const RT_GRADIENT = "linear-gradient(135deg,"+RT_PURPLE+" 0%,"+RT_ORANGE+" 100%)";
+const RT_GRADIENT_SOFT = "linear-gradient(135deg,"+RT_PURPLE+"CC 0%,"+RT_ORANGE+"CC 100%)";
+
 const LC = { Beginner: "#10B981", Intermediate: "#F59E0B", Advanced: "#EF4444" };
 const TC = { Lecture: "#7C3AED", Workshop: "#2563EB", "Hands-on": "#059669", Practice: "#059669", Project: "#DC2626", "Case Study": "#D97706", "Role Play": "#EC4899", Capstone: "#B91C1C" };
 const ICO = ["\u{1F3AF}", "\u{1F4A1}", "\u{1F511}", "\u{1F4CA}", "\u{1F9E9}", "\u26A1", "\u{1F3D7}\uFE0F", "\u{1F50D}", "\u{1F4D0}", "\u{1F393}"];
@@ -697,59 +702,59 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   {(fc==="All"?CATS:CATS.filter(function(c){return c.id===fc;})).map(function(cat,idx){var cs=ft.filter(function(s){return s.cat===cat.id;});if(!cs.length)return null;var rn=toRoman(idx+1);return <div key={cat.id} style={{marginBottom:52}}>
     {idx>0&&<div style={{display:"flex",alignItems:"center",gap:20,margin:"44px 0 40px"}}>
       <div style={{flex:1,height:1,background:T.border}}/>
-      <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,color:T.text3,fontWeight:400,lineHeight:1}}>{"\u00A7"}</span>
+      <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,background:RT_GRADIENT,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",fontWeight:500,lineHeight:1}}>{"\u00A7"}</span>
       <div style={{flex:1,height:1,background:T.border}}/>
     </div>}
     <div style={{marginBottom:28}}>
-      <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:11,fontWeight:500,color:cat.color,letterSpacing:3.5,textTransform:"uppercase",marginBottom:10}}>Part {rn}  \u00B7  {cs.length} {cs.length===1?"Module":"Modules"}</div>
-      <div style={{display:"flex",alignItems:"center",gap:16}}>
-        <div style={{width:46,height:46,background:cat.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0,borderRadius:3,filter:"grayscale(0)"}}>{cat.icon}</div>
-        <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:30,fontWeight:800,lineHeight:1.05,color:T.text,letterSpacing:-.4}}>{cat.name}</h2>
+      <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:RT_PURPLE,letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>Part {rn} \u2014 {cs.length} {cs.length===1?"Module":"Modules"}</div>
+      <div style={{display:"flex",alignItems:"center",gap:18}}>
+        <div style={{width:48,height:48,background:RT_GRADIENT,display:"flex",alignItems:"center",justifyContent:"center",fontSize:23,flexShrink:0,borderRadius:3,boxShadow:"0 6px 18px rgba(124,58,237,.22)"}}>{cat.icon}</div>
+        <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:700,lineHeight:1.05,color:T.text,letterSpacing:-.5}}>{cat.name}</h2>
       </div>
-      <div style={{height:1,background:"linear-gradient(90deg,"+cat.color+"55 0%,"+cat.color+"22 35%,"+T.border+" 100%)",marginTop:18}}/>
+      <div style={{height:2,background:RT_GRADIENT,marginTop:20,width:"100%",opacity:.85}}/>
     </div>
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
-      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;return <article key={s.id} role="button" tabIndex={0} aria-label={(started?"Continue ":"Begin ")+s.name} onClick={function(){osk(s);}} onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();osk(s);}}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=s.color;e.currentTarget.style.boxShadow="0 10px 28px rgba(0,0,0,.08)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;return <article key={s.id} role="button" tabIndex={0} aria-label={(started?"Continue ":"Begin ")+s.name} onClick={function(){osk(s);}} onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();osk(s);}}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
         {/* Hero image with level chip + progress overlay */}
         <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
-          <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(10%) contrast(1.03)"}}/>
-          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.25) 100%)"}}/>
-          <div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 10px",fontFamily:"'DM Sans',sans-serif",fontSize:10.5,fontWeight:700,color:"white",letterSpacing:1.5,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>
-          {started&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.25)"}}><div style={{height:"100%",background:s.color,width:pr+"%",transition:"width .4s"}}/></div>}
+          <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
+          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(124,58,237,.05) 0%,rgba(0,0,0,0) 45%,rgba(26,26,26,.30) 100%)"}}/>
+          <div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>
+          {started&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.3)"}}><div style={{height:"100%",background:RT_GRADIENT,width:pr+"%",transition:"width .4s"}}/></div>}
         </div>
 
         {/* Body */}
-        <div style={{padding:"22px 24px 22px",flex:1,display:"flex",flexDirection:"column"}}>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12,color:cat.color,letterSpacing:2.2,textTransform:"uppercase",fontWeight:500,marginBottom:7}}>{cat.name}</div>
-          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:24,fontWeight:700,lineHeight:1.15,color:T.text,letterSpacing:-.3,marginBottom:10}}>{s.name}</h3>
-          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.6,marginBottom:18,fontFamily:"'DM Sans',sans-serif"}}>{s.desc}</p>
+        <div style={{padding:"24px 26px 24px",flex:1,display:"flex",flexDirection:"column"}}>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:RT_PURPLE,letterSpacing:2.4,textTransform:"uppercase",marginBottom:10}}>{cat.name}</div>
+          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:700,lineHeight:1.12,color:T.text,letterSpacing:-.4,marginBottom:12}}>{s.name}</h3>
+          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.65,marginBottom:20,fontFamily:"'DM Sans',sans-serif",fontWeight:400}}>{s.desc}</p>
 
           {/* What you'll learn */}
-          {s.lessons&&s.lessons.length>0&&<div style={{marginBottom:18}}>
-            <div style={{fontSize:9.5,fontWeight:700,color:T.text3,letterSpacing:2,textTransform:"uppercase",fontFamily:"'DM Sans',sans-serif",marginBottom:8}}>What You'll Learn</div>
+          {s.lessons&&s.lessons.length>0&&<div style={{marginBottom:20}}>
+            <div style={{fontSize:9.5,fontWeight:700,color:T.text3,letterSpacing:2,textTransform:"uppercase",fontFamily:"'DM Sans',sans-serif",marginBottom:10}}>What You'll Learn</div>
             <ul style={{listStyle:"none",padding:0,margin:0}}>
               {s.lessons.slice(0,3).map(function(l){return <li key={l.id} style={{display:"flex",gap:10,fontSize:12.5,color:T.text2,lineHeight:1.55,marginBottom:5,fontFamily:"'DM Sans',sans-serif"}}>
-                <span style={{color:s.color,flexShrink:0,fontWeight:700}}>{"\u2014"}</span>
+                <span style={{color:RT_ORANGE,flexShrink:0,fontWeight:700}}>{"\u2014"}</span>
                 <span style={{flex:1,overflow:"hidden"}}>{l.title}</span>
               </li>;})}
-              {s.lessons.length>3&&<li style={{fontSize:11.5,color:T.text3,fontStyle:"italic",fontFamily:"'Cormorant Garamond',serif",marginTop:4,marginLeft:20}}>and {s.lessons.length-3} more</li>}
+              {s.lessons.length>3&&<li style={{fontSize:12,color:T.text3,fontStyle:"italic",fontFamily:"'Cormorant Garamond',serif",marginTop:6,marginLeft:20,letterSpacing:.2}}>and {s.lessons.length-3} more</li>}
             </ul>
           </div>}
 
           {/* Metadata row */}
-          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:started?10:16,fontSize:11.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>
+          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:started?10:16,fontSize:11,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:500,letterSpacing:.2}}>
             <span>{s.lessons.length} Lessons</span>
             <span style={{color:T.border}}>{"\u00B7"}</span>
             <span>{s.dur}</span>
             <span style={{color:T.border}}>{"\u00B7"}</span>
-            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12.5,color:"#B8860B"}}>{"\u2720"} Certificate</span>
+            <span style={{color:RT_ORANGE,fontWeight:600,display:"inline-flex",alignItems:"center",gap:4}}><span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:13,lineHeight:1}}>{"\u2720"}</span> Certificate</span>
           </div>
 
           {/* Progress label if started */}
-          {started&&<div style={{fontSize:11,color:T.text3,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete \u2014 Continue where you left off</div>}
+          {started&&<div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete \u2014 Continue where you left off</div>}
 
           {/* CTA */}
-          <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"12px 18px",borderRadius:3,background:started?s.color:"#1A1A1A",color:"white",fontSize:13,fontWeight:600,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.4,cursor:"pointer",width:"100%"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>
+          <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"13px 20px",borderRadius:3,background:started?RT_PURPLE:RT_GRADIENT,color:"white",fontSize:13,fontWeight:700,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer",width:"100%",boxShadow:"0 4px 14px rgba(124,58,237,.18)"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>
         </div>
       </article>;})}
     </div>
