@@ -9,12 +9,12 @@ export const psychologyModule = {
   desc: "Master the cognitive biases, emotional triggers, and decision-making science behind every high-converting piece of copy.",
   topics: ["Reciprocity", "Scarcity & Urgency", "Social Proof", "Anchoring", "Loss Aversion", "Authority"],
   quiz: [
-    { q: 'Which principle does "Only 2 seats remaining" leverage?', opts: ["Reciprocity", "Scarcity", "Anchoring", "Social Proof"], correct: 1 },
-    { q: "A company offers a free SEO audit before pitching their $2,000/mo service. Which principle?", opts: ["Anchoring — high price first", "Scarcity — limited audit", "Reciprocity — free value creates obligation", "Social Proof — others used it"], correct: 2 },
-    { q: '"Stop losing $47/day in wasted ad spend" uses which framing technique?', opts: ["Gain framing", "Authority signaling", "Loss aversion framing", "Social proof"], correct: 2 },
-    { q: "On a pricing page, showing the $249/mo plan first before the $79/mo plan uses:", opts: ["Scarcity", "Loss Aversion", "Anchoring", "Reciprocity"], correct: 2 },
-    { q: "Which testimonial is most effective?", opts: ['"Great product, love it!" — S.K.', '"This tool saved us $43,000 in Q3 alone" — Sarah K., CMO at Acme', '"5 stars, would recommend" — Anonymous', '"It works pretty well for what we need" — Marketing Dept.'], correct: 1 },
-    { q: "The formula for persuasive copy structure is:", opts: ["Logic → Emotion → Logic", "Emotion → Logic → Emotion (lead with feeling, justify, close with feeling)", "All emotion, no logic", "All logic, no emotion"], correct: 1 },
+    { q: 'A landing page uses all six principles. Which combination is the CLASSIC conversion trifecta?', opts: ["Reciprocity + Authority + Scarcity", "Scarcity + Social Proof + Anchoring", "Loss Aversion + Reciprocity + Authority", "Social Proof + Reciprocity + Anchoring"], correct: 1 },
+    { q: "A $2,400/mo B2B service offers a free 30-min audit before pitching. Which principle is MOST dominant and why?", opts: ["Scarcity \u2014 auditor time is limited", "Reciprocity \u2014 delivering tangible value upfront creates a psychological obligation that does more work than the audit findings themselves", "Anchoring \u2014 the price seems bigger after free value", "Authority \u2014 the auditor is an expert"], correct: 1 },
+    { q: "Convert \"Save $2,400/year on wasted ad spend\" into its loss-aversion equivalent:", opts: ['"Increase your ROAS by 15%"', '"Stop losing $200/month to ad waste \u2014 roughly $2,400/year you\u2019re bleeding right now"', '"Unlock efficiency gains"', '"Save money on ads"'], correct: 1 },
+    { q: "You see a pricing page: $249 Pro / $79 Starter / $19 Lite, in that order. Analyse the psychology:", opts: ["Random order", "Deliberate anchoring \u2014 the $249 price frames $79 as affordable; if Lite were shown first, $79 would feel expensive", "Sorted alphabetically", "No psychology in pricing"], correct: 1 },
+    { q: "Rank these testimonials by expected persuasion impact: (A) \"Great product!\" \u2014 S.K. (B) \"This cut our CAC 34% in 90 days\" \u2014 Sarah K., CMO at Acme (C) \"5 stars\" \u2014 Anonymous (D) \"Works well\" \u2014 Marketing Dept.", opts: ["A > B > C > D", "B >> A, C, D \u2014 specificity + named person + concrete outcome + verifiable title; the rest provide no signal", "All equal", "D > A > B > C"], correct: 1 },
+    { q: "A reader sees a product page that is 100% feature list, no emotional framing. What\u2019s the predicted pattern of persuasion failure?", opts: ["It should work well", "~95% of purchase decisions are subconscious; logic-only copy fails to trigger the initial emotional response that precedes the rational justification", "Not enough features listed", "Needs more emojis"], correct: 1 },
   ],
   slides: [
     {
