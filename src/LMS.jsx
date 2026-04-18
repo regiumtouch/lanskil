@@ -7,6 +7,13 @@ import { storytellingModule } from "./modules/storytelling";
 import { objectionsModule } from "./modules/objections";
 import { closeModule } from "./modules/close";
 import { contentStrategyFoundationsModule } from "./modules/content-strategy";
+import { csAudienceModule } from "./modules/cs-audience";
+import { csPillarsModule } from "./modules/cs-pillars";
+import { csIdeationModule } from "./modules/cs-ideation";
+import { csCalendarModule } from "./modules/cs-calendar";
+import { csSeoModule } from "./modules/cs-seo";
+import { csDistributionModule } from "./modules/cs-distribution";
+import { csMeasurementModule } from "./modules/cs-measurement";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -373,8 +380,15 @@ const SKILLS = [
     { id: "df04", title: "Color Theory", type: "Workshop", duration: "1.5h", desc: "Color wheel, harmonies, emotions.", topics: ["Color wheel", "Color harmonies", "Emotional associations"] },
     { id: "df05", title: "Hierarchy & Layout", type: "Hands-on", duration: "1h", desc: "Guide eye through design.", topics: ["Hierarchy systems", "Grid structures", "F & Z patterns"] },
   ]},
-  { id: "content-strategy", name: "Content Strategy", cat: "content", lv: "Beginner", icon: "\u{1F4CB}", color: "#7C3AED", dur: "90 min", roles: ["Content Strategist", "Marketing Manager"], desc: "Build content systems that serve business outcomes \u2014 and survive the AI-slop era.", lessons: [
+  { id: "content-strategy", name: "Content Strategy", cat: "content", lv: "Beginner", icon: "\u{1F4CB}", color: "#7C3AED", dur: "8h", roles: ["Content Strategist", "Marketing Manager"], desc: "Build content systems that serve business outcomes \u2014 8 foundation modules covering strategy, audience, pillars, ideation, calendar, SEO, distribution, and measurement.", lessons: [
     { id: "csf01", title: contentStrategyFoundationsModule.title, type: contentStrategyFoundationsModule.type, duration: contentStrategyFoundationsModule.duration, desc: contentStrategyFoundationsModule.desc, topics: contentStrategyFoundationsModule.topics, rich: contentStrategyFoundationsModule },
+    { id: "csa01", title: csAudienceModule.title, type: csAudienceModule.type, duration: csAudienceModule.duration, desc: csAudienceModule.desc, topics: csAudienceModule.topics, rich: csAudienceModule },
+    { id: "csp01", title: csPillarsModule.title, type: csPillarsModule.type, duration: csPillarsModule.duration, desc: csPillarsModule.desc, topics: csPillarsModule.topics, rich: csPillarsModule },
+    { id: "csi01", title: csIdeationModule.title, type: csIdeationModule.type, duration: csIdeationModule.duration, desc: csIdeationModule.desc, topics: csIdeationModule.topics, rich: csIdeationModule },
+    { id: "csc01", title: csCalendarModule.title, type: csCalendarModule.type, duration: csCalendarModule.duration, desc: csCalendarModule.desc, topics: csCalendarModule.topics, rich: csCalendarModule },
+    { id: "csseo01", title: csSeoModule.title, type: csSeoModule.type, duration: csSeoModule.duration, desc: csSeoModule.desc, topics: csSeoModule.topics, rich: csSeoModule },
+    { id: "csd01", title: csDistributionModule.title, type: csDistributionModule.type, duration: csDistributionModule.duration, desc: csDistributionModule.desc, topics: csDistributionModule.topics, rich: csDistributionModule },
+    { id: "csm01", title: csMeasurementModule.title, type: csMeasurementModule.type, duration: csMeasurementModule.duration, desc: csMeasurementModule.desc, topics: csMeasurementModule.topics, rich: csMeasurementModule },
   ]},
   { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },

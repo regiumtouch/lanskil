@@ -1,0 +1,77 @@
+// Content Strategy — Module 6: SEO Fundamentals for Content
+export const csSeoModule = {
+  id: "csseo01",
+  title: "SEO Fundamentals for Content",
+  type: "Rich Module",
+  duration: "60 min",
+  desc: "Search has changed. Learn how to write for intent (not keywords), structure for readers first, and build the trust signals Google and AI search engines actually reward in 2026.",
+  topics: ["Search Intent", "Keyword Basics", "On-Page Structure", "E-E-A-T & Trust", "Post-AI SEO", "Simple SEO Checklist"],
+  quiz: [
+    { q: "The single most important thing to match in SEO is:", opts: ["Keyword density", "Search intent \u2014 what the searcher actually wants", "Word count", "The number of backlinks"], correct: 1 },
+    { q: "In 2026, the biggest shift in SEO is:", opts: ["More keywords beat fewer keywords", "AI search (Google AI Overviews, ChatGPT, Perplexity) rewards specific, first-hand, citeable content", "Blog posts don't work anymore", "Images are worth more than text"], correct: 1 },
+    { q: "E-E-A-T stands for:", opts: ["Enterprise, Engagement, Audience, Trust", "Experience, Expertise, Authoritativeness, Trust", "Efficiency, Execution, Analysis, Tuning", "Editorial, Ethics, Accuracy, Thought-leadership"], correct: 1 },
+    { q: "The right approach to \"keyword stuffing\" in 2026 is to:", opts: ["Repeat the keyword 20+ times", "Ignore it entirely \u2014 write for the reader, mention the keyword naturally 2\u20134 times", "Put the keyword in every heading", "Hide keywords in white text"], correct: 1 },
+    { q: "On-page structure matters because:", opts: ["Search engines read structure (H1, H2, lists) the way humans scan", "It makes pages load faster", "Google penalises unstructured pages", "It's required by HTML"], correct: 0 },
+    { q: "The strongest trust signal for AI-search engines is:", opts: ["A lot of pages on a topic", "Real first-hand data, named authors, cited sources, and specific claims", "Fast page load time", "A modern website design"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 6", title: "SEO Fundamentals", titleAccent: "for Content", subtitle: "Search has changed. Learn how to write for intent (not keywords), structure for readers first, and build the trust signals AI search engines actually reward.", meta: "Content Strategy  |  Module 6  |  8 Slides" },
+    { type: "stats", eyebrow: "HOW SEO CHANGED", title: "The old SEO playbook is officially dead", intro: "AI-powered search (Google AI Overviews, ChatGPT, Perplexity, Claude) has rewritten the rules. The winners now are the sources cited in those AI answers \u2014 and being a source is a completely different game than ranking.", stats: [
+      { num: "40%", label: "of Google searches now trigger AI Overviews (as of Q1 2026)" },
+      { num: "78%", label: "of click-throughs on AI Overviews go to the 3\u20135 cited sources" },
+      { num: "2.8\u00D7", label: "higher citation rate for content with first-hand data, named authors, and specific claims" },
+    ], subheading: "What the New SEO Rewards", bullets: [
+      "Specificity \u2014 named people, real numbers, first-hand examples that can be cited directly.",
+      "Intent match \u2014 answering the actual question in the first 150 words, not burying it in Chapter 7.",
+      "Trust signals \u2014 author bylines, publish dates, sourced data, expert credentials.",
+      "Structure \u2014 clear headings, scannable sections, FAQ-style Q&A blocks that AI can lift verbatim.",
+    ] },
+    { type: "principle", num: "01", title: "Search Intent \u2014 The Only Thing That Really Matters", intro: "If you take one idea from this module, take this: match the intent of the searcher before you worry about anything else. Every other SEO tactic is downstream of this. Intent-match alone will outrank hundreds of \u201Coptimised\u201D competitors.", sectionTitle: "The 4 Types of Search Intent", sections: [
+      { heading: "1. Informational \u2014 \"How do I...?\"", example: "\"How to price a freelance project\" \u2192 Tutorial, guide, how-to post.", note: "They want to learn. Explain clearly. No sales pitch in the first 500 words." },
+      { heading: "2. Navigational \u2014 \"[Brand name]...\"", example: "\"Notion templates free\" \u2192 Your landing page or specific resource.", note: "They\u2019re looking for something specific. Send them there fast." },
+      { heading: "3. Commercial Investigation \u2014 \"Best [product]...\"", example: "\"Best CRM for solopreneurs\" \u2192 Comparison article, review, listicle.", note: "They\u2019re comparing. Help them decide. This is where honest reviews win." },
+      { heading: "4. Transactional \u2014 \"Buy/download/signup...\"", example: "\"Download [tool] trial\" \u2192 Your signup or checkout page.", note: "They want to buy or sign up. Remove friction. Don\u2019t interrupt with content." },
+    ], rule: "Before writing, ask: what type of intent is behind this search? Match it precisely. Mismatched intent is the #1 reason pages don\u2019t rank \u2014 not keyword density." },
+    { type: "comparison", eyebrow: "OLD SEO vs NEW SEO", title: "What worked in 2018 will kill your rankings in 2026", subtitle: "The old playbook was volume and keyword density. The new playbook is specificity and trust. Very different content \u2014 very different outcomes.", left: { title: "Old SEO (Dying)", color: "#EF4444", items: [
+      { strong: "2,000-word \u201Cultimate guide\u201D with every keyword variation", note: "Readers bounce; AI engines skip." },
+      { strong: "Keyword density of 2\u20133% across the page", note: "Reads like spam to humans and search engines alike." },
+      { strong: "Anonymous, byline-less content", note: "E-E-A-T failure. AI engines won\u2019t cite." },
+      { strong: "Mass-produced AI content at scale", note: "De-ranked by Google\u2019s Helpful Content System." },
+    ] }, right: { title: "New SEO (Winning)", color: "#10B981", items: [
+      { strong: "800-word piece answering one specific question completely", note: "Matches intent. AI engines cite. Readers convert." },
+      { strong: "Keyword mentioned naturally 2\u20134 times; semantic richness matters more", note: "Reads like an expert wrote it. Because one did." },
+      { strong: "Named author with credentials + visible publish date", note: "E-E-A-T signals. Earns citations and featured snippets." },
+      { strong: "First-hand data, specific examples, named customers", note: "AI engines can only cite content that has citeable facts." },
+    ] }, footer: "The new SEO rewards the same things great content has always been: specific, authoritative, and useful \u2014 but now it\u2019s measurable." },
+    { type: "table", title: "The On-Page SEO Checklist", subtitle: "A simple list. Every piece of published content should clear every row before it goes live.", columns: ["Element", "What Good Looks Like", "Why It Matters"], rows: [
+      ["Title tag (H1)", "Under 60 chars, includes primary keyword naturally, promises a specific outcome", "First thing both humans and search engines read"],
+      ["Meta description", "150\u2013160 chars, includes a benefit + the keyword, written for humans", "Controls the click-through from search results"],
+      ["URL slug", "Short, keyword-containing, hyphenated (not underscores)", "Helps search engines parse the page; shared cleanly on social"],
+      ["H2 subheadings", "Structured with related keywords; answer specific questions", "How AI engines extract answers to cite"],
+      ["First 150 words", "Direct answer to the searcher\u2019s question", "AI Overviews lift answers from here"],
+      ["Internal links", "3\u20135 links to other relevant pieces on your site", "Builds topical authority; keeps readers on site"],
+      ["Alt text on images", "Descriptive, keyword-aware, written for accessibility", "Accessibility + image search ranking"],
+      ["Author byline + date", "Named author, visible credentials or bio link, publish date", "E-E-A-T trust signal"],
+    ], footer: "Rule: no piece ships until every row is a yes. This takes 10 minutes per piece and lifts organic performance 2\u20134\u00D7." },
+    { type: "principle", num: "02", title: "E-E-A-T \u2014 The Trust Signals That Matter in 2026", intro: "Experience, Expertise, Authoritativeness, Trust. These are the four things Google (and AI search) now weigh above almost everything else. They are also the four things AI-generated content cannot fake. Build them and your content earns citations.", sectionTitle: "How to Signal Each of the Four", sections: [
+      { heading: "Experience \u2014 \"Have you actually done this?\"", example: "\"I\u2019ve run 40+ customer interviews this year \u2014 here\u2019s what I learned.\"", note: "First-hand, specific, personal. AI can\u2019t claim experience it didn\u2019t have." },
+      { heading: "Expertise \u2014 \"Are you qualified to speak on this?\"", example: "Author bio: \u201C10 years as Head of Content at two B2B SaaS companies.\u201D", note: "Credentials, case studies, direct work history \u2014 visible on the page." },
+      { heading: "Authoritativeness \u2014 \"Do others recognise you in this space?\"", example: "Cited by named outlets, quoted in industry reports, linked by peers.", note: "External validation. Earned over time through real work." },
+      { heading: "Trustworthiness \u2014 \"Is this site safe, accurate, and honest?\"", example: "HTTPS, clear privacy policy, fact-checked claims, links to primary sources.", note: "Basic table-stakes. No E-E-A-T without it." },
+    ], rule: "Every piece of content should answer: who wrote this, why should I trust them, and what is the evidence for their claims? Answer all three or don\u2019t publish." },
+    { type: "grid", eyebrow: "SIX FAST SEO WINS", title: "Low-effort changes that move rankings this quarter", subtitle: "You don't need a six-figure SEO team. These six moves, applied consistently, will outperform 90% of 'SEO strategy' decks.", items: [
+      { num: "01", title: "Answer the question in 150 words", desc: "The first paragraph should directly answer the searcher\u2019s question. Everything after is supporting detail.", icon: "\u{1F3AF}" },
+      { num: "02", title: "Add a named author", desc: "Byline + 2\u20133 line bio + link to LinkedIn or a credentials page. Instant E-E-A-T boost.", icon: "\u270D\uFE0F" },
+      { num: "03", title: "Include first-hand data or specifics", desc: "Real numbers. Named examples. Something AI can\u2019t generate. This is what gets cited.", icon: "\u{1F4CA}" },
+      { num: "04", title: "Structure with clear H2s and lists", desc: "AI engines lift structured content. Disorganised prose = invisible to AI search.", icon: "\u{1F5C2}\uFE0F" },
+      { num: "05", title: "Link internally 3\u20135 times", desc: "To your pillar pages and related pieces. Builds topical authority.", icon: "\u{1F517}" },
+      { num: "06", title: "Update the publish date when you refresh", desc: "Fresh dates + actual updates beat stale content in 2026. Refresh quarterly.", icon: "\u{1F504}" },
+    ], footer: "Apply these six moves to every new piece and to your top-20 existing pages. Expect measurable lift in 60\u201390 days." },
+    { type: "exercise", title: "Audit One Piece in 15 Minutes", intro: "Pick one piece of content you\u2019ve already published. Run it through the checklist below. Mark each item pass or fail. Fix the fails.", items: [
+      { num: "1", copy: "What is the searcher\u2019s intent? Does your first paragraph directly answer it?", answer: "If not \u2014 rewrite the intro to answer the core question in the first 150 words." },
+      { num: "2", copy: "Is there a named author with credentials visible on the page?", answer: "If not \u2014 add a byline and a 2\u20133 line bio with a link. Instant E-E-A-T win." },
+      { num: "3", copy: "Can you point to at least 2 first-hand specifics (named person, real number, case study)?", answer: "If not \u2014 add them. This is the single biggest ranking factor for AI search in 2026." },
+      { num: "4", copy: "Are there 3\u20135 internal links to related pieces on your site?", answer: "If not \u2014 add them now. Pass or fail, this is a 10-minute fix with compounding returns." },
+    ] },
+  ],
+};
