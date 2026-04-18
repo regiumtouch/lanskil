@@ -14,6 +14,14 @@ import { csCalendarModule } from "./modules/cs-calendar";
 import { csSeoModule } from "./modules/cs-seo";
 import { csDistributionModule } from "./modules/cs-distribution";
 import { csMeasurementModule } from "./modules/cs-measurement";
+import { socMindsetModule } from "./modules/soc-mindset";
+import { socHooksModule } from "./modules/soc-hooks";
+import { socPlatformsModule } from "./modules/soc-platforms";
+import { socStoryModule } from "./modules/soc-story";
+import { socCtaModule } from "./modules/soc-cta";
+import { socPaidModule } from "./modules/soc-paid";
+import { socCalendarModule } from "./modules/soc-calendar";
+import { socCapstoneModule } from "./modules/soc-capstone";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -47,6 +55,7 @@ const SKILL_IMG = {
   "design-fundamentals": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=400&fit=crop",
   "copywriting": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
   "content-strategy": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=400&fit=crop",
+  "social-media-copywriting": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=400&fit=crop",
   "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
   "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
   "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
@@ -389,6 +398,16 @@ const SKILLS = [
     { id: "csseo01", title: csSeoModule.title, type: csSeoModule.type, duration: csSeoModule.duration, desc: csSeoModule.desc, topics: csSeoModule.topics, rich: csSeoModule },
     { id: "csd01", title: csDistributionModule.title, type: csDistributionModule.type, duration: csDistributionModule.duration, desc: csDistributionModule.desc, topics: csDistributionModule.topics, rich: csDistributionModule },
     { id: "csm01", title: csMeasurementModule.title, type: csMeasurementModule.type, duration: csMeasurementModule.duration, desc: csMeasurementModule.desc, topics: csMeasurementModule.topics, rich: csMeasurementModule },
+  ]},
+  { id: "social-media-copywriting", name: "Social Media Copywriting", cat: "content", lv: "Intermediate", icon: "\u{1F4F1}", color: "#F96167", dur: "23h", roles: ["Social Media Manager", "Content Copywriter"], desc: "Master scroll-stopping copy for LinkedIn, Instagram, X, TikTok, and Facebook \u2014 from hooks to ads to portfolio.", lessons: [
+    { id: "soc01", title: socMindsetModule.title, type: socMindsetModule.type, duration: socMindsetModule.duration, desc: socMindsetModule.desc, topics: socMindsetModule.topics, rich: socMindsetModule },
+    { id: "soc02", title: socHooksModule.title, type: socHooksModule.type, duration: socHooksModule.duration, desc: socHooksModule.desc, topics: socHooksModule.topics, rich: socHooksModule },
+    { id: "soc03", title: socPlatformsModule.title, type: socPlatformsModule.type, duration: socPlatformsModule.duration, desc: socPlatformsModule.desc, topics: socPlatformsModule.topics, rich: socPlatformsModule },
+    { id: "soc04", title: socStoryModule.title, type: socStoryModule.type, duration: socStoryModule.duration, desc: socStoryModule.desc, topics: socStoryModule.topics, rich: socStoryModule },
+    { id: "soc05", title: socCtaModule.title, type: socCtaModule.type, duration: socCtaModule.duration, desc: socCtaModule.desc, topics: socCtaModule.topics, rich: socCtaModule },
+    { id: "soc06", title: socPaidModule.title, type: socPaidModule.type, duration: socPaidModule.duration, desc: socPaidModule.desc, topics: socPaidModule.topics, rich: socPaidModule },
+    { id: "soc07", title: socCalendarModule.title, type: socCalendarModule.type, duration: socCalendarModule.duration, desc: socCalendarModule.desc, topics: socCalendarModule.topics, rich: socCalendarModule },
+    { id: "soc08", title: socCapstoneModule.title, type: socCapstoneModule.type, duration: socCapstoneModule.duration, desc: socCapstoneModule.desc, topics: socCapstoneModule.topics, rich: socCapstoneModule },
   ]},
   { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },

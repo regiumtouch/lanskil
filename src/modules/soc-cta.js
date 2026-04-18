@@ -1,0 +1,75 @@
+// Social Media Copywriting — Module 5: CTAs, Engagement & Community Copy
+export const socCtaModule = {
+  id: "soc05",
+  title: "CTAs, Engagement & Community Copy",
+  type: "Rich Module",
+  duration: "3 hours",
+  desc: "Write copy that earns clicks, comments, shares, and saves \u2014 and the CTA strategy that separates scrolled posts from stopped ones.",
+  topics: ["Soft vs Hard CTAs", "7 CTA Formulas", "Comment-Driving Copy", "Share-Worthy Copy", "Save-Worthy Copy", "Community Management"],
+  quiz: [
+    { q: "A \u201Csoft CTA\u201D on social is:", opts: ["A subtle demand to buy now", "A low-commitment ask like \u2018comment below\u2019 or \u2018save this\u2019 \u2014 not an external click", "An email you send after", "A shouted ALL-CAPS message"], correct: 1 },
+    { q: "The best CTA for a brand awareness post is usually:", opts: ["\u201CBuy now!\u201D", "Soft engagement (comment, save, share)", "Download this 20-page PDF", "Book a demo"], correct: 1 },
+    { q: "The best CTA for a product launch is usually:", opts: ["\u201CHappy Monday!\u201D", "Clear, specific hard CTA with benefit + friction remover", "No CTA at all", "\u201CThoughts?\u201D"], correct: 1 },
+    { q: "\u201CSocial currency\u201D is:", opts: ["The platform\u2019s tip-jar feature", "The reason someone shares your post \u2014 it makes them look smart, caring, informed, or ahead of the curve to their network", "Paid advertising credit", "The platform\u2019s algorithm"], correct: 1 },
+    { q: "To drive comments, the most effective technique is:", opts: ["Ask an open-ended generic question (\u201Cwhat do you think?\u201D)", "Ask a specific, easy-to-answer, opinion-baiting question \u2014 ideally one word to respond", "Don\u2019t ask anything", "Turn off comments"], correct: 1 },
+    { q: "\u201CSave-worthy\u201D copy usually has the characteristic of:", opts: ["Being personal and emotional", "Functioning as a reference the reader wants to come back to \u2014 cheat sheets, lists, frameworks", "Being short and vague", "Being sponsored by a brand"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 5", title: "CTAs, Engagement", titleAccent: "& Community Copy", subtitle: "Write copy that earns clicks, comments, shares, and saves \u2014 and knows when to ask for each.", meta: "Social Media Copywriting  |  Module 5  |  8 Slides" },
+    { type: "stats", eyebrow: "WHY CTA STRATEGY MATTERS", title: "The post doesn\u2019t end when you hit publish \u2014 the CTA decides what happens next", intro: "Most posts die because they don\u2019t ask the reader for anything specific. Or they ask for the wrong thing. A good CTA, matched to post type and audience, doubles the response rate of the exact same content.", stats: [
+      { num: "2.1\u00D7", label: "more engagement on posts with a specific CTA vs. no CTA" },
+      { num: "4\u00D7", label: "more comments on posts with a specific opinion-baiting question vs. generic \u201Cthoughts?\u201D" },
+      { num: "80%", label: "of \u201Csave-worthy\u201D posts are either frameworks, checklists, or contrarian breakdowns" },
+    ], subheading: "What Good CTAs Have In Common", bullets: [
+      "One clear ask \u2014 not three. \u201CComment AND share AND save AND follow\u201D = nothing happens.",
+      "Matched to the post\u2019s intent. Awareness posts get soft CTAs; product launches get hard ones.",
+      "A benefit baked in. Not \u201Ccomment below\u201D \u2014 \u201Ccomment \u2018template\u2019 and I\u2019ll send you the full breakdown.\u201D",
+      "Friction removed. If the CTA involves leaving the platform, you\u2019d better make it obviously worth it.",
+    ] },
+    { type: "grid", eyebrow: "THE CTA SPECTRUM", title: "Soft vs hard asks \u2014 and when to use each", subtitle: "Every social CTA sits somewhere on this spectrum. Matching the CTA type to the post type is one of the quickest copy upgrades you\u2019ll ever make.", items: [
+      { num: "01", title: "Soft CTAs (engagement)", desc: "\u201CComment below.\u201D \u201CSave for later.\u201D \u201CShare with one person.\u201D Low commitment, high volume.", icon: "\u{1F4AC}" },
+      { num: "02", title: "Medium CTAs (list, follow)", desc: "\u201CFollow for more.\u201D \u201CJoin my newsletter.\u201D \u201CDM me the word \u2018X\u2019.\u201D Building owned audience.", icon: "\u{1F4E7}" },
+      { num: "03", title: "Hard CTAs (click, buy)", desc: "\u201CBook a demo.\u201D \u201CGet the template.\u201D \u201CBuy now.\u201D High commitment, lower volume.", icon: "\u{1F3AF}" },
+    ], footer: "Rule of thumb: 60% soft, 30% medium, 10% hard across your calendar. Reverse this ratio and your audience stops engaging." },
+    { type: "principle", num: "01", title: "7 High-Converting CTA Formulas", intro: "These formulas have been A/B tested across thousands of posts. Each one works for a specific post type. Rotate through them and your engagement will visibly improve within weeks.", sectionTitle: "The 7 CTAs You Should Master", sections: [
+      { heading: "1. The Keyword Comment", example: "\u201CComment \u2018template\u2019 and I\u2019ll send you the full breakdown.\u201D", note: "Easiest-to-leave comment + specific benefit. Works on LinkedIn, IG, X." },
+      { heading: "2. The Opinion-Bait", example: "\u201CWhat\u2019s the one tool you\u2019d never give up? Reply in the comments.\u201D", note: "Asks for an easy, strong opinion. Comments flood." },
+      { heading: "3. The Tag-A-Friend", example: "\u201CTag the founder friend who needs to read this.\u201D", note: "Uses the reader\u2019s network as distribution." },
+      { heading: "4. The Save-Me", example: "\u201CSave this for the next time you\u2019re writing a hook.\u201D", note: "Useful reference posts. High save rate = algo boost." },
+      { heading: "5. The Soft Click", example: "\u201CFull write-up in the first comment.\u201D", note: "Keeps link off the post (algo-friendly) while still driving clicks." },
+      { heading: "6. The DM Ask", example: "\u201CDM me \u2018audit\u2019 and I\u2019ll send you the checklist.\u201D", note: "Moves the conversation to DM \u2014 where real business happens." },
+      { heading: "7. The Hard Direct", example: "\u201CBook a 15-min call \u2014 link in bio.\u201D", note: "Used sparingly. Earns its place only after value has been delivered." },
+    ], rule: "Never use two CTAs in one post. Pick one ask, one action, one outcome. More asks = fewer actions." },
+    { type: "comparison", eyebrow: "WEAK vs STRONG CTAs", title: "Small rewrites \u2014 massive engagement shifts", subtitle: "Most weak CTAs are technically correct but practically ignored. Strong CTAs bake in benefit and remove friction.", left: { title: "Weak CTAs", color: "#EF4444", items: [
+      { strong: "\"Thoughts?\"", note: "Vague. Low-effort answer nobody wants to write." },
+      { strong: "\"Let me know what you think in the comments.\"", note: "Polite. Ignored. No reason to stop and type." },
+      { strong: "\"Link in bio.\"", note: "No benefit, no friction remover. Reader won\u2019t leave the platform." },
+      { strong: "\"Follow me for more content.\"", note: "Generic. Every post says this. Nobody does it." },
+    ] }, right: { title: "Strong CTAs", color: "#10B981", items: [
+      { strong: "\"What\u2019s the one tool you swear by? One-word answer below \u2014 I\u2019ll add mine in the comments.\"", note: "Specific, easy, and opinion-baiting. Comments fly in." },
+      { strong: "\"Comment \u2018template\u2019 and I\u2019ll DM you the full PDF.\"", note: "Keyword + specific benefit + DM opens. Every element is designed to reduce friction." },
+      { strong: "\"Bookmark this for the next time you write a LinkedIn hook \u2014 save rate is a top algo signal.\"", note: "Explains the ask, bakes in the benefit. Reader knows exactly why to save." },
+      { strong: "\"If this was useful, follow for the full 7-part series on this topic.\"", note: "Follow ask + specific future value. Better than \u201Cfollow for more content.\u201D" },
+    ] }, footer: "Each rewrite takes 60 seconds. Each one typically 2\u20134\u00D7\u2019s the response rate. CTA optimisation is pure upside." },
+    { type: "table", title: "Copy Patterns for Comments, Shares, and Saves", subtitle: "Each reader action has a different copy trigger. Mix these across your calendar to balance engagement types.", columns: ["Desired Action", "Copy Pattern", "Example"], rows: [
+      ["Comment", "Ask a specific, easy-to-answer, opinion-baiting question", "\u201CThe one thing you\u2019d cut from every meeting?\u201D"],
+      ["Share", "Build \u2018social currency\u2019 \u2014 smart, contrarian, or insightful takes", "\u201CHot take: most A/B tests are too small to matter. Here\u2019s the math.\u201D"],
+      ["Save", "Offer a framework, checklist, or reference the reader wants to come back to", "\u201CThe 7 CTA formulas. Screenshot this.\u201D"],
+      ["DM", "Trigger the DM with a specific keyword + personalised value", "\u201CDM me \u2018rates\u2019 for my pricing template.\u201D"],
+      ["Follow", "Promise specific future value, not vague \u2018more content\u2019", "\u201CFollow for the weekly Tuesday breakdown on outbound.\u201D"],
+      ["Click", "Put the link in the first comment + make the body self-contained valuable", "\u201CFull version in comments \u2014 if you read nothing else, read sections 3 and 4.\u201D"],
+    ], footer: "Every post should be designed for ONE of these actions. Not all of them. Pick one per post and write to it." },
+    { type: "principle", num: "02", title: "Community Management Copy \u2014 The Underrated Multiplier", intro: "How you respond in the comments matters as much as the post itself. The best social copywriters write replies that extend the post\u2019s life, invite more engagement, and build real relationships \u2014 turning commenters into customers.", sectionTitle: "Rules for Comment + DM Copy", sections: [
+      { heading: "1. Reply in the first 60 minutes", example: "Posts with active author replies in the first hour get 2\u20134\u00D7 the reach.", note: "The algorithm treats early engagement as a quality signal. Reply fast." },
+      { heading: "2. Reply with a follow-up question, not just \u2018thanks\u2019", example: "Commenter: \u201CGreat post!\u201D \u2192 Author: \u201CThanks! Curious \u2014 which of the 7 formulas are you going to try first?\u201D", note: "Every reply should try to extend the conversation. \u2018Thanks\u2019 kills threads." },
+      { heading: "3. For DMs, open with specific, non-salesy context", example: "\u201CHey \u2014 saw your comment on the BDR post. Genuinely curious: what\u2019s your team size right now?\u201D", note: "Not: \u201CHi! I\u2019d love to hop on a 15-min call to show you our product.\u201D Never that." },
+      { heading: "4. Handle criticism by quoting, agreeing where possible, then reframing", example: "\u201CYou\u2019re right that the sample size is small \u2014 we only have data from 40 teams. Here\u2019s what we\u2019re seeing so far, with that caveat.\u201D", note: "Never defensive. Concede the valid part. Reframe the rest." },
+    ], rule: "Replies are content. The author who replies thoughtfully to every comment is building 10 relationships for every 1 the silent author builds." },
+    { type: "exercise", title: "7-Day CTA-Rotation Content Calendar", intro: "Plan one week of posts with a specific CTA strategy for each day. Use at least 2 soft CTAs, 3 engagement CTAs, and 2 hard CTAs. Write the full post copy for each \u2014 not just the topic.", items: [
+      { num: "1", copy: "Monday: a Save-Me post. Write a framework or checklist readers will bookmark.", answer: "CTA: \u201CSave this for the next time you write a hook.\u201D Content: 7 hook formulas as a visual list." },
+      { num: "2", copy: "Wednesday: an Opinion-Bait post. Pose a question that will trigger strong-opinion replies.", answer: "CTA: \u201COne-word answer below \u2014 which of these would you cut first?\u201D" },
+      { num: "3", copy: "Friday: a hard CTA post. Offer something specific \u2014 a PDF, a demo, a consult \u2014 with a clear benefit.", answer: "Example: \u201CDM me \u2018calendar\u2019 and I\u2019ll send you the 30-day content planner we use with clients.\u201D" },
+      { num: "4", copy: "Fill in the 4 other days with a mix of soft engagement and community-building posts. 7 posts total.", answer: "Diversify the actions you\u2019re asking for. No two posts in a row should have the same CTA type." },
+    ] },
+  ],
+};
