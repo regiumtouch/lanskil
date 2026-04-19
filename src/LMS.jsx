@@ -799,14 +799,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       var inters=cs.filter(function(s){return s.tier==="intermediate";});
       return <>
         {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat}/>}
-        {inters.length>0&&<>
-          <div style={{display:"flex",alignItems:"center",gap:16,margin:"36px 0 24px"}}>
-            <div style={{flex:1,height:1,background:T.border}}/>
-            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,color:T.text3,letterSpacing:1}}>advance to</span>
-            <div style={{flex:1,height:1,background:T.border}}/>
-          </div>
-          <TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat}/>
-        </>}
+        {inters.length>0&&<TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, SEO, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat}/>}
       </>;
     })():(
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
@@ -862,14 +855,23 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   </div>;}
 
 function TierBlock(props){var T=props.T,label=props.label,heading=props.heading,sublabel=props.sublabel,count=props.count,skills=props.skills,osk=props.osk,gp=props.gp,cat=props.cat;
-  return <div style={{marginBottom:12}}>
-    <div style={{display:"flex",alignItems:"baseline",gap:12,flexWrap:"wrap",marginBottom:8}}>
-      <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:13,color:"#F4A261",letterSpacing:2,textTransform:"uppercase",fontWeight:600}}>{label}</span>
-      <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:T.text,letterSpacing:-.3,margin:0}}>{heading}</h3>
-      <span style={{fontSize:11,fontFamily:"'DM Sans',sans-serif",color:T.text3,letterSpacing:1,textTransform:"uppercase",fontWeight:600}}>{count} {count===1?"course":"courses"}</span>
+  var isFoundational=label==="Tier I";
+  var tierAccent=isFoundational?"#7C3AED":"#F4A261";
+  return <div style={{position:"relative",background:T.card,border:"1px solid "+T.border,borderRadius:6,padding:"32px 32px 28px",marginBottom:20,boxShadow:"0 2px 10px rgba(0,0,0,.03)"}}>
+    {/* Left accent bar */}
+    <div style={{position:"absolute",left:0,top:0,bottom:0,width:4,background:isFoundational?"linear-gradient(180deg,#7C3AED,#7C3AED90)":"linear-gradient(180deg,#F4A261,#F4A26190)",borderTopLeftRadius:6,borderBottomLeftRadius:6}}/>
+
+    {/* Tier header */}
+    <div style={{marginBottom:24,paddingBottom:20,borderBottom:"1px solid "+T.border}}>
+      <div style={{display:"flex",alignItems:"baseline",gap:12,flexWrap:"wrap",marginBottom:6}}>
+        <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:13,color:tierAccent,letterSpacing:2.5,textTransform:"uppercase",fontWeight:600}}>{label}</span>
+        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:700,color:T.text,letterSpacing:-.4,margin:0,lineHeight:1.1}}>{heading}</h3>
+        <span style={{fontSize:10,fontFamily:"'DM Sans',sans-serif",color:tierAccent,letterSpacing:1.5,textTransform:"uppercase",fontWeight:700,background:tierAccent+"15",padding:"3px 10px",borderRadius:20}}>{count} {count===1?"course":"courses"}</span>
+      </div>
+      <p style={{fontSize:13,color:T.text3,margin:0,fontFamily:"'DM Sans',sans-serif",fontStyle:"italic"}}>{sublabel}</p>
     </div>
-    <p style={{fontSize:13,color:T.text3,marginBottom:20,fontFamily:"'DM Sans',sans-serif",fontStyle:"italic"}}>{sublabel}</p>
-    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
+
+    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:20}}>
       {skills.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=!s.lessons||s.lessons.length===0;var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.72:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor="#7C3AED";e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
         <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
           <img src={img} alt="" loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:comingSoon?"grayscale(80%) contrast(.95)":"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
