@@ -252,7 +252,10 @@ export default function AdminDashboard({ T, onBack }) {
       )}
 
       {/* Submission detail modal */}
-      {openSubmission && <SubmissionModal submission={openSubmission} user={stats.userMap[openSubmission.user_id]} T={T} onClose={() => setOpenSubmission(null)} />}
+      {openSubmission && <SubmissionModal submission={openSubmission} user={stats.userMap[openSubmission.user_id]} T={T} onClose={() => setOpenSubmission(null)} onUpdate={(updated) => {
+        setSubmissions(prev => prev.map(s => (s.user_id === updated.user_id && s.lesson_id === updated.lesson_id) ? updated : s));
+        setOpenSubmission(updated);
+      }} />}
     </div>
   );
 }
@@ -285,12 +288,43 @@ const thCell = { padding: "10px 12px", fontSize: 10, fontWeight: 700, letterSpac
 const trStyle = (T) => ({ borderBottom: "1px solid " + T.border });
 const tdCell = (T) => ({ padding: "10px 12px", color: T.text2, verticalAlign: "top" });
 
-function SubmissionModal({ submission, user, T, onClose }) {
+function SubmissionModal({ submission, user, T, onClose, onUpdate }) {
   const d = submission.data || {};
   const userName = user ? ((user.first_name || "") + " " + (user.last_name || "")).trim() : "Unknown";
+  const [reviewStatus, setReviewStatus] = useState(submission.review_status || "pending");
+  const [reviewScore, setReviewScore] = useState(submission.review_score ?? "");
+  const [reviewFeedback, setReviewFeedback] = useState(submission.review_feedback || "");
+  const [saving, setSaving] = useState(false);
+  const [saveMsg, setSaveMsg] = useState("");
+
+  async function saveReview() {
+    setSaving(true);
+    setSaveMsg("");
+    const { data: me } = await supabase.auth.getUser();
+    const payload = {
+      review_status: reviewStatus,
+      review_score: reviewScore === "" ? null : parseInt(reviewScore, 10),
+      review_feedback: reviewFeedback,
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: me?.user?.id || null,
+    };
+    const { data, error } = await supabase
+      .from("portfolio_submissions")
+      .update(payload)
+      .eq("user_id", submission.user_id)
+      .eq("lesson_id", submission.lesson_id)
+      .select()
+      .single();
+    setSaving(false);
+    if (error) { setSaveMsg("Error: " + error.message); return; }
+    setSaveMsg("\u2713 Review saved");
+    if (onUpdate && data) onUpdate(data);
+    setTimeout(() => setSaveMsg(""), 2500);
+  }
+
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.55)", display: "flex", alignItems: "flex-start", justifyContent: "center", zIndex: 300, padding: 20, overflowY: "auto" }} onClick={onClose}>
-      <div onClick={(e) => e.stopPropagation()} style={{ background: T.card, padding: "28px 32px", borderRadius: 4, maxWidth: 760, width: "100%", marginTop: 40, marginBottom: 40 }}>
+      <div onClick={(e) => e.stopPropagation()} style={{ background: T.card, padding: "28px 32px", borderRadius: 4, maxWidth: 820, width: "100%", marginTop: 40, marginBottom: 40 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18, gap: 14 }}>
           <div>
             <div style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, letterSpacing: 2, color: T.text3, textTransform: "uppercase", marginBottom: 4 }}>Portfolio Submission</div>
@@ -298,6 +332,34 @@ function SubmissionModal({ submission, user, T, onClose }) {
             <div style={{ fontSize: 12, fontFamily: "'DM Sans',sans-serif", color: T.text3 }}>{userName} \u00B7 {submission.lesson_id} \u00B7 {submission.status}</div>
           </div>
           <button onClick={onClose} className="bt" style={{ padding: "6px 12px", borderRadius: 2, background: T.subtle, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", color: T.text2 }}>Close</button>
+        </div>
+
+        {/* Review panel */}
+        <div style={{ background: "linear-gradient(135deg,#7C3AED0A,#F4A2610A)", border: "1px solid " + T.border, borderRadius: 3, padding: "18px 20px", marginBottom: 22 }}>
+          <div style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: PURPLE, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Instructor Review</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 120px", gap: 12, marginBottom: 10 }}>
+            <div>
+              <label style={{ fontSize: 10, fontWeight: 700, color: T.text3, letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", display: "block", marginBottom: 4 }}>Status</label>
+              <select value={reviewStatus} onChange={e => setReviewStatus(e.target.value)} style={{ width: "100%", padding: "8px 10px", fontFamily: "'DM Sans',sans-serif", fontSize: 13, border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text }}>
+                <option value="pending">Pending Review</option>
+                <option value="under_review">Under Review</option>
+                <option value="approved">Approved \u2014 Passed</option>
+                <option value="needs_revision">Needs Revision</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div>
+              <label style={{ fontSize: 10, fontWeight: 700, color: T.text3, letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", display: "block", marginBottom: 4 }}>Score (0\u2013100)</label>
+              <input type="number" min={0} max={100} value={reviewScore} onChange={e => setReviewScore(e.target.value)} placeholder="\u2014" style={{ width: "100%", padding: "8px 10px", fontFamily: "'DM Sans',sans-serif", fontSize: 13, border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text }} />
+            </div>
+          </div>
+          <label style={{ fontSize: 10, fontWeight: 700, color: T.text3, letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", display: "block", marginBottom: 4 }}>Feedback (visible to student)</label>
+          <textarea value={reviewFeedback} onChange={e => setReviewFeedback(e.target.value)} placeholder="Specific, actionable feedback against the rubric \u2014 hook quality, platform adaptation, CTA variety, storytelling, brand voice, ad structure..." rows={5} style={{ width: "100%", padding: "10px 12px", fontFamily: "'DM Sans',sans-serif", fontSize: 13, border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text, lineHeight: 1.55, resize: "vertical" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 10, justifyContent: "flex-end" }}>
+            {saveMsg && <span style={{ fontSize: 11, color: saveMsg.startsWith("Error") ? "#DC2626" : "#059669", fontFamily: "'DM Sans',sans-serif" }}>{saveMsg}</span>}
+            {submission.reviewed_at && <span style={{ fontSize: 11, color: T.text3, fontFamily: "'DM Sans',sans-serif" }}>Last reviewed {new Date(submission.reviewed_at).toLocaleDateString()}</span>}
+            <button disabled={saving} onClick={saveReview} className="bt" style={{ padding: "9px 18px", borderRadius: 2, background: GRADIENT, color: "white", fontSize: 12, fontWeight: 700, border: "none", fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", cursor: saving ? "not-allowed" : "pointer", opacity: saving ? 0.6 : 1 }}>{saving ? "Saving\u2026" : "Save Review"}</button>
+          </div>
         </div>
 
         <ModalSection T={T} label="Brand Voice Guide">{d.voiceGuide || <i style={{ color: T.text3 }}>(empty)</i>}</ModalSection>

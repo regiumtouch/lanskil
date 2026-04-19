@@ -577,11 +577,15 @@ export default function LMS({ onBack, user, onLogout }) {
   function toggleDark(){setDark(function(d){localStorage.setItem("sf-dark",d?"0":"1");return !d;});}
   var T = dark ? {bg:"#111318",card:"#1A1D24",text:"#E5E5E5",text2:"#AAA",text3:"#777",border:"#2A2D35",subtle:"#1E2128",hover:"#252830",inputBg:"#1A1D24",activeBg:"#2A1A10",activeText:"#F4A261",statBg1:"#1F1410",statBg2:"#1F1A0F",statBg3:"#0F1F18",statBg4:"#0F1520",bannerBg:"linear-gradient(135deg,#0D0E12,#1A1D24)"} : {bg:"#FAFAF7",card:"#FFFFFF",text:"#1A1A1A",text2:"#888",text3:"#999",border:"#ECECEC",subtle:"#F5F5F5",hover:"#F0F0F0",inputBg:"#FFFFFF",activeBg:"#F3EDFF",activeText:"#7C3AED",statBg1:"#FFF5F2",statBg2:"#FFFBEB",statBg3:"#ECFDF5",statBg4:"#EFF6FF",bannerBg:"linear-gradient(135deg,#1A1A1A,#2D2D2D)"};
   var _qScores=useState({}),quizScores=_qScores[0],setQuizScores=_qScores[1];
+  var ADMIN_EMAILS=["caleb@lanskil.com","josephinemagona62@gmail.com","calebitoking80@gmail.com"];
   var _isAdmin=useState(false),isAdmin=_isAdmin[0],setIsAdmin=_isAdmin[1];
   useEffect(function(){
     if(!user){setIsAdmin(false);return;}
-    supabase.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle().then(function(res){
-      setIsAdmin(!!(res.data&&!res.error));
+    if(user.email&&ADMIN_EMAILS.indexOf(user.email.toLowerCase())>=0){setIsAdmin(true);return;}
+    supabase.from("admin_users").select("user_id").then(function(res){
+      var allowed=!!(res.data&&res.data.length>0&&!res.error);
+      console.log("[admin check]",{email:user.email,rows:res.data&&res.data.length,error:res.error,allowed:allowed});
+      setIsAdmin(allowed);
     });
   },[user]);
   useEffect(function(){

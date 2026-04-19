@@ -81,6 +81,7 @@ const RUBRIC = [
 export default function PortfolioBuilder({ user, lesson, onBack, T }) {
   const [data, setData] = useState(EMPTY_DATA);
   const [status, setStatus] = useState("draft");
+  const [review, setReview] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saveState, setSaveState] = useState("idle"); // idle | saving | saved | error
   const [lastSaved, setLastSaved] = useState(null);
@@ -97,6 +98,9 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
         setData({ ...EMPTY_DATA, ...(row.data || {}) });
         setStatus(row.status || "draft");
         if (row.updated_at) setLastSaved(new Date(row.updated_at));
+        if (row.review_status && row.review_status !== "pending") {
+          setReview({ status: row.review_status, score: row.review_score, feedback: row.review_feedback, at: row.reviewed_at });
+        }
       }
       setLoading(false);
     });
@@ -299,6 +303,29 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
 
       {/* Back */}
       <button onClick={onBack} className="bt" style={{ marginBottom: 16, padding: "8px 16px", borderRadius: 2, background: T.subtle, color: T.text2, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Back to Lesson</button>
+
+      {/* Review banner (when instructor has reviewed) */}
+      {review && (() => {
+        const palette = {
+          approved: { bg: "#ECFDF5", border: "#A7F3D0", color: "#059669", label: "Approved" },
+          needs_revision: { bg: "#FEF3C7", border: "#FDE68A", color: "#B45309", label: "Needs Revision" },
+          rejected: { bg: "#FEE2E2", border: "#FECACA", color: "#DC2626", label: "Rejected" },
+          under_review: { bg: "#E0E7FF", border: "#C7D2FE", color: "#4338CA", label: "Under Review" },
+        };
+        const p = palette[review.status] || palette.under_review;
+        return (
+          <div style={{ background: p.bg, border: "1px solid " + p.border, borderRadius: 3, padding: "18px 22px", marginBottom: 22 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: review.feedback ? 10 : 0 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <span style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: p.color, letterSpacing: 2, textTransform: "uppercase" }}>Instructor Review \u00B7 {p.label}</span>
+                {review.score != null && <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 700, color: p.color }}>{review.score}/100</span>}
+              </div>
+              {review.at && <span style={{ fontSize: 11, color: p.color, opacity: 0.7, fontFamily: "'DM Sans',sans-serif" }}>{new Date(review.at).toLocaleDateString()}</span>}
+            </div>
+            {review.feedback && <p style={{ fontSize: 13, color: p.color, lineHeight: 1.65, whiteSpace: "pre-wrap", fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{review.feedback}</p>}
+          </div>
+        );
+      })()}
 
       {/* Sections */}
       <Section num={1} title="Brand Voice Guide" subtitle="Define FreshRoast's voice, tone, and do's/don'ts in 1 page." progress={p1} isOpen={openSection===1} onToggle={()=>toggleSection(1)} T={T}>
