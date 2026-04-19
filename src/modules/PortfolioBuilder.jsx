@@ -55,7 +55,7 @@ function Section({ num, title, subtitle, progress, isOpen, onToggle, T, children
           <div style={{ width: 60, height: 2, background: T.border }}>
             <div style={{ height: "100%", background: progress === 100 ? "#10B981" : GRADIENT, width: progress + "%", transition: "width .3s" }} />
           </div>
-          <span style={{ fontSize: 14, color: T.text3, transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform .2s" }}>\u25BE</span>
+          <span style={{ fontSize: 14, color: T.text3, transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform .2s" }}>{"\u25BE"}</span>
         </div>
       </div>
       {isOpen && (
@@ -285,14 +285,14 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
       {/* Header */}
       <div style={{ background: GRADIENT, borderRadius: 4, padding: "32px 32px", marginBottom: 28, color: "white", position: "relative", overflow: "hidden" }}>
         <div style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", opacity: 0.85 }}>Portfolio Builder · Module 8 Capstone</div>
-        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 36, fontWeight: 700, margin: "10px 0 8px", lineHeight: 1.1, letterSpacing: -.5 }}>FreshRoast \u2014 Social Media Copy Campaign</h1>
-        <p style={{ fontSize: 14, opacity: 0.92, margin: "0 0 18px", maxWidth: 620, lineHeight: 1.6 }}>Build your complete campaign \u2014 brand voice, calendar, 10 organic posts, 3 ad variants, and 2 TikTok scripts. Work is auto-saved as you go.</p>
+        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 36, fontWeight: 700, margin: "10px 0 8px", lineHeight: 1.1, letterSpacing: -.5 }}>FreshRoast {"\u2014"} Social Media Copy Campaign</h1>
+        <p style={{ fontSize: 14, opacity: 0.92, margin: "0 0 18px", maxWidth: 620, lineHeight: 1.6 }}>Build your complete campaign {"\u2014"} brand voice, calendar, 10 organic posts, 3 ad variants, and 2 TikTok scripts. Work is auto-saved as you go.</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
           <span style={{ fontSize: 11, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, padding: "4px 12px", borderRadius: 2, background: "rgba(255,255,255,.2)", letterSpacing: 1.2, textTransform: "uppercase" }}>{status === "submitted" ? "Submitted" : "Draft"}</span>
           <span style={{ fontSize: 11, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, opacity: 0.9 }}>{overallProgress}% complete</span>
           {saveState === "saving" && <span style={{ fontSize: 11, opacity: 0.9 }}>Saving…</span>}
-          {saveState === "saved" && <span style={{ fontSize: 11, opacity: 0.9 }}>\u2713 Saved</span>}
-          {saveState === "error" && <span style={{ fontSize: 11, opacity: 0.9, color: "#FECACA" }}>Save error \u2014 check connection</span>}
+          {saveState === "saved" && <span style={{ fontSize: 11, opacity: 0.9 }}>{"\u2713"} Saved</span>}
+          {saveState === "error" && <span style={{ fontSize: 11, opacity: 0.9, color: "#FECACA" }}>Save error {"\u2014"} check connection</span>}
           {lastSaved && saveState === "idle" && <span style={{ fontSize: 11, opacity: 0.8 }}>Last saved {lastSaved.toLocaleTimeString()}</span>}
         </div>
       </div>
@@ -402,8 +402,8 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
       <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap", marginBottom: 40 }}>
         <button onClick={downloadText} className="bt" style={{ padding: "11px 20px", borderRadius: 2, background: T.card, color: T.text, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif", letterSpacing: .5, textTransform: "uppercase", cursor: "pointer" }}>Export as .txt</button>
         {!readOnly && <button onClick={() => saveNow()} className="bt" style={{ padding: "11px 20px", borderRadius: 2, background: T.card, color: T.text, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif", letterSpacing: .5, textTransform: "uppercase", cursor: "pointer" }}>Save Draft</button>}
-        {!readOnly && <button onClick={() => setShowConfirmSubmit(true)} disabled={overallProgress < 50} className="bt" style={{ padding: "11px 26px", borderRadius: 2, background: overallProgress >= 50 ? GRADIENT : T.border, color: "white", fontSize: 12, fontWeight: 700, border: "none", fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", cursor: overallProgress >= 50 ? "pointer" : "not-allowed", boxShadow: overallProgress >= 50 ? "0 4px 14px rgba(124,58,237,.2)" : "none" }}>Submit Portfolio \u2192</button>}
-        {readOnly && <div style={{ padding: "12px 20px", background: "#ECFDF5", color: "#059669", fontSize: 12, fontWeight: 700, fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", borderRadius: 2 }}>\u2713 Submitted</div>}
+        {!readOnly && <button onClick={() => setShowConfirmSubmit(true)} disabled={overallProgress < 50} className="bt" style={{ padding: "11px 26px", borderRadius: 2, background: overallProgress >= 50 ? GRADIENT : T.border, color: "white", fontSize: 12, fontWeight: 700, border: "none", fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", cursor: overallProgress >= 50 ? "pointer" : "not-allowed", boxShadow: overallProgress >= 50 ? "0 4px 14px rgba(124,58,237,.2)" : "none" }}>Submit Portfolio {"\u2192"}</button>}
+        {readOnly && <div style={{ padding: "12px 20px", background: "#ECFDF5", color: "#059669", fontSize: 12, fontWeight: 700, fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", borderRadius: 2 }}>{"\u2713"} Submitted</div>}
       </div>
 
       {/* Submit confirmation dialog */}
