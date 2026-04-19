@@ -1,0 +1,72 @@
+// AI-Powered Copywriting — Module 2: Prompt Engineering for Copy
+export const aiPromptsModule = {
+  id: "ai02",
+  title: "Prompt Engineering for Copy",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "Crap prompt, crap copy. Learn the prompt structure that reliably extracts useful first drafts from Claude, ChatGPT, and other LLMs \u2014 without bland defaults.",
+  topics: ["The Prompt Anatomy", "Context-First Prompts", "Voice Injection", "Example-Driven Prompting", "Iteration Loops", "Common Prompt Mistakes"],
+  quiz: [
+    { q: "The single biggest lever in prompt quality is:", opts: ["Word count", "Specificity + context \u2014 vague prompts produce vague outputs; rich context + specific audience/goal produces focused outputs", "Using formal language", "Longer prompts"], correct: 1 },
+    { q: "The prompt \"Write copy for my SaaS landing page\" will typically produce:", opts: ["Excellent output", "Generic commodity output because there\u2019s no audience, no pain, no outcome, no voice, no proof to work from \u2014 AI averages", "Nothing at all", "Personalised copy"], correct: 1 },
+    { q: "A good prompt includes:", opts: ["Just the request", "Role + audience + goal + constraints + example of desired voice + specific materials (customer quotes, real data) \u2014 the more context the better", "A long list of keywords", "Just \u201Cplease\u201D"], correct: 1 },
+    { q: "\"Few-shot prompting\" means:", opts: ["Asking briefly", "Providing 2\u20135 examples of the desired output style within the prompt itself \u2014 dramatically raises output quality for voice-sensitive tasks", "Using AI sparingly", "Shortening prompts"], correct: 1 },
+    { q: "When iterating on AI output, the most productive move is:", opts: ["Starting over each time", "Specific feedback to the AI about what worked + what didn\u2019t + what to change specifically \u2014 \u201Cthe 3rd paragraph was too formal, rewrite in casual voice; keep the specific numbers\u201D", "Using a different AI", "Giving up"], correct: 1 },
+    { q: "A prompt that works well once but produces noise the next time often suggests:", opts: ["The AI broke", "The prompt was under-specified \u2014 results worked through luck; tighten the prompt with more context and examples", "Normal", "Write longer prompts"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 2", title: "Prompt Engineering", titleAccent: "for Copy", subtitle: "Crap prompt, crap copy. The prompt structure that reliably extracts useful first drafts from LLMs \u2014 without bland defaults.", meta: "AI-Powered Copywriting  |  Module 2  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY PROMPTS ARE THE LEVERAGE POINT", title: "A 2x better prompt typically produces 5\u201310x better output", intro: "The \u201Cprompt engineering\u201D skill is the actual copywriting skill in the AI era. Vague prompts produce bland outputs; rich, specific, example-dense prompts produce outputs you can actually ship. The leverage is enormous.", stats: [
+      { num: "3\u20135\u00D7", label: "time savings for copywriters who\u2019ve mastered prompt engineering vs those who treat AI like a search engine" },
+      { num: "10x", label: "quality difference between an under-specified 20-word prompt and a well-structured 400-word prompt" },
+      { num: "90%", label: "of \u201CAI-produces-bland-output\u201D complaints trace back to the prompt, not the model" },
+    ], subheading: "What a Great Prompt Has That a Weak One Doesn\u2019t", bullets: [
+      "Specific audience + their context + their current state of knowledge",
+      "The exact goal of the copy + how it will be read + what action it should drive",
+      "Examples of the desired voice \u2014 not just an instruction like \u201Ccasual\u201D",
+      "Specific materials: real customer quotes, real numbers, real context the AI can draw from",
+      "Clear constraints: length, tone, structure, what NOT to do",
+    ] },
+    { type: "grid", eyebrow: "THE PROMPT ANATOMY", title: "6 components of a high-quality copy prompt", subtitle: "Missing any of these produces a weaker output. Together, they reliably produce copy you can refine into publishable.", items: [
+      { num: "01", title: "Role / Context", desc: "\u201CYou are a copywriter specialising in B2B SaaS.\u201D Frames the AI\u2019s persona + relevance.", icon: "\u{1F3AD}" },
+      { num: "02", title: "Audience", desc: "Specific reader: role, stage, situation, current pain. Not \u201Cbusinesses.\u201D A specific human.", icon: "\u{1F464}" },
+      { num: "03", title: "Goal + Format", desc: "What the copy should do + the format (landing page hero / email / social post). Exact output type.", icon: "\u{1F3AF}" },
+      { num: "04", title: "Voice Examples", desc: "2\u20135 examples of the desired voice. \u201CWrite like THIS specific example\u201D >>> \u201CWrite casually.\u201D", icon: "\u{1F4AC}" },
+      { num: "05", title: "Materials", desc: "Real customer quotes, real numbers, real case studies, real objections. The specifics only you have.", icon: "\u{1F4CA}" },
+      { num: "06", title: "Constraints", desc: "Length, tone, what NOT to use (banned words, clich\u00E9s). Shapes the output within your boundaries.", icon: "\u{1F6AB}" },
+    ], footer: "Rule: every serious copy prompt includes all 6. Missing any one produces a worse output." },
+    { type: "principle", num: "01", title: "The Context-First Prompt", intro: "The single biggest mistake: putting the request first and the context last (or missing). The better pattern: dump rich context, THEN make the request. This dramatically improves output quality because the model has the material it needs before it starts generating.", sectionTitle: "The Template", sections: [
+      { heading: "Part 1: Role + Context", example: "\"You are a direct-response copywriter with 10 years of experience writing for B2B SaaS. You favor specific, punchy copy over generic corporate language. You hate adjective-soup and always push for named specifics.\"", note: "Frame the AI\u2019s persona AND state its bias toward the qualities you want." },
+      { heading: "Part 2: Audience + Current State", example: "\"The reader: Head of Content at a 50-person B2B fintech. Their team just got a -20% budget. They\u2019ve tried mass AI content and it\u2019s not working. They read LinkedIn for work, skim fast, and trust writers who show their work.\"", note: "Context the AI wouldn\u2019t infer. Real situation, current constraints, behaviour patterns." },
+      { heading: "Part 3: Materials", example: "\"Our product: [specific claim]. Real customer quote: [verbatim from interview]. Real data point: [specific number + methodology].\"", note: "The specifics only you have. Without these, AI defaults to generic claims." },
+      { heading: "Part 4: Voice Examples (few-shot)", example: "\"Examples of the voice I want: [paste 2\u20133 of your actual previous posts that represent the target voice].\"", note: "Few-shot prompting is the single biggest quality lever. Paste actual examples, not instructions." },
+      { heading: "Part 5: The Specific Request + Constraints", example: "\"Write a LinkedIn post hook (first 2 lines only) about this topic. Max 22 words. Must include a specific number. Avoid: \u2018unlock\u2019, \u2018empower\u2019, \u2018revolutionise\u2019. Give me 10 variants.\"", note: "Specific output + specific constraints + specific quantity. The AI now has everything it needs." },
+    ], rule: "If you can\u2019t see yourself feeding the prompt to a human colleague and expecting a good output, the prompt isn\u2019t ready." },
+    { type: "comparison", eyebrow: "WEAK vs STRONG PROMPT", title: "Same copy job, two prompts", subtitle: "Both ask for the same output. The weak prompt produces generic commodity output. The strong prompt produces copy you can refine and ship.", left: { title: "Weak Prompt", color: "#EF4444", items: [
+      { strong: '"Write me copy for a SaaS landing page about content marketing."', note: "No audience. No goal. No voice. No materials. AI will average every SaaS landing page it\u2019s ever seen." },
+      { strong: 'Total prompt: 12 words', note: "Under-specified. Output will be generic and unusable without 4+ revisions." },
+      { strong: 'No examples of voice', note: "AI defaults to its trained-on-average voice: adjective soup and corporate blandness." },
+      { strong: 'No real materials (customers, data, context)', note: "AI makes up plausible-sounding specifics. Most will be inaccurate and unusable." },
+    ] }, right: { title: "Strong Prompt", color: "#10B981", items: [
+      { strong: "Role: \"Direct-response copywriter for B2B SaaS, prefers specific punchy copy over corporate language.\"", note: "Framed AI persona. Specific preferences articulated." },
+      { strong: "Audience: \"Head of Content at 50-person fintech, just got -20% budget, tried AI content, didn\u2019t work.\"", note: "Specific reader. Specific current situation. Specific pain." },
+      { strong: "Materials: 3 real customer quotes + 2 specific numbers + 1 named case study", note: "Raw material the AI can draw from. No more fabricating." },
+      { strong: "Voice examples: paste 3 of your actual winning LinkedIn posts", note: "Few-shot examples. Output adopts the voice you\u2019ve demonstrated." },
+    ] }, footer: "The weak prompt takes 10 seconds to write and 40 minutes to rescue. The strong prompt takes 15 minutes to write and produces output you can ship in 5 minutes of editing." },
+    { type: "table", title: "Common Prompt Mistakes + Fixes", subtitle: "These are the patterns that produce weak output. Fix each one and your AI output quality jumps 3\u20135\u00D7.", columns: ["Mistake", "Why It Hurts", "Fix"], rows: [
+      ["Too short / no context", "AI has nothing to draw on; averages across the entire internet", "Minimum 200 words of context + materials for any non-trivial request"],
+      ["Instructing voice instead of showing it", "\"Write casually\" is interpreted by each model differently", "Show 2\u20135 examples of the exact voice you want"],
+      ["Missing the audience", "Copy becomes generic because there\u2019s no specific reader to write toward", "Describe the audience in 3\u20135 specific sentences"],
+      ["No real materials", "AI invents plausible-sounding specifics that are wrong", "Feed real customer quotes, real numbers, real case studies"],
+      ["Asking for one output instead of variants", "You\u2019re locked into the AI\u2019s first guess", "Ask for 10 variants; pick the best; iterate"],
+      ["No constraints or banned words", "AI defaults to its averaged vocabulary (\"unlock\", \"empower\")", "Explicit banned word list: \"Avoid: unlock, empower, revolutionise, cutting-edge, seamless.\""],
+    ], footer: "Rule: before you hit send on a prompt, run it against this checklist. Every \"no\" on the checklist predicts a weaker output." },
+    { type: "exercise", title: "Rewrite a Weak Prompt Into a Strong One", intro: "Take a prompt you\u2019ve recently used that produced generic output. Run it through the 6-part anatomy.", items: [
+      { num: "1", copy: "Write your original weak prompt verbatim.", answer: "No judgement. Just write it down so you can see the gap." },
+      { num: "2", copy: "Add Role + Context + Audience sections using the template from Slide 4. Aim for 150\u2013250 words.", answer: "If you\u2019re unsure how to describe the audience specifically, go talk to one \u2014 then come back to the prompt." },
+      { num: "3", copy: "Add Materials: 2\u20133 real customer quotes, 1\u20132 specific numbers, 1 named case study. Pull from your existing customer research.", answer: "If you don\u2019t have real materials, AI can\u2019t do specificity for you. Go get the materials before you write the prompt." },
+      { num: "4", copy: "Add Voice Examples: paste 2\u20133 samples of your actual winning copy that represent the target voice.", answer: "Few-shot example is the single biggest quality lever. Use it every time you care about voice." },
+      { num: "5", copy: "End with the Specific Request + Constraints + quantity (\u201CGive me 10 variants\u201D).", answer: "Run both prompts against the same AI. Compare outputs. The gap will be massive." },
+    ] },
+  ],
+};

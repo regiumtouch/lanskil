@@ -1,0 +1,72 @@
+// AI-Powered Copywriting — Module 6: The Hybrid Workflow
+export const aiWorkflowModule = {
+  id: "ai06",
+  title: "The Hybrid Copy Workflow",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The full 5-step workflow that combines AI speed with human craft. End state: 3\u20135x your output velocity without losing voice, quality, or trust.",
+  topics: ["The 5-Step Process", "AI Scaffolding Phase", "Human Specificity Phase", "Verification Phase", "Voice Restoration", "Shipping Discipline"],
+  quiz: [
+    { q: "The correct order of steps in a hybrid AI-copy workflow is:", opts: ["Generate with AI \u2192 ship", "Research + gather materials (human) \u2192 structured prompt + AI first draft \u2192 specificity pass (human) \u2192 voice pass (human) \u2192 fact-check (human) \u2192 ship", "Ship \u2192 check", "AI only"], correct: 1 },
+    { q: "The single most important phase in hybrid workflow is:", opts: ["AI generation", "Research/materials gathering BEFORE any prompting \u2014 with good materials, AI output is 5\u00D7 better; without them, nothing rescues the output", "Ship phase", "Any of them"], correct: 1 },
+    { q: "When AI output looks good on first read but flat on second, the fix is:", opts: ["Ship anyway", "Run the voice-restoration pass \u2014 the content is probably correct but the rhythm, vocabulary, and distinctiveness need your human hand", "Regenerate with AI", "Change tool"], correct: 1 },
+    { q: "Typical hybrid workflow time for a 1,500-word landing page is:", opts: ["5 min", "Research: 60\u201390 min + prompt/draft: 15\u201320 min + editing (specificity + voice + fact-check): 60\u201390 min \u2014 total ~2.5\u20133.5 hrs vs 5\u20136 hrs manual or 45 min AI-only (but AI-only is shippable at low conversion)", "30 sec", "10 hrs"], correct: 1 },
+    { q: "\"Shipping discipline\" in AI workflows means:", opts: ["Ship everything fast", "Pre-committing to quality bars before you start; the draft doesn\u2019t ship until specificity, voice, and fact-check passes are all green \u2014 discipline prevents \"good enough\" from becoming the new bar", "Hurry", "Never ship"], correct: 1 },
+    { q: "A writer using the full hybrid workflow typically produces at what quality AND velocity?", opts: ["Low quality / low velocity", "Higher quality than manual (because specificity is more rigorous) AND higher velocity than manual (because AI scaffolds fast) \u2014 the best of both if you trust the process", "High quality / low velocity", "Low quality / high velocity"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 6", title: "The Hybrid", titleAccent: "Copy Workflow", subtitle: "The full 5-step workflow combining AI speed with human craft. 3\u20135\u00D7 output velocity without losing voice, quality, or trust.", meta: "AI-Powered Copywriting  |  Module 6  |  7 Slides" },
+    { type: "stats", eyebrow: "THE END STATE", title: "Top copywriters in 2026 don\u2019t choose between AI and human \u2014 they combine them systematically", intro: "The copywriters thriving in 2026 have internalised a disciplined hybrid workflow. They use AI where it saves time without quality loss. They double down on human craft where it irreplaceably matters. The result: faster output AND better copy.", stats: [
+      { num: "3\u20135\u00D7", label: "output velocity for hybrid-workflow copywriters vs manual-only copywriters" },
+      { num: "30\u201350%", label: "higher conversion on hybrid-workflow pieces vs AI-only (because specificity and voice are restored)" },
+      { num: "<2 hrs", label: "typical end-to-end time to produce a 1,500-word landing page with hybrid workflow + mature prompt library" },
+    ], subheading: "What The Hybrid Workflow Delivers", bullets: [
+      "Faster first drafts \u2014 AI handles the commodity structural work",
+      "Rigorous specificity \u2014 human adds named examples and real data every time",
+      "Consistent voice \u2014 voice seed prompt + manual voice pass preserve recognisability",
+      "Verifiable claims \u2014 fact-check pass prevents AI hallucination from shipping",
+      "Compounding craft \u2014 every piece improves the prompt library for the next one",
+    ] },
+    { type: "grid", eyebrow: "THE 5 STEPS", title: "The disciplined hybrid workflow", subtitle: "Each step is a separate pass. Don\u2019t collapse them \u2014 that\u2019s where quality degrades.", items: [
+      { num: "01", title: "Research + Materials", desc: "Gather real customer quotes, real data, real case studies, real situation context. BEFORE any prompting. 60\u201390 min typical.", icon: "\u{1F50D}" },
+      { num: "02", title: "Structured Prompt + AI Draft", desc: "Voice seed + task prompt + materials. Ask for 3\u20135 variants. 15\u201320 min.", icon: "\u{1F4DD}" },
+      { num: "03", title: "Specificity Pass", desc: "Kill adjective soup. Replace vague claims with named specifics. Add real proof points. 30\u201345 min.", icon: "\u{1F3AF}" },
+      { num: "04", title: "Voice Pass", desc: "Break parallel structure. Vary sentence length. Add your vocabulary. Read aloud. 15\u201330 min.", icon: "\u{1F3AD}" },
+      { num: "05", title: "Fact-Check + Ship", desc: "Verify every claim, stat, quote, name. AI hallucinates; discipline catches it. 15\u201330 min.", icon: "\u2705" },
+    ], footer: "Rule: total time for a 1,500-word landing page \u2248 2.5\u20133.5 hrs. Manual-only: 5\u20136 hrs. AI-only: 45 min but converts 30\u201350% worse. The hybrid is the math that wins." },
+    { type: "principle", num: "01", title: "Step 1: Research + Materials (The Phase Everyone Skips)", intro: "The highest-leverage 60 minutes in any hybrid workflow happen BEFORE you open the AI. Skipping this step is why most AI-assisted copy comes out generic \u2014 no materials means no specifics possible.", sectionTitle: "What To Gather Before Prompting", sections: [
+      { heading: "1. Real customer quotes", example: "From interviews, support tickets, sales calls, reviews. Verbatim. With attribution where possible.", note: "These become the raw material for trust-building specifics. Without real quotes, you\u2019ll get AI-fabricated ones." },
+      { heading: "2. Real numbers + outcomes", example: "Your actual metrics: conversion rates, customer counts, growth figures, cost savings. Specific, dated, sourced.", note: "Every claim in the final copy should trace to a real number. Gather them before you write, not during." },
+      { heading: "3. Real case studies with names", example: "Named customers, their roles, their specific outcomes, their timelines. In their own words where possible.", note: "Named specifics are what make copy citable and trust-worthy. AI can\u2019t fabricate these convincingly." },
+      { heading: "4. The audience\u2019s real language", example: "Phrases they use in sales calls. Questions they ask. Objections they raise. Captured from actual conversations.", note: "AI doesn\u2019t have access to your audience\u2019s specific vocabulary. You do \u2014 if you\u2019ve listened." },
+    ], rule: "If you find yourself needing to \"fill in\" specifics during the AI draft phase, stop. Go back to Research. The draft isn\u2019t ready until the research is complete." },
+    { type: "comparison", eyebrow: "AI-ONLY vs HYBRID WORKFLOW", title: "Same target, two workflows, radically different outcomes", subtitle: "Both produce a 1,500-word landing page for the same product. One converts 30\u201350% worse despite taking 1/4 the time.", left: { title: "AI-Only Workflow (Speed, Poor Output)", color: "#EF4444", items: [
+      { strong: "Input: 20-word prompt \"Write a landing page for my content strategy SaaS\"", note: "No audience, no materials, no voice. AI averages." },
+      { strong: "Output: 1,500 words of adjective soup + generic claims + no specifics", note: "Technically coherent; commercially unconvincing." },
+      { strong: "Time: 45 minutes total", note: "Fast. But the page will convert at a fraction of the hybrid version." },
+      { strong: "Result: 0.4\u20130.8% landing page conversion \u2014 commodity output, commodity results", note: "Writer thinks \u201CAI doesn\u2019t work for conversion.\u201D Real issue: AI-only workflow doesn\u2019t work." },
+    ] }, right: { title: "Hybrid Workflow (Premium Output, Reasonable Speed)", color: "#10B981", items: [
+      { strong: "Research phase: 60 min gathering 3 customer quotes, 5 specific stats, 1 full case study, audience language", note: "Materials that AI couldn\u2019t have. Without these, the final output isn\u2019t possible." },
+      { strong: "AI draft with structured prompt + materials + voice seed", note: "AI handles structure; materials make the draft specific; voice seed preserves your voice." },
+      { strong: "3-pass edit: specificity + voice + fact-check, total ~90 min", note: "Where AI commodity output transforms into human-grade copy. Non-optional passes." },
+      { strong: "Total time: 2.5\u20133 hrs. Result: 2.5\u20134% conversion \u2014 the premium end of landing page performance", note: "Hybrid workflow beats manual-only on speed AND beats AI-only on quality. Best of both." },
+    ] }, footer: "Rule: AI-only is a false economy. The time saved upfront is paid for in conversion rate loss. Hybrid is the sustainable answer." },
+    { type: "table", title: "The Hybrid Workflow Check Sheet", subtitle: "Print this. Keep it next to your screen. Tick each box before shipping anything AI-involved.", columns: ["Phase", "Check", "Why It Matters"], rows: [
+      ["Research", "Do I have at least 2 real customer quotes or stats to draw from?", "Without materials, AI outputs generic"],
+      ["Research", "Have I spoken to or read from the actual target audience in the last 90 days?", "Audience language drifts; refresh materials regularly"],
+      ["Prompt", "Have I prepended my voice seed prompt?", "Voice consistency across outputs"],
+      ["Prompt", "Did I include real materials + specific constraints?", "Separates specific output from commodity output"],
+      ["Specificity Pass", "Is every vague adjective gone or replaced with a specific?", "Adjective soup is the #1 AI tell"],
+      ["Specificity Pass", "Does the copy pass the \"remove brand name\" test?", "If the competitor could use this same copy, it's generic"],
+      ["Voice Pass", "Have I varied sentence length + broken parallel structure?", "AI rhythm is detectable; yours isn\u2019t"],
+      ["Voice Pass", "Have I read it aloud and does it sound like me?", "Final audible check catches what eyes miss"],
+      ["Fact-Check", "Is every stat, quote, name, and claim verified to a real source?", "AI hallucinates; shipping hallucinations kills credibility"],
+    ], footer: "Rule: the check sheet isn\u2019t optional. Shipping without it causes drift; drift becomes culture; culture becomes brand damage." },
+    { type: "exercise", title: "Run the Full Hybrid Workflow on a Real Piece", intro: "Pick a real copy project due this week. Run it through the full 5-step workflow. Time yourself at each step.", items: [
+      { num: "1", copy: "Step 1 (Research, 60 min): gather 3 customer quotes, 3 specific stats, 1 full case study, audience language samples.", answer: "If you don\u2019t have these, spend the time getting them. AI can\u2019t compensate for missing materials. This step is the investment that pays." },
+      { num: "2", copy: "Step 2 (Structured Prompt, 20 min): write a prompt with voice seed + audience + materials + specific task + constraints. Ask for 3\u20135 variants.", answer: "Use the 6-part prompt anatomy from Module 2. Don\u2019t shortcut this. The output quality is bounded by the prompt quality." },
+      { num: "3", copy: "Step 3 (Specificity Pass, 30 min): kill adjective soup. Replace vague with specific. Add proof points from your research materials.", answer: "Every vague claim = an opportunity to swap in a real customer/number/outcome. Your research phase pays off here." },
+      { num: "4", copy: "Steps 4 + 5 (Voice + Fact-check, 45 min): vary sentence length, add your vocabulary, read aloud. Verify every claim.", answer: "Read aloud is the audible final check. If any sentence sounds like a brochure, rewrite it. Verify any claim whose source you can\u2019t immediately cite." },
+    ] },
+  ],
+};

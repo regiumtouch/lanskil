@@ -1,0 +1,72 @@
+// Sales Pages & Direct Response — Module 3: VSL Scripts
+export const salesVslModule = {
+  id: "sales03",
+  title: "VSL Scripts (Video Sales Letters)",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The video sales letter anatomy \u2014 hook, story, solution, proof, offer, close. Scripts that hold attention for 20+ minutes and convert cold traffic at scale.",
+  topics: ["VSL Anatomy", "Hook Opens for Video", "Story Beats", "Proof Segments", "Offer Reveal Timing", "The Close Script"],
+  quiz: [
+    { q: "A VSL that\u2019s 20+ minutes long is typical because:", opts: ["Longer is always better", "It needs to take a cold viewer from \"unaware\" to \"ready to buy\" in one continuous narrative \u2014 the length earns the close through sustained story + proof", "Search engines reward it", "Just a tradition"], correct: 1 },
+    { q: "The first 30\u201360 seconds of a VSL are called:", opts: ["The close", "The hook \u2014 they must pattern-interrupt, establish the problem, and promise a specific revelation; if they fail, 80%+ of viewers leave", "The offer", "The story"], correct: 1 },
+    { q: "When should the VSL reveal the product name?", opts: ["In the first 10 seconds", "Typically 8\u201315 minutes in \u2014 after the problem, the story, and most of the proof have been established; revealing too early kills the persuasion arc", "Never \u2014 stay anonymous", "Only in the title"], correct: 1 },
+    { q: "The VSL \"avatar intro\" is:", opts: ["An animated character", "The first-person introduction of the presenter/character \u2014 who they are, why they\u2019re credible on this topic, what transformation they\u2019re going to walk you through", "A graphic design element", "Optional for video"], correct: 1 },
+    { q: "The offer reveal in a VSL should happen after:", opts: ["The hook", "The problem is established + the story is told + the solution category is introduced + the mechanism is explained + proof is shown \u2014 then the offer is revealed", "The first proof point", "Immediately"], correct: 1 },
+    { q: "VSLs work at scale on cold traffic because:", opts: ["Videos are entertaining", "The format takes a stranger through a structured persuasion arc in one sitting \u2014 and the viewer can\u2019t skim ahead the way they can with text", "They\u2019re cheaper than articles", "SEO rewards them"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 3", title: "VSL Scripts", titleAccent: "Video Sales Letters", subtitle: "The video sales letter anatomy \u2014 hook, story, solution, proof, offer, close. Scripts that hold attention for 20+ minutes and convert cold traffic at scale.", meta: "Sales Pages & Direct Response  |  Module 3  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY VSLs STILL DOMINATE", title: "20+ minute videos convert cold traffic at rates short-form can't touch", intro: "Video Sales Letters have been pronounced dead every year for a decade. They keep out-converting. The reason: a well-constructed VSL walks a cold stranger through a persuasion arc that no short-form copy can replicate.", stats: [
+      { num: "4\u20136%", label: "typical cold-traffic conversion rates for well-constructed VSLs (vs 0.5\u20132% for equivalent text pages)" },
+      { num: "30\u201360 sec", label: "the window to earn continued watching \u2014 VSL drop-off is sharpest in the first minute" },
+      { num: "$100M+", label: "collective ACV run through VSL-based funnels by operators like Sam Ovens, Russell Brunson, Alex Hormozi" },
+    ], subheading: "When VSLs Are The Right Choice", bullets: [
+      "Cold traffic arriving from ads who need to be warmed up in one sitting",
+      "Higher-ACV offers ($500\u2013$50,000+) where the reader needs sustained proof and story",
+      "Complex transformations that require teaching the mechanism before selling the product",
+      "Audiences where watching > reading (course buyers, coaching prospects, investors)",
+    ] },
+    { type: "grid", eyebrow: "THE 7 VSL SECTIONS", title: "The structure every scaled VSL follows", subtitle: "Missing a section breaks the arc. Each section earns the right to the next \u2014 and keeps attention.", items: [
+      { num: "01", title: "Hook (0\u201360 sec)", desc: "Pattern interrupt + problem + promise. Earns the next 90 seconds of attention or loses the entire VSL.", icon: "\u{1F3AF}" },
+      { num: "02", title: "Avatar Intro (1\u20133 min)", desc: "Who are you? Why listen to you on this topic? Credentials via story, not resume recitation.", icon: "\u{1F464}" },
+      { num: "03", title: "Problem Deep-Dive (3\u20138 min)", desc: "Name the problem in the viewer\u2019s own language. Make it visceral. Establish stakes.", icon: "\u26A0\uFE0F" },
+      { num: "04", title: "Origin Story (5\u201310 min)", desc: "Your (or the character\u2019s) journey through the same problem \u2014 specific, named, with turning points.", icon: "\u{1F4D6}" },
+      { num: "05", title: "Solution + Mechanism (10\u201315 min)", desc: "Reveal the category of solution. Explain the specific mechanism that makes it work.", icon: "\u{1F511}" },
+      { num: "06", title: "Proof (15\u201320 min)", desc: "Named case studies. Specific numbers. Screenshots. Testimonials with full names + outcomes.", icon: "\u{1F4CA}" },
+      { num: "07", title: "Offer + Close (20\u201325 min)", desc: "Reveal the product. Stack the offer. Handle objections. Risk reversal. Clear CTA.", icon: "\u2705" },
+    ], footer: "Rule: most VSLs fail not from bad writing but from skipping a section. Each one does irreplaceable persuasion work." },
+    { type: "principle", num: "01", title: "The VSL Hook \u2014 30 Seconds to Earn the Next 25 Minutes", intro: "The hook decides whether the VSL exists. 80%+ of viewers who drop off do so in the first minute. Everything in the script after the hook assumes the hook worked.", sectionTitle: "The 4-Beat Hook Formula", sections: [
+      { heading: "Beat 1: Pattern Interrupt (0\u20135 sec)", example: "\"Wait \u2014 what I\u2019m about to show you shouldn\u2019t work. But it does. And I\u2019m going to prove it.\"", note: "Break the expected rhythm of a \"hi, welcome to our video\" open. Every generic open loses 30% of viewers immediately." },
+      { heading: "Beat 2: Problem Tension (5\u201315 sec)", example: "\"If you\u2019ve tried to [X] and watched it fail again and again, this is for you.\"", note: "Name the viewer\u2019s specific frustration. They should feel recognised in under 15 seconds." },
+      { heading: "Beat 3: Promise + Specific (15\u201325 sec)", example: "\"In the next 20 minutes, I\u2019m going to show you the 3-step method that took me from X to Y \u2014 and exactly how to apply it.\"", note: "What they\u2019ll get + how long it\u2019ll take + specific transformation. Reader commits their next 20 minutes or not." },
+      { heading: "Beat 4: Credibility Flash (25\u201340 sec)", example: "\"I\u2019m [name]. I\u2019ve [specific credential]. I\u2019ve used this method with [specific outcome].\"", note: "Establish authority fast \u2014 no resume recitation, just specific proof points that earn attention." },
+    ], rule: "Write 10 hook variants per VSL. Pick the one you\u2019d still watch at 1.5\u00D7 speed. If you\u2019d skip your own hook, viewers will too." },
+    { type: "comparison", eyebrow: "WEAK vs STRONG VSL OPENINGS", title: "Same product, two openings", subtitle: "The weak opening loses 60% of viewers in 30 seconds. The strong opening holds 80%+ past the 2-minute mark.", left: { title: "Weak VSL Opening", color: "#EF4444", items: [
+      { strong: "\"Hi, welcome to our presentation about our coaching programme.\"", note: "Generic. Viewer\u2019s \"this is an ad\" filter fires immediately. Bail rate: massive." },
+      { strong: "\"I\u2019m [Name] and I\u2019ve been in the coaching industry for 10 years.\"", note: "Resume recitation. Viewer doesn\u2019t care yet. You haven\u2019t earned their attention." },
+      { strong: "\"Today we\u2019re going to cover several important topics...\"", note: "Table of contents as an opener. Viewers skip ahead or leave." },
+      { strong: "Soft music + slow paced intro graphics", note: "Production quality can\u2019t rescue weak content \u2014 it just signals \"ad\" faster." },
+    ] }, right: { title: "Strong VSL Opening", color: "#10B981", items: [
+      { strong: "\"Three months ago, Priya\u2019s coaching business was 6 weeks from dead.\"", note: "Named stakes, specific timeline. Viewer leans in." },
+      { strong: "\"Today she closed her seventh $8,000 client of the month. I\u2019m going to show you exactly what changed.\"", note: "Transformation teased + specific numbers + promise of the \"how.\"" },
+      { strong: "\"If you\u2019re running a coaching or consulting business and the clients aren\u2019t closing, this 20 minutes is going to matter.\"", note: "Specific audience call-out + commitment of time + implied promise." },
+      { strong: "\"I\u2019m [Name]. I\u2019ve coached 400+ operators through this exact problem. Let\u2019s walk through what works.\"", note: "Credibility in one line. Not a resume. Just one specific proof-anchored sentence." },
+    ] }, footer: "Rule: the first 40 seconds are the entire persuasion game. Revise this section 20+ times. It\u2019s worth it." },
+    { type: "table", title: "VSL Script Beat Sheet (25-Minute Format)", subtitle: "A usable timing template for a first-draft 25-minute VSL on a $1,000\u2013$5,000 offer.", columns: ["Time", "Beat", "Content Goal"], rows: [
+      ["0:00\u20130:40", "Hook", "Pattern interrupt + problem + transformation promise"],
+      ["0:40\u20132:00", "Avatar Intro", "Who you are + why credibility on this topic"],
+      ["2:00\u20135:00", "Problem Naming", "Viewer\u2019s specific pain in their own words"],
+      ["5:00\u201310:00", "Origin Story", "Your journey through the same problem; specific, named, with turning points"],
+      ["10:00\u201315:00", "Solution + Mechanism", "Introduce the category + explain the specific mechanism"],
+      ["15:00\u201319:00", "Proof + Case Studies", "Named customers; specific outcomes; screenshots where possible"],
+      ["19:00\u201323:00", "Offer Stack", "Every component; bonuses; guarantee; pricing"],
+      ["23:00\u201325:00", "Close + CTA", "Urgency; risk reversal; explicit next step"],
+    ], footer: "Rule: this is a template. Adapt the timing to your ACV \u2014 higher ACV earns more minutes; lower ACV requires tighter pacing." },
+    { type: "exercise", title: "Draft Your VSL Hook", intro: "Pick an offer you (or a client) would sell. Draft a 60-second VSL hook using the 4-beat formula from Slide 4.", items: [
+      { num: "1", copy: "Beat 1 (0\u20135 sec): what\u2019s the pattern interrupt? Write the first sentence that would make a cold viewer pause their scroll.", answer: "Example: \"Wait \u2014 what I\u2019m about to show you shouldn\u2019t work. But it does.\" Visceral, specific, contrarian." },
+      { num: "2", copy: "Beat 2 (5\u201315 sec): name the viewer\u2019s specific frustration in their own words.", answer: "Example: \"If you\u2019ve tried launching a paid offer three times and watched it flop, this is for you.\" Specific situations, not generalities." },
+      { num: "3", copy: "Beat 3 (15\u201325 sec): what\u2019s the specific promise + time commitment?", answer: "Example: \"In 22 minutes, I\u2019m going to show you the 3-step launch sequence that took me from $0 to $127K in 9 weeks.\" Explicit time + transformation." },
+      { num: "4", copy: "Beat 4 (25\u201340 sec): one-line credibility flash \u2014 not a resume.", answer: "Example: \"I\u2019m [Name]. I\u2019ve run this exact launch for 47 clients. Let\u2019s walk through it.\" One line, one proof point, done." },
+    ] },
+  ],
+};

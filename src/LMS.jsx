@@ -31,6 +31,24 @@ import { seoEeatModule } from "./modules/seo-eeat";
 import { seoAisearchModule } from "./modules/seo-aisearch";
 import { seoClustersModule } from "./modules/seo-clusters";
 import { seoMeasurementModule } from "./modules/seo-measurement";
+import { convMindsetModule } from "./modules/conv-mindset";
+import { convHeroModule } from "./modules/conv-hero";
+import { convValuePropsModule } from "./modules/conv-valueprops";
+import { convObjectionsModule } from "./modules/conv-objections";
+import { convTestingModule } from "./modules/conv-testing";
+import { convHeatmapsModule } from "./modules/conv-heatmaps";
+import { salesFirstPrinciplesModule } from "./modules/sales-firstprinciples";
+import { salesLongformModule } from "./modules/sales-longform";
+import { salesVslModule } from "./modules/sales-vsl";
+import { salesUrgencyModule } from "./modules/sales-urgency";
+import { salesEmailFunnelsModule } from "./modules/sales-emailfunnels";
+import { salesCloseModule } from "./modules/sales-close";
+import { aiMindsetModule } from "./modules/ai-mindset";
+import { aiPromptsModule } from "./modules/ai-prompts";
+import { aiEditingModule } from "./modules/ai-editing";
+import { aiLibrariesModule } from "./modules/ai-libraries";
+import { aiEthicsModule } from "./modules/ai-ethics";
+import { aiWorkflowModule } from "./modules/ai-workflow";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -439,9 +457,30 @@ const SKILLS = [
     { id: "seo06", title: seoClustersModule.title, type: seoClustersModule.type, duration: seoClustersModule.duration, desc: seoClustersModule.desc, topics: seoClustersModule.topics, rich: seoClustersModule },
     { id: "seo07", title: seoMeasurementModule.title, type: seoMeasurementModule.type, duration: seoMeasurementModule.duration, desc: seoMeasurementModule.desc, topics: seoMeasurementModule.topics, rich: seoMeasurementModule },
   ]},
-  { id: "conversion-copy", name: "Conversion Copy & Landing Pages", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F3AF}", color: "#EC4899", dur: "TBD", roles: ["Copywriter", "CRO Specialist"], desc: "Above-the-fold copy, value propositions, objection handling, A/B testing, heatmap analysis, and CRO fundamentals.", lessons: [] },
-  { id: "sales-pages", name: "Sales Pages & Direct Response", cat: "content", tier: "intermediate", lv: "Advanced", icon: "\u{1F4B0}", color: "#EF4444", dur: "TBD", roles: ["Direct Response Copywriter", "Funnel Builder"], desc: "Long-form sales pages, VSLs, email funnels, urgency and scarcity frameworks, and direct-response principles that close.", lessons: [] },
-  { id: "ai-copywriting", name: "AI-Powered Copywriting", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F916}", color: "#3B82F6", dur: "TBD", roles: ["Modern Copywriter", "Content Operator"], desc: "Using AI as a force multiplier without losing voice \u2014 prompt engineering, editing AI drafts, building your own systems, and the ethics of AI-assisted copy.", lessons: [] },
+  { id: "conversion-copy", name: "Conversion Copy & Landing Pages", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F3AF}", color: "#EC4899", dur: "9h", roles: ["Copywriter", "CRO Specialist"], desc: "Above-the-fold copy, value propositions, objection handling, A/B testing, heatmap analysis, and CRO fundamentals.", lessons: [
+    { id: "conv01", title: convMindsetModule.title, type: convMindsetModule.type, duration: convMindsetModule.duration, desc: convMindsetModule.desc, topics: convMindsetModule.topics, rich: convMindsetModule },
+    { id: "conv02", title: convHeroModule.title, type: convHeroModule.type, duration: convHeroModule.duration, desc: convHeroModule.desc, topics: convHeroModule.topics, rich: convHeroModule },
+    { id: "conv03", title: convValuePropsModule.title, type: convValuePropsModule.type, duration: convValuePropsModule.duration, desc: convValuePropsModule.desc, topics: convValuePropsModule.topics, rich: convValuePropsModule },
+    { id: "conv04", title: convObjectionsModule.title, type: convObjectionsModule.type, duration: convObjectionsModule.duration, desc: convObjectionsModule.desc, topics: convObjectionsModule.topics, rich: convObjectionsModule },
+    { id: "conv05", title: convTestingModule.title, type: convTestingModule.type, duration: convTestingModule.duration, desc: convTestingModule.desc, topics: convTestingModule.topics, rich: convTestingModule },
+    { id: "conv06", title: convHeatmapsModule.title, type: convHeatmapsModule.type, duration: convHeatmapsModule.duration, desc: convHeatmapsModule.desc, topics: convHeatmapsModule.topics, rich: convHeatmapsModule },
+  ]},
+  { id: "sales-pages", name: "Sales Pages & Direct Response", cat: "content", tier: "intermediate", lv: "Advanced", icon: "\u{1F4B0}", color: "#EF4444", dur: "9h", roles: ["Direct Response Copywriter", "Funnel Builder"], desc: "Long-form sales pages, VSLs, email funnels, urgency and scarcity frameworks, and direct-response principles that close.", lessons: [
+    { id: "sales01", title: salesFirstPrinciplesModule.title, type: salesFirstPrinciplesModule.type, duration: salesFirstPrinciplesModule.duration, desc: salesFirstPrinciplesModule.desc, topics: salesFirstPrinciplesModule.topics, rich: salesFirstPrinciplesModule },
+    { id: "sales02", title: salesLongformModule.title, type: salesLongformModule.type, duration: salesLongformModule.duration, desc: salesLongformModule.desc, topics: salesLongformModule.topics, rich: salesLongformModule },
+    { id: "sales03", title: salesVslModule.title, type: salesVslModule.type, duration: salesVslModule.duration, desc: salesVslModule.desc, topics: salesVslModule.topics, rich: salesVslModule },
+    { id: "sales04", title: salesUrgencyModule.title, type: salesUrgencyModule.type, duration: salesUrgencyModule.duration, desc: salesUrgencyModule.desc, topics: salesUrgencyModule.topics, rich: salesUrgencyModule },
+    { id: "sales05", title: salesEmailFunnelsModule.title, type: salesEmailFunnelsModule.type, duration: salesEmailFunnelsModule.duration, desc: salesEmailFunnelsModule.desc, topics: salesEmailFunnelsModule.topics, rich: salesEmailFunnelsModule },
+    { id: "sales06", title: salesCloseModule.title, type: salesCloseModule.type, duration: salesCloseModule.duration, desc: salesCloseModule.desc, topics: salesCloseModule.topics, rich: salesCloseModule },
+  ]},
+  { id: "ai-copywriting", name: "AI-Powered Copywriting", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F916}", color: "#3B82F6", dur: "9h", roles: ["Modern Copywriter", "Content Operator"], desc: "Using AI as a force multiplier without losing voice \u2014 prompt engineering, editing AI drafts, building your own systems, and the ethics of AI-assisted copy.", lessons: [
+    { id: "ai01", title: aiMindsetModule.title, type: aiMindsetModule.type, duration: aiMindsetModule.duration, desc: aiMindsetModule.desc, topics: aiMindsetModule.topics, rich: aiMindsetModule },
+    { id: "ai02", title: aiPromptsModule.title, type: aiPromptsModule.type, duration: aiPromptsModule.duration, desc: aiPromptsModule.desc, topics: aiPromptsModule.topics, rich: aiPromptsModule },
+    { id: "ai03", title: aiEditingModule.title, type: aiEditingModule.type, duration: aiEditingModule.duration, desc: aiEditingModule.desc, topics: aiEditingModule.topics, rich: aiEditingModule },
+    { id: "ai04", title: aiLibrariesModule.title, type: aiLibrariesModule.type, duration: aiLibrariesModule.duration, desc: aiLibrariesModule.desc, topics: aiLibrariesModule.topics, rich: aiLibrariesModule },
+    { id: "ai05", title: aiEthicsModule.title, type: aiEthicsModule.type, duration: aiEthicsModule.duration, desc: aiEthicsModule.desc, topics: aiEthicsModule.topics, rich: aiEthicsModule },
+    { id: "ai06", title: aiWorkflowModule.title, type: aiWorkflowModule.type, duration: aiWorkflowModule.duration, desc: aiWorkflowModule.desc, topics: aiWorkflowModule.topics, rich: aiWorkflowModule },
+  ]},
   { id: "camera-operation", name: "Camera Operation", cat: "video", lv: "Beginner", icon: "\u{1F4F7}", color: "#EF4444", dur: "10h", roles: ["Videographer"], desc: "Master cameras for pro video.", lessons: [
     { id: "co01", title: "Camera Anatomy", type: "Lecture", duration: "1h", desc: "Sensors, lenses, formats.", topics: ["Sensor sizes", "Lens mounts", "Recording codecs"] },
     { id: "co02", title: "Exposure Triangle", type: "Hands-on", duration: "1.5h", desc: "ISO, shutter, aperture.", topics: ["ISO behavior", "Shutter speed rules", "Aperture control"] },
