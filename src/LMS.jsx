@@ -23,6 +23,7 @@ import { socPaidModule } from "./modules/soc-paid";
 import { socCalendarModule } from "./modules/soc-calendar";
 import { socCapstoneModule } from "./modules/soc-capstone";
 import PortfolioBuilder from "./modules/PortfolioBuilder";
+import AdminDashboard from "./modules/AdminDashboard";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -576,6 +577,13 @@ export default function LMS({ onBack, user, onLogout }) {
   function toggleDark(){setDark(function(d){localStorage.setItem("sf-dark",d?"0":"1");return !d;});}
   var T = dark ? {bg:"#111318",card:"#1A1D24",text:"#E5E5E5",text2:"#AAA",text3:"#777",border:"#2A2D35",subtle:"#1E2128",hover:"#252830",inputBg:"#1A1D24",activeBg:"#2A1A10",activeText:"#F4A261",statBg1:"#1F1410",statBg2:"#1F1A0F",statBg3:"#0F1F18",statBg4:"#0F1520",bannerBg:"linear-gradient(135deg,#0D0E12,#1A1D24)"} : {bg:"#FAFAF7",card:"#FFFFFF",text:"#1A1A1A",text2:"#888",text3:"#999",border:"#ECECEC",subtle:"#F5F5F5",hover:"#F0F0F0",inputBg:"#FFFFFF",activeBg:"#F3EDFF",activeText:"#7C3AED",statBg1:"#FFF5F2",statBg2:"#FFFBEB",statBg3:"#ECFDF5",statBg4:"#EFF6FF",bannerBg:"linear-gradient(135deg,#1A1A1A,#2D2D2D)"};
   var _qScores=useState({}),quizScores=_qScores[0],setQuizScores=_qScores[1];
+  var _isAdmin=useState(false),isAdmin=_isAdmin[0],setIsAdmin=_isAdmin[1];
+  useEffect(function(){
+    if(!user){setIsAdmin(false);return;}
+    supabase.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle().then(function(res){
+      setIsAdmin(!!(res.data&&!res.error));
+    });
+  },[user]);
   useEffect(function(){
     try{localStorage.setItem("lsk-lms",JSON.stringify({v:v,skId:sk?sk.id:null,lsId:ls?ls.id:null,md:md,si:si}));}catch(e){}
   },[v,sk,ls,md,si]);
@@ -631,6 +639,10 @@ export default function LMS({ onBack, user, onLogout }) {
           <button className={"nav-item"+(v==="dash"&&fc==="All"?" active":"")} onClick={function(){setV("dash");setSk(null);setLs(null);setFc("All");setSbo(false);}}><span style={{fontSize:16}}>{"\u{1F4DA}"}</span> All Skills</button>
           <div style={{margin:"16px 14px 8px",fontSize:10,fontWeight:700,color:"#BBB",textTransform:"uppercase",letterSpacing:"1.5px"}}>Categories</div>
           {CATS.map(function(cat){return <button key={cat.id} className={"nav-item"+(fc===cat.id&&v==="dash"?" active":"")} onClick={function(){setFc(cat.id);setV("dash");setSk(null);setSbo(false);}} style={{color:fc===cat.id?cat.color:"#777"}}><span style={{fontSize:15}}>{cat.icon}</span><span style={{flex:1,fontSize:12.5}}>{cat.name}</span></button>;})}
+          {isAdmin&&<>
+            <div style={{marginTop:14,marginBottom:6,padding:"0 14px",fontSize:10,letterSpacing:1.8,textTransform:"uppercase",color:T.text3,fontWeight:700,fontFamily:"'DM Sans',sans-serif"}}>Admin</div>
+            <button className={"nav-item"+(v==="admin"?" active":"")} onClick={function(){setV("admin");setSk(null);setLs(null);setSbo(false);}} style={{color:v==="admin"?"#7C3AED":"#777"}}><span style={{fontSize:15}}>{"\u{1F6E1}\uFE0F"}</span><span style={{flex:1,fontSize:12.5}}>Admin Console</span></button>
+          </>}
         </div>
         <div style={{padding:"8px 10px",borderTop:"1px solid "+T.border}}>
           <button className="nav-item" onClick={toggleDark} style={{color:T.text2,justifyContent:"space-between"}}>
@@ -645,6 +657,7 @@ export default function LMS({ onBack, user, onLogout }) {
         {v==="skill"&&sk&&<SkV sk={sk} gb={function(){setV("dash");setSk(null);}} ols={ols} dn={dn} gp={gp} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} goPortfolio={function(){setMd("portfolio");}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="portfolio"&&<PortfolioBuilder user={user} lesson={ls} onBack={function(){setMd("browse");}} T={T}/>}
+        {v==="admin"&&isAdmin&&<AdminDashboard T={T} onBack={function(){setV("dash");}}/>}
         {v==="lesson"&&ls&&sk&&md==="slides"&&<SlV ls={ls} sk={sk} si={si} setSi={setSi} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="ready"&&<ReadyV ls={ls} sk={sk} setMd={setMd} setQa={setQa} setQs={setQs} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="quiz"&&<QzV ls={ls} sk={sk} qa={qa} setQa={setQa} qs={qs} setQs={setQs} setMd={setMd} T={T} setQScore={setQScore} saveQuizScore={saveQuizScore}/>}
