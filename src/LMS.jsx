@@ -764,7 +764,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       <div style={{flex:1,height:1,background:T.border}}/>
     </div>}
     <div style={{marginBottom:28}}>
-      <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:RT_PURPLE,letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>Part {rn} \u2014 {cs.length} {cs.length===1?"Module":"Modules"}</div>
+      <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:RT_PURPLE,letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>Part {rn} {"\u2014"} {cs.length} {cs.length===1?"Module":"Modules"}</div>
       <div style={{display:"flex",alignItems:"center",gap:18}}>
         <div style={{width:48,height:48,background:RT_GRADIENT,display:"flex",alignItems:"center",justifyContent:"center",fontSize:23,flexShrink:0,borderRadius:3,boxShadow:"0 6px 18px rgba(124,58,237,.22)"}}>{cat.icon}</div>
         <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:700,lineHeight:1.05,color:T.text,letterSpacing:-.5}}>{cat.name}</h2>
@@ -1051,7 +1051,7 @@ function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=p
           <div style={{fontSize:11,fontWeight:800,color:sk.color,textTransform:"uppercase",letterSpacing:1.5,marginBottom:10,textAlign:"center"}}>{sk.name} Progress</div>
           <div style={{display:"flex",alignItems:"baseline",gap:8,marginBottom:10,justifyContent:"center"}}>
             <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:900,color:sk.color,lineHeight:1}}>{doneCount}/{totalLessons}</span>
-            <span style={{fontSize:13,color:"#666"}}>lessons complete \u2022 {pctDone}%</span>
+            <span style={{fontSize:13,color:"#666"}}>lessons complete {"\u2022"} {pctDone}%</span>
           </div>
           <div style={{height:8,borderRadius:4,background:"#F0F0F0",overflow:"hidden",marginBottom:12}}>
             <div style={{height:"100%",background:"linear-gradient(90deg,"+sk.color+","+sk.color+"BB)",width:pctDone+"%",transition:"width .8s ease"}}/>
@@ -1068,7 +1068,7 @@ function ResV(props){var ls=props.ls,sk=props.sk,mk=props.mk,dn=props.dn,setMd=p
               <div style={{width:28,height:28,borderRadius:"50%",background:"#E5E5E5",color:"#999",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0}}>{doneCount+i+2}</div>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:13.5,fontWeight:600,color:"#1A1A1A",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{l.title}</div>
-                <div style={{fontSize:11.5,color:"#999",marginTop:2}}>{l.duration} \u2022 {l.type}</div>
+                <div style={{fontSize:11.5,color:"#999",marginTop:2}}>{l.duration} {"\u2022"} {l.type}</div>
               </div>
               <span style={{color:"#CCC",fontSize:16,fontWeight:700}}>{"\u2192"}</span>
             </div>;})}

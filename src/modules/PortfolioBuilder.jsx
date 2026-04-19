@@ -317,7 +317,7 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
           <div style={{ background: p.bg, border: "1px solid " + p.border, borderRadius: 3, padding: "18px 22px", marginBottom: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: review.feedback ? 10 : 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: p.color, letterSpacing: 2, textTransform: "uppercase" }}>Instructor Review \u00B7 {p.label}</span>
+                <span style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: p.color, letterSpacing: 2, textTransform: "uppercase" }}>Instructor Review {"\u00B7"} {p.label}</span>
                 {review.score != null && <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 700, color: p.color }}>{review.score}/100</span>}
               </div>
               {review.at && <span style={{ fontSize: 11, color: p.color, opacity: 0.7, fontFamily: "'DM Sans',sans-serif" }}>{new Date(review.at).toLocaleDateString()}</span>}

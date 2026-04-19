@@ -87,7 +87,7 @@ export default function AdminDashboard({ T, onBack }) {
     return Object.entries(map).map(([lid, v]) => ({ lid, count: v.count, avg: Math.round(v.sum / v.count) })).sort((a, b) => b.count - a.count);
   }, [scores]);
 
-  if (loading) return <div style={{ padding: 48, textAlign: "center", color: T.text3 }}>Loading admin data\u2026</div>;
+  if (loading) return <div style={{ padding: 48, textAlign: "center", color: T.text3 }}>Loading admin data{"\u2026"}</div>;
   if (error) return <div style={{ padding: 48, textAlign: "center", color: "#DC2626", fontFamily: "'DM Sans',sans-serif" }}>{error}<div style={{ marginTop: 16 }}><button className="bt" onClick={onBack} style={{ padding: "10px 20px", borderRadius: 2, background: T.subtle, color: T.text2, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Back</button></div></div>;
 
   const tabs = [
@@ -203,7 +203,7 @@ export default function AdminDashboard({ T, onBack }) {
                   }}>
                     <div style={{ flex: 1, minWidth: 200 }}>
                       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 17, fontWeight: 700, color: T.text }}>{s.project_name || "Untitled"}</div>
-                      <div style={{ fontSize: 12, color: T.text3, fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{name} \u00B7 {s.lesson_id}</div>
+                      <div style={{ fontSize: 12, color: T.text3, fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{name} {"\u00B7"} {s.lesson_id}</div>
                     </div>
                     <span style={{
                       fontSize: 10.5, fontFamily: "'DM Sans',sans-serif", fontWeight: 700,
@@ -329,7 +329,7 @@ function SubmissionModal({ submission, user, T, onClose, onUpdate }) {
           <div>
             <div style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, letterSpacing: 2, color: T.text3, textTransform: "uppercase", marginBottom: 4 }}>Portfolio Submission</div>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 26, fontWeight: 700, color: T.text, marginBottom: 4 }}>{submission.project_name || d.brandName || "Untitled"}</h2>
-            <div style={{ fontSize: 12, fontFamily: "'DM Sans',sans-serif", color: T.text3 }}>{userName} \u00B7 {submission.lesson_id} \u00B7 {submission.status}</div>
+            <div style={{ fontSize: 12, fontFamily: "'DM Sans',sans-serif", color: T.text3 }}>{userName} {"\u00B7"} {submission.lesson_id} {"\u00B7"} {submission.status}</div>
           </div>
           <button onClick={onClose} className="bt" style={{ padding: "6px 12px", borderRadius: 2, background: T.subtle, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", color: T.text2 }}>Close</button>
         </div>
@@ -343,13 +343,13 @@ function SubmissionModal({ submission, user, T, onClose, onUpdate }) {
               <select value={reviewStatus} onChange={e => setReviewStatus(e.target.value)} style={{ width: "100%", padding: "8px 10px", fontFamily: "'DM Sans',sans-serif", fontSize: 13, border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text }}>
                 <option value="pending">Pending Review</option>
                 <option value="under_review">Under Review</option>
-                <option value="approved">Approved \u2014 Passed</option>
+                <option value="approved">{"Approved \u2014 Passed"}</option>
                 <option value="needs_revision">Needs Revision</option>
                 <option value="rejected">Rejected</option>
               </select>
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 700, color: T.text3, letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", display: "block", marginBottom: 4 }}>Score (0\u2013100)</label>
+              <label style={{ fontSize: 10, fontWeight: 700, color: T.text3, letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", display: "block", marginBottom: 4 }}>{"Score (0\u2013100)"}</label>
               <input type="number" min={0} max={100} value={reviewScore} onChange={e => setReviewScore(e.target.value)} placeholder="\u2014" style={{ width: "100%", padding: "8px 10px", fontFamily: "'DM Sans',sans-serif", fontSize: 13, border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text }} />
             </div>
           </div>
