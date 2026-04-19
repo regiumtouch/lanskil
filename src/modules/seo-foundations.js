@@ -1,0 +1,75 @@
+// SEO Content Writing — Module 1: SEO Foundations for Writers
+export const seoFoundationsModule = {
+  id: "seo01",
+  title: "SEO Foundations for Writers",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "How search engines (and AI search) actually rank content in 2026 \u2014 and what that means for writers. The first principles every SEO-aware writer must understand.",
+  topics: ["How Search Works", "Intent Matching", "Crawl, Index, Rank", "AI Search Basics", "Ranking Factors", "Writer's SEO Mindset"],
+  quiz: [
+    { q: "Two pages cover the same topic. Page A has perfect keyword density. Page B answers the searcher's intent in the first 150 words with first-hand data. In 2026, which typically ranks higher and why?", opts: ["A, because keywords", "B, because modern ranking weights intent-match and E-E-A-T above keyword density", "A, because longer content wins", "Always depends on backlinks"], correct: 1 },
+    { q: "In Google's crawl \u2192 index \u2192 rank pipeline, the step where your content first has a chance to be seen is:", opts: ["Rank \u2014 it happens first", "Crawl \u2014 Googlebot must discover the URL; no crawl = no index = no rank", "Submit to Bing", "Pay for placement"], correct: 1 },
+    { q: "Your post targets \"best CRM\" but opens with a long history of CRM software. Intent diagnosis:", opts: ["Content is fine", "\"Best CRM\" is commercial-investigation intent; searchers want a comparison/verdict fast \u2014 a history section is intent-mismatch and will bury you", "More history needed", "Add more keywords"], correct: 1 },
+    { q: "AI search engines (Perplexity, Google AI Overviews, ChatGPT) affect content writers most directly by:", opts: ["Removing the need for writers", "Rewarding content with specific, citable facts, named authors, and verifiable claims \u2014 because those are what AI engines lift into answers", "Penalising long content", "Ignoring web content entirely"], correct: 1 },
+    { q: "Ranked by current ranking leverage: (A) keyword density, (B) intent match + answer depth, (C) named author / first-hand data, (D) page speed. Best-to-worst:", opts: ["A > D > C > B", "B > C > D > A \u2014 intent + E-E-A-T dominate; page speed matters on edge; density is nearly irrelevant", "A > B > C > D", "D > A > C > B"], correct: 1 },
+    { q: "A writer who thinks SEO first and reader second typically produces:", opts: ["The best-ranking content", "Content that keyword-stuffs, bores readers, and loses engagement signals (time on page, scroll depth) \u2014 which ultimately tanks rankings anyway", "Generic but high-traffic pieces", "Short-form social posts"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 1", title: "SEO Foundations", titleAccent: "for Writers", subtitle: "How search (and AI search) actually rank content in 2026 \u2014 the first principles every serious writer must internalise.", meta: "SEO Content Writing Masterclass  |  Module 1  |  8 Slides" },
+    { type: "stats", eyebrow: "WHY THIS MATTERS NOW", title: "Search changed more in 2024\u20132026 than in the previous decade", intro: "AI Overviews, generative answers, and engagement-led ranking have rewritten the rules. Writers who understand the new model out-earn writers who don\u2019t \u2014 by orders of magnitude.", stats: [
+      { num: "40%", label: "of Google searches trigger an AI Overview (Q1 2026)" },
+      { num: "78%", label: "of AI Overview clicks go to the 3\u20135 cited sources \u2014 the citation economy" },
+      { num: "2.8\u00D7", label: "higher citation rate for content with first-hand data and named authors" },
+    ], subheading: "What the New SEO Rewards", bullets: [
+      "Specificity \u2014 named people, real numbers, verifiable claims AI engines can cite",
+      "Intent match \u2014 answering the actual query in the first 150 words, not burying the answer",
+      "Authority signals \u2014 author credentials, dated publishes, sourced data",
+      "Structure \u2014 scannable H2s, lists, Q&A blocks AI engines can lift cleanly",
+    ] },
+    { type: "grid", eyebrow: "HOW SEARCH WORKS", title: "The three-step pipeline every writer must understand", subtitle: "Your content has to clear each of these gates. Missing any one guarantees invisibility.", items: [
+      { num: "01", title: "Crawl", desc: "Googlebot (and AI crawlers) must discover your URL. Internal links, sitemaps, and index requests drive this.", icon: "\u{1F577}\uFE0F" },
+      { num: "02", title: "Index", desc: "The crawler decides whether to include your page in the index. Thin, duplicate, or low-trust pages get skipped.", icon: "\u{1F4DA}" },
+      { num: "03", title: "Rank", desc: "Only indexed pages compete. Ranking is decided by intent match, E-E-A-T, engagement, and hundreds of other signals.", icon: "\u{1F3C6}" },
+    ], footer: "If your page isn\u2019t crawled, nothing else matters. If it\u2019s not indexed, nothing else matters. Ranking is the last fight, not the first." },
+    { type: "principle", num: "01", title: "Intent Match \u2014 The Single Most Important Thing", intro: "Before you write a word, answer: what does the searcher actually want? Match that, and every other SEO tactic is leverage. Miss it, and no amount of optimisation saves you.", sectionTitle: "The 4 Search Intents \u2014 And Writer Moves for Each", sections: [
+      { heading: "Informational \u2014 \"How do I...?\"", example: "How-to, guides, tutorials. Answer in the first 150 words; depth below for readers who want more.", note: "Do not open with history, origin stories, or your brand\u2019s mission." },
+      { heading: "Navigational \u2014 \"[brand]...\"", example: "They\u2019re looking for something specific. Send them there fast; minimal content needed.", note: "Don\u2019t hijack with long persuasion \u2014 they already decided." },
+      { heading: "Commercial Investigation \u2014 \"Best [x] for [y]\"", example: "Comparison articles, reviews, listicles, buyer\u2019s guides with clear verdicts.", note: "Include pros/cons, pricing, and \u201Cbest for X user\u201D callouts. Hedging kills conversion." },
+      { heading: "Transactional \u2014 \"Buy / download / sign up\"", example: "Your product page or checkout. Content should be minimal \u2014 friction-killing, not educational.", note: "This is the one case where shorter is almost always better." },
+    ], rule: "Read the top 5 results for your target query. If they\u2019re all guides and you\u2019re writing a listicle, you already lost before you started typing." },
+    { type: "comparison", eyebrow: "OLD SEO vs NEW SEO", title: "What worked in 2018 is dying in 2026", subtitle: "The playbook flipped. Writers still using the old model are losing ground to those who adapted.", left: { title: "Old SEO (2015\u20132020 playbook)", color: "#EF4444", items: [
+      { strong: "Keyword density 2\u20133%", note: "Spam-adjacent; AI engines and human readers both skip it." },
+      { strong: "2,000+ word \"ultimate guides\"", note: "Length as a ranking signal \u2014 now mostly neutralised unless depth is real." },
+      { strong: "Anonymous byline-less content", note: "E-E-A-T failure; AI engines won\u2019t cite; Google Helpful Content System down-ranks." },
+      { strong: "Mass-produced content factories", note: "Helpful Content System targets these directly; manual penalties on the rise." },
+    ] }, right: { title: "New SEO (2025\u20132026 playbook)", color: "#10B981", items: [
+      { strong: "Answer the intent in the first 150 words", note: "AI engines lift answers from here; readers reward it with engagement signals." },
+      { strong: "Named author with credentials + fresh date", note: "E-E-A-T earned in one paragraph; citable by AI and trusted by humans." },
+      { strong: "First-hand data, examples, named customers", note: "Irreplaceable. AI can\u2019t generate real proprietary data." },
+      { strong: "Structured for scanning and citation", note: "H2s that answer questions, lists, Q&A blocks \u2014 AI-friendly architecture." },
+    ] }, footer: "The old playbook didn\u2019t work because keywords were magic. It worked because Google was simpler. Both conditions are gone." },
+    { type: "table", title: "Ranking Factors \u2014 Ranked By Actual Leverage in 2026", subtitle: "Not all factors are equal. These are the signals that most move the needle for a content writer.", columns: ["Factor", "Leverage", "What Writers Control"], rows: [
+      ["Intent match", "Very high", "Read the SERP; match the content-type before writing"],
+      ["E-E-A-T signals (author, dates, sources)", "Very high", "Add byline, publish/updated dates, cited sources \u2014 every piece"],
+      ["Answer depth + first-hand specifics", "High", "Named examples, real numbers, original screenshots"],
+      ["On-page structure (H1/H2, lists, Q&A)", "High", "Scannable structure; answers to common sub-questions"],
+      ["Internal linking", "Medium\u2013High", "Link to pillar pages + related pieces; anchor text matters"],
+      ["Engagement signals (dwell, scroll, return)", "Medium", "Good writing + intent match drive these automatically"],
+      ["Backlinks", "Medium (context-dependent)", "Mostly outside writer\u2019s control; write link-worthy content"],
+      ["Page speed / Core Web Vitals", "Low\u2013Medium", "Mostly a dev concern; don\u2019t obsess over it"],
+      ["Keyword density", "Near zero", "Mention naturally 2\u20134 times; ignore density calculators"],
+    ], footer: "Rule: writers focus on factors they control. The top 4 rows are your job. Don\u2019t spend hours tuning the bottom rows." },
+    { type: "principle", num: "02", title: "The Writer's SEO Mindset \u2014 Reader First, Search Second", intro: "The writers who rank highest in 2026 don\u2019t think about search engines at all while writing. They think about the reader. Then they structure and format for search. This sequence is not reversible.", sectionTitle: "The 4 Habits of SEO-Aware Writers", sections: [
+      { heading: "1. Start by reading the current top 5 results", example: "Don\u2019t skip. Skim all 5. Note: what format, what depth, what angle? Where\u2019s the gap you can fill?", note: "SEO starts with reading, not writing. 20 min here saves 2 hours later." },
+      { heading: "2. Write for the one specific reader, not for \"traffic\"", example: "\"A marketing manager preparing a Monday pipeline review\" beats \"people interested in marketing.\"", note: "Specific writing gets specific traffic \u2014 which converts. Generic writing gets generic traffic \u2014 which doesn\u2019t." },
+      { heading: "3. Structure for scanning, not reading", example: "H2 every 200\u2013300 words. Lists where lists help. Tables for comparisons. Never a wall of prose.", note: "Readers skim; AI engines parse structure; both reward it." },
+      { heading: "4. Add one first-hand specific in every piece", example: "Real number, named customer, screenshot, quote. Something AI can\u2019t generate without you.", note: "This is your durable competitive advantage. Every piece should earn at least one." },
+    ], rule: "SEO is downstream of good writing. You cannot SEO your way around a piece that doesn\u2019t serve the reader \u2014 and you don\u2019t need much SEO if the piece does." },
+    { type: "exercise", title: "Read the SERP Before You Write", intro: "Pick a real search query you\u2019d want to rank for. Before writing anything, spend 15 minutes answering these.", items: [
+      { num: "1", copy: "What is the dominant content-type in the top 5 results? (How-to / listicle / comparison / guide / video)", answer: "This tells you the format Google has decided the intent rewards. Match it or have a strong reason not to." },
+      { num: "2", copy: "What question is everyone answering in the first 150 words?", answer: "Write your answer first. Make it sharper, more specific, or more first-hand than the current top result." },
+      { num: "3", copy: "What\u2019s ONE thing none of the top 5 is doing? (A named example, a real dataset, a counterintuitive POV)", answer: "That\u2019s your differentiator. Make sure your piece does that thing clearly and with specificity." },
+      { num: "4", copy: "Who\u2019s the one specific person (role, stage, situation) you\u2019re writing for?", answer: "If you can\u2019t name them in one sentence, pause the draft. Writing for \"anyone\" produces content for no one." },
+    ] },
+  ],
+};

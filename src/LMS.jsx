@@ -24,6 +24,13 @@ import { socCalendarModule } from "./modules/soc-calendar";
 import { socCapstoneModule } from "./modules/soc-capstone";
 import PortfolioBuilder from "./modules/PortfolioBuilder";
 import AdminDashboard from "./modules/AdminDashboard";
+import { seoFoundationsModule } from "./modules/seo-foundations";
+import { seoKeywordsModule } from "./modules/seo-keywords";
+import { seoOnpageModule } from "./modules/seo-onpage";
+import { seoEeatModule } from "./modules/seo-eeat";
+import { seoAisearchModule } from "./modules/seo-aisearch";
+import { seoClustersModule } from "./modules/seo-clusters";
+import { seoMeasurementModule } from "./modules/seo-measurement";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -58,6 +65,10 @@ const SKILL_IMG = {
   "copywriting": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
   "content-strategy": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=400&fit=crop",
   "social-media-copywriting": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=400&fit=crop",
+  "seo-content-writing": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=400&fit=crop",
+  "conversion-copy": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+  "sales-pages": "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=400&fit=crop",
+  "ai-copywriting": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop",
   "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
   "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
   "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
@@ -391,7 +402,7 @@ const SKILLS = [
     { id: "df04", title: "Color Theory", type: "Workshop", duration: "1.5h", desc: "Color wheel, harmonies, emotions.", topics: ["Color wheel", "Color harmonies", "Emotional associations"] },
     { id: "df05", title: "Hierarchy & Layout", type: "Hands-on", duration: "1h", desc: "Guide eye through design.", topics: ["Hierarchy systems", "Grid structures", "F & Z patterns"] },
   ]},
-  { id: "content-strategy", name: "Content Strategy", cat: "content", lv: "Beginner", icon: "\u{1F4CB}", color: "#7C3AED", dur: "8h", roles: ["Content Strategist", "Marketing Manager"], desc: "Build content systems that serve business outcomes \u2014 8 foundation modules covering strategy, audience, pillars, ideation, calendar, SEO, distribution, and measurement.", lessons: [
+  { id: "content-strategy", name: "Content Strategy", cat: "content", tier: "foundational", lv: "Beginner", icon: "\u{1F4CB}", color: "#7C3AED", dur: "8h", roles: ["Content Strategist", "Marketing Manager"], desc: "Build content systems that serve business outcomes \u2014 8 foundation modules covering strategy, audience, pillars, ideation, calendar, SEO, distribution, and measurement.", lessons: [
     { id: "csf01", title: contentStrategyFoundationsModule.title, type: contentStrategyFoundationsModule.type, duration: contentStrategyFoundationsModule.duration, desc: contentStrategyFoundationsModule.desc, topics: contentStrategyFoundationsModule.topics, rich: contentStrategyFoundationsModule },
     { id: "csa01", title: csAudienceModule.title, type: csAudienceModule.type, duration: csAudienceModule.duration, desc: csAudienceModule.desc, topics: csAudienceModule.topics, rich: csAudienceModule },
     { id: "csp01", title: csPillarsModule.title, type: csPillarsModule.type, duration: csPillarsModule.duration, desc: csPillarsModule.desc, topics: csPillarsModule.topics, rich: csPillarsModule },
@@ -401,7 +412,7 @@ const SKILLS = [
     { id: "csd01", title: csDistributionModule.title, type: csDistributionModule.type, duration: csDistributionModule.duration, desc: csDistributionModule.desc, topics: csDistributionModule.topics, rich: csDistributionModule },
     { id: "csm01", title: csMeasurementModule.title, type: csMeasurementModule.type, duration: csMeasurementModule.duration, desc: csMeasurementModule.desc, topics: csMeasurementModule.topics, rich: csMeasurementModule },
   ]},
-  { id: "social-media-copywriting", name: "Social Media Copywriting", cat: "content", lv: "Intermediate", icon: "\u{1F4F1}", color: "#F96167", dur: "23h", roles: ["Social Media Manager", "Content Copywriter"], desc: "Master scroll-stopping copy for LinkedIn, Instagram, X, TikTok, and Facebook \u2014 from hooks to ads to portfolio.", lessons: [
+  { id: "social-media-copywriting", name: "Social Media Copywriting", cat: "content", tier: "foundational", lv: "Intermediate", icon: "\u{1F4F1}", color: "#F96167", dur: "23h", roles: ["Social Media Manager", "Content Copywriter"], desc: "Master scroll-stopping copy for LinkedIn, Instagram, X, TikTok, and Facebook \u2014 from hooks to ads to portfolio.", lessons: [
     { id: "soc01", title: socMindsetModule.title, type: socMindsetModule.type, duration: socMindsetModule.duration, desc: socMindsetModule.desc, topics: socMindsetModule.topics, rich: socMindsetModule },
     { id: "soc02", title: socHooksModule.title, type: socHooksModule.type, duration: socHooksModule.duration, desc: socHooksModule.desc, topics: socHooksModule.topics, rich: socHooksModule },
     { id: "soc03", title: socPlatformsModule.title, type: socPlatformsModule.type, duration: socPlatformsModule.duration, desc: socPlatformsModule.desc, topics: socPlatformsModule.topics, rich: socPlatformsModule },
@@ -411,7 +422,7 @@ const SKILLS = [
     { id: "soc07", title: socCalendarModule.title, type: socCalendarModule.type, duration: socCalendarModule.duration, desc: socCalendarModule.desc, topics: socCalendarModule.topics, rich: socCalendarModule },
     { id: "soc08", title: socCapstoneModule.title, type: socCapstoneModule.type, duration: socCapstoneModule.duration, desc: socCapstoneModule.desc, topics: socCapstoneModule.topics, rich: socCapstoneModule, portfolio: true },
   ]},
-  { id: "copywriting", name: "Copywriting", cat: "content", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
+  { id: "copywriting", name: "Copywriting", cat: "content", tier: "foundational", lv: "Beginner", icon: "\u270F\uFE0F", color: "#7C3AED", dur: "9h", roles: ["Content Strategist"], desc: "Persuasive copy for all channels.", lessons: [
     { id: "psych01", title: psychologyModule.title, type: psychologyModule.type, duration: psychologyModule.duration, desc: psychologyModule.desc, topics: psychologyModule.topics, rich: psychologyModule },
     { id: "hdln01", title: headlinesModule.title, type: headlinesModule.type, duration: headlinesModule.duration, desc: headlinesModule.desc, topics: headlinesModule.topics, rich: headlinesModule },
     { id: "frmk01", title: frameworksModule.title, type: frameworksModule.type, duration: frameworksModule.duration, desc: frameworksModule.desc, topics: frameworksModule.topics, rich: frameworksModule },
@@ -419,6 +430,18 @@ const SKILLS = [
     { id: "objc01", title: objectionsModule.title, type: objectionsModule.type, duration: objectionsModule.duration, desc: objectionsModule.desc, topics: objectionsModule.topics, rich: objectionsModule },
     { id: "clse01", title: closeModule.title, type: closeModule.type, duration: closeModule.duration, desc: closeModule.desc, topics: closeModule.topics, rich: closeModule },
   ]},
+  { id: "seo-content-writing", name: "SEO Content Writing Masterclass", cat: "content", tier: "foundational", lv: "Intermediate", icon: "\u{1F50D}", color: "#F4A261", dur: "10h", roles: ["Content Strategist", "SEO Specialist", "Freelance Writer"], desc: "Rank in Google AND get cited by AI Overviews, Perplexity, and ChatGPT. 7 modules covering foundations, keywords, on-page, E-E-A-T, AI search, clusters, and iteration.", lessons: [
+    { id: "seo01", title: seoFoundationsModule.title, type: seoFoundationsModule.type, duration: seoFoundationsModule.duration, desc: seoFoundationsModule.desc, topics: seoFoundationsModule.topics, rich: seoFoundationsModule },
+    { id: "seo02", title: seoKeywordsModule.title, type: seoKeywordsModule.type, duration: seoKeywordsModule.duration, desc: seoKeywordsModule.desc, topics: seoKeywordsModule.topics, rich: seoKeywordsModule },
+    { id: "seo03", title: seoOnpageModule.title, type: seoOnpageModule.type, duration: seoOnpageModule.duration, desc: seoOnpageModule.desc, topics: seoOnpageModule.topics, rich: seoOnpageModule },
+    { id: "seo04", title: seoEeatModule.title, type: seoEeatModule.type, duration: seoEeatModule.duration, desc: seoEeatModule.desc, topics: seoEeatModule.topics, rich: seoEeatModule },
+    { id: "seo05", title: seoAisearchModule.title, type: seoAisearchModule.type, duration: seoAisearchModule.duration, desc: seoAisearchModule.desc, topics: seoAisearchModule.topics, rich: seoAisearchModule },
+    { id: "seo06", title: seoClustersModule.title, type: seoClustersModule.type, duration: seoClustersModule.duration, desc: seoClustersModule.desc, topics: seoClustersModule.topics, rich: seoClustersModule },
+    { id: "seo07", title: seoMeasurementModule.title, type: seoMeasurementModule.type, duration: seoMeasurementModule.duration, desc: seoMeasurementModule.desc, topics: seoMeasurementModule.topics, rich: seoMeasurementModule },
+  ]},
+  { id: "conversion-copy", name: "Conversion Copy & Landing Pages", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F3AF}", color: "#EC4899", dur: "TBD", roles: ["Copywriter", "CRO Specialist"], desc: "Above-the-fold copy, value propositions, objection handling, A/B testing, heatmap analysis, and CRO fundamentals.", lessons: [] },
+  { id: "sales-pages", name: "Sales Pages & Direct Response", cat: "content", tier: "intermediate", lv: "Advanced", icon: "\u{1F4B0}", color: "#EF4444", dur: "TBD", roles: ["Direct Response Copywriter", "Funnel Builder"], desc: "Long-form sales pages, VSLs, email funnels, urgency and scarcity frameworks, and direct-response principles that close.", lessons: [] },
+  { id: "ai-copywriting", name: "AI-Powered Copywriting", cat: "content", tier: "intermediate", lv: "Intermediate", icon: "\u{1F916}", color: "#3B82F6", dur: "TBD", roles: ["Modern Copywriter", "Content Operator"], desc: "Using AI as a force multiplier without losing voice \u2014 prompt engineering, editing AI drafts, building your own systems, and the ethics of AI-assisted copy.", lessons: [] },
   { id: "camera-operation", name: "Camera Operation", cat: "video", lv: "Beginner", icon: "\u{1F4F7}", color: "#EF4444", dur: "10h", roles: ["Videographer"], desc: "Master cameras for pro video.", lessons: [
     { id: "co01", title: "Camera Anatomy", type: "Lecture", duration: "1h", desc: "Sensors, lenses, formats.", topics: ["Sensor sizes", "Lens mounts", "Recording codecs"] },
     { id: "co02", title: "Exposure Triangle", type: "Hands-on", duration: "1.5h", desc: "ISO, shutter, aperture.", topics: ["ISO behavior", "Shutter speed rules", "Aperture control"] },
@@ -771,8 +794,23 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       </div>
       <div style={{height:2,background:RT_GRADIENT,marginTop:20,width:"100%",opacity:.85}}/>
     </div>
+    {cat.id==="content"?(function(){
+      var founds=cs.filter(function(s){return s.tier==="foundational"||!s.tier;});
+      var inters=cs.filter(function(s){return s.tier==="intermediate";});
+      return <>
+        {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat}/>}
+        {inters.length>0&&<>
+          <div style={{display:"flex",alignItems:"center",gap:16,margin:"36px 0 24px"}}>
+            <div style={{flex:1,height:1,background:T.border}}/>
+            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,color:T.text3,letterSpacing:1}}>advance to</span>
+            <div style={{flex:1,height:1,background:T.border}}/>
+          </div>
+          <TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat}/>
+        </>}
+      </>;
+    })():(
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
-      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.cat!=="content";var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.cat!=="content"||s.tier==="intermediate";var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
         {/* Hero image with level chip + progress overlay */}
         <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
           <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:comingSoon?"grayscale(80%) contrast(.95)":"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
@@ -819,8 +857,54 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
         </div>
       </article>;})}
     </div>
+    )}
   </div>;})}
   </div>;}
+
+function TierBlock(props){var T=props.T,label=props.label,heading=props.heading,sublabel=props.sublabel,count=props.count,skills=props.skills,osk=props.osk,gp=props.gp,cat=props.cat;
+  return <div style={{marginBottom:12}}>
+    <div style={{display:"flex",alignItems:"baseline",gap:12,flexWrap:"wrap",marginBottom:8}}>
+      <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:13,color:"#F4A261",letterSpacing:2,textTransform:"uppercase",fontWeight:600}}>{label}</span>
+      <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:T.text,letterSpacing:-.3,margin:0}}>{heading}</h3>
+      <span style={{fontSize:11,fontFamily:"'DM Sans',sans-serif",color:T.text3,letterSpacing:1,textTransform:"uppercase",fontWeight:600}}>{count} {count===1?"course":"courses"}</span>
+    </div>
+    <p style={{fontSize:13,color:T.text3,marginBottom:20,fontFamily:"'DM Sans',sans-serif",fontStyle:"italic"}}>{sublabel}</p>
+    <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
+      {skills.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.tier==="intermediate"||(s.lessons&&s.lessons.length===0);var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.72:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor="#7C3AED";e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+        <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
+          <img src={img} alt="" loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:comingSoon?"grayscale(80%) contrast(.95)":"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
+          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(124,58,237,.05) 0%,rgba(0,0,0,0) 45%,rgba(26,26,26,.30) 100%)"}}/>
+          {!comingSoon&&<div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>}
+          {comingSoon&&<div style={{position:"absolute",top:14,left:14,background:"#1A1A1A",padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>Coming Soon</div>}
+          {started&&!comingSoon&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.3)"}}><div style={{height:"100%",background:"linear-gradient(135deg,#7C3AED,#F4A261)",width:pr+"%",transition:"width .4s"}}/></div>}
+        </div>
+        <div style={{padding:"24px 26px 24px",flex:1,display:"flex",flexDirection:"column"}}>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"#7C3AED",letterSpacing:2.4,textTransform:"uppercase",marginBottom:10}}>{cat.name}</div>
+          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:700,lineHeight:1.12,color:T.text,letterSpacing:-.4,marginBottom:12}}>{s.name}</h3>
+          <p style={{fontSize:13.5,color:T.text2,lineHeight:1.65,marginBottom:20,fontFamily:"'DM Sans',sans-serif"}}>{s.desc}</p>
+          {s.lessons&&s.lessons.length>0&&<div style={{marginBottom:20}}>
+            <div style={{fontSize:9.5,fontWeight:700,color:T.text3,letterSpacing:2,textTransform:"uppercase",fontFamily:"'DM Sans',sans-serif",marginBottom:10}}>What You'll Learn</div>
+            <ul style={{listStyle:"none",padding:0,margin:0}}>
+              {s.lessons.slice(0,3).map(function(l){return <li key={l.id} style={{display:"flex",gap:10,fontSize:12.5,color:T.text2,lineHeight:1.55,marginBottom:5,fontFamily:"'DM Sans',sans-serif"}}><span style={{color:"#F4A261",flexShrink:0,fontWeight:700}}>{"\u2014"}</span><span style={{flex:1,overflow:"hidden"}}>{l.title}</span></li>;})}
+              {s.lessons.length>3&&<li style={{fontSize:12,color:T.text3,fontStyle:"italic",fontFamily:"'Cormorant Garamond',serif",marginTop:6,marginLeft:20}}>and {s.lessons.length-3} more</li>}
+            </ul>
+          </div>}
+          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:started?10:16,fontSize:11,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>
+            <span>{s.lessons.length} Lessons</span>
+            <span style={{color:T.border}}>{"\u00B7"}</span>
+            <span>{s.dur}</span>
+            <span style={{color:T.border}}>{"\u00B7"}</span>
+            <span style={{color:"#F4A261",fontWeight:600}}>{"\u2720 Certificate"}</span>
+          </div>
+          {started&&!comingSoon&&<div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete</div>}
+          {comingSoon
+            ? <button disabled className="bt" style={{padding:"13px 20px",borderRadius:3,background:T.subtle,color:T.text3,fontSize:13,fontWeight:700,border:"1px solid "+T.border,fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"not-allowed",width:"100%"}}>Coming Soon</button>
+            : <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"13px 20px",borderRadius:3,background:started?"#7C3AED":"linear-gradient(135deg,#7C3AED,#F4A261)",color:"white",fontSize:13,fontWeight:700,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer",width:"100%"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>}
+        </div>
+      </article>;})}
+    </div>
+  </div>;
+}
 
 function SkV(props){var sk=props.sk,gb=props.gb,ols=props.ols,dn=props.dn,gp=props.gp;var pr=gp(sk),d=sk.lessons.filter(function(l){return dn[l.id];}).length;
   return <div><div className="bc"><span onClick={gb}>Dashboard</span><span className="sep">/</span><span className="cur">{sk.name}</span></div><div className="c" style={{padding:30,marginBottom:22,borderLeft:"4px solid "+sk.color}}><div style={{display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}><div style={{fontSize:44}}>{sk.icon}</div><div style={{flex:1}}><h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:24,fontWeight:800,margin:"4px 0"}}>{sk.name}</h1><p style={{fontSize:13.5,color:"#888",lineHeight:1.6}}>{sk.desc}</p><div style={{display:"flex",gap:14,marginTop:10,fontSize:12.5,color:"#888"}}><span>{"\u2705"} {d}/{sk.lessons.length}</span><span>{sk.roles.join(", ")}</span></div></div><Rng p={pr} sz={76} sw={5.5} c={sk.color}/></div><div style={{marginTop:18}}><Bar p={pr} c={sk.color} h={7}/></div></div>
