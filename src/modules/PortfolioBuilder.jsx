@@ -37,6 +37,36 @@ const EMPTY_DATA = {
   finalAnnotations: "",
 };
 
+function Section({ num, title, subtitle, progress, isOpen, onToggle, T, children }) {
+  const sectionStyle = { background: T.card, border: "1px solid " + T.border, borderRadius: 3, marginBottom: 16, overflow: "hidden" };
+  const headerStyle = { padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer", gap: 14 };
+  return (
+    <div style={sectionStyle}>
+      <div onClick={onToggle} style={headerStyle}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flex: 1, minWidth: 0 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: 22, color: PURPLE, fontWeight: 600, minWidth: 34 }}>{"0" + num}</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 19, fontWeight: 700, color: T.text, lineHeight: 1.2 }}>{title}</div>
+            <div style={{ fontSize: 12, color: T.text3, fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{subtitle}</div>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ fontSize: 10.5, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: progress === 100 ? "#10B981" : T.text3, letterSpacing: 1, textTransform: "uppercase" }}>{progress}%</div>
+          <div style={{ width: 60, height: 2, background: T.border }}>
+            <div style={{ height: "100%", background: progress === 100 ? "#10B981" : GRADIENT, width: progress + "%", transition: "width .3s" }} />
+          </div>
+          <span style={{ fontSize: 14, color: T.text3, transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform .2s" }}>\u25BE</span>
+        </div>
+      </div>
+      {isOpen && (
+        <div style={{ padding: "0 22px 22px", borderTop: "1px solid " + T.border }}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const RUBRIC = [
   { criteria: "Hook quality & scroll-stopping power", weight: 20 },
   { criteria: "Platform-native adaptation (not just resized)", weight: 20 },
@@ -248,34 +278,7 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
   };
   const taStyle = { ...inputStyle, minHeight: 90, lineHeight: 1.6 };
 
-  function Section({ num, title, subtitle, progress, children }) {
-    const open = openSection === num;
-    return (
-      <div style={sectionStyle}>
-        <div onClick={() => setOpenSection(open ? null : num)} style={sectionHeaderStyle}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, flex: 1, minWidth: 0 }}>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: 22, color: PURPLE, fontWeight: 600, minWidth: 34 }}>{"0" + num}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 19, fontWeight: 700, color: T.text, lineHeight: 1.2 }}>{title}</div>
-              <div style={{ fontSize: 12, color: T.text3, fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{subtitle}</div>
-            </div>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ fontSize: 10.5, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: progress === 100 ? "#10B981" : T.text3, letterSpacing: 1, textTransform: "uppercase" }}>{progress}%</div>
-            <div style={{ width: 60, height: 2, background: T.border }}>
-              <div style={{ height: "100%", background: progress === 100 ? "#10B981" : GRADIENT, width: progress + "%", transition: "width .3s" }} />
-            </div>
-            <span style={{ fontSize: 14, color: T.text3, transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform .2s" }}>▾</span>
-          </div>
-        </div>
-        {open && (
-          <div style={{ padding: "0 22px 22px", borderTop: "1px solid " + T.border }}>
-            {children}
-          </div>
-        )}
-      </div>
-    );
-  }
+  const toggleSection = (num) => setOpenSection(openSection === num ? null : num);
 
   return (
     <div className="fi" style={{ maxWidth: 880, margin: "0 auto" }}>
@@ -298,19 +301,19 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
       <button onClick={onBack} className="bt" style={{ marginBottom: 16, padding: "8px 16px", borderRadius: 2, background: T.subtle, color: T.text2, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Back to Lesson</button>
 
       {/* Sections */}
-      <Section num={1} title="Brand Voice Guide" subtitle="Define FreshRoast's voice, tone, and do's/don'ts in 1 page." progress={p1}>
+      <Section num={1} title="Brand Voice Guide" subtitle="Define FreshRoast's voice, tone, and do's/don'ts in 1 page." progress={p1} isOpen={openSection===1} onToggle={()=>toggleSection(1)} T={T}>
         <label style={labelStyle}>Brand Name</label>
         <input value={data.brandName} disabled={readOnly} onChange={e => update("brandName", e.target.value)} style={inputStyle} />
         <label style={labelStyle}>Voice, Tone & Do/Don't</label>
         <textarea value={data.voiceGuide} disabled={readOnly} onChange={e => update("voiceGuide", e.target.value)} rows={10} placeholder="Describe voice (e.g. warm, specific, slightly contrarian). Include 3-5 'we say this / not that' examples, plus words the brand refuses to use." style={{ ...taStyle, minHeight: 180 }} />
       </Section>
 
-      <Section num={2} title="Content Strategy" subtitle="2-week calendar logic: pillars, post-types, platform rationale, the 40/30/20/10 mix." progress={p2}>
+      <Section num={2} title="Content Strategy" subtitle="2-week calendar logic: pillars, post-types, platform rationale, the 40/30/20/10 mix." progress={p2} isOpen={openSection===2} onToggle={()=>toggleSection(2)} T={T}>
         <label style={labelStyle}>Strategy Overview</label>
         <textarea value={data.contentStrategy} disabled={readOnly} onChange={e => update("contentStrategy", e.target.value)} rows={12} placeholder="List 3 content pillars. Describe the content mix (40/30/20/10). Note which platforms you will use and why. Outline how the 2-week cadence will work." style={{ ...taStyle, minHeight: 200 }} />
       </Section>
 
-      <Section num={3} title="Organic Posts (10)" subtitle="4 LinkedIn · 4 Instagram · 2 X threads. Hook + body + CTA + annotation each." progress={p3}>
+      <Section num={3} title="Organic Posts (10)" subtitle="4 LinkedIn · 4 Instagram · 2 X threads. Hook + body + CTA + annotation each." progress={p3} isOpen={openSection===3} onToggle={()=>toggleSection(3)} T={T}>
         <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: PURPLE, letterSpacing: 1.5, textTransform: "uppercase", marginTop: 18, marginBottom: 4 }}>LinkedIn Posts</div>
         {data.linkedinPosts.map((p, i) => (
           <div key={i} style={{ padding: "14px 16px", background: T.subtle, borderRadius: 3, marginBottom: 10, borderLeft: "3px solid " + PURPLE }}>
@@ -342,7 +345,7 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
         ))}
       </Section>
 
-      <Section num={4} title="Paid Campaign (3 Meta Ad Variants)" subtitle="First-box-free offer. Primary text + headline + description per variant." progress={p4}>
+      <Section num={4} title="Paid Campaign (3 Meta Ad Variants)" subtitle="First-box-free offer. Primary text + headline + description per variant." progress={p4} isOpen={openSection===4} onToggle={()=>toggleSection(4)} T={T}>
         {data.adVariants.map((p, i) => (
           <div key={i} style={{ padding: "14px 16px", background: T.subtle, borderRadius: 3, marginBottom: 10, borderLeft: "3px solid " + PURPLE }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
@@ -361,7 +364,7 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
         ))}
       </Section>
 
-      <Section num={5} title="TikTok Scripts (2)" subtitle="30-60 sec shorts. Hook · Body · CTA. Native UGC feel." progress={p5}>
+      <Section num={5} title="TikTok Scripts (2)" subtitle="30-60 sec shorts. Hook · Body · CTA. Native UGC feel." progress={p5} isOpen={openSection===5} onToggle={()=>toggleSection(5)} T={T}>
         {data.tiktokScripts.map((p, i) => (
           <div key={i} style={{ padding: "14px 16px", background: T.subtle, borderRadius: 3, marginBottom: 10, borderLeft: "3px solid " + ORANGE }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
@@ -380,7 +383,7 @@ export default function PortfolioBuilder({ user, lesson, onBack, T }) {
         ))}
       </Section>
 
-      <Section num={6} title="Final Annotations & Testing Plan" subtitle="Explain your process, which A/B tests you'd run first, what you learned." progress={p6}>
+      <Section num={6} title="Final Annotations & Testing Plan" subtitle="Explain your process, which A/B tests you'd run first, what you learned." progress={p6} isOpen={openSection===6} onToggle={()=>toggleSection(6)} T={T}>
         <textarea value={data.finalAnnotations} disabled={readOnly} onChange={e => update("finalAnnotations", e.target.value)} rows={10} placeholder="What frameworks did you use most? Which piece do you think is strongest and why? What would you A/B test first if this campaign went live?" style={{ ...taStyle, minHeight: 200 }} />
       </Section>
 
