@@ -682,6 +682,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   var comp=SKILLS.filter(function(s){return gp(s)===100;}).length;
   // Build Continue Learning list - skills with progress > 0, showing next uncompleted lesson
   var continueList=SKILLS.map(function(s){
+    if(s.cat!=="content")return null;
     var progress=gp(s);
     if(progress<=0||progress>=100)return null;
     var nextLesson=s.lessons.find(function(l){return !dn[l.id];});
@@ -771,13 +772,14 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       <div style={{height:2,background:RT_GRADIENT,marginTop:20,width:"100%",opacity:.85}}/>
     </div>
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
-      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;return <article key={s.id} role="button" tabIndex={0} aria-label={(started?"Continue ":"Begin ")+s.name} onClick={function(){osk(s);}} onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();osk(s);}}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.cat!=="content";var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
         {/* Hero image with level chip + progress overlay */}
         <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
-          <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
+          <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:comingSoon?"grayscale(80%) contrast(.95)":"grayscale(12%) contrast(1.04) saturate(.92)"}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(124,58,237,.05) 0%,rgba(0,0,0,0) 45%,rgba(26,26,26,.30) 100%)"}}/>
-          <div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>
-          {started&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.3)"}}><div style={{height:"100%",background:RT_GRADIENT,width:pr+"%",transition:"width .4s"}}/></div>}
+          {!comingSoon&&<div style={{position:"absolute",top:14,left:14,background:LC[s.lv],padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>{s.lv}</div>}
+          {comingSoon&&<div style={{position:"absolute",top:14,left:14,background:"#1A1A1A",padding:"4px 11px",fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"white",letterSpacing:1.8,textTransform:"uppercase",borderRadius:2}}>Coming Soon</div>}
+          {started&&!comingSoon&&<div style={{position:"absolute",bottom:0,left:0,right:0,height:3,background:"rgba(255,255,255,.3)"}}><div style={{height:"100%",background:RT_GRADIENT,width:pr+"%",transition:"width .4s"}}/></div>}
         </div>
 
         {/* Body */}
@@ -808,10 +810,12 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
           </div>
 
           {/* Progress label if started */}
-          {started&&<div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete \u2014 Continue where you left off</div>}
+          {started&&!comingSoon&&<div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:1.5,textTransform:"uppercase",marginBottom:12}}>{pr}% Complete \u2014 Continue where you left off</div>}
 
           {/* CTA */}
-          <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"13px 20px",borderRadius:3,background:started?RT_PURPLE:RT_GRADIENT,color:"white",fontSize:13,fontWeight:700,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer",width:"100%",boxShadow:"0 4px 14px rgba(124,58,237,.18)"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>
+          {comingSoon
+            ? <button disabled className="bt" style={{padding:"13px 20px",borderRadius:3,background:T.subtle,color:T.text3,fontSize:13,fontWeight:700,border:"1px solid "+T.border,fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"not-allowed",width:"100%"}}>Coming Soon</button>
+            : <button className="bt" onClick={function(e){e.stopPropagation();osk(s);}} style={{padding:"13px 20px",borderRadius:3,background:started?RT_PURPLE:RT_GRADIENT,color:"white",fontSize:13,fontWeight:700,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer",width:"100%",boxShadow:"0 4px 14px rgba(124,58,237,.18)"}}>{started?"Continue Course":"Begin Course"} {"\u2192"}</button>}
         </div>
       </article>;})}
     </div>
