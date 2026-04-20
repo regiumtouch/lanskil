@@ -49,6 +49,24 @@ import { aiEditingModule } from "./modules/ai-editing";
 import { aiLibrariesModule } from "./modules/ai-libraries";
 import { aiEthicsModule } from "./modules/ai-ethics";
 import { aiWorkflowModule } from "./modules/ai-workflow";
+import { voiceWhatModule } from "./modules/voice-what";
+import { voiceAuditModule } from "./modules/voice-audit";
+import { voiceGuideModule } from "./modules/voice-guide";
+import { voiceChannelsModule } from "./modules/voice-channels";
+import { voiceGovernanceModule } from "./modules/voice-governance";
+import { voiceCategoryModule } from "./modules/voice-category";
+import { cdMindsetModule } from "./modules/cd-mindset";
+import { cdCampaignsModule } from "./modules/cd-campaigns";
+import { cdBriefsModule } from "./modules/cd-briefs";
+import { cdFeedbackModule } from "./modules/cd-feedback";
+import { cdRolloutsModule } from "./modules/cd-rollouts";
+import { cdMeasureModule } from "./modules/cd-measure";
+import { bizPositioningModule } from "./modules/biz-positioning";
+import { bizPricingModule } from "./modules/biz-pricing";
+import { bizClientsModule } from "./modules/biz-clients";
+import { bizContractsModule } from "./modules/biz-contracts";
+import { bizScaleModule } from "./modules/biz-scale";
+import { bizLongGameModule } from "./modules/biz-longgame";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -87,6 +105,9 @@ const SKILL_IMG = {
   "conversion-copy": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
   "sales-pages": "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=400&fit=crop",
   "ai-copywriting": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop",
+  "brand-voice": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=400&fit=crop",
+  "creative-direction": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop",
+  "copywriting-business": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop",
   "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
   "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
   "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
@@ -481,6 +502,30 @@ const SKILLS = [
     { id: "ai05", title: aiEthicsModule.title, type: aiEthicsModule.type, duration: aiEthicsModule.duration, desc: aiEthicsModule.desc, topics: aiEthicsModule.topics, rich: aiEthicsModule },
     { id: "ai06", title: aiWorkflowModule.title, type: aiWorkflowModule.type, duration: aiWorkflowModule.duration, desc: aiWorkflowModule.desc, topics: aiWorkflowModule.topics, rich: aiWorkflowModule },
   ]},
+  { id: "brand-voice", name: "Brand Voice & Positioning", cat: "content", tier: "advanced", lv: "Advanced", icon: "\u{1F3AD}", color: "#9333EA", dur: "9h", roles: ["Senior Copywriter", "Creative Director", "Head of Brand"], desc: "Build brand voice systems that survive blind tests \u2014 audits, voice guides, cross-channel governance, and category-design positioning at org scale.", lessons: [
+    { id: "voice01", title: voiceWhatModule.title, type: voiceWhatModule.type, duration: voiceWhatModule.duration, desc: voiceWhatModule.desc, topics: voiceWhatModule.topics, rich: voiceWhatModule },
+    { id: "voice02", title: voiceAuditModule.title, type: voiceAuditModule.type, duration: voiceAuditModule.duration, desc: voiceAuditModule.desc, topics: voiceAuditModule.topics, rich: voiceAuditModule },
+    { id: "voice03", title: voiceGuideModule.title, type: voiceGuideModule.type, duration: voiceGuideModule.duration, desc: voiceGuideModule.desc, topics: voiceGuideModule.topics, rich: voiceGuideModule },
+    { id: "voice04", title: voiceChannelsModule.title, type: voiceChannelsModule.type, duration: voiceChannelsModule.duration, desc: voiceChannelsModule.desc, topics: voiceChannelsModule.topics, rich: voiceChannelsModule },
+    { id: "voice05", title: voiceGovernanceModule.title, type: voiceGovernanceModule.type, duration: voiceGovernanceModule.duration, desc: voiceGovernanceModule.desc, topics: voiceGovernanceModule.topics, rich: voiceGovernanceModule },
+    { id: "voice06", title: voiceCategoryModule.title, type: voiceCategoryModule.type, duration: voiceCategoryModule.duration, desc: voiceCategoryModule.desc, topics: voiceCategoryModule.topics, rich: voiceCategoryModule },
+  ]},
+  { id: "creative-direction", name: "Creative Direction & Campaign Strategy", cat: "content", tier: "advanced", lv: "Advanced", icon: "\u{1F3AC}", color: "#D97706", dur: "9h", roles: ["Creative Director", "Head of Content", "Senior Writer"], desc: "The shift from writer to director. Think at campaign scale, brief writers, give feedback that grows them, and orchestrate multi-channel rollouts.", lessons: [
+    { id: "cd01", title: cdMindsetModule.title, type: cdMindsetModule.type, duration: cdMindsetModule.duration, desc: cdMindsetModule.desc, topics: cdMindsetModule.topics, rich: cdMindsetModule },
+    { id: "cd02", title: cdCampaignsModule.title, type: cdCampaignsModule.type, duration: cdCampaignsModule.duration, desc: cdCampaignsModule.desc, topics: cdCampaignsModule.topics, rich: cdCampaignsModule },
+    { id: "cd03", title: cdBriefsModule.title, type: cdBriefsModule.type, duration: cdBriefsModule.duration, desc: cdBriefsModule.desc, topics: cdBriefsModule.topics, rich: cdBriefsModule },
+    { id: "cd04", title: cdFeedbackModule.title, type: cdFeedbackModule.type, duration: cdFeedbackModule.duration, desc: cdFeedbackModule.desc, topics: cdFeedbackModule.topics, rich: cdFeedbackModule },
+    { id: "cd05", title: cdRolloutsModule.title, type: cdRolloutsModule.type, duration: cdRolloutsModule.duration, desc: cdRolloutsModule.desc, topics: cdRolloutsModule.topics, rich: cdRolloutsModule },
+    { id: "cd06", title: cdMeasureModule.title, type: cdMeasureModule.type, duration: cdMeasureModule.duration, desc: cdMeasureModule.desc, topics: cdMeasureModule.topics, rich: cdMeasureModule },
+  ]},
+  { id: "copywriting-business", name: "The Copywriting Business", cat: "content", tier: "advanced", lv: "Advanced", icon: "\u{1F4BC}", color: "#059669", dur: "9h", roles: ["Freelance Copywriter", "Agency Owner", "Consultant"], desc: "Build a ten-year copywriting career. Positioning, pricing, client acquisition without pitching, contracts that protect margin, and the long-game moves that compound.", lessons: [
+    { id: "biz01", title: bizPositioningModule.title, type: bizPositioningModule.type, duration: bizPositioningModule.duration, desc: bizPositioningModule.desc, topics: bizPositioningModule.topics, rich: bizPositioningModule },
+    { id: "biz02", title: bizPricingModule.title, type: bizPricingModule.type, duration: bizPricingModule.duration, desc: bizPricingModule.desc, topics: bizPricingModule.topics, rich: bizPricingModule },
+    { id: "biz03", title: bizClientsModule.title, type: bizClientsModule.type, duration: bizClientsModule.duration, desc: bizClientsModule.desc, topics: bizClientsModule.topics, rich: bizClientsModule },
+    { id: "biz04", title: bizContractsModule.title, type: bizContractsModule.type, duration: bizContractsModule.duration, desc: bizContractsModule.desc, topics: bizContractsModule.topics, rich: bizContractsModule },
+    { id: "biz05", title: bizScaleModule.title, type: bizScaleModule.type, duration: bizScaleModule.duration, desc: bizScaleModule.desc, topics: bizScaleModule.topics, rich: bizScaleModule },
+    { id: "biz06", title: bizLongGameModule.title, type: bizLongGameModule.type, duration: bizLongGameModule.duration, desc: bizLongGameModule.desc, topics: bizLongGameModule.topics, rich: bizLongGameModule },
+  ]},
   { id: "camera-operation", name: "Camera Operation", cat: "video", lv: "Beginner", icon: "\u{1F4F7}", color: "#EF4444", dur: "10h", roles: ["Videographer"], desc: "Master cameras for pro video.", lessons: [
     { id: "co01", title: "Camera Anatomy", type: "Lecture", duration: "1h", desc: "Sensors, lenses, formats.", topics: ["Sensor sizes", "Lens mounts", "Recording codecs"] },
     { id: "co02", title: "Exposure Triangle", type: "Hands-on", duration: "1.5h", desc: "ISO, shutter, aperture.", topics: ["ISO behavior", "Shutter speed rules", "Aperture control"] },
@@ -836,9 +881,11 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
     {cat.id==="content"?(function(){
       var founds=cs.filter(function(s){return s.tier==="foundational"||!s.tier;});
       var inters=cs.filter(function(s){return s.tier==="intermediate";});
+      var advs=cs.filter(function(s){return s.tier==="advanced";});
       return <>
         {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
         {inters.length>0&&<TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, SEO, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
+        {advs.length>0&&<TierBlock T={T} label="Tier III" heading="Mastery & Leadership" sublabel="Brand voice at org scale, creative direction, and the ten-year copywriting business" count={advs.length} skills={advs} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
       </>;
     })():(
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
@@ -894,8 +941,9 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   </div>;}
 
 function TierBlock(props){var T=props.T,label=props.label,heading=props.heading,sublabel=props.sublabel,count=props.count,skills=props.skills,osk=props.osk,gp=props.gp,cat=props.cat,user=props.user,dn=props.dn;
+  var tierAccent=label==="Tier I"?"#7C3AED":label==="Tier II"?"#F4A261":"#D946EF";
+  var tierGradient=label==="Tier I"?"linear-gradient(180deg,#7C3AED,#7C3AED90)":label==="Tier II"?"linear-gradient(180deg,#F4A261,#F4A26190)":"linear-gradient(180deg,#D946EF,#D946EF90)";
   var isFoundational=label==="Tier I";
-  var tierAccent=isFoundational?"#7C3AED":"#F4A261";
   // Only count skills that have lessons toward the tier cert (coming-soon ones are not required)
   var activeSkills=skills.filter(function(s){return s.lessons&&s.lessons.length>0;});
   var completedSkills=activeSkills.filter(function(s){return gp(s)===100;});
@@ -903,7 +951,7 @@ function TierBlock(props){var T=props.T,label=props.label,heading=props.heading,
   var tierProgress=activeSkills.length?Math.round((completedSkills.length/activeSkills.length)*100):0;
   return <div style={{position:"relative",background:T.card,border:"1px solid "+T.border,borderRadius:6,padding:"32px 32px 28px",marginBottom:20,boxShadow:"0 2px 10px rgba(0,0,0,.03)"}}>
     {/* Left accent bar */}
-    <div style={{position:"absolute",left:0,top:0,bottom:0,width:4,background:isFoundational?"linear-gradient(180deg,#7C3AED,#7C3AED90)":"linear-gradient(180deg,#F4A261,#F4A26190)",borderTopLeftRadius:6,borderBottomLeftRadius:6}}/>
+    <div style={{position:"absolute",left:0,top:0,bottom:0,width:4,background:tierGradient,borderTopLeftRadius:6,borderBottomLeftRadius:6}}/>
 
     {/* Tier header */}
     <div style={{marginBottom:24,paddingBottom:20,borderBottom:"1px solid "+T.border}}>

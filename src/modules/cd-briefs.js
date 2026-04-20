@@ -1,0 +1,73 @@
+// Creative Direction — Module 3: Creative Brief Mastery
+export const cdBriefsModule = {
+  id: "cd03",
+  title: "Creative Brief Mastery",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The brief is where the director does their most leveraged work. A great brief produces 80% of output quality; a bad brief produces 5 rounds of revision.",
+  topics: ["The Brief Template", "What To Include", "What To Cut", "Pre-Brief Research", "Brief Tone + Trust", "When To Re-Brief"],
+  quiz: [
+    { q: "Brief quality correlates with output quality because:", opts: ["It doesn\u2019t", "The brief is the frame within which the writer makes every decision \u2014 weak frames produce weak output no matter the writer\u2019s talent", "Writers prefer long briefs", "Briefs are legal documents"], correct: 1 },
+    { q: "A great creative brief fits on:", opts: ["1 page ideally", "1\u20132 pages \u2014 scannable in 2 minutes, with every field answering a specific question the writer will have", "10+ pages", "A slack message"], correct: 1 },
+    { q: "The most common brief failure is:", opts: ["Too short", "Vague audience + vague goal + no clear success criteria \u2014 writer makes 12 interpretive decisions the director should have already made", "Too much detail", "Wrong format"], correct: 1 },
+    { q: "A brief with 3 different success criteria:", opts: ["Is comprehensive", "Forces the writer to optimise against 3 different, often conflicting goals \u2014 pick ONE primary success criterion + at most 2 secondary", "Is required", "Shows rigor"], correct: 1 },
+    { q: "Pre-brief research by the director should include:", opts: ["Nothing", "Audience touch-points (real quotes, calls, reviews) + competitive context (what\u2019s winning in this space) + prior internal work \u2014 shared with the writer in the brief", "Only company info", "Budget review"], correct: 1 },
+    { q: "A sign the brief was bad is:", opts: ["Writer asks questions", "The first draft comes back with structural misalignment to what the director \u2018had in mind\u2019 \u2014 the brief failed to externalise what was in the director\u2019s head", "Any revision", "Writer missed a deadline"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 3", title: "Creative Brief", titleAccent: "Mastery", subtitle: "The brief is where the director does their most leveraged work. A great brief produces 80% of output quality.", meta: "Creative Direction  |  Module 3  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY BRIEFS ARE LEVERAGED", title: "Thin briefs are the #1 reason writers miss the mark", intro: "Most creative directors under-invest in briefing and over-invest in revising. The math is backwards: 30 minutes more on the brief saves 3 hours of revision. Multiplied across a team, it\u2019s the difference between a functioning operation and perpetual rework.", stats: [
+      { num: "6\u00D7", label: "reduction in revision rounds from \"thin brief\" to \"complete brief\" on identical writers and pieces" },
+      { num: "30 min", label: "additional upfront investment per brief that produces the 6\u00D7 revision reduction" },
+      { num: "80%", label: "of output quality attributable to brief quality \u2014 writer skill being held constant" },
+    ], subheading: "What Great Briefs Contain", bullets: [
+      "A specific audience defined not demographically but situationally \u2014 role, stage, what they\u2019re doing this week",
+      "One primary success criterion (with at most 2 secondary) so the writer knows what to optimise for",
+      "The angle or stake the piece should take \u2014 the thing this piece says that competitors don\u2019t",
+      "Format + length + structural guidance (hook first? opinion piece? listicle?)",
+      "Inspiration / anti-inspiration: \u201Cthink like X, nothing like Y\u201D",
+    ] },
+    { type: "grid", eyebrow: "THE 6-PART BRIEF", title: "The structure every creative brief should follow", subtitle: "Missing any of these sections = writer makes the decision instead of you. Don\u2019t outsource direction.", items: [
+      { num: "01", title: "The Specific Reader", desc: "Named role, stage, current situation, current pain. Not demographic \u2014 a specific human scenario.", icon: "\u{1F464}" },
+      { num: "02", title: "The Stake", desc: "The one non-obvious thing this piece says that competitors won\u2019t. The differentiator.", icon: "\u2694\uFE0F" },
+      { num: "03", title: "The Success Criterion", desc: "ONE primary metric/outcome. At most 2 secondary. Clarity prevents optimisation-for-everything-that-turns-into-nothing.", icon: "\u{1F3AF}" },
+      { num: "04", title: "Format + Structure", desc: "Hook-first? Listicle? Long-form narrative? Decide before the writer starts or they\u2019ll guess.", icon: "\u{1F4D0}" },
+      { num: "05", title: "Source Material", desc: "Customer quotes, data points, competitive context, prior internal work \u2014 linked or pasted.", icon: "\u{1F4DA}" },
+      { num: "06", title: "Inspiration / Anti-Inspiration", desc: "\"Like this piece, nothing like this piece.\" Concrete references help the writer calibrate.", icon: "\u{1F4A1}" },
+    ], footer: "Rule: fill all 6 before handing off. A brief missing any section forces the writer to guess \u2014 and guesses cost revision rounds." },
+    { type: "principle", num: "01", title: "The Specific Reader \u2014 The Section Most Often Botched", intro: "Briefs that describe audience as \u201CHR managers\u201D or \u201Csmall business owners\u201D produce work for nobody. The reader must be specific enough that the writer can imagine one real person, at one moment in their week, encountering this piece.", sectionTitle: "The 4 Reader Specifications", sections: [
+      { heading: "1. Role (specific + stage)", example: "\u201CHead of Content at a 50\u2013200 person B2B SaaS\u201D \u2014 not \u201Cmarketer\u201D", note: "Stage is crucial. A Head of Content at a Series A vs at a public company faces entirely different problems." },
+      { heading: "2. Right-now situation", example: "\u201CJust had budget cut 20%, needs to defend content to the CFO in 6 weeks\u201D", note: "Situational context makes the reader feel seen. Writers write for situations, not demographics." },
+      { heading: "3. Language they actually use", example: "\u201CThey say \u2018CAC\u2019, \u2018pipeline coverage\u2019, \u2018intent data\u2019 \u2014 not \u2018marketing funnel\u2019\u201D", note: "Vocabulary is how the reader recognises themselves. Give the writer the insider terms." },
+      { heading: "4. What they\u2019re doing at the moment they encounter this", example: "\u201CBetween meetings, Tuesday afternoon, scanning LinkedIn on mobile \u2014 attention low, skepticism high\u201D", note: "The moment of encounter shapes format and pacing. Brief should name it." },
+    ], rule: "If you can\u2019t picture the reader specifically enough to predict what they\u2019ll skim over and what they\u2019ll stop at, your brief is too abstract." },
+    { type: "comparison", eyebrow: "THIN BRIEF vs COMPLETE BRIEF", title: "Two briefs, same writer, same deadline", subtitle: "Brief A: thin, hopeful. Brief B: complete, decisive. Same writer. Brief B produces a shippable first draft; Brief A produces 3 rounds of revision.", left: { title: "Thin Brief (Guarantees Rework)", color: "#EF4444", items: [
+      { strong: "\u201CTopic: content strategy. Audience: marketing leaders. Goal: thought leadership.\u201D", note: "12 interpretive decisions the writer now has to make. Each one is a chance to diverge from what the director had in mind." },
+      { strong: "No source material. No customer quotes. No prior work referenced.", note: "Writer generates generic arguments because they have no specific material to draw from." },
+      { strong: "No format guidance. \u201CWrite it well.\u201D", note: "Writer picks a format. 50% chance it\u2019s not what director pictured. Revision round 1 incoming." },
+      { strong: "Result: 3 revision rounds; director frustrated; writer demoralised; total time 3\u00D7 the complete-brief version", note: "The brief\u2019s 15-minute skimp costs the team a full day of rework." },
+    ] }, right: { title: "Complete Brief (Clean First Draft)", color: "#10B981", items: [
+      { strong: "Reader: \"Head of Content at a Series A B2B SaaS, just had budget cut, defending content to CFO in 6 weeks, scans LinkedIn between meetings.\"", note: "Writer knows who they\u2019re writing for. Every decision gets made in that context." },
+      { strong: "Stake: \"Most content programmes can\u2019t defend themselves. The few that can use 3 specific metrics. We name them.\"", note: "The angle is defined. Writer doesn\u2019t have to invent the POV." },
+      { strong: "Source: 4 real customer quotes + 2 data points + links to 3 prior exemplar pieces", note: "Writer has raw material. Output is grounded in real specifics, not fabricated plausibility." },
+      { strong: "Result: first draft lands 85% on target; 1 revision round; ships in half the time of the thin-brief version", note: "30 minutes more on the brief saved 3 hours of revision. That\u2019s the math, every time." },
+    ] }, footer: "Rule: before you accept a piece into revision, ask: \u201CWas the brief complete?\u201D Most revision rounds trace back to brief gaps, not writer failure." },
+    { type: "table", title: "The Brief Template \u2014 Copy This Structure", subtitle: "Use this as the literal structure for your next brief. Every section filled, every time.", columns: ["Section", "Purpose", "Length Target"], rows: [
+      ["Title + Format + Length", "What exactly the writer is producing", "One line"],
+      ["The Specific Reader", "Role, stage, situation, language, moment of encounter", "4\u20136 sentences"],
+      ["Business Goal", "Why this piece exists \u2014 which business outcome it serves", "1 sentence"],
+      ["Success Criterion", "ONE primary metric/outcome (secondary metrics at most 2)", "1\u20132 sentences"],
+      ["The Stake / Angle", "What this piece says that competitors won\u2019t", "1\u20132 sentences"],
+      ["Format + Structure", "Hook-first? Listicle? Structural notes", "1\u20132 sentences or a skeleton"],
+      ["Source Material", "Customer quotes, data, prior work, linked research", "Links + direct quotes"],
+      ["Inspiration / Anti-Inspiration", "\u201CLike this, nothing like this\u201D concrete references", "2\u20133 examples each side"],
+      ["Deadline + Reviewer", "When it\u2019s due + who reviews + how many revision rounds expected", "2 lines"],
+    ], footer: "Rule: this template fits on 1\u20132 pages. If you\u2019re padding past 2 pages, you\u2019re including things the writer doesn\u2019t need. Cut." },
+    { type: "exercise", title: "Rewrite One of Your Recent Briefs", intro: "Take a brief you gave a writer in the last 30 days. Apply the 9-section template. Measure the difference.", items: [
+      { num: "1", copy: "Paste your original brief verbatim. No edits.", answer: "Don\u2019t judge; just observe. Most briefs written by senior people are shorter and more assumption-laden than they realise." },
+      { num: "2", copy: "Run it through the 9-section checklist. Which sections are missing or vague?", answer: "Common gaps: vague reader, missing stake, missing source material, no anti-inspiration. These gaps account for 80% of revision rounds." },
+      { num: "3", copy: "Rewrite the brief with every section complete. Aim for 1.5\u20132 pages.", answer: "Note the extra time: usually 15\u201330 minutes. Now compare to the revision-round time the original brief produced." },
+      { num: "4", copy: "Hand the rewrite to the same writer. Compare their first draft quality against the original brief\u2019s first draft.", answer: "The delta in quality is usually dramatic. Start giving this quality of brief to every writer, every piece. Your team\u2019s output doubles in velocity." },
+    ] },
+  ],
+};

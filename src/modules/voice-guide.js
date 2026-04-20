@@ -1,0 +1,71 @@
+// Brand Voice & Positioning — Module 3: Building the Voice Guide
+export const voiceGuideModule = {
+  id: "voice03",
+  title: "Building the Voice Guide",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The document writers actually use vs the 40-page PDF nobody opens. Structure, specificity, and the make-it-usable moves.",
+  topics: ["Guide Structure", "The One-Pager", "Decision Rules", "Example Libraries", "Living Documents", "Onboarding Use"],
+  quiz: [
+    { q: "The most-used voice guides in practice are:", opts: ["40-page PDFs", "1\u20133 page working documents writers can reference in 90 seconds before drafting \u2014 depth lives in linked example libraries, not in the main doc", "10-page documents", "Slack messages"], correct: 1 },
+    { q: "A voice guide section titled \u201CHow We Write\u201D should contain:", opts: ["Mission statement", "Specific decision rules writers apply: sentence length range, banned words list, signature moves, POV statements \u2014 all actionable", "General advice", "Brand history"], correct: 1 },
+    { q: "The best voice guides include:", opts: ["Only rules", "Rules + side-by-side \u201Con-brand\u201D and \u201Coff-brand\u201D examples for each rule \u2014 writers learn faster from seeing both than from reading either alone", "Only examples", "Only adjectives"], correct: 1 },
+    { q: "A voice guide should be updated:", opts: ["Once and never again", "Quarterly or after major voice discoveries \u2014 it\u2019s a living document; stale guides lose authority as the brand drifts", "Never", "Daily"], correct: 1 },
+    { q: "Onboarding a new writer to voice is fastest with:", opts: ["Just the guide PDF", "Guide + paired reading of 10\u201315 \u201Cexemplar\u201D pieces + a mock writing exercise with feedback \u2014 combined, the writer reaches fluency in days, not weeks", "Osmosis", "No training"], correct: 1 },
+    { q: "A voice guide with no examples is:", opts: ["Concise", "Nearly useless \u2014 writers translate abstract rules into varying interpretations; examples lock the interpretation in place", "Better than having one", "Appropriate for experts"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 3", title: "Building the", titleAccent: "Voice Guide", subtitle: "The document writers actually use vs the 40-page PDF nobody opens. Structure, specificity, and the make-it-usable moves.", meta: "Brand Voice & Positioning  |  Module 3  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY MOST GUIDES AREN\u2019T USED", title: "40-page voice guides sit on SharePoint; 2-page ones sit on writers\u2019 second monitors", intro: "The most-referenced voice guides in the world are 1\u20133 pages of specific rules + an example library. The 40-page encyclopedic guide is a PR artefact, not a working tool.", stats: [
+      { num: "72%", label: "of marketing writers report their company\u2019s official voice guide is rarely or never consulted before drafting" },
+      { num: "3 pages", label: "median length of voice guides that ARE consulted before drafting \u2014 usability correlates inversely with length" },
+      { num: "10\u201315", label: "the optimal number of rules in the core voice guide \u2014 more becomes overload, fewer becomes vague" },
+    ], subheading: "What Great Voice Guides Have In Common", bullets: [
+      "They fit on 1\u20133 pages \u2014 scannable in under 2 minutes",
+      "Every rule is specific and action-triggering, not aspirational",
+      "Each rule paired with a side-by-side example: on-brand vs off-brand",
+      "Linked to a deeper example library + exemplar pieces for context",
+      "Maintained quarterly \u2014 they evolve as the brand does",
+    ] },
+    { type: "grid", eyebrow: "THE 5 SECTIONS OF A USABLE GUIDE", title: "What to include \u2014 and what to cut", subtitle: "Every great voice guide has these sections. Everything else is noise.", items: [
+      { num: "01", title: "POV Statement", desc: "One paragraph: what does this brand believe? What does it refuse? Sets the frame for every choice.", icon: "\u{1F4AC}" },
+      { num: "02", title: "Vocabulary Rules", desc: "Two lists: 10\u201315 words/phrases we USE + 10\u201315 words/phrases we REFUSE. Specific. Enforceable.", icon: "\u{1F4D6}" },
+      { num: "03", title: "Rhythm Rules", desc: "Avg sentence length target. Fragment usage. Paragraph length. The physical shape of on-brand copy.", icon: "\u{1F3B5}" },
+      { num: "04", title: "Signature Moves", desc: "The 3\u20135 rhetorical patterns distinctive to this brand. Opening moves, closing moves, structural tics.", icon: "\u2728" },
+      { num: "05", title: "Example Library (Linked)", desc: "10\u201320 exemplar pieces representing the voice at its best across tones and channels. Linked, not embedded.", icon: "\u{1F4DA}" },
+    ], footer: "Rule: if a section isn\u2019t one of these 5, cut it or move it to an appendix. Writers have 2 minutes before drafting \u2014 respect the time." },
+    { type: "principle", num: "01", title: "Side-by-Side Examples \u2014 The Highest-ROI Teaching Tool", intro: "Rules alone produce varying interpretations across writers. Rules paired with on-brand vs off-brand examples lock the interpretation in place. Every rule deserves a side-by-side.", sectionTitle: "How to Structure a Side-by-Side", sections: [
+      { heading: "The rule, stated specifically", example: "\"We never use \u2018unlock\u2019 or \u2018empower\u2019. These words signal marketing-speak to our audience of technical buyers.\"", note: "State the rule + the reason. Reason explains the refusal; writers absorb the why alongside the what." },
+      { heading: "Off-brand example", example: "\u2717 \u201COur platform empowers teams to unlock their full potential.\u201D", note: "Show what NOT to do. Writers learn from negative examples as much as positive ones." },
+      { heading: "On-brand rewrite", example: "\u2713 \u201COur platform cuts reporting time from 4 hrs/week to 12 min. 847 eng teams use us for exactly that.\u201D", note: "Show the specific rewrite. Same intention; voice-aligned execution." },
+      { heading: "Why it works", example: "\"Specific metrics + named audience = voice signature. \u2018Empower/unlock\u2019 = absence of voice signature.\"", note: "One-line explanation locks the pattern in the writer\u2019s head." },
+    ], rule: "Every rule in the voice guide gets a side-by-side. Rules without examples are suggestions; rules with examples are commitments." },
+    { type: "comparison", eyebrow: "BAD GUIDE vs GOOD GUIDE", title: "Two voice guide pages, same brand", subtitle: "Both purport to describe the brand voice. One is ignored; one is consulted daily.", left: { title: "Ignored 40-Page Guide", color: "#EF4ABC", items: [
+      { strong: "Page 3: \u201COur brand voice is warm, smart, approachable, and bold.\u201D", note: "4 adjectives. Writers interpret differently. Zero decision guidance." },
+      { strong: "Pages 7\u201312: history of the company + mission statement + values chart", note: "Context without actionable rules. Writers skip it." },
+      { strong: "Pages 15\u201325: brand story narratives + founder quotes + cultural rituals", note: "PR content. Not voice guidance. Not consulted before drafting." },
+      { strong: "Pages 30\u201340: mood boards + tone variation wheel + emotional register matrix", note: "Aesthetic design artefacts. Do not change what the writer types. Lives on SharePoint." },
+    ] }, right: { title: "Consulted Working Guide (2 Pages)", color: "#10B981", items: [
+      { strong: "Page 1: POV statement (3 lines) + 15-word use list + 15-word refuse list", note: "Writers reference this in 30 seconds. Decision rules right there." },
+      { strong: "Page 1: rhythm rules (avg sentence length, fragment frequency, paragraph length targets)", note: "Specific, measurable. Writers self-check against these." },
+      { strong: "Page 2: 4 signature moves, each with a side-by-side example", note: "Shows exactly what on-brand looks like vs off-brand. Writers absorb in minutes." },
+      { strong: "Bottom of page 2: link to 20 exemplar pieces \u2014 read before writing your first piece", note: "Depth lives in the linked library, not the guide. Working doc stays short." },
+    ] }, footer: "Rule: if the voice guide PDF is over 5 pages, you\u2019re writing for brand design vanity, not for working writers. Cut ruthlessly." },
+    { type: "table", title: "Voice Guide Template \u2014 Copy This Structure", subtitle: "Use this as the literal skeleton for your next voice guide. Adapt the content; keep the structure.", columns: ["Section", "What Goes In It", "Length Target"], rows: [
+      ["POV Statement", "One paragraph: what the brand believes + one specific refusal", "3\u20135 sentences"],
+      ["Vocabulary \u2014 Use", "10\u201315 words/phrases we use + one-line note on why", "10\u201315 bullets"],
+      ["Vocabulary \u2014 Refuse", "10\u201315 words/phrases we refuse + one-line note on why", "10\u201315 bullets"],
+      ["Rhythm Rules", "Sentence length, fragment use, paragraph length, reading pace", "3\u20134 bullets with targets"],
+      ["Signature Moves", "3\u20135 rhetorical patterns distinctive to this brand", "3\u20135 patterns, each with side-by-side example"],
+      ["Tone Shifts", "How tone shifts across situations WITHOUT violating voice", "Small table: situation \u2192 tone modifier"],
+      ["Exemplar Library Link", "Link to 10\u201320 pieces representing voice at its best", "One line + link"],
+      ["Last Updated + Owner", "When the guide was last reviewed + who owns it", "Two lines"],
+    ], footer: "Rule: this template fits on 2\u20133 pages if you don\u2019t pad it. Padding it defeats the point. Keep it tight." },
+    { type: "exercise", title: "Draft Your Voice Guide \u2014 One Page", intro: "Using your audit findings from Module 2, draft a one-page voice guide right now. No more than 500 words on the working doc.", items: [
+      { num: "1", copy: "Write the POV statement: what does the brand believe? What does it refuse? 3\u20135 sentences.", answer: "If you can\u2019t state a specific belief + specific refusal, you haven\u2019t finished the audit. Return to Module 2." },
+      { num: "2", copy: "Write the USE list: 10 words/phrases drawn from your audit that recurred across best-performing pieces.", answer: "These are your voice\u2019s vocabulary fingerprint. Writers should mentally ask \u201CAm I using at least 2 of these?\u201D on every draft." },
+      { num: "3", copy: "Write the REFUSE list: 10 category-standard words your brand doesn\u2019t use (and why).", answer: "Refusals are as distinctive as preferences. A brand that refuses \u2018empower\u2019 is already more distinctive than one that doesn\u2019t." },
+      { num: "4", copy: "Pick ONE signature move and write a side-by-side example: off-brand \u2192 on-brand rewrite.", answer: "This is the teaching tool that stickiness depends on. Writers will reference this side-by-side more than any prose description." },
+    ] },
+  ],
+};

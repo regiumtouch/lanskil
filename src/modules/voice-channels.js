@@ -1,0 +1,72 @@
+// Brand Voice & Positioning — Module 4: Rolling Voice Across Channels
+export const voiceChannelsModule = {
+  id: "voice04",
+  title: "Rolling Voice Across Channels",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "Same voice, different tone. How to keep the brand recognisable across LinkedIn, email, support, docs, ads, and packaging \u2014 without sounding identical.",
+  topics: ["Channel-Specific Tone", "What Stays Constant", "What Shifts", "Multi-Channel Audits", "Voice in Support & Sales", "Mapping Decisions"],
+  quiz: [
+    { q: "When rolling voice across channels, the correct mental model is:", opts: ["Copy-paste one voice everywhere", "Voice stays constant; tone shifts appropriately per channel and context \u2014 a LinkedIn post and a support reply sound like the same brand but not the same register", "Each channel gets its own voice", "Ignore channels"], correct: 1 },
+    { q: "A brand that sounds identical on LinkedIn and TikTok:", opts: ["Has strong voice consistency", "Likely has no voice at all \u2014 both platforms have different native rhythms; a single frozen voice across them means the voice isn\u2019t platform-native anywhere", "Best practice", "Is well-aligned"], correct: 1 },
+    { q: "Support replies are a voice test because:", opts: ["They don\u2019t matter", "Every customer interaction is a voice touchpoint; support that sounds corporate while the brand claims \u201Cwarm\u201D reveals the voice as performance, not practice", "They\u2019re private", "Support is exempt"], correct: 1 },
+    { q: "Voice drift between channels usually indicates:", opts: ["Intentional variety", "Different writers or teams without shared voice training; systematic onboarding + shared exemplars typically close the drift within 1\u20132 quarters", "Natural behavior", "Healthy dynamics"], correct: 1 },
+    { q: "When sales reps speak in pitches, does brand voice apply?", opts: ["No, sales is different", "Yes \u2014 voice applies to every external touchpoint, including pitches, demos, sales emails; reps without voice training create drift that undermines the brand experience", "Only at close", "Only in writing"], correct: 1 },
+    { q: "The most common voice drift happens between:", opts: ["No drift exists", "Marketing-owned copy (brand-voice-trained) and product/support/sales-owned copy (rarely voice-trained) \u2014 this seam is where brands most often feel inconsistent to customers", "Social channels only", "Paid vs organic"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 4", title: "Rolling Voice", titleAccent: "Across Channels", subtitle: "Same voice, different tone. How to keep the brand recognisable across LinkedIn, email, support, docs, ads, and packaging \u2014 without sounding identical.", meta: "Brand Voice & Positioning  |  Module 4  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY CHANNELS CAUSE DRIFT", title: "Voice drift almost always lives at the seams between teams", intro: "Marketing might ship on-brand copy all day. But if support sounds corporate, sales sounds scripted, and product docs sound anonymous, the customer experience is of a brand with no voice. Cross-channel consistency is the real test.", stats: [
+      { num: "84%", label: "of brands exhibit voice drift across channels when audited with customer-touchpoint samples" },
+      { num: "3x", label: "higher trust scores in brands with consistent voice across marketing + support + sales + docs" },
+      { num: "1\u20132 quarters", label: "typical time to close most cross-channel drift via onboarding + shared exemplars" },
+    ], subheading: "Where Drift Typically Lives", bullets: [
+      "Between marketing-owned copy and product/support/sales-owned copy",
+      "Between long-form (blog, email) and short-form (social, ads)",
+      "Between public channels and customer communications (support replies)",
+      "Between founder/CEO voice and other-team voice",
+      "Between on-brand moments and edge cases (outage notes, policy updates)",
+    ] },
+    { type: "grid", eyebrow: "WHAT STAYS CONSTANT vs WHAT SHIFTS", title: "The distinction writers must internalise", subtitle: "Voice stays. Tone shifts. Most cross-channel drift comes from confusing these two.", items: [
+      { num: "01", title: "Stays Constant: POV", desc: "Your brand\u2019s beliefs and refusals. Same on LinkedIn, support, outage post, apology email. Unchanging.", icon: "\u{1F4AC}" },
+      { num: "02", title: "Stays Constant: Vocabulary", desc: "Use/refuse lists apply everywhere. A brand that refuses \u201Cempower\u201D on LinkedIn refuses it in support too.", icon: "\u{1F4D6}" },
+      { num: "03", title: "Shifts: Rhythm", desc: "Social posts short. Docs careful. Outage posts clinical. Rhythm shifts per format; within each, the voice still recognisable.", icon: "\u{1F3B5}" },
+      { num: "04", title: "Shifts: Emotional Register", desc: "Celebratory on launches. Apologetic on failures. Matter-of-fact in legal. Different registers, same voice underneath.", icon: "\u{1F3AD}" },
+    ], footer: "Rule: if a piece of copy violates the POV or the vocabulary rules, it violates voice. If it varies rhythm or register appropriately, that\u2019s not violation \u2014 that\u2019s tone doing its job." },
+    { type: "principle", num: "01", title: "The Channel Map \u2014 How Voice Operates Per Channel", intro: "Every channel has native conventions. Voice must live within those conventions without becoming invisible. The channel map documents what to preserve, what to shift, and how.", sectionTitle: "The 5 Main Channels and Their Voice Constraints", sections: [
+      { heading: "LinkedIn (long-form, professional)", example: "1,000\u20131,500 char personal-lesson posts. POV visible. Vocabulary rules enforced. Rhythm: varied sentences, fragments allowed.", note: "Professional context; voice can carry strong opinions + named specifics. Personal anecdotes encouraged." },
+      { heading: "Email (mid-form, direct)", example: "200\u2013400 word newsletters or direct-send. Clear POV. Vocabulary strict. Rhythm: shorter paragraphs than blog, conversational cadence.", note: "Email is mid-intimacy. Voice here reads as a personal letter from the brand \u2014 less formal than blog, more structured than social." },
+      { heading: "Social short (Twitter/X)", example: "<280 char. POV sharp. Vocabulary enforced (banned words = instant tell). Rhythm: one strong sentence > two weak ones.", note: "Short-form amplifies voice; every word is signal. Voice must work at compressed scale." },
+      { heading: "Support + Sales (direct, real-time)", example: "Personal replies. POV present but tone warm. Vocabulary rules apply. Rhythm: conversational, efficient.", note: "Highest-stakes voice test. Customer experiences voice here more than anywhere else \u2014 drift here undermines the brand experience entirely." },
+      { heading: "Product + Docs (informational)", example: "Instructional. POV may be implicit. Vocabulary rules enforced. Rhythm: clear, patient, accurate.", note: "Voice is quieter here but still present \u2014 word choice, structure, and absence of cliché all carry voice without overt personality." },
+    ], rule: "For each channel, document the voice-tone matrix explicitly. Writers shouldn\u2019t have to guess how much of the voice to bring where." },
+    { type: "comparison", eyebrow: "DRIFTED vs CONSISTENT", title: "Two customer experiences of the same brand", subtitle: "Customer A encounters the brand on LinkedIn, in email, in support. Customer B encounters the same brand across the same channels. Only one brand survives the blind-test.", left: { title: "Drifted Voice (Different Brands Across Channels)", color: "#EF4444", items: [
+      { strong: "LinkedIn: punchy POV-led posts from a named marketer", note: "Voice is strong on this channel because marketing owns it." },
+      { strong: "Email: warm newsletter-voice from the founder", note: "Different cadence. Different vocabulary. Different POV emphasis. Reads like a different person writing." },
+      { strong: "Support: scripted, formal, \u201Cwe appreciate your business\u201D tone", note: "Completely off the marketing voice. Support team never got onboarded on voice. Drift lives here." },
+      { strong: "Sales: jargon-heavy, \u201Cscalable, seamless, cutting-edge\u201D pitches", note: "Pitches use banned words the marketing guide explicitly refuses. Brand experience fragments." },
+    ] }, right: { title: "Consistent Voice (Same Brand, Different Tones)", color: "#10B981", items: [
+      { strong: "LinkedIn: punchy POV-led posts", note: "Strong voice; marketing-owned; aligned with guide." },
+      { strong: "Email: same POV, warmer register, conversational rhythm", note: "Tone shifts appropriately for intimacy; voice fingerprint still present in vocabulary + POV." },
+      { strong: "Support: same POV (customer-first, blunt-honest), warm tone, same refused vocabulary", note: "Support team trained on voice. Replies read like the same brand \u2014 just in a helpful register." },
+      { strong: "Sales: same POV delivered in pitch format; avoids banned words; same signature moves", note: "Sales reps trained on voice. Pitches feel like the brand\u2019s content in spoken form." },
+    ] }, footer: "Rule: if a customer encounters your brand on 4 channels and thinks \u201Cthese feel like 4 different companies,\u201D the voice is drifted \u2014 and the fix is onboarding, not rewriting." },
+    { type: "table", title: "Cross-Channel Voice Matrix \u2014 The Living Document", subtitle: "Use this matrix to document voice per channel. Writers / reps / support can reference at decision points.", columns: ["Channel", "Rhythm Target", "Register", "Voice Constraints"], rows: [
+      ["LinkedIn (long-form)", "1,000\u20131,500 chars; varied sentences; fragments allowed", "Confident, personal, opinionated", "Full POV + vocabulary rules enforced"],
+      ["LinkedIn (short)", "Single bold claim + 1\u20132 follow-ups", "Punchy, confident", "Signature move expected in the hook"],
+      ["Email (newsletter)", "300\u2013500 words; conversational paragraphs", "Warm, direct, letter-like", "POV present; vocabulary strict"],
+      ["Email (transactional)", "Brief; specific to action", "Clear, efficient", "Vocabulary rules + brief POV nod"],
+      ["Twitter/X (thread)", "8\u201312 tweets; each a complete thought", "Sharp, opinionated", "Signature move in tweet 1"],
+      ["Support reply", "Concise; acknowledges specific issue", "Warm, efficient, honest", "Vocabulary rules; POV in how you frame problems"],
+      ["Sales pitch / demo", "Spoken; matched to prospect pace", "Confident, specific, non-scripted", "Full POV; vocabulary rules; avoid jargon objection"],
+      ["Product docs", "Patient; structured; scannable", "Clear, accurate, patient", "Vocabulary rules; voice shows in absence of cliché"],
+      ["Ad copy", "Tight; benefit-forward", "Punchy, specific", "All rules enforced; shorter form amplifies drift"],
+    ], footer: "Rule: this matrix should be a single-page reference for every team that produces customer-facing copy \u2014 not buried in a brand guide appendix." },
+    { type: "exercise", title: "Audit Your Brand Voice Across 4 Channels", intro: "Pick your brand. Gather 5 pieces from each of 4 channels (LinkedIn, email, support, ads). Run the cross-channel audit.", items: [
+      { num: "1", copy: "For each piece, check: does it honor the POV statement? Use the USE vocabulary list? Avoid the REFUSE list?", answer: "Mark each piece pass/fail on each of those three. Drift shows up as systematic failure per channel." },
+      { num: "2", copy: "Identify the channel where drift is worst. What team owns it?", answer: "Usually: support, sales, or product docs. These teams rarely get voice onboarding. That\u2019s where intervention goes first." },
+      { num: "3", copy: "Write a one-paragraph onboarding for the drifted team: the 3 most important voice rules + 2 side-by-side examples.", answer: "Short onboarding beats long onboarding. Give them the 3 rules that matter most + examples. Review with them in 30 min." },
+      { num: "4", copy: "Schedule a re-audit 90 days from now on the same channel. Measure the drift delta.", answer: "Voice work requires feedback loops. If you don\u2019t re-audit, you don\u2019t know whether the intervention worked." },
+    ] },
+  ],
+};

@@ -1,0 +1,72 @@
+// The Copywriting Business — Module 4: Contracts, Scope & Retainers
+export const bizContractsModule = {
+  id: "biz04",
+  title: "Contracts, Scope & Retainers",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The paperwork behind sustainable freelance income. Scope that protects against creep, retainers that compound, and contracts that prevent the disputes that kill freelance businesses.",
+  topics: ["Scope Documents", "Contract Essentials", "Retainer Structure", "Change Orders", "Kill Fees", "When to Walk Away"],
+  quiz: [
+    { q: "The single biggest enemy of freelance profitability is:", opts: ["Low rates", "Scope creep \u2014 un-priced additional work pushed into the engagement; without scope documents + change-order processes, margins collapse", "Competition", "Taxes"], correct: 1 },
+    { q: "A proper scope document includes:", opts: ["Just the price", "What\u2019s INCLUDED + what\u2019s NOT INCLUDED + revision rounds + timeline + payment terms + what happens if the engagement ends early", "A slogan", "Legal disclaimers only"], correct: 1 },
+    { q: "\"Out of scope\" items should be handled via:", opts: ["Just doing them", "Change orders \u2014 formal: here\u2019s the additional scope, here\u2019s the additional fee, here\u2019s the adjusted timeline \u2014 signed before work begins", "Ignoring them", "Charging more next time"], correct: 1 },
+    { q: "A retainer agreement should specify:", opts: ["Total monthly fee", "Total monthly fee + specific monthly deliverables (scope) + revision rounds included + out-of-scope process + notice period + what happens to unused deliverables", "Just the fee", "Hourly rate only"], correct: 1 },
+    { q: "A kill fee (cancellation fee) is:", opts: ["Optional", "The fee owed to you if the client cancels an engagement mid-project \u2014 typically 25\u201350% of the unearned fee, covering the opportunity cost you took on by committing time", "Illegal", "Only for enterprise"], correct: 1 },
+    { q: "You should walk away from a contract when:", opts: ["Never", "Scope expands without change orders + client refuses; or payment terms are violated repeatedly; or abuse patterns emerge \u2014 walking away is healthier than dragging through a bad engagement", "Any friction", "First revision"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 4", title: "Contracts, Scope &", titleAccent: "Retainers", subtitle: "The paperwork behind sustainable freelance income. Scope that protects against creep; retainers that compound.", meta: "The Copywriting Business  |  Module 4  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY CONTRACTS MATTER", title: "Most freelance businesses fail not on acquisition \u2014 they fail on scope management", intro: "You can acquire great clients. You can charge premium rates. But if your scope documents are weak, scope creep eats the margin + the scope creep silently compounds until you\u2019re working 2\u00D7 the hours for 1\u00D7 the pay.", stats: [
+      { num: "60\u201380%", label: "of freelance profit margin destroyed by un-managed scope creep over 12 months" },
+      { num: "3\u201310\u00D7", label: "higher client retention + lifetime value on retainer contracts vs project-only engagements" },
+      { num: "15 min", label: "typical time investment in a proper scope document that prevents weeks of lost margin" },
+    ], subheading: "What Strong Contracts + Scope Do", bullets: [
+      "Make the boundaries of the engagement explicit \u2014 so both sides know what\u2019s in + what\u2019s out",
+      "Create a clear change-order process when additional scope is requested",
+      "Protect you from scope creep without damaging client relationships",
+      "Establish payment terms (deposit, milestones, final) so cash flow stays healthy",
+      "Define exit + kill-fee terms so mid-project cancellations don\u2019t destroy your pipeline",
+    ] },
+    { type: "grid", eyebrow: "THE CONTRACT ESSENTIALS", title: "What every freelance copywriting contract must include", subtitle: "Missing any of these, you\u2019ve got a handshake, not a contract. The handshake works until it doesn\u2019t.", items: [
+      { num: "01", title: "Scope \u2014 Included + Excluded", desc: "Specific deliverables + revision rounds + what is NOT included. Both sides clear on boundaries.", icon: "\u{1F4D0}" },
+      { num: "02", title: "Timeline", desc: "Delivery dates, revision turnaround, client-response expectations. Mutual obligations named.", icon: "\u{1F4C5}" },
+      { num: "03", title: "Payment Terms", desc: "Deposit %, milestone %, final %. Due dates, late fees, consequences of non-payment.", icon: "\u{1F4B0}" },
+      { num: "04", title: "Change Order Process", desc: "How additional scope gets priced + approved + added. In writing, before work begins.", icon: "\u{1F4DD}" },
+      { num: "05", title: "IP + Rights Transfer", desc: "What rights transfer when + on what conditions (typically only after full payment). Protects both sides.", icon: "\u{1F50F}" },
+      { num: "06", title: "Exit / Kill Fee", desc: "What happens if either party ends the engagement mid-project. Notice + % owed.", icon: "\u{1F6AA}" },
+    ], footer: "Rule: use a lawyer-vetted template once; reuse it for every engagement. $500\u2013$1500 legal investment pays back the first time it prevents a dispute." },
+    { type: "principle", num: "01", title: "The Scope Document", intro: "The scope document is the single most important artifact in any freelance engagement. It defines what you\u2019re doing, what you\u2019re not doing, and how additional work gets handled. Weak scope = lost margin, guaranteed.", sectionTitle: "What Belongs In Every Scope", sections: [
+      { heading: "1. Specific deliverables list", example: "\"1 long-form landing page (approx 1,500\u20132,500 words) + 1 hero headline + 3 CTA variants + meta + social copy kit.\"", note: "Specific. Countable. Impossible to dispute what was promised." },
+      { heading: "2. Revision rounds included", example: "\"2 revision rounds included. Additional rounds: $500 each, quoted on request.\"", note: "Numerical cap prevents \u201Cjust one more tweak\u201D culture. Specific per-round fee for additional prevents dispute." },
+      { heading: "3. Explicit \u201CNot Included\u201D section", example: "\"NOT included: visual design, imagery sourcing, A/B test management, copy for emails or ads, additional pages.\"", note: "Clarity prevents assumptions. If buyer assumes something is included, their assumption is out-of-scope by default \u2014 explicit prevents the argument." },
+      { heading: "4. Timeline + mutual obligations", example: "\"Draft 1: 10 business days after kickoff. Client feedback: within 5 business days of draft receipt. Final: 5 business days after feedback.\"", note: "Timeline commitments go BOTH ways. Your delivery is their cooperation. Late feedback = adjusted delivery." },
+    ], rule: "Every scope document should pass the test: \u201Cif two people read this, would they each write the same list of deliverables?\u201D If no, rewrite until yes." },
+    { type: "comparison", eyebrow: "WEAK vs STRONG SCOPE", title: "Two scope documents for the same engagement", subtitle: "Scope A is a one-line estimate. Scope B is a proper scope doc. Different margins, different client experiences.", left: { title: "Weak Scope (Invites Creep)", color: "#EF4444", items: [
+      { strong: "\u201CI\u2019ll write your landing page for $3,500.\u201D", note: "One line. Everything else is assumption. Scope creep inevitable." },
+      { strong: "No revision cap; client asks for \u201Cone more tweak\u201D indefinitely", note: "6 weeks in; 12 revisions; margin gone." },
+      { strong: "No explicit exclusions; client assumes email + ads + design are included", note: "Argument when you push back. Client claims \u201Cyou never said it wasn\u2019t included.\u201D Technically true." },
+      { strong: "No timeline; client goes silent for 3 weeks; your schedule destroyed", note: "No mutual obligation on client response times. Their dysfunction becomes your delay." },
+    ] }, right: { title: "Strong Scope (Protects Margin)", color: "#10B981", items: [
+      { strong: "2-page scope: deliverables, revisions, exclusions, timeline, payment terms, change orders, IP", note: "Every boundary stated. Both sides know what they\u2019re in for." },
+      { strong: "\u201C2 revision rounds included. Rounds 3+: $500 each, quoted before starting.\u201D", note: "Cap on free revisions. Additional revisions formally priced. Client decides if they\u2019re worth it." },
+      { strong: "Explicit exclusions: \u201CNOT included: email sequences, ads, visual design, A/B testing.\u201D", note: "Assumption killed. When client asks for emails, response is: \u201CHere\u2019s the quote for that additional scope.\u201D" },
+      { strong: "Timeline with mutual obligations \u2014 client response within 5 business days or timeline adjusts", note: "Their delays cost them, not you. Clean accountability." },
+    ] }, footer: "Rule: the 2-page scope takes 20 minutes to draft from a template. It prevents $5,000\u2013$50,000 of margin loss over a year. Highest-ROI administrative task you\u2019ll do." },
+    { type: "table", title: "The Retainer Structure Template", subtitle: "Retainers work when scope is defined + flexible. Use this structure for clarity on both sides.", columns: ["Element", "What to Specify", "Example"], rows: [
+      ["Monthly Fee", "Fixed fee, billed in advance", "\"$6,500/month, invoiced 1st of month, due on receipt\""],
+      ["Monthly Deliverables", "Specific output quantity + types", "\"4 blog posts (1,500\u20132,000 words each) + 1 newsletter + 8 LinkedIn posts\""],
+      ["Revision Rounds", "Cap per deliverable; additional-round fee", "\"2 rounds included per deliverable; additional rounds $250 each\""],
+      ["Notice Period", "How much notice either party gives to end", "\"30 days written notice, either side\""],
+      ["Unused Deliverables", "Roll over? Lost?", "\"Unused deliverables do not roll over; max 1 deliverable may be banked with mutual agreement\""],
+      ["Out-of-Scope Process", "How additional work gets priced + approved", "\"Additional work scoped + quoted within 48hrs of request; approved by email before commencement\""],
+      ["Payment Holds", "What happens if payment is late", "\"Payment more than 15 days late: work pauses until current\""],
+      ["Rate Review", "When + how the rate gets revisited", "\"Rate reviewed annually at contract anniversary\""],
+    ], footer: "Rule: retainers are the holy grail of freelance income \u2014 stable, compounding, deep-relationship. But only when the scope is disciplined. Loose retainers are worse than project work." },
+    { type: "exercise", title: "Upgrade Your Current Scope Document", intro: "Take your current scope template (or the ad-hoc version you\u2019re using). Upgrade it using the elements from Slide 3.", items: [
+      { num: "1", copy: "List your current scope template\u2019s sections. What\u2019s missing against the 6 Contract Essentials?", answer: "Most ad-hoc scope documents lack: explicit exclusions, change-order process, timeline mutuality, exit/kill fee. That\u2019s where scope creep lives." },
+      { num: "2", copy: "Draft your \u201CNOT Included\u201D section \u2014 at least 5 things you\u2019ve historically been asked for that weren\u2019t in the original agreement.", answer: "This list is your pattern-recognition. The stuff you\u2019re always being asked for surprise is the stuff to make explicitly excluded next time." },
+      { num: "3", copy: "Write a 2-sentence change-order process + per-round revision fee. Add to template.", answer: "Example: \u201CAdditional scope requested mid-engagement will be scoped + quoted within 48 hours. Approval via email before commencement. Standard rate: $X/hour or $Y/piece.\u201D" },
+      { num: "4", copy: "Use the upgraded scope on your NEXT new engagement. Observe the client reaction + margin impact.", answer: "Clients respond well to clarity. Most will appreciate the professionalism. Those who push back are the ones who would\u2019ve scope-crept anyway." },
+    ] },
+  ],
+};

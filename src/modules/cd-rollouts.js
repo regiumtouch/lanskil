@@ -1,0 +1,71 @@
+// Creative Direction — Module 5: Multi-Channel Campaign Rollouts
+export const cdRolloutsModule = {
+  id: "cd05",
+  title: "Multi-Channel Campaign Rollouts",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "How a campaign actually hits the market. Sequencing, channel orchestration, launch week discipline, and the rollout plan that turns pieces into momentum.",
+  topics: ["Rollout Planning", "Channel Orchestration", "Launch Week", "Cross-Channel Handoffs", "Rollout Discipline", "When Things Go Wrong"],
+  quiz: [
+    { q: "A rollout plan differs from a content calendar because:", opts: ["It doesn\u2019t", "Rollout maps each piece to specific channels, roles, timings, and cross-channel handoffs \u2014 not just \u201Cpublish Tuesday\u201D but \u201CTue 9am LinkedIn post links to Wed email; Wed email drives to Thu flagship; Fri support ready for questions\u201D", "Length only", "Name only"], correct: 1 },
+    { q: "Launch week of a major campaign should have:", opts: ["Normal cadence", "A daily stand-up + real-time monitoring + prepared responses for likely reactions + explicit ownership of each channel \u2014 launches go wrong in small ways that compound without active coordination", "One meeting", "No meetings"], correct: 1 },
+    { q: "Cross-channel handoffs (e.g. LinkedIn \u2192 email \u2192 flagship) work best when:", opts: ["They happen organically", "The call-to-action on each piece explicitly directs to the next asset; the reader journey is designed, not hoped-for", "Channels are independent", "Same piece everywhere"], correct: 1 },
+    { q: "When a campaign piece underperforms during rollout, the right response is:", opts: ["Change everything", "Diagnose first (audience mismatch? channel miss? message problem?) then adjust tactically \u2014 replacing the piece is rarely the right call mid-campaign", "Cancel campaign", "Double budget"], correct: 1 },
+    { q: "Rollout discipline matters because:", opts: ["Disciplines are nice", "Campaigns compound through sequencing; a rollout that ships pieces in wrong order or with wrong handoffs breaks the compound effect even with great individual pieces", "It doesn\u2019t", "Only in B2B"], correct: 1 },
+    { q: "A senior CD\u2019s role during launch week is primarily:", opts: ["Writing last-minute copy", "Making judgement calls in real-time (is this working? should we pivot? which piece comes next?) + coordinating across teams; NOT doing last-minute writing", "Vacation", "Social media reactions"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 5", title: "Multi-Channel", titleAccent: "Campaign Rollouts", subtitle: "How a campaign actually hits the market. The rollout plan that turns pieces into momentum.", meta: "Creative Direction  |  Module 5  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY ROLLOUT MATTERS", title: "Most campaigns fail at rollout, not at creation", intro: "Great pieces launched in wrong order, on wrong channels, without cross-handoffs, land as a content dump. Rollout is the discipline of getting the pieces to compound. Most teams under-invest here.", stats: [
+      { num: "3\u20135\u00D7", label: "impact delta between a campaign with proper rollout planning vs the same pieces released without coordination" },
+      { num: "48 hrs", label: "typical launch-week attention window; campaigns that don\u2019t peak inside this window usually don\u2019t peak at all" },
+      { num: "6\u201310", label: "the number of discrete moves typically coordinated across a launch week for a mid-size campaign" },
+    ], subheading: "What a Good Rollout Achieves", bullets: [
+      "Attention peaks at the right moment (flagship launch) rather than dissipating across 6 weeks",
+      "Each piece drives attention to the next, creating compound momentum",
+      "Internal teams (marketing, support, sales) aligned and responsive during the high-attention window",
+      "Real-time adjustments based on what\u2019s working without abandoning the campaign frame",
+      "Post-campaign assets remain evergreen, not dated-to-launch-moment",
+    ] },
+    { type: "grid", eyebrow: "THE 4 ROLLOUT PHASES", title: "How campaigns actually move through the market", subtitle: "Each phase has a different job. Treating them all the same breaks rollout discipline.", items: [
+      { num: "01", title: "Pre-Launch (2\u20134 weeks)", desc: "Teasers + reserved attention. Priming + preparing channels. Internal teams aligned on launch plan.", icon: "\u{1F525}" },
+      { num: "02", title: "Launch Week (3\u20137 days)", desc: "Flagship drops. Supporting pieces released in sequence. Daily stand-ups. Real-time adjustments.", icon: "\u{1F680}" },
+      { num: "03", title: "Amplification (2\u20136 weeks)", desc: "Supporting pieces continue rolling. Channel adaptations released. Press + partners activated.", icon: "\u{1F4E2}" },
+      { num: "04", title: "Harvest + Evergreen (ongoing)", desc: "Harvest piece closes the campaign. Flagship + best supporting pieces transition to evergreen library.", icon: "\u{1F33E}" },
+    ], footer: "Rule: the rollout plan should document who does what, when, on what channel, with what cross-channel handoff \u2014 for every phase. Calendar-only plans are insufficient." },
+    { type: "principle", num: "01", title: "Launch Week Discipline", intro: "Launch week is where 60% of a campaign\u2019s impact is determined. Teams that treat launch week as business-as-usual produce campaigns that land softly. Teams with explicit launch-week discipline produce campaigns that land hard.", sectionTitle: "The Launch Week Playbook", sections: [
+      { heading: "1. Daily 15-min stand-up during launch week", example: "Every morning at 9am: what shipped yesterday, what ships today, what\u2019s working, what needs adjustment.", note: "Short, high-signal, specific. Not status theatre. Makes real-time course corrections possible." },
+      { heading: "2. Live metrics dashboard + response playbook", example: "Track: flagship page visits, supporting piece engagement, social reach, email opens/clicks. Prepared responses to expected scenarios.", note: "Can\u2019t course-correct without visibility. Dashboard should update hourly during the high-intensity window." },
+      { heading: "3. Explicit channel ownership", example: "Named person owns LinkedIn. Named person owns email. Named person owns support. Cross-handoffs are documented.", note: "Ambiguous ownership breaks rollouts. Every channel + every handoff needs a named owner." },
+      { heading: "4. Pre-drafted reactions", example: "Draft: \u201Cif flagship over-performs\u201D / \u201Cif flagship under-performs\u201D / \u201Cif a detractor argument emerges\u201D / \u201Cif press asks for comment.\u201D", note: "Launch week is not the time to compose from scratch. Have reactions staged; deploy as needed." },
+    ], rule: "Launch week discipline is the senior CD\u2019s most visible job. If the team experiences launch week as chaos, the CD didn\u2019t do the pre-work." },
+    { type: "comparison", eyebrow: "CHAOTIC vs CHOREOGRAPHED", title: "Two rollouts, same campaign budget + pieces", subtitle: "Team A ships great pieces with ad-hoc rollout. Team B scripts the rollout. Team B lands 3\u00D7 the impact.", left: { title: "Chaotic Rollout (Pieces Without Momentum)", color: "#EF4444", items: [
+      { strong: "Flagship ships on a Monday with no pre-teaser", note: "Audience encounters flagship cold; no anticipation; 60% of potential reach left on the table." },
+      { strong: "Supporting pieces released irregularly over 6 weeks", note: "No cadence. Audience can\u2019t anticipate. Each piece fights for attention alone." },
+      { strong: "No cross-channel handoffs", note: "LinkedIn post doesn\u2019t point to flagship. Email doesn\u2019t reference LinkedIn. Each piece is siloed." },
+      { strong: "No launch-week standups; no live dashboard", note: "Team doesn\u2019t know what\u2019s working until post-mortem. Can\u2019t course-correct." },
+      { strong: "Total impact: ~1\u00D7 expected (treadmill result)", note: "Great pieces, mediocre rollout = modest outcome." },
+    ] }, right: { title: "Choreographed Rollout (Pieces Become Momentum)", color: "#10B981", items: [
+      { strong: "2 teaser pieces + internal alignment 10 days before flagship", note: "Anticipation building. Audience primed. Internal teams on same page." },
+      { strong: "Flagship drops Tuesday 9am ET \u2014 with coordinated channel drops in first 4 hours", note: "Launch peak maximised. Concentrated attention spike vs diffused release." },
+      { strong: "Supporting pieces weekly for 6 weeks, each with hand-off CTA to flagship or adjacent piece", note: "Reader journey designed. Each piece drives to the next." },
+      { strong: "Daily stand-up launch week + live dashboard + pre-drafted reaction library", note: "Real-time course correction. Opportunities + problems caught and acted on within hours." },
+      { strong: "Total impact: ~3\u00D7 expected (compound rollout result)", note: "Same pieces. Different rollout. Different outcome." },
+    ] }, footer: "Rule: rollout is at least 30% of campaign outcome. Invest in it accordingly." },
+    { type: "table", title: "The Launch Week Calendar Template", subtitle: "A reusable rollout structure for major campaign launch weeks. Adapt timing to your context; keep the discipline.", columns: ["Day", "Actions", "Owner"], rows: [
+      ["Mon (pre-launch)", "Internal rehearsal: confirm all pieces ready, channel owners aligned, dashboard tested", "CD + Ops"],
+      ["Tue 9am (launch)", "Flagship drops. LinkedIn post + email + press outreach within first hour.", "Each channel owner"],
+      ["Tue 12pm", "Monitor metrics. Sales + support teams briefed on expected Qs. First mid-day check-in.", "CD"],
+      ["Tue 4pm", "First supporting piece drops (pre-drafted). Reactive content based on morning signal.", "Writer + Ops"],
+      ["Wed\u2013Fri 9am", "Daily 15-min stand-up. What worked yesterday? What ships today? Adjustments?", "CD"],
+      ["Wed\u2013Fri", "One supporting piece + one channel adaptation per day. Handoffs explicit.", "Writer + Channel owners"],
+      ["Fri 5pm", "Launch week retro: what compounded, what fell flat, what\u2019s the next-week plan", "CD + team"],
+    ], footer: "Rule: the launch week calendar should be written BEFORE launch day. Real-time improvisation is for unexpected events, not for default operations." },
+    { type: "exercise", title: "Draft the Rollout Plan for Your Next Campaign", intro: "Pick a campaign you\u2019ll run in the next 90 days. Draft the launch-week rollout using the template from Slide 6.", items: [
+      { num: "1", copy: "Set the launch day + time. When exactly does the flagship drop? Pick a specific hour.", answer: "Tuesday 9am ET is a common default for B2B. Pick the time your specific audience is most-attention-available." },
+      { num: "2", copy: "Map each supporting piece to a specific day + channel + handoff.", answer: "Every piece should answer: what does this drive readers to? If the answer is \u201Cnothing,\u201D redesign or cut." },
+      { num: "3", copy: "Assign channel owners. Who owns LinkedIn? Email? Press outreach? Support preparedness?", answer: "Ambiguous ownership = broken rollout. Name a single person per channel, with deputy for each." },
+      { num: "4", copy: "Pre-draft 3 likely reactions + responses (over-performs / under-performs / detractor emerges).", answer: "Having responses staged means you act within hours, not days. Prepared reactions are a competitive advantage." },
+    ] },
+  ],
+};

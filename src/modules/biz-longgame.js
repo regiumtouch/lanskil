@@ -1,0 +1,70 @@
+// The Copywriting Business — Module 6: The Long Game — Reputation & Referrals
+export const bizLongGameModule = {
+  id: "biz06",
+  title: "The Long Game: Reputation & Referrals",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The ten-year copywriter business is built on reputation, referrals, and compounding trust. The habits + systems + decisions that compound into a career, not just a gig.",
+  topics: ["The Reputation Asset", "The Referral Flywheel", "Saying No Strategically", "Long-Term Pricing", "Client Farewells", "Career Stage Evolution"],
+  quiz: [
+    { q: "Reputation compounds because:", opts: ["Social media", "Every great engagement produces: (a) a specific outcome you can cite, (b) a client willing to refer, (c) portfolio ammunition, (d) network effect. Each one feeds the next.", "Doesn\u2019t matter", "Based on luck"], correct: 1 },
+    { q: "The single biggest reputation-killer is:", opts: ["Charging premium", "Taking a client you shouldn\u2019t have \u2014 wrong-fit engagements produce poor outcomes, which produce bad referrals or no referrals, which slow the compound", "Raising rates", "Specialising"], correct: 1 },
+    { q: "A referral flywheel gets stronger when:", opts: ["You ask more", "You consistently deliver outcomes + stay visible to past clients + make introductions easy (named positioning, easy-to-share portfolio pieces) \u2014 removes friction at every flywheel step", "You stop asking", "Luck strikes"], correct: 1 },
+    { q: "Saying no to wrong-fit clients does what for your reputation over time?", opts: ["Hurts it", "Strengthens it \u2014 you preserve bandwidth for right-fit clients whose outcomes compound into referrals; saying yes to wrong-fit consumes bandwidth that could\u2019ve gone to right-fit", "Nothing", "Confuses buyers"], correct: 1 },
+    { q: "Long-term pricing discipline means:", opts: ["Never raising rates", "Raising rates annually or when market supports it; not over-discounting \u2014 cheap engagements become reputation drag because they produce below-premium outcomes + cannibalize premium-tier capacity", "Matching competitors", "Always discounting"], correct: 1 },
+    { q: "How you end engagements matters because:", opts: ["It doesn\u2019t", "The last impression is the most durable; clean handoffs + gracious endings produce referrals even from clients whose projects didn\u2019t continue; messy endings close a referral door permanently", "Only beginnings matter", "Middle stages matter"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 6", title: "The Long Game", titleAccent: "Reputation & Referrals", subtitle: "The ten-year copywriter business is built on reputation + referrals + compounding trust. The habits that turn a gig into a career.", meta: "The Copywriting Business  |  Module 6  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY THE LONG GAME WINS", title: "Most freelance copywriters plateau by year 4; the ones who compound past the plateau are running a different game", intro: "Short-term thinking: maximise this year\u2019s revenue. Long-term thinking: maximise compounding reputation that feeds all future years. The second game, played for 7\u201310 years, produces outcomes the first game can\u2019t reach.", stats: [
+      { num: "70\u201385%", label: "of mature freelance copywriter pipeline that comes from repeat clients + referrals from past clients" },
+      { num: "3\u20135 yrs", label: "typical time for reputation compounding to produce inbound pipeline that makes outbound unnecessary" },
+      { num: "10\u00D7", label: "earnings delta between mature-reputation copywriters (year 8+) and plateau-stuck copywriters (year 4) with equal craft skill" },
+    ], subheading: "The Long Game Disciplines", bullets: [
+      "Selectivity: turning down wrong-fit clients preserves reputation bandwidth for right-fit ones",
+      "Follow-through: delivering outcomes that clients can cite produces the next engagement without pitching",
+      "Visibility: staying in touch with past clients, sharing work, building in public \u2014 compounds network",
+      "Rate discipline: raising rates as reputation grows; not over-discounting to win work that won\u2019t compound",
+      "Graceful exits: leaving engagements well enough that even ended relationships produce future referrals",
+    ] },
+    { type: "grid", eyebrow: "THE 4 PILLARS OF THE LONG GAME", title: "What reputation-compounding copywriters do that plateau-stuck ones don't", subtitle: "Each pillar takes decades to compound. None work in year 1. All 4 work spectacularly by year 7.", items: [
+      { num: "01", title: "Outcome Citations", desc: "Every engagement produces a specific outcome you can cite: $X pipeline, Y% lift, named customer. Ammunition for next client.", icon: "\u{1F3AF}" },
+      { num: "02", title: "Selective Client Acceptance", desc: "Saying no to wrong-fit clients preserves time + reputation for right-fit. Each right-fit produces a compounding outcome; each wrong-fit produces a drag.", icon: "\u{1F6AA}" },
+      { num: "03", title: "Visible Public Work", desc: "Publishing, speaking, teaching, sharing frameworks. Even 1 piece/month for 5 years compounds into a platform.", icon: "\u{1F4E1}" },
+      { num: "04", title: "Relationship Maintenance", desc: "Past clients stay connected. Check-ins. Easy-to-share portfolio. Make introductions frictionless. Flywheel stays spinning.", icon: "\u{1F504}" },
+    ], footer: "Rule: commit to all 4 for a year. The compounding starts showing up in years 3\u20134. Don\u2019t quit before then \u2014 most freelancers do." },
+    { type: "principle", num: "01", title: "The Selective No", intro: "The single highest-leverage move in a long career: saying no to wrong-fit clients. Every wrong-fit client consumes time + emotional bandwidth + portfolio slot that could have gone to a right-fit compounding client. Selectivity is strategy.", sectionTitle: "When To Say No", sections: [
+      { heading: "1. Outside your positioning", example: "You position as B2B SaaS specialist. A DTC brand approaches. Polite decline + refer.", note: "Taking off-niche work dilutes positioning + produces below-excellent work. Refer the client elsewhere; reinforce your niche." },
+      { heading: "2. Below your rate, no strategic upside", example: "Client budget is half your rate. No brand / case study / network upside. Decline without guilt.", note: "Discounted engagements eat premium capacity. Accepting them converts a growth year into a plateau year." },
+      { heading: "3. Red-flag behaviour in discovery", example: "Scope creep in discovery call. Demanding fast turnaround. Dismissive of your input. Skip.", note: "Early behaviour predicts engagement behaviour. Discovery-stage red flags become contract-stage disputes." },
+      { heading: "4. At capacity \u2014 no quality possible", example: "You\u2019re at 90% capacity. Taking another client means under-serving existing ones. Wait-list or decline.", note: "Over-commitment produces mediocre work across the board, which produces mediocre outcomes, which breaks the reputation compound." },
+    ], rule: "Every yes you give is a no to something else. Be intentional about what you\u2019re saying no to when you say yes." },
+    { type: "comparison", eyebrow: "YES-TO-EVERYTHING vs SELECTIVE", title: "Two freelance copywriters over a 5-year arc", subtitle: "Both start at the same year-1 rates. 5 years later, one plateaued; one has a compounding pipeline.", left: { title: "Yes-To-Everything Copywriter", color: "#EF4444", items: [
+      { strong: "Year 1: takes every client, all industries, all rates", note: "Income grows. Portfolio sprawls. Niche unclear to buyers." },
+      { strong: "Year 2\u20133: heavy repeat business from mid-market clients. Rates stuck at mid.", note: "Plateau forming. Positioning remains generalist." },
+      { strong: "Year 4\u20135: rates can\u2019t rise because portfolio says \u201Cgeneralist\u201D. Referrals stay mid-market.", note: "Income plateau. No compound into premium tier." },
+      { strong: "Total compound after 5 years: linear growth, saturated at $150K\u2013$200K", note: "Active career. Capped ceiling. Burnout risk." },
+    ] }, right: { title: "Selective Copywriter", color: "#10B981", items: [
+      { strong: "Year 1: takes every client in-niche. Says no to off-niche work (politely).", note: "Slower income ramp. Niche-focused portfolio building." },
+      { strong: "Year 2\u20133: niche positioning crystallises. Rates raise 2\u00D7 as specialist reputation grows.", note: "Selective reputation compound kicks in. Referrals arrive from in-niche sources." },
+      { strong: "Year 4\u20135: rates at premium tier. Inbound flow exceeds capacity. Choosing projects.", note: "Choice as a freelancer = luxury. Most don\u2019t reach it; the selective arc gets you there fastest." },
+      { strong: "Total compound after 5 years: 2\u20133\u00D7 the yes-to-everything outcome. Ceiling is still rising.", note: "Career, not treadmill. Year 6\u20137 starts unlocking agency / productised / creator options." },
+    ] }, footer: "Rule: saying no feels costly in year 1. It pays dividends from year 3 onwards. Most freelancers never make it past year 3 of the discipline." },
+    { type: "table", title: "The Reputation Maintenance Calendar", subtitle: "Light-touch habits that compound over years. Each one takes minutes; skipping them for a year costs you momentum.", columns: ["Habit", "Cadence", "Effect"], rows: [
+      ["Quarterly check-in with past clients (\"how's it going?\")", "Every 90 days", "Stays top-of-mind; surfaces referral opportunities"],
+      ["Update portfolio + case studies with new outcomes", "Every 90 days", "Keeps public-facing work current; raises rates are defensible"],
+      ["Public writing (LinkedIn, newsletter, blog)", "Weekly or bi-weekly", "Builds platform; attracts inbound; compounds authority"],
+      ["Thank-you notes to referrers", "Within 48 hrs of introduction", "Maintains referral goodwill; signals you value the relationship"],
+      ["Year-end client retrospective + outcome review", "Annually", "Ammunition for next-year rate raises + case study material"],
+      ["Rate review based on current positioning", "Annually", "Ensures you\u2019re priced to market + rising reputation"],
+      ["Portfolio refresh (add best new work, retire old)", "Annually", "Keeps portfolio at current skill + current positioning"],
+      ["Long-form reflective piece on the year\u2019s work", "Annually", "Synthesises learning; often becomes the most-referenced content you write"],
+    ], footer: "Rule: pick 4 of these 8 habits + actually do them. Perfect discipline on 4 beats patchy attempts at all 8." },
+    { type: "exercise", title: "Design Your Long-Game Playbook", intro: "The compounding habits of a ten-year copywriting business. Commit to 4 of the 8 habits from the calendar \u2014 put them in your actual calendar now.", items: [
+      { num: "1", copy: "Quarterly check-in: make a list of your 10 most-valued past clients. Schedule a 15-min catch-up email for each, 3 months apart.", answer: "These 10 relationships are your future pipeline. Staying warm with them takes minutes per quarter and compounds for years." },
+      { num: "2", copy: "Annual rate review: schedule for your anniversary date. Calendar the review 30 days in advance so you have time to research market + plan increases.", answer: "Rate stagnation is silent income loss. Most copywriters drift at the same rate for years because they never build this review into their calendar." },
+      { num: "3", copy: "Selective-no list: write the 3 types of work you\u2019ll politely decline going forward, even when you have capacity.", answer: "Example: \u201Cwork below $X rate / work outside my niche / work with red-flag behaviour in discovery.\u201D Make this a published note to yourself; refer to it whenever enquiries arrive." },
+      { num: "4", copy: "Public writing commitment: pick 1 channel + 1 sustainable cadence. Block time on calendar for year-1 consistency.", answer: "Year 1 of public writing produces little. Year 3 compounds. Commit to year 1 knowing year 3\u2019s payoff is why." },
+    ] },
+  ],
+};
