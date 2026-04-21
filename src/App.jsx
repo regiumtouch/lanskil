@@ -1222,8 +1222,8 @@ function Landing({ onExploreCourses }) {
         {[
           { num: 1000, suffix: "+", label: "Student Target by 2027" },
           { label: "Expert Instructors", iconOnly: true },
-          { num: 6, suffix: "", label: "Career Tracks" },
-          { num: 93, suffix: "%", label: "Job Placement Rate" },
+          { num: 60, suffix: "+", label: "Rich Modules Live" },
+          { num: 93, suffix: "%", label: "Placement Goal" },
         ].map((s, i) => (
           <div className="stat-item" key={i}>
             <div className="stat-num">
