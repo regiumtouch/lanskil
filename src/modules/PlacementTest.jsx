@@ -158,7 +158,7 @@ export default function PlacementTest({ T, onBack, onStartTier }) {
   if (step === 0) {
     return (
       <div className="fi" style={{ maxWidth: 760, margin: "0 auto" }}>
-        <button onClick={onBack} className="bt" style={{ marginBottom: 20, padding: "8px 16px", borderRadius: 2, background: T.subtle, color: T.text2, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Back</button>
+        <button onClick={onBack} className="bt" style={{ marginBottom: 20, padding: "8px 16px", borderRadius: 2, background: T.subtle, color: T.text2, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif" }}>Skip {"\u2014"} Browse the Track {"\u2192"}</button>
         <div style={{ background: "linear-gradient(135deg,#0F0B1E 0%,#1A0F2E 60%,#3B1E4A 100%)", padding: "48px 44px", borderRadius: 6, color: "white", position: "relative", overflow: "hidden", marginBottom: 24 }}>
           <div style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "#7C3AED", opacity: 0.28, filter: "blur(70px)" }} />
           <div style={{ position: "absolute", bottom: -60, left: -60, width: 240, height: 240, borderRadius: "50%", background: "#F4A261", opacity: 0.24, filter: "blur(80px)" }} />
