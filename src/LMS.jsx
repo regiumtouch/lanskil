@@ -764,7 +764,8 @@ export default function LMS({ onBack, user, onLogout }) {
         {user&&<div style={{borderTop:"1px solid "+T.border,padding:"16px 16px",margin:"0"}}><div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}><div style={{width:34,height:34,borderRadius:50,background:"linear-gradient(135deg,#7C3AED,#F4A261)",display:"flex",alignItems:"center",justifyContent:"center",color:"white",fontSize:14,fontWeight:700,flexShrink:0}}>{(user.firstName||"U").charAt(0)}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{user.firstName}{user.lastName?" "+user.lastName:""}</div><div style={{fontSize:11,color:T.text3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{user.email}</div></div></div><button className="bt" onClick={onLogout} style={{width:"100%",padding:"8px 0",borderRadius:10,background:T.hover,color:T.text2,fontSize:12,fontWeight:500,border:"none",textAlign:"center",transition:"all .2s"}}>{"\u{1F6AA}"} Sign Out</button></div>}
       </div>
       <div className="mn">
-        {v==="dash"&&<Dash ft={ft} sr={sr} setSr={setSr} fc={fc} fl={fl} setFl={setFl} osk={osk} oskl={oskl} gp={gp} op={op} tl={tl} dc={dc} dn={dn} user={user} T={T} dark={dark}/>}
+        {v==="dash"&&<Dash ft={ft} sr={sr} setSr={setSr} fc={fc} fl={fl} setFl={setFl} osk={osk} oskl={oskl} gp={gp} op={op} tl={tl} dc={dc} dn={dn} user={user} T={T} dark={dark} openTrack={function(){setV("track");scr();}}/>}
+        {v==="track"&&<TrackView T={T} cat={CATS.find(function(c){return c.id==="content";})} skills={SKILLS.filter(function(s){return s.cat==="content";})} osk={osk} gp={gp} user={user} dn={dn} gb={function(){setV("dash");scr();}}/>}
         {v==="skill"&&sk&&<SkV sk={sk} gb={function(){setV("dash");setSk(null);}} ols={ols} dn={dn} gp={gp} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} goPortfolio={function(){setMd("portfolio");}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="portfolio"&&<PortfolioBuilder user={user} lesson={ls} onBack={function(){setMd("browse");}} T={T}/>}
@@ -784,7 +785,7 @@ function Bar(props){var p=props.p,c=props.c||"#7C3AED",h=props.h||5;return <div 
 
 function toRoman(n){var map=[["M",1000],["CM",900],["D",500],["CD",400],["C",100],["XC",90],["L",50],["XL",40],["X",10],["IX",9],["V",5],["IV",4],["I",1]];var out="";for(var i=0;i<map.length;i++){while(n>=map[i][1]){out+=map[i][0];n-=map[i][1];}}return out;}
 
-function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,fl=props.fl,setFl=props.setFl,osk=props.osk,oskl=props.oskl,gp=props.gp,op=props.op,tl=props.tl,dc=props.dc,dn=props.dn,user=props.user,T=props.T,dark=props.dark;
+function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,fl=props.fl,setFl=props.setFl,osk=props.osk,oskl=props.oskl,gp=props.gp,op=props.op,tl=props.tl,dc=props.dc,dn=props.dn,user=props.user,T=props.T,dark=props.dark,openTrack=props.openTrack;
   var inProg=SKILLS.filter(function(s){var p=gp(s);return p>0&&p<100;}).length;
   var comp=SKILLS.filter(function(s){return gp(s)===100;}).length;
   // Build Continue Learning list - skills with progress > 0, showing next uncompleted lesson
@@ -879,14 +880,53 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       <div style={{height:2,background:RT_GRADIENT,marginTop:20,width:"100%",opacity:.85}}/>
     </div>
     {cat.id==="content"?(function(){
-      var founds=cs.filter(function(s){return s.tier==="foundational"||!s.tier;});
-      var inters=cs.filter(function(s){return s.tier==="intermediate";});
-      var advs=cs.filter(function(s){return s.tier==="advanced";});
-      return <>
-        {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
-        {inters.length>0&&<TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, SEO, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
-        {advs.length>0&&<TierBlock T={T} label="Tier III" heading="Mastery & Leadership" sublabel="Brand voice at org scale, creative direction, and the ten-year copywriting business" count={advs.length} skills={advs} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
-      </>;
+      var activeSkills=cs.filter(function(s){return s.lessons&&s.lessons.length>0;});
+      var totalModules=activeSkills.reduce(function(a,s){return a+s.lessons.length;},0);
+      var completedSkills=activeSkills.filter(function(s){return gp(s)===100;}).length;
+      return <article role="button" tabIndex={0} onClick={openTrack} onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openTrack();}}} style={{cursor:"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative"}} onMouseEnter={function(e){e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 14px 36px rgba(124,58,237,.16)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+        <div style={{position:"relative",width:"100%",paddingTop:"32%",background:"linear-gradient(135deg,#0F0B1E 0%,#1A0F2E 60%,#3B1E4A 100%)",overflow:"hidden"}}>
+          <div style={{position:"absolute",top:-40,left:-40,width:200,height:200,borderRadius:"50%",background:"#7C3AED",opacity:.35,filter:"blur(50px)"}}/>
+          <div style={{position:"absolute",bottom:-40,right:-40,width:220,height:220,borderRadius:"50%",background:"#F4A261",opacity:.28,filter:"blur(60px)"}}/>
+          <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",padding:"0 40px"}}>
+            <div>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"#F4A261",letterSpacing:2.5,textTransform:"uppercase",marginBottom:8}}>The Copywriting Mastery Track</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:36,fontWeight:700,color:"white",letterSpacing:-.5,lineHeight:1.05}}>Copywriting</div>
+            </div>
+          </div>
+        </div>
+        <div style={{padding:"26px 30px 24px",flex:1,display:"flex",flexDirection:"column"}}>
+          <p style={{fontSize:14,color:T.text2,lineHeight:1.65,marginBottom:22,fontFamily:"'DM Sans',sans-serif"}}>The complete copywriting curriculum \u2014 from foundations of persuasion through to running your own copywriting business. Ten courses, three tiers, structured for progression. Earn a certificate at each tier.</p>
+
+          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginBottom:22}}>
+            <div style={{padding:"12px 14px",background:"#7C3AED0E",borderLeft:"3px solid #7C3AED",borderRadius:2}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:10.5,color:"#7C3AED",letterSpacing:2,textTransform:"uppercase",fontWeight:600,marginBottom:3}}>Tier I</div>
+              <div style={{fontSize:12.5,color:T.text,fontWeight:700,fontFamily:"'DM Sans',sans-serif"}}>Foundational</div>
+              <div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",marginTop:2}}>3 courses</div>
+            </div>
+            <div style={{padding:"12px 14px",background:"#F4A2610E",borderLeft:"3px solid #F4A261",borderRadius:2}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:10.5,color:"#F4A261",letterSpacing:2,textTransform:"uppercase",fontWeight:600,marginBottom:3}}>Tier II</div>
+              <div style={{fontSize:12.5,color:T.text,fontWeight:700,fontFamily:"'DM Sans',sans-serif"}}>Intermediate</div>
+              <div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",marginTop:2}}>4 courses</div>
+            </div>
+            <div style={{padding:"12px 14px",background:"#D946EF0E",borderLeft:"3px solid #D946EF",borderRadius:2}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:10.5,color:"#D946EF",letterSpacing:2,textTransform:"uppercase",fontWeight:600,marginBottom:3}}>Tier III</div>
+              <div style={{fontSize:12.5,color:T.text,fontWeight:700,fontFamily:"'DM Sans',sans-serif"}}>Mastery</div>
+              <div style={{fontSize:10.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",marginTop:2}}>3 courses</div>
+            </div>
+          </div>
+
+          <div style={{marginTop:"auto",paddingTop:16,borderTop:"1px solid "+T.border,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:10}}>
+            <div style={{display:"flex",alignItems:"center",gap:12,fontSize:11.5,color:T.text3,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>
+              <span>{activeSkills.length} Courses</span>
+              <span style={{color:T.border}}>{"\u00B7"}</span>
+              <span>{totalModules} Modules</span>
+              <span style={{color:T.border}}>{"\u00B7"}</span>
+              <span style={{color:"#F4A261",fontWeight:600}}>{"\u2720 3 Tier Certificates"}</span>
+            </div>
+            <button className="bt" onClick={function(e){e.stopPropagation();openTrack();}} style={{padding:"10px 18px",borderRadius:3,background:RT_GRADIENT,color:"white",fontSize:12,fontWeight:700,border:"none",fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer"}}>Explore the Track {"\u2192"}</button>
+          </div>
+        </div>
+      </article>;
     })():(
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
       {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.cat!=="content"||s.tier==="intermediate";var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
@@ -939,6 +979,31 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
     )}
   </div>;})}
   </div>;}
+
+function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=props.osk,gp=props.gp,user=props.user,dn=props.dn,gb=props.gb;
+  var founds=skills.filter(function(s){return s.tier==="foundational"||!s.tier;});
+  var inters=skills.filter(function(s){return s.tier==="intermediate";});
+  var advs=skills.filter(function(s){return s.tier==="advanced";});
+  return <div className="fi">
+    <div className="bc" style={{marginBottom:18}}>
+      <span onClick={gb}>Dashboard</span>
+      <span className="sep">/</span>
+      <span className="cur">Copywriting Mastery Track</span>
+    </div>
+    <div style={{marginBottom:36,padding:"32px 34px",borderRadius:6,background:"linear-gradient(135deg,#0F0B1E 0%,#1A0F2E 60%,#3B1E4A 100%)",color:"white",position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:-60,left:-60,width:240,height:240,borderRadius:"50%",background:"#7C3AED",opacity:.25,filter:"blur(70px)"}}/>
+      <div style={{position:"absolute",bottom:-60,right:-60,width:260,height:260,borderRadius:"50%",background:"#F4A261",opacity:.22,filter:"blur(80px)"}}/>
+      <div style={{position:"relative",zIndex:1}}>
+        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"#F4A261",letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>The Copywriting Mastery Track</div>
+        <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:38,fontWeight:700,letterSpacing:-.6,lineHeight:1.05,marginBottom:10}}>Ten Courses. Three Tiers. One Career.</h1>
+        <p style={{fontSize:14,color:"rgba(255,255,255,.75)",lineHeight:1.65,maxWidth:680,fontFamily:"'DM Sans',sans-serif",margin:0}}>A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier.</p>
+      </div>
+    </div>
+    {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
+    {inters.length>0&&<TierBlock T={T} label="Tier II" heading="Intermediate Specialisations" sublabel="Deepen into conversion, SEO, sales pages, and AI-powered copy" count={inters.length} skills={inters} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
+    {advs.length>0&&<TierBlock T={T} label="Tier III" heading="Mastery & Leadership" sublabel="Brand voice at org scale, creative direction, and the ten-year copywriting business" count={advs.length} skills={advs} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
+  </div>;
+}
 
 function TierBlock(props){var T=props.T,label=props.label,heading=props.heading,sublabel=props.sublabel,count=props.count,skills=props.skills,osk=props.osk,gp=props.gp,cat=props.cat,user=props.user,dn=props.dn;
   var tierAccent=label==="Tier I"?"#7C3AED":label==="Tier II"?"#F4A261":"#D946EF";
