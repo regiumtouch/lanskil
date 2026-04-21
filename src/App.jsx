@@ -1295,6 +1295,67 @@ function Landing({ onExploreCourses }) {
         </div>
       </section>
 
+      {/* COPYWRITING MASTERY TRACK */}
+      <section className="section" id="copywriting-track" style={{ background: "linear-gradient(180deg,#0F0B1E 0%,#1A0F2E 100%)", color: "white", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: -60, left: -60, width: 260, height: 260, borderRadius: "50%", background: "#7C3AED", opacity: 0.15, filter: "blur(60px)" }} />
+        <div style={{ position: "absolute", bottom: -80, right: -80, width: 320, height: 320, borderRadius: "50%", background: "#F4A261", opacity: 0.12, filter: "blur(80px)" }} />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#F4A261", letterSpacing: 3, textTransform: "uppercase", marginBottom: 12, textAlign: "center" }}>The Copywriting Mastery Track</div>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 700, lineHeight: 1.05, letterSpacing: -1, textAlign: "center", marginBottom: 16 }}>Ten Courses. Three Tiers. One Career.</h2>
+          <p style={{ fontSize: 16, color: "#B8B3C8", lineHeight: 1.65, textAlign: "center", maxWidth: 680, margin: "0 auto 48px", fontFamily: "'DM Sans',sans-serif" }}>A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier. Start free with any course.</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20, maxWidth: 1200, margin: "0 auto" }}>
+            {[
+              { tier: "Tier I", label: "Foundational", accent: "#7C3AED", desc: "The core foundations of modern copy.", courses: [
+                { name: "Content Strategy", modules: 8, duration: "8h" },
+                { name: "Copywriting", modules: 6, duration: "9h" },
+                { name: "Social Media Copywriting", modules: 8, duration: "23h" },
+              ]},
+              { tier: "Tier II", label: "Intermediate Specialisations", accent: "#F4A261", desc: "Deepen into conversion, SEO, sales pages, and AI-powered copy.", courses: [
+                { name: "SEO Content Writing Masterclass", modules: 7, duration: "10h" },
+                { name: "Conversion Copy & Landing Pages", modules: 6, duration: "9h" },
+                { name: "Sales Pages & Direct Response", modules: 6, duration: "9h" },
+                { name: "AI-Powered Copywriting", modules: 6, duration: "9h" },
+              ]},
+              { tier: "Tier III", label: "Mastery & Leadership", accent: "#D946EF", desc: "Brand voice at org scale, creative direction, and the copywriting business.", courses: [
+                { name: "Brand Voice & Positioning", modules: 6, duration: "9h" },
+                { name: "Creative Direction & Campaign Strategy", modules: 6, duration: "9h" },
+                { name: "The Copywriting Business", modules: 6, duration: "9h" },
+              ]},
+            ].map((t) => (
+              <div key={t.tier} onClick={onExploreCourses} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "28px 26px", cursor: "pointer", transition: "all .25s", position: "relative", overflow: "hidden" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = t.accent; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,.3)"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
+                <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: t.accent }} />
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: 13, color: t.accent, letterSpacing: 2.5, textTransform: "uppercase", fontWeight: 600, marginBottom: 4 }}>{t.tier}</div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, color: "white", lineHeight: 1.15, letterSpacing: -.3, marginBottom: 8 }}>{t.label}</h3>
+                <p style={{ fontSize: 13, color: "#B8B3C8", lineHeight: 1.55, marginBottom: 20, fontFamily: "'DM Sans',sans-serif" }}>{t.desc}</p>
+
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 16 }}>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", marginBottom: 12 }}>{t.courses.length} Courses</div>
+                  {t.courses.map((c, i) => (
+                    <div key={c.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "9px 0", borderBottom: i < t.courses.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13.5, color: "white", fontFamily: "'DM Sans',sans-serif", fontWeight: 500, lineHeight: 1.3 }}>{c.name}</div>
+                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{c.modules} modules {"\u00B7"} {c.duration}</div>
+                      </div>
+                      <span style={{ color: t.accent, fontSize: 14, fontWeight: 700, marginLeft: 10 }}>{"\u2192"}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: t.accent, letterSpacing: 1.5, textTransform: "uppercase" }}>{"\u{1F393}"} Tier Certificate</span>
+                  <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 13, color: t.accent, fontWeight: 600 }}>Enter Tier {"\u2192"}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <button onClick={onExploreCourses} style={{ background: "linear-gradient(135deg,#7C3AED,#F4A261)", color: "white", border: "none", padding: "16px 40px", fontSize: 15, fontWeight: 700, fontFamily: "'DM Sans',sans-serif", letterSpacing: 1, textTransform: "uppercase", borderRadius: 3, cursor: "pointer", boxShadow: "0 8px 28px rgba(124,58,237,.35)" }}>Enter the Copywriting Track {"\u2192"}</button>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section className="section" id="features" style={{ background: "white" }}>
         <div className="section-label">Why LanSkil</div>
