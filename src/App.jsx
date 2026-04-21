@@ -1220,7 +1220,7 @@ function Landing({ onExploreCourses }) {
       {/* STATS */}
       <div className="stats-bar">
         {[
-          { num: 1000, suffix: "+", label: "Students Trained" },
+          { num: 1000, suffix: "+", label: "Student Target by 2027" },
           { label: "Expert Instructors", iconOnly: true },
           { num: 6, suffix: "", label: "Career Tracks" },
           { num: 93, suffix: "%", label: "Job Placement Rate" },
