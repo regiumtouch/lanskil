@@ -1220,14 +1220,14 @@ function Landing({ onExploreCourses }) {
       {/* STATS */}
       <div className="stats-bar">
         {[
-          { num: 500, suffix: "+", label: "Students Trained" },
-          { num: 12, suffix: "", label: "Expert Instructors" },
+          { num: 1000, suffix: "+", label: "Students Trained" },
+          { label: "Expert Instructors", iconOnly: true },
           { num: 6, suffix: "", label: "Career Tracks" },
           { num: 93, suffix: "%", label: "Job Placement Rate" },
         ].map((s, i) => (
           <div className="stat-item" key={i}>
             <div className="stat-num">
-              <AnimatedCounter end={s.num} suffix={s.suffix} />
+              {s.iconOnly ? <span style={{ fontSize: "0.9em" }}>{"\u2728"}</span> : <AnimatedCounter end={s.num} suffix={s.suffix} />}
             </div>
             <div className="stat-label">{s.label}</div>
           </div>
