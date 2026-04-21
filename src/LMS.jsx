@@ -24,6 +24,7 @@ import { socCalendarModule } from "./modules/soc-calendar";
 import { socCapstoneModule } from "./modules/soc-capstone";
 import PortfolioBuilder from "./modules/PortfolioBuilder";
 import AdminDashboard from "./modules/AdminDashboard";
+import PlacementTest from "./modules/PlacementTest";
 import { seoFoundationsModule } from "./modules/seo-foundations";
 import { seoKeywordsModule } from "./modules/seo-keywords";
 import { seoOnpageModule } from "./modules/seo-onpage";
@@ -765,7 +766,8 @@ export default function LMS({ onBack, user, onLogout }) {
       </div>
       <div className="mn">
         {v==="dash"&&<Dash ft={ft} sr={sr} setSr={setSr} fc={fc} fl={fl} setFl={setFl} osk={osk} oskl={oskl} gp={gp} op={op} tl={tl} dc={dc} dn={dn} user={user} T={T} dark={dark} openTrack={function(){setV("track");scr();}}/>}
-        {v==="track"&&<TrackView T={T} cat={CATS.find(function(c){return c.id==="content";})} skills={SKILLS.filter(function(s){return s.cat==="content";})} osk={osk} gp={gp} user={user} dn={dn} gb={function(){setV("dash");scr();}}/>}
+        {v==="track"&&<TrackView T={T} cat={CATS.find(function(c){return c.id==="content";})} skills={SKILLS.filter(function(s){return s.cat==="content";})} osk={osk} gp={gp} user={user} dn={dn} gb={function(){setV("dash");scr();}} openPlacement={function(){setV("placement");scr();}}/>}
+        {v==="placement"&&<PlacementTest T={T} onBack={function(){setV("track");scr();}} onStartTier={function(skillId){var skill=SKILLS.find(function(s){return s.id===skillId;});if(skill){osk(skill);}else{setV("track");scr();}}}/>}
         {v==="skill"&&sk&&<SkV sk={sk} gb={function(){setV("dash");setSk(null);}} ols={ols} dn={dn} gp={gp} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="browse"&&<LBr ls={ls} sk={sk} gb={function(){setV("skill");setLs(null);}} dn={dn} go={function(){setMd("slides");setSi(0);}} goPortfolio={function(){setMd("portfolio");}} T={T}/>}
         {v==="lesson"&&ls&&sk&&md==="portfolio"&&<PortfolioBuilder user={user} lesson={ls} onBack={function(){setMd("browse");}} T={T}/>}
@@ -980,7 +982,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
   </div>;})}
   </div>;}
 
-function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=props.osk,gp=props.gp,user=props.user,dn=props.dn,gb=props.gb;
+function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=props.osk,gp=props.gp,user=props.user,dn=props.dn,gb=props.gb,openPlacement=props.openPlacement;
   var founds=skills.filter(function(s){return s.tier==="foundational"||!s.tier;});
   var inters=skills.filter(function(s){return s.tier==="intermediate";});
   var advs=skills.filter(function(s){return s.tier==="advanced";});
@@ -996,7 +998,8 @@ function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=pr
       <div style={{position:"relative",zIndex:1}}>
         <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:10,fontWeight:700,color:"#F4A261",letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>The Copywriting Mastery Track</div>
         <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:38,fontWeight:700,letterSpacing:-.6,lineHeight:1.05,marginBottom:10}}>Ten Courses. Three Tiers. One Career.</h1>
-        <p style={{fontSize:14,color:"rgba(255,255,255,.75)",lineHeight:1.65,maxWidth:680,fontFamily:"'DM Sans',sans-serif",margin:0}}>A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier.</p>
+        <p style={{fontSize:14,color:"rgba(255,255,255,.75)",lineHeight:1.65,maxWidth:680,fontFamily:"'DM Sans',sans-serif",margin:"0 0 22px"}}>A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier.</p>
+        {openPlacement&&<button onClick={openPlacement} style={{padding:"12px 22px",borderRadius:3,background:"rgba(255,255,255,.1)",color:"white",border:"1px solid rgba(244,162,97,.4)",fontSize:12.5,fontWeight:700,fontFamily:"'DM Sans',sans-serif",letterSpacing:.8,textTransform:"uppercase",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,backdropFilter:"blur(8px)"}}>{"\u{1F9ED}"} Not sure where to start? Take the 5-min placement test {"\u2192"}</button>}
       </div>
     </div>
     {founds.length>0&&<TierBlock T={T} label="Tier I" heading="Foundational Courses" sublabel="Start here \u2014 the core foundations of modern copy" count={founds.length} skills={founds} osk={osk} gp={gp} cat={cat} user={user} dn={dn}/>}
