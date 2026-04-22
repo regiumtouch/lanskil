@@ -134,10 +134,10 @@ function recommendTier(score) {
     tier: "Tier III",
     tierKey: "advanced",
     accent: FUCHSIA,
-    heading: "You're Ready for Closing & Mastery",
-    sub: "Your experience puts you at the senior end of the skill arc. Tier III is about finishing strong — asking for the deal, reading buying signals, and building the habits that compound a sales career over a decade.",
+    heading: "You're Ready for Mastery & Leadership",
+    sub: "Your experience puts you at the senior end of the skill arc. Tier III is the long game — closing complex deals, multi-threading enterprise committees, pipeline and forecast discipline, and the habits that compound a sales career over a decade.",
     firstCourseId: "sales-mastery",
-    firstCourseName: "Closing & Mastery",
+    firstCourseName: "Mastery & Leadership",
   };
 }
 

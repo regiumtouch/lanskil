@@ -76,6 +76,11 @@ import { sellDiscoveryModule } from "./modules/sell-discovery";
 import { sellSolutionModule } from "./modules/sell-solution";
 import { sellObjectionsModule } from "./modules/sell-objections";
 import { sellClosingModule } from "./modules/sell-closing";
+import { sellQualificationModule } from "./modules/sell-qualification";
+import { sellNegotiationModule } from "./modules/sell-negotiation";
+import { sellMultithreadingModule } from "./modules/sell-multithreading";
+import { sellPipelineModule } from "./modules/sell-pipeline";
+import { sellCareerModule } from "./modules/sell-career";
 import { cineStorytellingModule } from "./modules/cine-storytelling";
 import { cineExposureModule } from "./modules/cine-exposure";
 import { cineCompositionModule } from "./modules/cine-composition";
@@ -560,13 +565,18 @@ const SKILLS = [
     { id: "sell02", title: sellResearchModule.title, type: sellResearchModule.type, duration: sellResearchModule.duration, desc: sellResearchModule.desc, topics: sellResearchModule.topics, rich: sellResearchModule },
     { id: "sell03", title: sellOutreachModule.title, type: sellOutreachModule.type, duration: sellOutreachModule.duration, desc: sellOutreachModule.desc, topics: sellOutreachModule.topics, rich: sellOutreachModule },
   ]},
-  { id: "sales-conversation", name: "The Sales Conversation", cat: "sales", tier: "intermediate", lv: "Intermediate", icon: "\u{1F4AC}", color: "#F4A261", dur: "4.5h", roles: ["Sales Rep", "Account Executive"], desc: "Inside the conversation \u2014 discovery that uncovers real pain, a tailored pitch that lands, and objection handling that turns pushback into momentum.", lessons: [
+  { id: "sales-conversation", name: "The Sales Conversation", cat: "sales", tier: "intermediate", lv: "Intermediate", icon: "\u{1F4AC}", color: "#F4A261", dur: "7.5h", roles: ["Sales Rep", "Account Executive", "Enterprise AE"], desc: "Inside the conversation \u2014 discovery, qualification frameworks (BANT / MEDDIC / SPIN), tailored pitch, objection handling, and negotiation tactics that hold price.", lessons: [
     { id: "sell04", title: sellDiscoveryModule.title, type: sellDiscoveryModule.type, duration: sellDiscoveryModule.duration, desc: sellDiscoveryModule.desc, topics: sellDiscoveryModule.topics, rich: sellDiscoveryModule },
+    { id: "sell08", title: sellQualificationModule.title, type: sellQualificationModule.type, duration: sellQualificationModule.duration, desc: sellQualificationModule.desc, topics: sellQualificationModule.topics, rich: sellQualificationModule },
     { id: "sell05", title: sellSolutionModule.title, type: sellSolutionModule.type, duration: sellSolutionModule.duration, desc: sellSolutionModule.desc, topics: sellSolutionModule.topics, rich: sellSolutionModule },
     { id: "sell06", title: sellObjectionsModule.title, type: sellObjectionsModule.type, duration: sellObjectionsModule.duration, desc: sellObjectionsModule.desc, topics: sellObjectionsModule.topics, rich: sellObjectionsModule },
+    { id: "sell09", title: sellNegotiationModule.title, type: sellNegotiationModule.type, duration: sellNegotiationModule.duration, desc: sellNegotiationModule.desc, topics: sellNegotiationModule.topics, rich: sellNegotiationModule },
   ]},
-  { id: "sales-mastery", name: "Closing & Mastery", cat: "sales", tier: "advanced", lv: "Advanced", icon: "\u{1F3C6}", color: "#D946EF", dur: "1.5h", roles: ["Account Executive", "Senior AE"], desc: "The close \u2014 asking for the deal, reading buying signals, and finishing strong. Where compounding sales careers are built.", lessons: [
+  { id: "sales-mastery", name: "Mastery & Leadership", cat: "sales", tier: "advanced", lv: "Advanced", icon: "\u{1F3C6}", color: "#D946EF", dur: "6h", roles: ["Senior AE", "Sales Manager", "Director", "VP Sales"], desc: "The long game \u2014 closing, multi-threading enterprise committees, pipeline and forecast discipline, and the career moves that compound. Where strong reps become sales leaders.", lessons: [
     { id: "sell07", title: sellClosingModule.title, type: sellClosingModule.type, duration: sellClosingModule.duration, desc: sellClosingModule.desc, topics: sellClosingModule.topics, rich: sellClosingModule },
+    { id: "sell10", title: sellMultithreadingModule.title, type: sellMultithreadingModule.type, duration: sellMultithreadingModule.duration, desc: sellMultithreadingModule.desc, topics: sellMultithreadingModule.topics, rich: sellMultithreadingModule },
+    { id: "sell11", title: sellPipelineModule.title, type: sellPipelineModule.type, duration: sellPipelineModule.duration, desc: sellPipelineModule.desc, topics: sellPipelineModule.topics, rich: sellPipelineModule },
+    { id: "sell12", title: sellCareerModule.title, type: sellCareerModule.type, duration: sellCareerModule.duration, desc: sellCareerModule.desc, topics: sellCareerModule.topics, rich: sellCareerModule },
   ]},
   { id: "cine-foundations", name: "Cinematography Foundations", cat: "cinematography", tier: "foundational", lv: "Beginner", icon: "\u{1F3AC}", color: "#7C3AED", dur: "12h", roles: ["Cinematographer", "Videographer", "DP"], desc: "The four foundational pillars: visual storytelling, exposure + camera fundamentals, composition + framing, and lenses. The base every professional cinematographer stands on.", lessons: [
     { id: "cine01", title: cineStorytellingModule.title, type: cineStorytellingModule.type, duration: cineStorytellingModule.duration, desc: cineStorytellingModule.desc, topics: cineStorytellingModule.topics, rich: cineStorytellingModule },
@@ -966,7 +976,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       var trackDesc=isCine
         ?"The complete cinematography curriculum \u2014 from visual storytelling + exposure through to career + capstone project. Three tiers, twelve rich modules, one professional foundation. Earn a certificate at each tier."
         :isSales
-        ?"The complete sales curriculum \u2014 from psychological preparation and cold outreach through to closing and mastery. Three tiers, seven rich modules, one career track. Earn a certificate at each tier."
+        ?"The complete sales curriculum \u2014 from psychological preparation and cold outreach through to closing, leadership, and career. Three tiers, twelve rich modules, one career track. Earn a certificate at each tier."
         :"The complete copywriting curriculum \u2014 from foundations of persuasion through to running your own copywriting business. Ten courses, three tiers, structured for progression. Earn a certificate at each tier.";
       var founds=cs.filter(function(s){return s.tier==="foundational"||!s.tier;});
       var inters=cs.filter(function(s){return s.tier==="intermediate";});
@@ -1076,21 +1086,21 @@ function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=pr
   var isSales=cat&&cat.id==="sales";
   var crumb=isCine?"Cinematography Mastery Track":isSales?"Sales Mastery Track":"Copywriting Mastery Track";
   var eyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":"The Copywriting Mastery Track";
-  var heroTitle=isCine?"Twelve Modules. Three Tiers. One Career.":isSales?"Seven Modules. Three Tiers. One Career.":"Ten Courses. Three Tiers. One Career.";
+  var heroTitle=isCine?"Twelve Modules. Three Tiers. One Career.":isSales?"Twelve Modules. Three Tiers. One Career.":"Ten Courses. Three Tiers. One Career.";
   var heroDesc=isCine
     ?"A structured progression from the foundations of visual storytelling through to building a sustainable cinematography career. Earn a certificate at each tier."
     :isSales
-    ?"A structured progression from preparation and cold outreach through to closing and mastery. Earn a certificate at each tier."
+    ?"A structured progression from preparation and cold outreach through to closing, leadership, and the long-game career moves that compound. Earn a certificate at each tier."
     :"A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier.";
   var founds=skills.filter(function(s){return s.tier==="foundational"||!s.tier;});
   var inters=skills.filter(function(s){return s.tier==="intermediate";});
   var advs=skills.filter(function(s){return s.tier==="advanced";});
   var tier1Sub=isCine?"Start here \u2014 visual storytelling, exposure, composition, and lenses":isSales?"Start here \u2014 preparation, research, and cold outreach before the conversation":"Start here \u2014 the core foundations of modern copy";
-  var tier2Sub=isCine?"Core craft \u2014 lighting, movement, colour, and on-set workflow":isSales?"Inside the conversation \u2014 discovery, tailored pitch, and objection handling":"Deepen into conversion, SEO, sales pages, and AI-powered copy";
-  var tier3Sub=isCine?"Mastery \u2014 genre fluency, post, gear strategy, and career + capstone":isSales?"The close \u2014 asking for the deal, reading signals, and finishing strong":"Brand voice at org scale, creative direction, and the ten-year copywriting business";
+  var tier2Sub=isCine?"Core craft \u2014 lighting, movement, colour, and on-set workflow":isSales?"Inside the conversation \u2014 discovery, qualification, pitch, objections, and negotiation":"Deepen into conversion, SEO, sales pages, and AI-powered copy";
+  var tier3Sub=isCine?"Mastery \u2014 genre fluency, post, gear strategy, and career + capstone":isSales?"Mastery \u2014 closing, multi-threading, pipeline discipline, and the long-game career moves":"Brand voice at org scale, creative direction, and the ten-year copywriting business";
   var tier1Heading=isCine?"Foundational Modules":isSales?"Before the Conversation":"Foundational Courses";
   var tier2Heading=isSales?"Inside the Conversation":"Intermediate Specialisations";
-  var tier3Heading=isCine?"Mastery & Career":isSales?"Closing & Mastery":"Mastery & Leadership";
+  var tier3Heading=isCine?"Mastery & Career":isSales?"Mastery & Leadership":"Mastery & Leadership";
   return <div className="fi">
     <div className="bc" style={{marginBottom:18}}>
       <span onClick={gb}>Dashboard</span>
