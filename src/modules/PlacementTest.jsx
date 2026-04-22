@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 const PURPLE = "#7C3AED";
 const ORANGE = "#F4A261";
@@ -141,13 +141,19 @@ function recommendTier(score) {
   };
 }
 
-export default function PlacementTest({ T, onBack, onStartTier }) {
+export default function PlacementTest({ T, onBack, onStartTier, saveScore }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
 
   const totalScore = useMemo(() => Object.values(answers).reduce((a, v) => a + v, 0), [answers]);
   const recommendation = useMemo(() => recommendTier(totalScore), [totalScore]);
   const progress = Math.round(((step - 1) / QUESTIONS.length) * 100);
+
+  useEffect(() => {
+    if (step > QUESTIONS.length && saveScore) {
+      saveScore({ correct: totalScore, total: MAX_SCORE, pct: Math.round((totalScore / MAX_SCORE) * 100), tier: recommendation.tier });
+    }
+  }, [step]);
 
   function select(q, option) {
     setAnswers((prev) => ({ ...prev, [q.id]: option.score }));

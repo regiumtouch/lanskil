@@ -813,7 +813,7 @@ export default function LMS({ onBack, user, onLogout }) {
         <div onClick={function(e){e.stopPropagation();}} style={{background:T.bg,borderRadius:8,maxWidth:820,width:"100%",marginTop:20,marginBottom:40,position:"relative",boxShadow:"0 30px 80px rgba(0,0,0,.4)"}}>
           <button onClick={function(){setPlacementOpen(false);}} aria-label="Close" style={{position:"absolute",top:16,right:16,width:36,height:36,borderRadius:"50%",background:T.card,border:"1px solid "+T.border,color:T.text,fontSize:16,fontWeight:600,cursor:"pointer",zIndex:2,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'DM Sans',sans-serif"}}>{"\u2715"}</button>
           <div style={{padding:"32px 28px"}}>
-            <PlacementTest T={T} onBack={function(){setPlacementOpen(false);setTrackCat("content");setV("track");scr();}} onStartTier={function(skillId){var skill=SKILLS.find(function(s){return s.id===skillId;});setPlacementOpen(false);if(skill){osk(skill);}else{setTrackCat("content");setV("track");scr();}}}/>
+            <PlacementTest T={T} onBack={function(){setPlacementOpen(false);setTrackCat("content");setV("track");scr();}} onStartTier={function(skillId){var skill=SKILLS.find(function(s){return s.id===skillId;});setPlacementOpen(false);if(skill){osk(skill);}else{setTrackCat("content");setV("track");scr();}}} saveScore={function(score){saveQuizScore("placement-copywriting",score);}}/>
           </div>
         </div>
       </div>}
@@ -821,7 +821,7 @@ export default function LMS({ onBack, user, onLogout }) {
         <div onClick={function(e){e.stopPropagation();}} style={{background:T.bg,borderRadius:8,maxWidth:820,width:"100%",marginTop:20,marginBottom:40,position:"relative",boxShadow:"0 30px 80px rgba(0,0,0,.4)"}}>
           <button onClick={function(){setSalesPlacementOpen(false);}} aria-label="Close" style={{position:"absolute",top:16,right:16,width:36,height:36,borderRadius:"50%",background:T.card,border:"1px solid "+T.border,color:T.text,fontSize:16,fontWeight:600,cursor:"pointer",zIndex:2,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'DM Sans',sans-serif"}}>{"\u2715"}</button>
           <div style={{padding:"32px 28px"}}>
-            <SalesPlacementTest T={T} onBack={function(){setSalesPlacementOpen(false);setTrackCat("sales");setV("track");scr();}} onStartTier={function(skillId){var skill=SKILLS.find(function(s){return s.id===skillId;});setSalesPlacementOpen(false);if(skill){osk(skill);}else{setTrackCat("sales");setV("track");scr();}}}/>
+            <SalesPlacementTest T={T} onBack={function(){setSalesPlacementOpen(false);setTrackCat("sales");setV("track");scr();}} onStartTier={function(skillId){var skill=SKILLS.find(function(s){return s.id===skillId;});setSalesPlacementOpen(false);if(skill){osk(skill);}else{setTrackCat("sales");setV("track");scr();}}} saveScore={function(score){saveQuizScore("placement-sales",score);}}/>
           </div>
         </div>
       </div>}

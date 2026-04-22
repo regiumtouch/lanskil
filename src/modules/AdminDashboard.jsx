@@ -14,6 +14,7 @@ export default function AdminDashboard({ T, onBack }) {
   const [submissions, setSubmissions] = useState([]);
   const [openSubmission, setOpenSubmission] = useState(null);
   const [error, setError] = useState(null);
+  const [scoreFilter, setScoreFilter] = useState("");
 
   useEffect(() => {
     let cancelled = false;
@@ -87,12 +88,30 @@ export default function AdminDashboard({ T, onBack }) {
     return Object.entries(map).map(([lid, v]) => ({ lid, count: v.count, avg: Math.round(v.sum / v.count) })).sort((a, b) => b.count - a.count);
   }, [scores]);
 
+  const sortedScores = useMemo(() => {
+    const arr = [...scores].sort((a, b) => {
+      const da = a.attempted_at ? new Date(a.attempted_at).getTime() : 0;
+      const db = b.attempted_at ? new Date(b.attempted_at).getTime() : 0;
+      return db - da;
+    });
+    if (!scoreFilter.trim()) return arr;
+    const q = scoreFilter.trim().toLowerCase();
+    return arr.filter(s => {
+      const u = stats.userMap[s.user_id];
+      const name = u ? ((u.first_name || "") + " " + (u.last_name || "")).toLowerCase() : "";
+      const email = (u && u.email) ? u.email.toLowerCase() : "";
+      const lid = (s.lesson_id || "").toLowerCase();
+      return name.includes(q) || email.includes(q) || lid.includes(q);
+    });
+  }, [scores, scoreFilter, stats.userMap]);
+
   if (loading) return <div style={{ padding: 48, textAlign: "center", color: T.text3 }}>Loading admin data{"\u2026"}</div>;
   if (error) return <div style={{ padding: 48, textAlign: "center", color: "#DC2626", fontFamily: "'DM Sans',sans-serif" }}>{error}<div style={{ marginTop: 16 }}><button className="bt" onClick={onBack} style={{ padding: "10px 20px", borderRadius: 2, background: T.subtle, color: T.text2, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Back</button></div></div>;
 
   const tabs = [
     { id: "overview", label: "Overview" },
     { id: "users", label: "Users (" + users.length + ")" },
+    { id: "scores", label: "Quiz Scores (" + scores.length + ")" },
     { id: "submissions", label: "Portfolio Submissions (" + submissions.length + ")" },
     { id: "analytics", label: "Analytics" },
   ];
@@ -218,6 +237,66 @@ export default function AdminDashboard({ T, onBack }) {
                   </div>
                 );
               })}
+            </div>
+          )}
+        </SectionBlock>
+      )}
+
+      {/* Quiz Scores — per-student */}
+      {tab === "scores" && (
+        <SectionBlock T={T} title="All Quiz Scores (Module Quizzes + Placement Tests)">
+          <div style={{ marginBottom: 14 }}>
+            <input
+              value={scoreFilter}
+              onChange={(e) => setScoreFilter(e.target.value)}
+              placeholder="Filter by student name, email, or lesson id…"
+              style={{ width: "100%", padding: "10px 12px", border: "1px solid " + T.border, borderRadius: 2, background: T.card, color: T.text, fontFamily: "'DM Sans',sans-serif", fontSize: 13 }}
+            />
+          </div>
+          {sortedScores.length === 0 ? <Empty T={T} msg="No quiz attempts recorded yet." /> : (
+            <div style={{ overflowX: "auto" }}>
+              <table style={tableStyle}>
+                <thead><tr style={thStyle(T)}>
+                  <th style={thCell}>Student</th>
+                  <th style={thCell}>Quiz / Lesson</th>
+                  <th style={thCell}>Type</th>
+                  <th style={thCell}>Score</th>
+                  <th style={thCell}>Correct / Total</th>
+                  <th style={thCell}>Taken</th>
+                </tr></thead>
+                <tbody>
+                  {sortedScores.map((s, idx) => {
+                    const u = stats.userMap[s.user_id];
+                    const name = u ? (((u.first_name || "") + " " + (u.last_name || "")).trim() || u.email || "Unknown") : (s.user_id || "").slice(0, 8);
+                    const isPlacement = (s.lesson_id || "").indexOf("placement-") === 0;
+                    const placementLabel = s.lesson_id === "placement-copywriting" ? "Copywriting Placement" : s.lesson_id === "placement-sales" ? "Sales Placement" : s.lesson_id;
+                    const label = isPlacement ? placementLabel : s.lesson_id;
+                    const scoreColor = s.score_pct >= 80 ? "#059669" : s.score_pct >= 60 ? "#B45309" : "#DC2626";
+                    return (
+                      <tr key={s.user_id + "_" + s.lesson_id + "_" + idx} style={trStyle(T)}>
+                        <td style={tdCell(T)}>
+                          <div style={{ fontWeight: 600, color: T.text }}>{name}</div>
+                          {u && u.email && <div style={{ fontSize: 11, color: T.text3 }}>{u.email}</div>}
+                        </td>
+                        <td style={tdCell(T)}>{label}</td>
+                        <td style={tdCell(T)}>
+                          <span style={{
+                            fontSize: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 700,
+                            padding: "3px 8px", borderRadius: 2, letterSpacing: 1.2, textTransform: "uppercase",
+                            background: isPlacement ? "#EEF2FF" : "#F3EDFF",
+                            color: isPlacement ? "#4338CA" : "#7C3AED",
+                          }}>{isPlacement ? "Placement" : "Module Quiz"}</span>
+                        </td>
+                        <td style={tdCell(T)}>
+                          <span style={{ color: scoreColor, fontWeight: 700 }}>{s.score_pct}%</span>
+                        </td>
+                        <td style={tdCell(T)}>{s.correct}/{s.total}</td>
+                        <td style={tdCell(T)}>{s.attempted_at ? new Date(s.attempted_at).toLocaleString() : "—"}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           )}
         </SectionBlock>

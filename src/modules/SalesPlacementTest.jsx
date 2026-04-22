@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 const GREEN = "#059669";
 const ORANGE = "#F4A261";
@@ -141,12 +141,18 @@ function recommendTier(score) {
   };
 }
 
-export default function SalesPlacementTest({ T, onBack, onStartTier }) {
+export default function SalesPlacementTest({ T, onBack, onStartTier, saveScore }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
 
   const totalScore = useMemo(() => Object.values(answers).reduce((a, v) => a + v, 0), [answers]);
   const recommendation = useMemo(() => recommendTier(totalScore), [totalScore]);
+
+  useEffect(() => {
+    if (step > QUESTIONS.length && saveScore) {
+      saveScore({ correct: totalScore, total: MAX_SCORE, pct: Math.round((totalScore / MAX_SCORE) * 100), tier: recommendation.tier });
+    }
+  }, [step]);
 
   function select(q, option) {
     setAnswers((prev) => ({ ...prev, [q.id]: option.score }));
