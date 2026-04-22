@@ -68,6 +68,13 @@ import { bizClientsModule } from "./modules/biz-clients";
 import { bizContractsModule } from "./modules/biz-contracts";
 import { bizScaleModule } from "./modules/biz-scale";
 import { bizLongGameModule } from "./modules/biz-longgame";
+import { sellPrepModule } from "./modules/sell-prep";
+import { sellResearchModule } from "./modules/sell-research";
+import { sellOutreachModule } from "./modules/sell-outreach";
+import { sellDiscoveryModule } from "./modules/sell-discovery";
+import { sellSolutionModule } from "./modules/sell-solution";
+import { sellObjectionsModule } from "./modules/sell-objections";
+import { sellClosingModule } from "./modules/sell-closing";
 import RichSlide from "./modules/RichSlide";
 
 const CAT_IMAGES = {
@@ -91,6 +98,7 @@ const CATS = [
   { id: "web", name: "Web Development", icon: "\u{1F4BB}", color: "#3B82F6" },
   { id: "digi", name: "Digital Marketing", icon: "\u{1F4CA}", color: "#F97316" },
   { id: "ops", name: "Operations & Business", icon: "\u{1F4CB}", color: "#14B8A6" },
+  { id: "sales", name: "Sales", icon: "\u{1F4BC}", color: "#059669" },
   { id: "train", name: "Training & Education", icon: "\u{1F393}", color: "#0EA5E9" },
 ];
 
@@ -109,6 +117,7 @@ const SKILL_IMG = {
   "brand-voice": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=400&fit=crop",
   "creative-direction": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop",
   "copywriting-business": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop",
+  "sales-fundamentals": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
   "camera-operation": "https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=800&h=400&fit=crop",
   "lighting-techniques": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=400&fit=crop",
   "video-editing": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=400&fit=crop",
@@ -126,6 +135,7 @@ const CAT_IMG = {
   web: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop",
   digi: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
   ops: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=400&fit=crop",
+  sales: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
   train: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=400&fit=crop",
 };
 
@@ -526,6 +536,15 @@ const SKILLS = [
     { id: "biz04", title: bizContractsModule.title, type: bizContractsModule.type, duration: bizContractsModule.duration, desc: bizContractsModule.desc, topics: bizContractsModule.topics, rich: bizContractsModule },
     { id: "biz05", title: bizScaleModule.title, type: bizScaleModule.type, duration: bizScaleModule.duration, desc: bizScaleModule.desc, topics: bizScaleModule.topics, rich: bizScaleModule },
     { id: "biz06", title: bizLongGameModule.title, type: bizLongGameModule.type, duration: bizLongGameModule.duration, desc: bizLongGameModule.desc, topics: bizLongGameModule.topics, rich: bizLongGameModule },
+  ]},
+  { id: "sales-fundamentals", name: "Sales Fundamentals", cat: "sales", lv: "Beginner", icon: "\u{1F91D}", color: "#059669", dur: "10.5h", roles: ["Sales Rep", "SDR / BDR", "Founder", "Account Executive"], desc: "The complete sales toolkit \u2014 psychological preparation, pre-call research, cold outreach, discovery, tailored pitch, objection handling, and closing. Seven modules, one career track.", lessons: [
+    { id: "sell01", title: sellPrepModule.title, type: sellPrepModule.type, duration: sellPrepModule.duration, desc: sellPrepModule.desc, topics: sellPrepModule.topics, rich: sellPrepModule },
+    { id: "sell02", title: sellResearchModule.title, type: sellResearchModule.type, duration: sellResearchModule.duration, desc: sellResearchModule.desc, topics: sellResearchModule.topics, rich: sellResearchModule },
+    { id: "sell03", title: sellOutreachModule.title, type: sellOutreachModule.type, duration: sellOutreachModule.duration, desc: sellOutreachModule.desc, topics: sellOutreachModule.topics, rich: sellOutreachModule },
+    { id: "sell04", title: sellDiscoveryModule.title, type: sellDiscoveryModule.type, duration: sellDiscoveryModule.duration, desc: sellDiscoveryModule.desc, topics: sellDiscoveryModule.topics, rich: sellDiscoveryModule },
+    { id: "sell05", title: sellSolutionModule.title, type: sellSolutionModule.type, duration: sellSolutionModule.duration, desc: sellSolutionModule.desc, topics: sellSolutionModule.topics, rich: sellSolutionModule },
+    { id: "sell06", title: sellObjectionsModule.title, type: sellObjectionsModule.type, duration: sellObjectionsModule.duration, desc: sellObjectionsModule.desc, topics: sellObjectionsModule.topics, rich: sellObjectionsModule },
+    { id: "sell07", title: sellClosingModule.title, type: sellClosingModule.type, duration: sellClosingModule.duration, desc: sellClosingModule.desc, topics: sellClosingModule.topics, rich: sellClosingModule },
   ]},
   { id: "camera-operation", name: "Camera Operation", cat: "video", lv: "Beginner", icon: "\u{1F4F7}", color: "#EF4444", dur: "10h", roles: ["Videographer"], desc: "Master cameras for pro video.", lessons: [
     { id: "co01", title: "Camera Anatomy", type: "Lecture", duration: "1h", desc: "Sensors, lenses, formats.", topics: ["Sensor sizes", "Lens mounts", "Recording codecs"] },
@@ -939,7 +958,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       </article>;
     })():(
     <div className="sk-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))",gap:24}}>
-      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=s.cat!=="content"||s.tier==="intermediate";var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
+      {cs.map(function(s){var pr=gp(s);var img=SKILL_IMG[s.id]||CAT_IMG[s.cat];var started=pr>0;var comingSoon=!s.lessons||s.lessons.length===0;var clickHandler=comingSoon?function(){}:function(){osk(s);};return <article key={s.id} role="button" tabIndex={comingSoon?-1:0} aria-disabled={comingSoon} aria-label={comingSoon?s.name+" \u2014 coming soon":(started?"Continue ":"Begin ")+s.name} onClick={clickHandler} onKeyDown={function(e){if(!comingSoon&&(e.key==="Enter"||e.key===" ")){e.preventDefault();osk(s);}}} style={{cursor:comingSoon?"default":"pointer",background:T.card,border:"1px solid "+T.border,borderRadius:4,overflow:"hidden",transition:"border-color .2s,box-shadow .25s,transform .25s",display:"flex",flexDirection:"column",position:"relative",opacity:comingSoon?.7:1}} onMouseEnter={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=RT_PURPLE;e.currentTarget.style.boxShadow="0 12px 32px rgba(124,58,237,.12)";e.currentTarget.style.transform="translateY(-2px)";}} onMouseLeave={function(e){if(comingSoon)return;e.currentTarget.style.borderColor=T.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}>
         {/* Hero image with level chip + progress overlay */}
         <div style={{position:"relative",width:"100%",paddingTop:"56.25%",background:"#E5E5E5",overflow:"hidden"}}>
           <img src={img} alt={s.name+" course hero"} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:comingSoon?"grayscale(80%) contrast(.95)":"grayscale(12%) contrast(1.04) saturate(.92)"}}/>

@@ -1,0 +1,70 @@
+// Sales Fundamentals — Module 2: Pre-Call Research
+export const sellResearchModule = {
+  id: "sell02",
+  title: "Pre-Call Research",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "You can't personalise outreach without research. The 15-min method that turns cold prospects into warm conversations \u2014 and the research mistakes that become procrastination.",
+  topics: ["What to Research", "Free Information Sources", "The 15-Minute Method", "Signal vs Noise", "Using Research in Outreach", "When Research Becomes Procrastination"],
+  quiz: [
+    { q: "The optimal time budget for researching one B2B prospect before outreach is typically:", opts: ["2\u20135 minutes \u2014 quantity wins", "10\u201320 minutes \u2014 time-boxed; enough to personalise meaningfully; not so much it becomes procrastination", "60+ minutes \u2014 depth wins", "None \u2014 just send the template"], correct: 1 },
+    { q: "The single highest-signal source for understanding a B2B prospect's current priorities is:", opts: ["Their marketing site", "Their recent LinkedIn activity (posts + comments + likes) + earnings calls if public \u2014 reveals what they\u2019re thinking about THIS quarter", "A 2-year-old industry report", "Google News"], correct: 1 },
+    { q: "Good research surfaces a \u201Ctrigger event.\u201D Which of these is a strong trigger event for outreach?", opts: ["Company was founded 8 years ago", "They just hired a new VP of Sales last week", "Their logo is green", "They have 500 employees"], correct: 1 },
+    { q: "A personalised cold email should reference research in:", opts: ["The last line of the email", "The first 1\u20132 sentences \u2014 to signal \u201CI\u2019m not spamming you\u201D before asking for anything", "The subject line only", "Nowhere \u2014 templates are cleaner"], correct: 1 },
+    { q: "You\u2019ve spent 45 minutes researching one prospect and still haven\u2019t sent the email. This is:", opts: ["Thorough preparation", "Procrastination disguised as research \u2014 the research becomes avoidance of the actual outreach; cap at 15\u201320 min per prospect", "Industry standard", "The professional approach"], correct: 1 },
+    { q: "Which research finding most strongly predicts a useful first message?", opts: ["They went to Harvard", "They recently posted about struggling with a specific problem your product solves", "They have 2 kids", "Their office is in NYC"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 2", title: "Pre-Call", titleAccent: "Research", subtitle: "You can\u2019t personalise outreach without research. The 15-min method that turns cold prospects into warm conversations.", meta: "Sales Fundamentals  |  Module 2  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY RESEARCH DRIVES REPLY RATES", title: "Research is the difference between spam and a conversation", intro: "A cold message that references something specific + timely about the prospect gets ~4\u20137\u00D7 higher reply rates than a generic template. Research is the whole game; the message is the harvest.", stats: [
+      { num: "4\u20137\u00D7", label: "higher reply rate on outreach with specific researched context vs template-only messages" },
+      { num: "15\u201320 min", label: "optimal time budget per high-value prospect before outreach \u2014 beyond this becomes procrastination" },
+      { num: "30 sec", label: "time it takes a prospect to tell if you\u2019ve researched them or are running a mass template" },
+    ], subheading: "What Good Research Finds", bullets: [
+      "One specific, recent signal that the prospect is thinking about a problem you can solve",
+      "Name, role, and stage \u2014 enough to personalise voice + framing",
+      "A trigger event (hire, raise, launch, loss, change) that makes THIS the right moment to reach out",
+      "Context about how they communicate (formal? casual? what language do they use in their own posts?)",
+      "Mutual context: shared connections, shared interests, shared references \u2014 bridge-building fuel",
+    ] },
+    { type: "grid", eyebrow: "THE 4 RESEARCH TARGETS", title: "What to look for in 15 minutes", subtitle: "Hit all four and you have a personalised message. Miss any and you\u2019re back to templates.", items: [
+      { num: "01", title: "Their current priority", desc: "What\u2019s on their plate THIS quarter? Recent posts, earnings calls, hiring patterns, new initiatives.", icon: "\u{1F3AF}" },
+      { num: "02", title: "A trigger event", desc: "Recent hire, recent raise, new product launch, public loss, industry shift \u2014 something that makes NOW matter.", icon: "\u26A1" },
+      { num: "03", title: "Their language", desc: "Read 3\u20135 of their posts or quotes. Adopt their vocabulary. Voice-matching alone lifts reply rates meaningfully.", icon: "\u{1F4AC}" },
+      { num: "04", title: "Shared context", desc: "Mutual connections, shared alma mater, shared industry thinkers they\u2019ve cited. Bridge material.", icon: "\u{1F517}" },
+    ], footer: "Rule: hit 3 of 4 in 15 min. If you can\u2019t find 3 after 15 min, the prospect might not be worth outreach at all." },
+    { type: "principle", num: "01", title: "The 15-Minute Research Method", intro: "Structured, timeboxed, repeatable. Same five steps every time. After 20 prospects you can do it in 10 min. After 100 you can do it in 5.", sectionTitle: "The 5 Steps, Timed", sections: [
+      { heading: "Step 1 (2 min): LinkedIn profile scan", example: "Current role, time in role, past roles. Bio text. Recent activity in the last 30 days.", note: "Current context + trajectory. Sets the baseline for everything else." },
+      { heading: "Step 2 (3 min): Their last 5 LinkedIn posts or comments", example: "What are they talking about? What problems do they reference? What language do they use?", note: "Highest-signal data on current priorities. Often reveals the trigger event." },
+      { heading: "Step 3 (3 min): Company context", example: "Recent news, earnings (if public), hiring patterns on careers page, product launches.", note: "Company-level context that affects their individual priorities." },
+      { heading: "Step 4 (5 min): Search for their specific public statements", example: "Google them. Podcast appearances, panel talks, quotes in articles, Twitter threads.", note: "Their own words in context. Gold for personalisation + voice matching." },
+      { heading: "Step 5 (2 min): Synthesise to a one-liner", example: "\"Marketing leader at 80-person fintech, posted twice last month about CAC pressure, hired a new VP Growth 3 weeks ago.\"", note: "One sentence captures enough context to write a personalised first message." },
+    ], rule: "Timebox each step. If you hit 20 min and don\u2019t have the one-liner, the prospect is either too unknown or the research isn\u2019t the issue \u2014 send the template version and move on." },
+    { type: "comparison", eyebrow: "TEMPLATE vs RESEARCHED", title: "Two cold emails sent the same day", subtitle: "Identical sender, identical offer. One template, one researched. Reply rates differ by 5\u00D7.", left: { title: "Pure Template (Spam-Adjacent)", color: "#EF4444", items: [
+      { strong: "\u201CHi [First Name], I\u2019m reaching out because I think we could help your business grow.\u201D", note: "Zero signal of research. Buyer recognises template in under 3 seconds." },
+      { strong: "\u201COur solution helps teams like yours save time and boost productivity.\u201D", note: "Generic. Could have been sent to 1,000 people. Ignored." },
+      { strong: "\u201CWould you be open to a 15-min chat next week?\u201D", note: "Asking before earning attention. Almost universally declined." },
+      { strong: "Reply rate: 0.5\u20131.5%", note: "Baseline cold-email performance. Volume required to produce meetings is huge." },
+    ] }, right: { title: "Researched (Conversation-Starter)", color: "#10B981", items: [
+      { strong: "\u201CHi [Name] \u2014 saw your post last Thursday about the CAC tension after your Series B. I\u2019ve watched a few B-stage fintechs navigate exactly that.\u201D", note: "Specific, recent, researched. Buyer recognises this is personal within 5 seconds." },
+      { strong: "\u201COne pattern that shows up: [specific observation]. Not sure if you\u2019re seeing the same?\u201D", note: "Offers value first. Invites response without asking for anything." },
+      { strong: "\u201CIf it\u2019s useful, I can share the 3-step sequence we ran with [named similar company]. No pitch \u2014 happy to just send the doc.\u201D", note: "Low-friction, specific, generous. Easy to say yes to." },
+      { strong: "Reply rate: 6\u201315%", note: "Same offer, 5\u201310\u00D7 the response rate. Research is the whole difference." },
+    ] }, footer: "Rule: don\u2019t confuse research with length. Good research makes the MESSAGE shorter + sharper, not longer + denser." },
+    { type: "table", title: "Free Research Sources \u2014 In Order of Signal", subtitle: "Each source has different signal quality. Start at the top; move down only if you need more.", columns: ["Source", "What You Get", "Signal Quality"], rows: [
+      ["Prospect\u2019s last 30 days of LinkedIn activity", "Current priorities; tone; vocabulary", "Highest \u2014 fresh + first-person"],
+      ["Prospect\u2019s recent comments on others\u2019 posts", "What they\u2019re thinking about; who they\u2019re in conversation with", "Very high"],
+      ["Podcast appearances / panel talks / interviews", "Longer-form thinking; stories they tell; problems they name", "High \u2014 their own words at length"],
+      ["Company recent news / funding / press", "Context around current pressures or wins", "Medium-high"],
+      ["Company careers page", "Hiring patterns reveal priorities (who are they scaling?)", "Medium"],
+      ["Generic company marketing site", "Positioning + public messaging; low personal signal", "Low \u2014 everyone sees this"],
+      ["Google News on their name/company", "Catch-all; useful for trigger events", "Variable"],
+    ], footer: "Rule: budget 80% of research time on the top 3 sources. The rest are supplements, not staples." },
+    { type: "exercise", title: "Research One Real Prospect \u2014 Timed", intro: "Pick a specific person you\u2019d genuinely want to reach. Set a 15-min timer. Run the 5-step method from Slide 4. Produce the one-liner + a 3-sentence personalised opener.", items: [
+      { num: "1", copy: "Pick the prospect + set 15-min timer. Name them out loud so you commit.", answer: "Don\u2019t research someone you don\u2019t actually want to reach. The exercise is only valuable on real targets." },
+      { num: "2", copy: "Run steps 1\u20134 timed. If you hit 15 min without enough signal, the prospect is either too private or not worth outreach.", answer: "Treat the timebox as a boundary. Going over means your research is drifting into procrastination \u2014 the #1 research failure mode." },
+      { num: "3", copy: "Write the one-liner: their current priority, trigger event, and preferred language.", answer: "Example: \"VP Sales at 120-person B2B SaaS, posted last week about low SDR reply rates, hired a BDR manager 10 days ago, uses the phrase \'pipeline coverage\' in 3 posts.\"" },
+      { num: "4", copy: "Draft the 3-sentence personalised opener using the researched context. Send it today.", answer: "The research is useless if the message doesn\u2019t go out. Research + draft + send is one continuous work session, not three separate decisions." },
+    ] },
+  ],
+};

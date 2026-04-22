@@ -1,0 +1,66 @@
+// Sales Fundamentals — Module 5: Presenting Your Solution
+export const sellSolutionModule = {
+  id: "sell05",
+  title: "Presenting Your Solution",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "The tailored pitch \u2014 built from what discovery uncovered. Mirror their language, tie features to their specific pain, and present a solution they recognise as their own.",
+  topics: ["Mirror Language", "Feature-Benefit-Pain Mapping", "Demo Best Practices", "Story vs Pitch", "Pacing + Talk Time", "Signal-Checking"],
+  quiz: [
+    { q: "A tailored pitch differs from a generic demo because:", opts: ["It\u2019s longer", "It uses the buyer\u2019s exact language from discovery + ties each feature to a specific pain they named \u2014 generic demos show product; tailored pitches show solutions", "It uses fancier slides", "It\u2019s shorter always"], correct: 1 },
+    { q: "If a buyer said \u201Ccoverage\u201D 4 times in discovery, your pitch should:", opts: ["Use \u201Cvisibility\u201D because it sounds more professional", "Use \u201Ccoverage\u201D consistently \u2014 mirror-language confirms you listened + frames the product in the buyer\u2019s mental model", "Avoid their word \u2014 show leadership", "Use random synonyms"], correct: 1 },
+    { q: "The healthiest seller-talk ratio during a tailored pitch is approximately:", opts: ["90% seller, 10% buyer", "60\u201370% seller + ongoing signal-checks (\u201CDoes this map to what you were describing?\u201D) that invite buyer participation", "50/50 evenly", "100% buyer"], correct: 1 },
+    { q: "The single biggest pitch mistake is:", opts: ["Not enough features", "Dumping every feature + letting the buyer connect them to their problem \u2014 it\u2019s the seller\u2019s job to map feature \u2192 benefit \u2192 their specific pain explicitly", "Using slides", "Going too fast"], correct: 1 },
+    { q: "Mid-pitch, the buyer asks a tangential question. Best response:", opts: ["Ignore it, finish the pitch", "Answer briefly + offer to return to it at the end; don\u2019t derail the arc you built, but signal you heard them", "Abandon pitch entirely", "Get defensive"], correct: 1 },
+    { q: "The strongest close to a tailored pitch is:", opts: ["\u201CSo are you going to buy?\u201D", "A specific signal-check: \u201CBased on what you shared earlier about [their pain], does this feel like it would solve that?\u201D + listen to their answer", "A hard price ask", "Ending the call abruptly"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 5", title: "Presenting", titleAccent: "Your Solution", subtitle: "The tailored pitch \u2014 built from what discovery uncovered. Buyer\u2019s language, buyer\u2019s pain, buyer\u2019s outcome.", meta: "Sales Fundamentals  |  Module 5  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY TAILORING MATTERS", title: "Generic demos close at a fraction of tailored pitches \u2014 even for identical products", intro: "The tailored pitch isn\u2019t a different product. It\u2019s the same product, presented through the specific frame of THIS buyer\u2019s pain, in THIS buyer\u2019s language, tied to THIS buyer\u2019s outcomes.", stats: [
+      { num: "3\u20135\u00D7", label: "close rate delta between tailored pitches and generic demos for identical products" },
+      { num: "80%", label: "of sales teams use the same core demo script for every prospect \u2014 losing the tailoring opportunity entirely" },
+      { num: "4\u20137", label: "times the buyer\u2019s exact language should appear in a tailored pitch, pulled from discovery notes" },
+    ], subheading: "What a Tailored Pitch Has That a Demo Doesn\u2019t", bullets: [
+      "Opens by restating the buyer\u2019s pain in their own words from discovery",
+      "Ties each product element to a specific thing they said during discovery",
+      "Uses their exact vocabulary (\u201Ccoverage,\u201D \u201Cramp time,\u201D \u201Cpipeline integrity\u201D) consistently throughout",
+      "Includes signal-check questions every 3\u20135 minutes to confirm resonance",
+      "Closes with explicit tie-back: \u201CDoes this map to what you were describing?\u201D",
+    ] },
+    { type: "grid", eyebrow: "THE 4 ELEMENTS OF A TAILORED PITCH", title: "What to include + why", subtitle: "Miss any of these and the pitch reverts to generic demo. All four must be deliberately done.", items: [
+      { num: "01", title: "The Pain Restated", desc: "Open by reflecting back the buyer\u2019s pain in their own words. Signals you listened. Anchors the pitch to THEIR problem.", icon: "\u{1F50A}" },
+      { num: "02", title: "Mirror Vocabulary", desc: "Use their exact terms throughout. \u201CCoverage\u201D not \u201Cvisibility.\u201D \u201CRamp\u201D not \u201Conboarding.\u201D Their mental model, not yours.", icon: "\u{1F4AC}" },
+      { num: "03", title: "Feature-Benefit-Pain Map", desc: "For each feature you show, explicitly map to a specific pain they named. \u201CBecause you mentioned [pain], here\u2019s how [feature] addresses it.\u201D", icon: "\u{1F517}" },
+      { num: "04", title: "Ongoing Signal-Checks", desc: "Every 3\u20135 min: \u201CDoes this match what you were describing?\u201D Invites confirmation (or correction) in real time.", icon: "\u{1F50D}" },
+    ], footer: "Rule: the tailored pitch is mostly assembled, not composed. Pulled from your discovery notes + templated story; just personalised heavily." },
+    { type: "principle", num: "01", title: "Mirror Language \u2014 The Quiet Technique That Changes Everything", intro: "Buyers rarely notice when you use their language consciously. They always notice (subconsciously) when you don\u2019t. Mirror language is the cheapest + highest-leverage pitch move available.", sectionTitle: "How To Use Mirror Language", sections: [
+      { heading: "1. During discovery: take verbatim notes", example: "Don\u2019t paraphrase. Capture their exact words: \u201Ccoverage issues,\u201D \u201Crep ramp,\u201D \u201Cpipeline integrity,\u201D \u201Cdeal velocity.\u201D", note: "The exact phrasing is the asset. Paraphrased notes lose the vocabulary fingerprint." },
+      { heading: "2. In the pitch: use their words, not your product\u2019s words", example: "If they said \u201Ccoverage,\u201D you say \u201Ccoverage\u201D \u2014 not \u201Cvisibility,\u201D not \u201Cinsight,\u201D not whatever your marketing deck uses.", note: "The buyer\u2019s vocabulary becomes the pitch\u2019s vocabulary. Product fits into their mental model, not vice versa." },
+      { heading: "3. Explicitly reflect in the opening", example: "\u201CEarlier you mentioned coverage being the biggest issue \u2014 that the reps don\u2019t have enough named accounts to run outbound on. I want to show you exactly how we\u2019d handle that.\u201D", note: "Opens the pitch by proving you listened. Buyer relaxes; trust rises." },
+      { heading: "4. Double down when they re-use YOUR words", example: "If they pick up a term from your pitch and use it themselves, note that \u2014 it means they\u2019ve absorbed the frame. Reinforce.", note: "Shared vocabulary = shared understanding. Deal moves faster when you\u2019re speaking the same language literally." },
+    ], rule: "Mirror language is the cheapest pitch upgrade that exists. 15 minutes of post-discovery note-review pays back on every subsequent meeting with that buyer." },
+    { type: "comparison", eyebrow: "GENERIC vs TAILORED", title: "Two pitches for the same product on the same buyer", subtitle: "Generic demo vs tailored pitch \u2014 3\u00D7 close-rate gap on identical deals.", left: { title: "Generic Demo", color: "#EF4444", items: [
+      { strong: "Opens: \u201CLet me walk you through our platform and its features.\u201D", note: "Seller-centred. Buyer hears \u201Cwe\u2019re about to endure a demo.\u201D Attention drops immediately." },
+      { strong: "Shows all 12 features in order, regardless of buyer\u2019s specific pain", note: "Inefficient. 70% of features don\u2019t apply. Buyer zones out during the 70% to get to the 30%." },
+      { strong: "Uses marketing vocabulary: \u201Cempower,\u201D \u201Cseamless,\u201D \u201Ccutting-edge,\u201D \u201Coptimise\u201D", note: "Product-speak. Triggers the buyer\u2019s \u201Cthis is a pitch\u201D filter." },
+      { strong: "Ends: \u201CWhat questions do you have?\u201D", note: "Passive close. Leaves the buyer to drive next step. Most will politely defer." },
+    ] }, right: { title: "Tailored Pitch", color: "#10B981", items: [
+      { strong: "\u201CEarlier you said pipeline coverage was the biggest gap \u2014 3 reps running on 20 named accounts. I want to show you the 2 features most relevant to that specifically.\u201D", note: "Buyer-centred. Opens with their pain + sets expectations for focused pitch." },
+      { strong: "Shows 2\u20133 features directly mapped to their named pain points. Skips the rest.", note: "Respects time. Each feature tied explicitly to a thing they said." },
+      { strong: "Uses their exact words: \u201Ccoverage,\u201D \u201Cnamed accounts,\u201D \u201Cramp time.\u201D", note: "Mirror vocabulary. Buyer feels heard. Trust builds." },
+      { strong: "Every 5 min: \u201CDoes this match the problem as you see it?\u201D + \u201CDoes this mapping feel right?\u201D", note: "Active signal-checks. Issues surface early. Close becomes natural." },
+    ] }, footer: "Rule: the same product can be pitched in ways that close 3\u00D7 or 0.3\u00D7 depending on tailoring. Tailoring is where the deal lives." },
+    { type: "table", title: "The Feature-Benefit-Pain Map", subtitle: "For each feature you\u2019ll show, fill this in BEFORE the pitch. No feature shown without a pain tie.", columns: ["Feature (what it is)", "Benefit (what it does)", "Specific Pain (their words, from discovery)"], rows: [
+      ["Auto-logged CRM activity", "Saves reps ~11 hrs/wk on data entry", "\"We found reps are spending too much time on Salesforce\""],
+      ["Sequence automation", "Scales outbound without more reps", "\"Coverage issue \u2014 3 reps on 20 named accounts\""],
+      ["Intent-data trigger alerts", "Right-time outreach to warm buyers", "\"Deals keep slipping because we reach out too late\""],
+      ["Unified pipeline view", "Deal velocity visibility at a glance", "\"The CEO has been asking for pipeline integrity metrics\""],
+    ], footer: "Rule: no feature shown without a direct tie back to a specific pain they named. If you can\u2019t fill the third column, either skip the feature or use a generic pain placeholder." },
+    { type: "exercise", title: "Build Your Tailored Pitch Template", intro: "Take a real deal you have in flight. Apply this structure to its next pitch meeting.", items: [
+      { num: "1", copy: "From your discovery notes, pull the 5\u20137 exact phrases the buyer used. Copy them verbatim.", answer: "Don\u2019t paraphrase. \"Coverage,\" \"ramp time,\" \"deal velocity,\" \"pipeline integrity\" \u2014 whatever specific terms they used. Use them throughout the pitch." },
+      { num: "2", copy: "For the 3 pain points they most clearly named, write the Feature-Benefit-Pain triple for each.", answer: "Feature (your product\u2019s element) \u2192 Benefit (what it does) \u2192 Pain (in their words). 3 triples, maximum. Resist showing more features." },
+      { num: "3", copy: "Draft the 3-sentence opener that restates their pain + sets expectations: \u201CEarlier you mentioned X. I want to show you Y specifically.\u201D", answer: "This opener anchors the whole pitch. Buyer immediately knows you listened + respects their time. The rest of the pitch gets permission to exist." },
+      { num: "4", copy: "Pre-write 3 signal-check questions for mid-pitch: \u201CDoes this feel right to you?\u201D variations. Space them at the 5-min, 10-min, 15-min marks.", answer: "Signal-checks keep the pitch two-way. Buyer stays engaged. Objections surface while you can still address them. Don\u2019t skip \u2014 silent pitches die." },
+    ] },
+  ],
+};

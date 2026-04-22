@@ -1,0 +1,68 @@
+// Sales Fundamentals — Module 7: Closing & Follow-Up
+export const sellClosingModule = {
+  id: "sell07",
+  title: "Closing & Follow-Up",
+  type: "Rich Module",
+  duration: "90 min",
+  desc: "Seal the deal + nurture long-term. Closing questions that work, next-step protocols that prevent stalls, follow-up cadence that keeps deals alive, and the win/loss analysis that compounds.",
+  topics: ["Closing Questions", "Next-Step Protocol", "Follow-Up Cadence", "Win/Loss Analysis", "Won Deals Nurture", "Lost Deals Re-Open"],
+  quiz: [
+    { q: "The strongest closing question in B2B is typically:", opts: ["\u201CSo are you ready to buy?\u201D", "\u201CBased on what you\u2019ve seen, what do you think the best next step is?\u201D \u2014 buyer-driven commitment, not seller pressure", "\u201CWhen can we start?\u201D", "\u201CSign here.\u201D"], correct: 1 },
+    { q: "The most common reason deals go dark after a strong meeting is:", opts: ["Buyer changed jobs", "No explicit next step was scheduled in the meeting \u2014 \u201CI\u2019ll follow up\u201D languages = deal drift", "They got busy", "Competitor won"], correct: 1 },
+    { q: "After a verbal \u201Cyes\u201D to buy, the right next move is:", opts: ["Celebrate + stop emailing", "Immediately confirm next steps in writing (email within 1 hour) + schedule the specific actions (contract, kickoff, etc.) \u2014 verbal agreements decay without written follow-through", "Wait for them", "Send a gift"], correct: 1 },
+    { q: "A lost deal should be revisited:", opts: ["Never", "After 3\u20136 months \u2014 circumstances change; the champion may have moved; new problems may have emerged; don\u2019t abandon lost deals permanently", "Daily for a month", "Weekly forever"], correct: 1 },
+    { q: "Win/loss analysis is:", opts: ["Blame distribution", "Honest debrief after every closed deal (won or lost) \u2014 what moved it, what stalled it, what you\u2019d do differently; the system that compounds sales skill over years", "Just for losses", "Quarterly ritual only"], correct: 1 },
+    { q: "Post-close, the most important 48 hours is:", opts: ["Silence \u2014 let them breathe", "Explicit onboarding kickoff + expectation-setting + introduction to the success team \u2014 post-close drop-off is where renewal trajectory gets set or lost", "Send an invoice", "Nothing"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 7", title: "Closing &", titleAccent: "Follow-Up", subtitle: "Seal the deal + nurture long-term. Closing questions that work, next-step protocols, follow-up cadence, and win/loss analysis that compounds.", meta: "Sales Fundamentals  |  Module 7  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY CLOSING + FOLLOW-UP MATTER EQUALLY", title: "Most deals aren\u2019t won in the close \u2014 they\u2019re lost in the follow-up", intro: "Great discovery + great pitch + great objection handling \u2014 followed by weak follow-up \u2014 equals stalled deals. The last 10% of the sales process is where differentiated sellers compound wins and lose deals they should have won.", stats: [
+      { num: "60%+", label: "of B2B deals that go to \u201Clet me think about it\u201D die from weak follow-up, not weak pitch" },
+      { num: "24 hr", label: "the window in which 80% of won-deal momentum is set or lost \u2014 post-verbal-yes silence kills more deals than people realise" },
+      { num: "20\u201330%", label: "of lost deals that eventually buy, if properly nurtured over 3\u20136 months \u2014 losing deals shouldn\u2019t end relationships" },
+    ], subheading: "What Good Closing + Follow-Up Does", bullets: [
+      "Asks buyer-driven closing questions that surface real readiness (not seller pressure)",
+      "Schedules explicit next steps IN the meeting \u2014 \u201CI\u2019ll follow up\u201D is dead language",
+      "Confirms verbal commitments in writing within 1 hour of the call",
+      "Runs proper win/loss analysis on every deal \u2014 compounds learning across years",
+      "Nurtures lost deals for 3\u20136 months \u2014 circumstances change; relationships compound",
+    ] },
+    { type: "grid", eyebrow: "THE 4 CLOSING QUESTIONS", title: "Buyer-led closes that work in B2B", subtitle: "Pick one based on where the buyer is. Don\u2019t force a close question before discovery + pitch have earned it.", items: [
+      { num: "01", title: "The Next-Step Question", desc: "\u201CBased on what you\u2019ve seen, what do you think the best next step is?\u201D Buyer-driven. Surfaces readiness without pressure.", icon: "\u27A1\uFE0F" },
+      { num: "02", title: "The Assumptive Close", desc: "\u201CShould we target the 1st for kickoff, or is early-Feb more realistic?\u201D Assumes yes; offers a choice between two concrete paths.", icon: "\u{1F4C5}" },
+      { num: "03", title: "The Reality-Check Close", desc: "\u201COn a scale of 1\u201310, how likely is it this moves forward?\u201D If under 7, surface what\u2019s missing. Honest diagnostic.", icon: "\u{1F522}" },
+      { num: "04", title: "The Future-Pacing Close", desc: "\u201CIf we did this \u2014 what would 90 days from now look like for your team?\u201D Buyer articulates their own future; the deal becomes inevitable.", icon: "\u{1F52E}" },
+    ], footer: "Rule: all 4 are buyer-centred. None push. None manipulate. Good closes surface genuine readiness \u2014 or genuine hesitation \u2014 early." },
+    { type: "principle", num: "01", title: "The Next-Step Protocol", intro: "The single most preventable reason deals go dark is failing to lock in the next specific step inside the meeting. \u201CI\u2019ll follow up\u201D is dead language. Schedule the literal next calendar event before the current one ends.", sectionTitle: "How To Lock In Next Steps", sections: [
+      { heading: "1. Never end a meeting without a specific next action", example: "\u201CBefore we wrap \u2014 what\u2019s the right next step? Can we get something on calendar right now for next Tuesday?\u201D", note: "Calendar-on-the-call is a 10x improvement over \u201Cwe\u2019ll circle back.\u201D \u201CCircle back\u201D = the deal dies." },
+      { heading: "2. Confirm next steps in writing within 1 hour", example: "Email: \u201CHere\u2019s what we covered + what\u2019s next: [specific next step + date + owner].\u201D", note: "Written confirmation hardens verbal commitments. Ambiguity becomes specificity. Buyer can\u2019t claim miscommunication later." },
+      { heading: "3. Assign the next owner explicitly", example: "\u201CI\u2019ll send the ROI model by Thursday. You\u2019ll loop in your CFO by Friday. We\u2019ll meet Tuesday at 2pm ET.\u201D", note: "Both sides know what they owe the other. No ambiguity. No \u201Cwho\u2019s waiting on who\u201D loops." },
+      { heading: "4. If next step can\u2019t be scheduled, something\u2019s wrong", example: "Buyer resistance to scheduling = unvoiced concern. Surface it: \u201CWhat\u2019s keeping you from committing to a next time?\u201D", note: "A buyer who won\u2019t commit to a date usually has an unresolved objection. Surface it now, not three weeks later." },
+    ], rule: "Every meeting ends with a calendar invite sent + accepted, OR with an explicit acknowledgment that the deal isn\u2019t ready to progress. No third option." },
+    { type: "comparison", eyebrow: "LOOSE vs DISCIPLINED CLOSE", title: "Same deal, two seller approaches", subtitle: "Identical product, identical buyer. One closes in 6 weeks; one still doesn\u2019t close after 4 months.", left: { title: "Loose Close (Deal Drifts)", color: "#EF4444", items: [
+      { strong: "Seller ends meeting: \u201CLet me know your thoughts \u2014 happy to follow up in a week or two.\u201D", note: "No specific next step. \u201CThoughts\u201D = open-ended. Deal now depends on buyer\u2019s initiative." },
+      { strong: "Next morning: no follow-up email summarising what was discussed", note: "Verbal agreements decay within 48 hours. Without written capture, details get forgotten." },
+      { strong: "Week 2: seller sends \u201Cjust following up\u201D \u2014 no new value; reads as annoyance", note: "Pester energy. Buyer\u2019s response rate to \u201Cjust following up\u201D is ~15%." },
+      { strong: "Week 8: deal officially \u201Cghosted.\u201D Seller marks lost; doesn\u2019t know why.", note: "Classic pattern. Root cause: no next step locked in at the decisive meeting." },
+    ] }, right: { title: "Disciplined Close (Deal Progresses)", color: "#10B981", items: [
+      { strong: "Seller ends meeting: \u201COkay \u2014 next step: I send you the ROI model by Thursday; you share with Priya by Friday; we meet Tuesday at 2pm. Sound good?\u201D", note: "Specific. Scheduled. Both parties accountable. Buyer commits verbally + gets calendar invite same hour." },
+      { strong: "Within 1 hour: email summary + calendar invite sent + accepted", note: "Written harder than verbal. Tuesday meeting is real. Deal advances with momentum." },
+      { strong: "Thursday: ROI model arrives as promised. Friday: seller nudges on Priya loop.", note: "Follow-through signals reliability. Buyer\u2019s trust builds. Deal moves." },
+      { strong: "Week 6: deal closes at full price; kickoff scheduled for the following week", note: "Discipline + specificity = momentum. Same deal; different outcome entirely." },
+    ] }, footer: "Rule: specificity in scheduling is the difference between deals that close and deals that drift. The 2-minute end-of-meeting discipline pays more than any closing technique." },
+    { type: "table", title: "Post-Close Follow-Up Cadence (Won Deals)", subtitle: "The 30-day post-close window sets the renewal trajectory. Treat it as sacred.", columns: ["Time Window", "Activity", "Why"], rows: [
+      ["Within 1 hour", "Confirmation email + celebration + expectation-setting + CS team intro", "Verbal commitment hardens. Buyer knows exactly what comes next. Anxiety reduced."],
+      ["Day 1", "Kickoff meeting scheduled + onboarding plan shared", "Momentum maintained. Buyer experiences competence from day 1."],
+      ["Day 7", "Check-in with buyer: any early blockers? Anything unclear?", "Early friction surfaced before it compounds. Signals care."],
+      ["Day 30", "First outcome review: what\u2019s working, what\u2019s not, expansion opportunities?", "Sets renewal narrative early. Expansion ideas planted while buyer is still in new-relationship energy."],
+      ["Day 90", "Proper QBR: tie results to metrics agreed in discovery. Introduce Economic Buyer to deeper relationship.", "Year-1 trajectory becomes year-3 relationship. Most renewals are won here."],
+      ["Quarterly", "Ongoing QBR cadence; stay in the relationship", "Renewals are habits, not events. Quarterly touches are the infrastructure."],
+    ], footer: "Rule: post-close drop-off is where renewal trajectory is set. The seller who disappears after signing is the seller who loses renewal." },
+    { type: "exercise", title: "Build Your Close + Follow-Up Checklist", intro: "Write your personal close + follow-up checklist. Use it on every deal going forward.", items: [
+      { num: "1", copy: "Write your go-to closing question. Pick one of the 4 from Slide 3 that fits your selling context.", answer: "Example: \"Based on what you\u2019ve seen, what do you think the best next step is?\" \u2014 practice until it rolls off the tongue naturally at the end of every call." },
+      { num: "2", copy: "Draft your \u201C1-hour post-meeting email\u201D template. Include: what we covered, next step, owner, date.", answer: "Template: \"Following up on our [day] call. We covered X, Y, Z. Next step: [specific action] by [date], owned by [name]. Next meeting: [date/time]. Thanks \u2014 [name]\"" },
+      { num: "3", copy: "Set up a \u201Cnext step calendar discipline\u201D \u2014 every meeting ends with a specific follow-up scheduled, or explicit acknowledgment the deal isn\u2019t ready.", answer: "Put it in your meeting prep checklist: \"Before I end: what\u2019s the explicit next step? Is it calendar-ed?\" If not, make it so before hanging up." },
+      { num: "4", copy: "Schedule win/loss reviews: 30 min within 48hrs of every closed deal (won or lost). Document: what moved it + what you\u2019d do differently.", answer: "Keep a running win/loss doc. Over 50 deals, patterns emerge. Over 200, you compound into a much better seller than you were." },
+    ] },
+  ],
+};
