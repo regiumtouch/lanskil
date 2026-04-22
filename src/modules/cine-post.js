@@ -1,0 +1,71 @@
+// Cinematography — Module 10: Post-Production: Editing & Color Grading
+export const cinePostModule = {
+  id: "cine10",
+  title: "Post-Production: Editing & Color Grading",
+  type: "Rich Module",
+  duration: "3.5 hours",
+  desc: "What happens after the shoot. Editing fundamentals, RAW vs Log vs Rec.709, color correction vs grading, DaVinci Resolve workflow, and why colorists matter.",
+  topics: ["Editing Fundamentals", "RAW / Log / Rec.709", "Color Correction vs Grading", "DaVinci Resolve Flow", "Skin Tones", "Colorist Collaboration"],
+  quiz: [
+    { q: "The difference between color correction + color grading is:", opts: ["They're identical", "Correction = technical (matching shots, correct exposure, neutral white balance). Grading = creative (applying a look, mood, stylistic palette). Correction first, grading after.", "Only in Hollywood", "Correction is cheaper"], correct: 1 },
+    { q: "Shooting in Log (S-Log, C-Log, V-Log) gives you:", opts: ["Finished look in-camera", "Flat, desaturated image with maximum dynamic range preserved \u2014 requires grading in post to look right. Trades aesthetic for latitude.", "Better autofocus", "Smaller files"], correct: 1 },
+    { q: "Why is skin tone the most important thing to protect in color grading?", opts: ["It isn't", "Human eyes are trained to detect unnatural skin \u2014 green or magenta skin is immediately wrong. Colorists protect skin first, push other hues second.", "It's easiest", "Tradition"], correct: 1 },
+    { q: "A good editing cut is generally motivated by:", opts: ["Equal timing", "A new piece of information, a shift of attention, or an emotional beat \u2014 cuts should move the story forward, not just change the image", "Music beats only", "Random"], correct: 1 },
+    { q: "DaVinci Resolve is industry standard because:", opts: ["It's cheapest", "Free Studio version is near-complete; node-based grading unmatched; used on most Hollywood features \u2014 learning it puts you at the pro tier", "Apple made it", "It's fastest"], correct: 1 },
+    { q: "A colorist's role on a film is:", opts: ["Optional decoration", "Collaborating with DP + director to finalize the look \u2014 matching shots, applying the film's visual identity, protecting skin, and sculpting emotion via color. Can make or break a film's final feel.", "Just click presets", "Only TV commercials"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 10", title: "Post-Production", titleAccent: "Editing & Color", subtitle: "What happens after the shoot. Editing flow, RAW vs Log vs Rec.709, correction vs grading, and the colorist's craft.", meta: "Cinematography \u00B7 Tier III \u00B7 Module 10  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY POST MATTERS", title: "Half the cinematography happens after the shoot", intro: "The image you capture is not the final image audiences see. Grading, editing, and sound design shape the final result. Cinematographers who understand post make better on-set decisions + produce better final work.", stats: [
+      { num: "50%", label: "of the final visual impression is shaped in post-production, not on set" },
+      { num: "14+", label: "stops of dynamic range in modern cinema cameras \u2014 but only if captured + graded properly" },
+      { num: "3", label: "stages of post color work: correction \u2192 matching \u2192 grading. Skip any + quality suffers." },
+    ], subheading: "What Cinematographers Should Know About Post", bullets: [
+      "How the codec + capture format you chose on-set affects post flexibility",
+      "How to communicate with colorists + editors about your visual intent",
+      "How to protect skin tones + avoid common grading mistakes",
+      "Which editing decisions serve the cinematography + which undermine it",
+      "How to review a graded cut + give useful feedback (not vague adjectives)",
+    ] },
+    { type: "grid", eyebrow: "CAPTURE FORMATS", title: "RAW vs Log vs Rec.709 \u2014 what you're shooting matters", subtitle: "Each format is a tradeoff between latitude, file size, and post flexibility. Pick deliberately.", items: [
+      { num: "01", title: "Rec.709 (standard)", desc: "Finished-look in-camera. Ready to use. Limited grading latitude. Fast turnaround.", icon: "\u{1F4FA}" },
+      { num: "02", title: "Log (S-Log, C-Log, V-Log)", desc: "Flat + desaturated. Maximum dynamic range. Requires grading to look right.", icon: "\u{1F4C9}" },
+      { num: "03", title: "RAW (RED, ARRIRAW, BRAW)", desc: "Uncompressed sensor data. Huge files. Ultimate post flexibility. Professional workflows only.", icon: "\u{1F48E}" },
+      { num: "04", title: "ProRes (422 HQ, 4444)", desc: "Apple\u2019s professional codec. Smaller than RAW, near-lossless quality. Editor-friendly.", icon: "\u{1F34F}" },
+      { num: "05", title: "H.264 / H.265", desc: "Highly compressed. Small files. Limited grading. Delivery format, not capture format (except low-end).", icon: "\u{1F4E6}" },
+      { num: "06", title: "ProRes RAW / BRAW", desc: "Hybrid \u2014 RAW flexibility at reasonable file sizes. Increasingly used for commercial + doc work.", icon: "\u{1F9EC}" },
+    ], footer: "Rule: match format to project. Wedding in H.264 fine. Narrative feature in H.264 criminal. Pick based on post needs, not convenience." },
+    { type: "principle", num: "01", title: "Color Correction vs Color Grading", intro: "These are two different jobs, often done by the same person but in different stages. Mixing them up costs time + produces worse results. Master the distinction.", sectionTitle: "The 2-Stage Color Workflow", sections: [
+      { heading: "Stage 1: Color Correction (Technical)", example: "Neutralize white balance. Match exposure across shots. Fix green cast from fluorescent light. Correct skin tones to natural.", note: "Goal: make every shot look technically correct + matched to its neighbors. No creative choices yet. Invisible work." },
+      { heading: "Stage 2: Color Grading (Creative)", example: "Apply the film\u2019s visual identity. Push shadows toward teal. Warm the highlights. Desaturate except for one signature colour.", note: "Goal: create the look audiences remember. This is where \u2018Drive looks like Drive\u2019 happens. Deliberate emotional sculpting." },
+      { heading: "Why Order Matters", example: "If you grade before correcting, you're stacking creative choices on top of technical inconsistencies. The look will fight the footage.", note: "Correct first. Always. Then grade. Colorists who skip correction produce final work that looks uneven up close." },
+      { heading: "Skin Tones Come First in Both Stages", example: "In correction: neutralize any colour cast on skin. In grading: protect skin from the look \u2014 use keys, masks, + power windows to keep skin natural while pushing the rest.", note: "Audiences forgive strange colours on walls + sky. They immediately notice wrong skin. Protect it above all else." },
+    ], rule: "Correction is about making footage usable. Grading is about making it memorable. One without the other produces mediocrity." },
+    { type: "comparison", eyebrow: "GRADED vs UNGRADED", title: "The same 30-second scene, two versions", subtitle: "Same footage captured in Log. One delivered raw (Log flat); one corrected + graded properly. Night and day.", left: { title: "Ungraded (Log Flat)", color: "#EF4444", items: [
+      { strong: "Everything appears flat + washed out", note: "Log is designed to look like this. It preserves data, not aesthetics. Not meant to be delivered as-is." },
+      { strong: "Shots don't match each other \u2014 exposure drifts between cuts", note: "Without correction, each shot's slight difference (overcast vs. sun, different lenses) reads as technical inconsistency." },
+      { strong: "Skin looks sickly \u2014 green cast from fluorescent practical", note: "Untreated cast renders actors looking ill. Destroys emotional investment." },
+      { strong: "Result: looks amateur; audience feels something is wrong", note: "Even if they can't name what's wrong, they sense the image is unfinished." },
+    ] }, right: { title: "Corrected + Graded", color: "#10B981", items: [
+      { strong: "Correction neutralizes cast; all shots match exposure", note: "Invisible baseline work. Every shot now reads technically clean + consistent." },
+      { strong: "Grade applies a warm, slightly desaturated look across the scene", note: "Creative choice carries emotional weight. Film now has a visual identity." },
+      { strong: "Skin protected via key + power window \u2014 natural across the grade", note: "No matter how much the rest of the image is pushed, skin stays real." },
+      { strong: "Result: cinematic + cohesive + emotionally precise", note: "This is the difference between \u2018shot on a camera\u2019 and \u2018a film.\u2019 Post finishes the cinematography." },
+    ] }, footer: "Rule: even a quick grade (5 min per shot) improves Log footage more than any on-set gear upgrade could." },
+    { type: "table", title: "Post Workflow Reference", subtitle: "Every cinematographer should understand this flow \u2014 even if someone else executes it.", columns: ["Stage", "Who", "What Happens"], rows: [
+      ["Offload + Backup", "DIT / Data Manager", "3 copies of every card \u2014 local drive, backup drive, cloud. Never trust one copy."],
+      ["Rough Assembly", "Editor", "Assembly of scenes in story order. No fine cuts yet. First structural look at the film."],
+      ["Fine Cut", "Editor + Director", "Frame-accurate cuts. Performance + pace nailed down. Visual effects placeholders inserted."],
+      ["Picture Lock", "Director", "No more changes to the edit. Post departments (sound, VFX, color) can now work against fixed timing."],
+      ["Color Correction", "Colorist", "Technical pass: exposure match, neutral white balance, skin tone protection."],
+      ["Color Grading", "Colorist + DP + Director", "Creative pass: apply the look. DP advocates for visual intent; director has final say."],
+      ["Final Delivery", "Colorist / Finishing", "Render to delivery specs (DCP for cinema, H.265 for streaming, ProRes for broadcast)."],
+    ], footer: "Rule: DP's job doesn't end on wrap. Show up to the grade. Your presence protects the cinematography." },
+    { type: "exercise", title: "Grade a Log Clip", intro: "Take a Log clip (your own or a free Log clip online). Apply correction + grading in DaVinci Resolve (free).", items: [
+      { num: "1", copy: "Import clip into DaVinci Resolve. Apply the correct Input LUT (e.g. S-Log3 to Rec.709 for Sony). See it transform from flat to normal.", answer: "The Input LUT is a conversion from the camera's Log space to a standard viewing space. Without it, you can't judge the grade accurately." },
+      { num: "2", copy: "Do color correction: set white balance neutral, balance exposure, fix any casts. Use scopes (waveform, vectorscope).", answer: "Correction is a technical exercise. Scopes, not your eyes, tell you when it's right. Waveform = brightness, vectorscope = colour cast." },
+      { num: "3", copy: "Apply a creative grade: pick a mood (warm nostalgic, cold clinical, teal thriller) + push the image toward it. Protect skin with a key.", answer: "Use nodes in Resolve. One node for the look; one HSL-qualifier node to protect skin. This is the foundation of professional grading." },
+      { num: "4", copy: "Compare before + after. Note what correction did + what grading did. Export + save for your reel.", answer: "Synthesis. You'll notice correction is 80% of the perceived 'looks right' improvement. Grading is 80% of the 'this is a specific film' feeling." },
+    ] },
+  ],
+};

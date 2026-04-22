@@ -1,0 +1,71 @@
+// Cinematography — Module 3: Composition & Framing
+export const cineCompositionModule = {
+  id: "cine03",
+  title: "Composition & Framing",
+  type: "Rich Module",
+  duration: "3 hours",
+  desc: "The art of arranging what's in your frame. Thirds + symmetry, headroom + lead room, depth in 2D, leading lines, and camera angle as emotion.",
+  topics: ["Rule of Thirds", "Symmetry + Dead-Centre", "Headroom + Lead Room", "Aspect Ratios", "Depth + Layering", "Angle + Height"],
+  quiz: [
+    { q: "\u201CHeadroom\u201D vs \u201Clead room\u201D in composition:", opts: ["Synonyms", "Headroom = space above subject\u2019s head. Lead room (or look room) = space in the direction subject looks/moves. Different rules, different violations.", "Same rule", "Refers to editing"],  correct: 1 },
+    { q: "Wes Anderson is famous for which composition style?", opts: ["Rule of thirds", "Dead-centre symmetric framing \u2014 breaking the rule of thirds deliberately; creates the signature \u2018doll house\u2019 feel", "Random framing", "Dutch angles everywhere"], correct: 1 },
+    { q: "A 2.39:1 aspect ratio (cinemascope) vs 16:9 communicates what differently?", opts: ["Nothing", "2.39:1 reads as \u201Ccinema / epic / theatrical\u201D; 16:9 as \u201Ctelevision / web\u201D; choosing between them is itself a storytelling decision", "Just resolution", "Just file size"], correct: 1 },
+    { q: "A low-angle shot (camera below eye level, looking up) typically makes a subject feel:", opts: ["Weak + small", "Powerful, dominant, heroic, or threatening \u2014 depending on context; the audience is forced to look up, which reads as submission/awe", "Neutral", "Distant"], correct: 1 },
+    { q: "Flat, depth-less frames feel amateur because:", opts: ["Low resolution", "They don\u2019t layer foreground + midground + background; 2D compositions miss the cinematic illusion of 3D space that makes frames feel rich", "Wrong frame rate", "Bad colour"], correct: 1 },
+    { q: "A Dutch angle (tilted horizon) is most effective for:", opts: ["Every scene", "Signalling psychological imbalance, unease, or chaos \u2014 used sparingly. Overusing it breaks the effect + signals inexperience.", "Wedding cinematography", "Establishing shots"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 3", title: "Composition", titleAccent: "& Framing", subtitle: "The art of arranging what\u2019s in your frame. Thirds + symmetry, headroom + lead room, depth + layering, angle + height.", meta: "Cinematography \u00B7 Tier I \u00B7 Module 3  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY COMPOSITION MATTERS", title: "The frame is your control panel for audience attention", intro: "Composition is how you tell the audience where to look + what it means. Good composition is invisible; bad composition is distracting. Mastery is being able to break the rules once you know them.", stats: [
+      { num: "3 sec", label: "time the audience takes to register compositional weight + form an emotional impression" },
+      { num: "2.39:1", label: "cinemascope aspect ratio \u2014 used for epic / theatrical feel; signals \u201Cfilm\u201D instantly" },
+      { num: "70%", label: "of amateur framing problems come from flat 2D compositions with no foreground / midground / background" },
+    ], subheading: "What Strong Composition Does", bullets: [
+      "Directs the audience\u2019s eye to what matters; backgrounds don\u2019t compete",
+      "Uses deliberate rules (thirds, symmetry, leading lines) to create balance or tension",
+      "Layers depth \u2014 foreground + midground + background \u2014 so frames feel 3D, not flat",
+      "Chooses camera height + angle as emotional tools, not defaults",
+      "Matches aspect ratio to story \u2014 epic calls for 2.39:1, intimate might call for 4:3",
+    ] },
+    { type: "grid", eyebrow: "SIX COMPOSITION PRINCIPLES", title: "The toolkit every cinematographer applies deliberately", subtitle: "Master each principle, then break them on purpose. The rules exist to serve intent.", items: [
+      { num: "01", title: "Rule of Thirds", desc: "Place subjects on thirds lines. Default-strong. Most audiences unconsciously expect it.", icon: "\u{1F3B4}" },
+      { num: "02", title: "Symmetric Framing", desc: "Dead-centre. Formal, ritualistic, sometimes eerie. Wes Anderson, Kubrick.", icon: "\u2696\uFE0F" },
+      { num: "03", title: "Headroom + Lead Room", desc: "Space above head + in direction of look. Violate deliberately for unease.", icon: "\u2194\uFE0F" },
+      { num: "04", title: "Leading Lines", desc: "Lines that pull the eye to the subject. Roads, fences, shadows, architecture.", icon: "\u27A1\uFE0F" },
+      { num: "05", title: "Foreground / Midground / Background", desc: "Layering for depth. Something near, something mid, something far. Flat = amateur.", icon: "\u{1F303}" },
+      { num: "06", title: "Camera Angle + Height", desc: "Low = powerful. High = vulnerable. Eye-level = neutral. Dutch = unease.", icon: "\u{1F4D0}" },
+    ], footer: "Rule: every shot uses 3\u20134 of these deliberately. If you can\u2019t name the compositional choice you made, it wasn\u2019t a choice." },
+    { type: "principle", num: "01", title: "Depth in a 2D Frame \u2014 The Amateur-to-Pro Shift", intro: "The single biggest visual upgrade most amateur cinematographers can make is layering their frames for depth. Flat compositions read as \u201Cvideo.\u201D Layered compositions read as \u201Ccinema.\u201D The technique is learnable in a week.", sectionTitle: "How To Layer Every Frame", sections: [
+      { heading: "1. Identify your subject (midground)", example: "The person or object the shot is about. This is where focus sits.", note: "You can\u2019t layer depth until you know what the shot is FOR. Start with subject; everything else serves it." },
+      { heading: "2. Add foreground \u2014 something between camera + subject", example: "A doorframe, foliage, a blurred object, another character\u2019s shoulder.", note: "Foreground creates the \u201Cwe\u2019re peering in\u201D feeling. Also provides lens-blur that makes the subject separate from the frame." },
+      { heading: "3. Add background \u2014 something specific beyond the subject", example: "A window, a distant figure, architecture, landscape.", note: "Not just \u201Cwhatever was there.\u201D Deliberate background that supports the story and/or adds visual depth." },
+      { heading: "4. Manage focus + blur to direct attention", example: "Subject in focus; foreground + background out-of-focus. Audience\u2019s eye goes where you want.", note: "Depth + selective focus is the one-two punch that makes compositions feel cinematic. One without the other is incomplete." },
+    ], rule: "Every frame should have something in all three layers. If your frame is just \u201Csubject against background\u201D with nothing in between \u2014 you haven\u2019t composed, you\u2019ve pointed." },
+    { type: "comparison", eyebrow: "FLAT vs LAYERED FRAMES", title: "Two versions of the same portrait", subtitle: "Same person, same location. One flat + amateur; one layered + cinematic.", left: { title: "Flat Frame (Amateur)", color: "#EF4444", items: [
+      { strong: "Subject centered, plain wall behind", note: "No depth. No interest. Audience registers \u2018subject\u2019 + stops." },
+      { strong: "Everything in focus at f/8", note: "No separation. Subject doesn\u2019t pop. Flat + informational." },
+      { strong: "Eye-level angle, default camera height", note: "Default. No emotional signal from angle." },
+      { strong: "Nothing in foreground", note: "Viewer sees the subject but doesn\u2019t feel anything specific." },
+    ] }, right: { title: "Layered Frame (Cinematic)", color: "#10B981", items: [
+      { strong: "Subject in the midground; blurred lamp in foreground; window with sky in background", note: "Three distinct layers. Eye travels through the frame. Feels like 3D space." },
+      { strong: "Shallow focus at f/1.8 \u2014 subject sharp; foreground + background soft", note: "Selective focus directs attention. Subject pops. Cinematic immediately." },
+      { strong: "Slight low angle \u2014 subject feels stronger + intentional", note: "Small angle change; big emotional change. The frame has voice." },
+      { strong: "Foreground object creates \u2018we\u2019re watching from inside the space\u2019 feeling", note: "Audience isn\u2019t watching a subject \u2014 they\u2019re in the room. Intimacy manufactured." },
+    ] }, footer: "Rule: depth is the fastest cinematography upgrade available. Applied consistently over 20 shots, your footage looks like a different shooter made it." },
+    { type: "table", title: "Aspect Ratio Cheat Sheet", subtitle: "Aspect ratio is a storytelling decision, not a technical default. Here\u2019s what each ratio communicates.", columns: ["Ratio", "Name", "What It Signals"], rows: [
+      ["16:9", "HD / Widescreen TV", "Television, web video, default. \u201CProfessional but not cinematic.\u201D"],
+      ["2.39:1", "Cinemascope / Anamorphic", "Epic, theatrical, \u201Cfilm.\u201D Used by most blockbusters. Strong horizontal focus."],
+      ["1.85:1", "Standard theatrical", "Between 16:9 and Cinemascope. Many narrative features live here."],
+      ["4:3", "Academy / Classic TV", "Retro, intimate, formal. Used in period pieces (The Grand Budapest Hotel) or intentional throwbacks."],
+      ["1:1", "Square", "Social media, Instagram, modern short-form. Very specific + trendy."],
+      ["9:16", "Vertical", "Mobile-native. TikTok, Reels, Stories. Different composition rules entirely."],
+    ], footer: "Rule: choose aspect ratio based on the story you\u2019re telling + where it will be watched. Don\u2019t default to 16:9 if cinemascope serves the piece better." },
+    { type: "exercise", title: "Shoot 10 Composed Frames", intro: "Deliberate practice in composition. 10 frames with specific compositional rules each. Submit with notes on your choices.", items: [
+      { num: "1", copy: "Shoot 2 frames using rule of thirds. Subject on a third-line; background supporting, not competing.", answer: "Basic but foundational. Most audiences expect thirds composition + feel its absence as unease." },
+      { num: "2", copy: "Shoot 2 frames using perfect symmetric composition. Dead centre.", answer: "Symmetric is harder than it looks. Requires a centered subject + matching visual weight on both sides. Reads formal + deliberate when done right." },
+      { num: "3", copy: "Shoot 2 frames with strong foreground + midground + background. Layer deliberately.", answer: "Pick a scene where depth is possible. Put something in every layer \u2014 even if the foreground is just a blurred shape. The depth is the point." },
+      { num: "4", copy: "Shoot 2 frames using leading lines. Find a road, fence, hallway, or shadow that pulls the eye.", answer: "Leading lines work when the line ends at the subject. Not a vague direction; a specific destination for the eye." },
+      { num: "5", copy: "Shoot 2 frames with intentional angle choices \u2014 1 low angle, 1 high angle.", answer: "Pick subjects where the angle serves the story. Low for power. High for vulnerability. Notice how the same subject feels different at each." },
+    ] },
+  ],
+};

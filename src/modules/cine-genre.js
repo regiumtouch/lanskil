@@ -1,0 +1,73 @@
+// Cinematography — Module 9: Genre-Specific Cinematography
+export const cineGenreModule = {
+  id: "cine09",
+  title: "Genre-Specific Cinematography",
+  type: "Rich Module",
+  duration: "3 hours",
+  desc: "Different stories demand different visual languages. Narrative (drama/thriller/horror/comedy), documentary, music video, commercial, wedding, and social-digital \u2014 each genre's specific rules.",
+  topics: ["Narrative Drama + Thriller", "Horror + Comedy Visual Rules", "Documentary Shooting", "Music Video Rhythm", "Commercial + Beauty", "Wedding + Events", "Vertical / Social Format"],
+  quiz: [
+    { q: "Horror cinematography typically uses:", opts: ["High-key bright lighting", "Low-key, hard shadows, wide lenses in close-up for distortion, off-centre framing, slower push-ins \u2014 destabilising the audience visually", "Even exposure everywhere", "Only natural light"], correct: 1 },
+    { q: "Documentary cinematography differs from narrative in:", opts: ["Budget only", "Reactive camera work (handheld instincts), finding moments as they happen, working with non-actors, less control + more awareness", "Only colour palette", "Equipment size"], correct: 1 },
+    { q: "Commercial/beauty cinematography emphasises:", opts: ["Storytelling", "Ultra-clean skin tones, precise lighting (often with tons of diffusion), clean compositions, product hero shots \u2014 technical perfection as the craft", "Handheld", "Low budget"], correct: 1 },
+    { q: "Music videos typically require:", opts: ["Zero rhythm", "Visual rhythm matched to music \u2014 cuts on beats, camera movement syncing to tempo, performance coverage + conceptual sequences combined", "Only conceptual shots", "One-take only"], correct: 1 },
+    { q: "Wedding cinematography is documentary-style under which pressure?", opts: ["No pressure", "High-stakes one-take work \u2014 you don\u2019t get a second take; must capture intimate moments as they happen with no reshoot option. High-volume niche for new DPs.", "Studio-controlled", "Fake weddings"], correct: 1 },
+    { q: "Vertical (9:16) video for social platforms changes:", opts: ["Nothing", "Composition rules entirely \u2014 subject in centre vertical strip; backgrounds become less important; tight close-ups dominate; leading lines must work vertically", "Only file size", "Only audio"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 9", title: "Genre-Specific", titleAccent: "Cinematography", subtitle: "Different stories demand different visual languages. Narrative, documentary, music video, commercial, wedding, social \u2014 each genre\u2019s rules.", meta: "Cinematography \u00B7 Tier III \u00B7 Module 9  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY GENRE DEFINES APPROACH", title: "The same camera + lens produces opposite results in different genres", intro: "A cinematographer\u2019s versatility comes from knowing each genre\u2019s visual conventions \u2014 and choosing when to follow + when to break them. Wedding DPs can\u2019t shoot like narrative DPs. Narrative DPs can\u2019t shoot like commercial DPs. Knowing each is the edge.", stats: [
+      { num: "6+", label: "genres most working cinematographers pass through in a career; each has specific rules" },
+      { num: "0", label: "retakes on wedding day \u2014 the camera work must capture the moment first time" },
+      { num: "90%", label: "of social-digital cinematography is in vertical format (9:16); horizontal rules partially apply" },
+    ], subheading: "What Genre-Fluency Gives You", bullets: [
+      "Ability to move between paying gigs + creative work with the same technical foundation",
+      "Understanding which rules to apply + which to break for each genre\u2019s expectations",
+      "Versatility that extends your earning ceiling beyond single-genre specialists",
+      "Cross-pollination \u2014 wedding instincts can elevate documentary; commercial polish can elevate narrative",
+    ] },
+    { type: "grid", eyebrow: "GENRE VISUAL SIGNATURES", title: "What each genre typically does differently", subtitle: "Generalizations \u2014 every genre has rule-breakers. But these defaults explain most working professional cinematography.", items: [
+      { num: "01", title: "Narrative Drama", desc: "Motivated lighting, classic coverage (master + CUs), 180\u00B0 discipline, muted palettes, deliberate moves.", icon: "\u{1F3AD}" },
+      { num: "02", title: "Horror + Thriller", desc: "Low-key, hard shadows, wide distortion in CUs, off-centre compositions, slow push-ins, unease.", icon: "\u{1F480}" },
+      { num: "03", title: "Documentary", desc: "Handheld instinct, reactive, natural light preferred, quick to capture moments, less setup.", icon: "\u{1F50D}" },
+      { num: "04", title: "Music Video", desc: "Visual rhythm matched to music, stylized colour, performance + concept blend, heavy post.", icon: "\u{1F3B5}" },
+      { num: "05", title: "Commercial / Beauty", desc: "Ultra-clean, heavy diffusion, skin tone perfection, hero product shots, technical precision.", icon: "\u{1F4B8}" },
+      { num: "06", title: "Wedding / Events", desc: "Documentary instincts + intimacy + no retakes. One-take pressure with emotional capture.", icon: "\u{1F48D}" },
+    ], footer: "Rule: cross-training between genres makes you more hireable + more creative. Every genre teaches you something applicable to the others." },
+    { type: "principle", num: "01", title: "Horror Cinematography \u2014 The Visual Language of Fear", intro: "Horror is the most visually specific genre. Every framing + lighting + lens choice can make audiences feel dread before anything happens. Understanding horror\u2019s rules teaches you to manufacture emotion visually in any genre.", sectionTitle: "The 5 Horror Visual Rules", sections: [
+      { heading: "1. Low-Key Lighting + Hard Shadows", example: "Single-source side light. Deep unlit areas. Eyes often in shadow. Unknown lurking.", note: "Bright evenly-lit horror is almost unwatchable. Dark corners let the mind fill in \u2014 which is scarier than anything on screen." },
+      { heading: "2. Wide-Angle Distortion in Close-Ups", example: "24mm or wider on faces creates subtle warping. The Lighthouse, Hereditary, The VVitch.", note: "Audience\u2019s eye registers distortion as \u2018wrong\u2019 before conscious perception. Creates pre-verbal unease." },
+      { heading: "3. Off-Centre Framing + Negative Space", example: "Subject pushed to frame edge; large empty area where something might appear.", note: "Audience anxiety rises when they\u2019re looking at unexplained empty space. The space becomes threat." },
+      { heading: "4. Very Slow Push-Ins", example: "Almost imperceptible dolly toward subject. 30 seconds to move 2 feet.", note: "Audience feels threat closing in without registering the camera moved. Subconscious dread." },
+      { heading: "5. Disorientation Via Rule-Breaking", example: "Dutch angles, 180\u00B0 line crossings, jump cuts, lens changes mid-scene.", note: "Deliberately making audiences feel unsettled visually. Every \u2018wrong\u2019 choice in horror is often a deliberate right choice." },
+    ], rule: "Horror teaches you that cinematography can manufacture specific emotions with technique alone. Those techniques transfer to thrillers, psychological drama, + even art-house work." },
+    { type: "comparison", eyebrow: "NARRATIVE vs DOCUMENTARY INSTINCTS", title: "The same moment, two approaches", subtitle: "A person crying in grief. A narrative DP + documentary DP shoot it differently \u2014 both are right for their context.", left: { title: "Narrative Approach", color: "#EF4444", items: [
+      { strong: "Pre-lit the space to support the emotional moment", note: "Key light from window. Soft backlight. Background in shadow. All planned." },
+      { strong: "Multiple setups + takes: master, close-up, insert on hands", note: "Coverage for the edit. Each take lets the actor re-access the emotion cleanly." },
+      { strong: "Camera on tripod \u2014 stability lets the performance do the work", note: "Motion would distract from the emotion. Held frames let the audience sit with it." },
+      { strong: "Typical result: emotionally controlled + sculpted image", note: "Crafted. Edited. Beautiful. Takes time + a crew." },
+    ] }, right: { title: "Documentary Approach", color: "#10B981", items: [
+      { strong: "Available light \u2014 whatever the room is", note: "Can\u2019t light a real moment without killing it. Work with what\u2019s there." },
+      { strong: "One take, one camera, handheld", note: "The moment happens once. Must capture instinctively + completely. No coverage." },
+      { strong: "Respectful distance + long lens, OR close with consent", note: "Ethics matter. The camera\u2019s presence affects the moment; good doc DPs manage that carefully." },
+      { strong: "Typical result: raw, immediate, irreproducible", note: "Real. Specific to this moment. Carries emotional weight that narrative often can\u2019t \u2014 but also can\u2019t be re-shot." },
+    ] }, footer: "Rule: both approaches are legitimate craft. The discipline is knowing which one the story in front of you demands." },
+    { type: "table", title: "Genre Quick-Reference", subtitle: "One-line distillations of each genre\u2019s key visual priority. Use as starter reference; adapt per project.", columns: ["Genre", "Key Priority", "Typical Mistake"], rows: [
+      ["Narrative Drama", "Motivated lighting + classical coverage", "Overusing movement; making scenes feel over-produced"],
+      ["Narrative Thriller", "Low-key + unease via framing + slow movement", "Too much blood, not enough dread"],
+      ["Narrative Comedy", "Bright, even lighting + stable wides + clean focus", "Over-lit = sitcom feel; too stylised kills comedy"],
+      ["Horror", "Low-key, wide-angle CUs, disorientation", "Too-bright = not scary; showing monster too early"],
+      ["Documentary", "Capture moments as they happen, handheld", "Over-setting up + killing spontaneity"],
+      ["Music Video", "Visual rhythm + concept + performance", "Hiding performance; disregarding beat"],
+      ["Commercial", "Clean + precise + product-hero", "Over-styling = forgettable; storytelling over product"],
+      ["Wedding", "Intimate + moments-focused + one-take discipline", "Treating it like a controlled narrative shoot"],
+      ["Social Vertical", "Subject-centre; vertical-native composition", "Horizontal framing cropped \u2014 wasted pixels + weak composition"],
+    ], footer: "Rule: pick 2\u20133 genres to go deep in. Specialists out-earn generalists. Then spread to adjacent ones as capacity allows." },
+    { type: "exercise", title: "Pitch 2 Genres on the Same Subject", intro: "Pick a simple subject (person drinking coffee, child walking, couple arguing). Describe how you\u2019d shoot it in 2 different genres.", items: [
+      { num: "1", copy: "Pick subject + 2 genres. Example: \u2018person drinking coffee\u2019 in horror vs commercial.", answer: "Different genres on the same subject highlight how much the genre choice shapes the image, not the subject." },
+      { num: "2", copy: "For genre 1, write 4 specific cinematographic choices: lens, lighting, camera movement, colour palette.", answer: "Example horror: 24mm at close range, low-key single side light, very slow push-in, desaturated with cold green cast. Every choice carries dread." },
+      { num: "3", copy: "For genre 2, write 4 specific cinematographic choices: different lens, different lighting, different movement, different palette.", answer: "Example commercial: 85mm at distance, soft key + fill, steady or light gimbal move, warm + creamy palette. Every choice carries indulgence + warmth." },
+      { num: "4", copy: "Reflect: same subject, opposite emotional impression. That\u2019s the power of cinematography \u2014 you\u2019re deciding what audiences feel.", answer: "This exercise trains genre awareness. Repeat it with 5\u201310 different subjects + genre pairs; you\u2019ll internalise the visual languages quickly." },
+    ] },
+  ],
+};

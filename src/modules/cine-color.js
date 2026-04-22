@@ -1,0 +1,70 @@
+// Cinematography — Module 7: Color Theory & Visual Mood
+export const cineColorModule = {
+  id: "cine07",
+  title: "Color Theory & Visual Mood",
+  type: "Rich Module",
+  duration: "3 hours",
+  desc: "Use color as a storytelling weapon. Color theory for filmmakers, color psychology, building palettes, escaping teal + orange, and collaborating with production design.",
+  topics: ["Color Theory Basics", "Color Psychology", "Palette Design", "Teal + Orange Trap", "Department Collaboration", "Film Studies in Colour"],
+  quiz: [
+    { q: "Complementary colors on the color wheel are:", opts: ["Same hue", "Opposite each other (red/green, blue/orange, yellow/purple) \u2014 create maximum visual contrast + vibration when placed together", "Adjacent", "Monochromatic"], correct: 1 },
+    { q: "Why does \u201Cteal + orange\u201D appear in every blockbuster?", opts: ["It\u2019s scientifically proven best", "It\u2019s easy: human skin is warm/orange, so making shadows/backgrounds teal creates automatic separation. Becomes generic quickly.", "Cheapest option", "Random"], correct: 1 },
+    { q: "A \u201Cmonochromatic\u201D color palette is:", opts: ["Just black + white", "Multiple shades + tints of a single hue \u2014 Roma (greyscale), Matrix (green), Joker (sickly green). Creates unified emotional world.", "No colour", "Only primary colours"], correct: 1 },
+    { q: "Color psychology: red in cinema most often reads as:", opts: ["Calm", "Passion, danger, violence, urgency \u2014 context-dependent but rarely neutral; used as accent to signal emotional intensity", "Sadness", "Peace"], correct: 1 },
+    { q: "Designing a color palette for a film means:", opts: ["Picking one colour", "Choosing 3\u20135 colours that will appear consistently across costume, set, lighting, and grade \u2014 creates visual cohesion across every scene", "No palette needed", "One palette per scene"], correct: 1 },
+    { q: "The cinematographer collaborates with production design on colour because:", opts: ["It\u2019s polite", "The costume + set colours photograph as-is under lighting; production design choices are part of the final colour palette on screen \u2014 not separate departments", "They have to", "For budget"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 7", title: "Color Theory", titleAccent: "& Visual Mood", subtitle: "Use colour as a storytelling weapon. Theory, psychology, palette design, and escaping teal + orange.", meta: "Cinematography \u00B7 Tier II \u00B7 Module 7  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY COLOR IS STORY", title: "Color is one of the fastest emotional signals in cinema \u2014 processed pre-consciously", intro: "Audiences feel colour before they think about it. A cinematographer who uses colour deliberately communicates emotion directly to the audience\u2019s subconscious. Random or default colour choices leak away this power.", stats: [
+      { num: "3\u20135", label: "colours in a deliberate film palette; beyond this becomes visual noise" },
+      { num: "0.2 sec", label: "time for human brain to register emotional response to colour in an image" },
+      { num: "70%", label: "of emotional impression of a film can be shaped by colour palette choices alone" },
+    ], subheading: "What Deliberate Color Design Does", bullets: [
+      "Creates visual cohesion across a film \u2014 scenes feel like they belong together",
+      "Signals emotional shifts \u2014 palette darkens / warms / desaturates as story turns",
+      "Identifies characters / factions via assigned colours (Her, Mad Max, Drive)",
+      "Avoids the \u201Ceverything-looks-the-same\u201D trap modern productions often fall into",
+      "Coordinates costume + set + lighting + grade as one unified visual decision",
+    ] },
+    { type: "grid", eyebrow: "COLOR PSYCHOLOGY", title: "What each hue communicates in cinema", subtitle: "Context always matters but these defaults hold across Western film tradition.", items: [
+      { num: "01", title: "Red", desc: "Passion, danger, violence, urgency, blood. Used as accent for intensity.", icon: "\u{1F534}" },
+      { num: "02", title: "Blue", desc: "Calm, sadness, cold, isolation, technology, water. Dominant in sci-fi + melancholy.", icon: "\u{1F535}" },
+      { num: "03", title: "Orange", desc: "Warmth, nostalgia, home, fire, sunset. Pairs naturally with teal (overused).", icon: "\u{1F7E0}" },
+      { num: "04", title: "Green", desc: "Growth, nature, or sickness + envy (when desaturated). Joker, The Matrix.", icon: "\u{1F7E2}" },
+      { num: "05", title: "Yellow", desc: "Energy, joy, caution, warning. Rare as dominant colour; powerful as accent.", icon: "\u{1F7E1}" },
+      { num: "06", title: "Purple", desc: "Mystery, royalty, magic, unease. Fantasy + surreal contexts.", icon: "\u{1F7E3}" },
+    ], footer: "Rule: these are starting points. Context + combination override single-colour meaning. A red door reads differently than a red dress." },
+    { type: "principle", num: "01", title: "Designing a Film\u2019s Color Palette", intro: "Before production, the cinematographer + production designer + director agree on a 3\u20135 colour palette for the whole film. Every department coordinates around it. This is the single highest-leverage colour decision in the entire project.", sectionTitle: "The 4 Steps of Palette Design", sections: [
+      { heading: "1. Identify the film\u2019s emotional arc", example: "What does the story feel like? Warm + nostalgic? Cold + dissonant? Sickly + dread-filled?", note: "Emotion first. The palette serves the emotion, not vice versa." },
+      { heading: "2. Pick 3\u20135 anchor colours", example: "Example: Drive = magenta, black, electric blue, cream. Matrix = green, black, grey.", note: "Limit the number. 3 is tight + powerful. 7 is chaos. Restraint = clarity." },
+      { heading: "3. Apply across departments", example: "Costume gets colours from the palette. Set design gets colours from the palette. Lighting gels match. Colour grade reinforces.", note: "If each department picks independently, the film looks visually fragmented. Coordination is the entire point." },
+      { heading: "4. Build a visual reference document", example: "A 1-page lookbook showing the palette + 5\u20138 reference images that use it. Shared with every department head.", note: "Everyone references the same artefact. Decisions stay aligned across months of production." },
+    ], rule: "Color palette decisions made in pre-production are 10\u00D7 cheaper than color fixes made in post. Front-load the thinking." },
+    { type: "comparison", eyebrow: "GENERIC vs DISTINCT PALETTES", title: "Two films on similar themes", subtitle: "Same genre, same beats. One uses default palette; one uses designed palette. Audiences remember one; forget the other.", left: { title: "Default Palette (Teal + Orange)", color: "#EF4444", items: [
+      { strong: "Every shot pushed to teal shadows + orange skin", note: "Automatic separation. Reads \u2018blockbuster\u2019 by default. Forgettable because every blockbuster uses this." },
+      { strong: "No distinct character colours", note: "Characters blend visually. No colour signifies any faction or emotional arc." },
+      { strong: "Costume + set unplanned for colour cohesion", note: "Production design picks independent of palette. Grade tries to unify later; only partially works." },
+      { strong: "Result: technically competent but visually identical to 40 other films", note: "Audience can\u2019t tell this film apart from its peers visually." },
+    ] }, right: { title: "Designed Palette (Drive example)", color: "#10B981", items: [
+      { strong: "Palette: electric magenta + warm black + midnight blue + cream", note: "Specific, limited, distinctive. Film becomes visually identifiable in a single frame." },
+      { strong: "Magenta associated with The Driver; blue with the city\u2019s menace", note: "Colour carries narrative meaning. Audience absorbs this subconsciously." },
+      { strong: "Costume + set + neon signs all chosen from the palette", note: "Coherent visual world. Every department pulls from the same 4 colours." },
+      { strong: "Result: unforgettable visual signature \u2014 audiences remember the LOOK as much as the story", note: "The palette is why Drive looks like Drive. Deliberate colour design is what separates memorable films from generic ones." },
+    ] }, footer: "Rule: you don\u2019t need a giant budget to design a palette. You need the discipline to pick 3\u20135 colours + commit." },
+    { type: "table", title: "Film Color Studies \u2014 5 Films, 5 Palettes", subtitle: "Study each palette + how it serves the story. These are your references.", columns: ["Film", "Palette", "Story Served"], rows: [
+      ["Drive (2011)", "Magenta, black, neon blue, cream", "Neo-noir + isolation + violence"],
+      ["Mad Max: Fury Road (2015)", "Orange (desert) + electric blue (night)", "Harsh survival + opposition of desert and escape"],
+      ["Amélie (2001)", "Warm reds, greens, ochres \u2014 saturated", "Whimsical + nostalgic + storybook"],
+      ["Roma (2018)", "Monochromatic greyscale (black + white)", "Memory + distance + observational tenderness"],
+      ["Her (2013)", "Warm pinks, reds, oranges \u2014 no blue-green", "Emotional warmth + subjective interiority"],
+      ["Joker (2019)", "Sickly greens, muted reds, grimy yellows", "Decay + menace + psychological deterioration"],
+    ], footer: "Rule: one month studying palettes rewires how you see every film you watch. Do it." },
+    { type: "exercise", title: "Design Your Own Palette + Execute", intro: "Pick a story idea. Design a 3\u20135 colour palette for it. Then shoot 6 images that use the palette consistently.", items: [
+      { num: "1", copy: "Define your story in one sentence + one emotion. (\"A freelance designer loses her biggest client\" \u2014 disappointment + resilience.)", answer: "Pick something you\u2019d actually want to tell. The exercise is more meaningful if you\u2019re invested in the story." },
+      { num: "2", copy: "Pick 3\u20135 colours that capture that emotion. Justify each in one sentence.", answer: "Example: muted teal (sadness) + warm ochre (resilience emerging) + off-black (the loss) + cream (small hopes). 4 is enough. Don\u2019t over-pick." },
+      { num: "3", copy: "Shoot 6 images (or find + reshoot) that use these colours consistently. No colour outside the palette.", answer: "Discipline test. You will be tempted to include a \u2018perfect\u2019 shot that breaks the palette. Resist \u2014 the coherence is the product." },
+      { num: "4", copy: "Write a 200-word brief explaining the palette\u2019s story meaning + why those colours were chosen.", answer: "Synthesis. If you can defend the palette in writing, you own it. This document becomes your reference for future palette work." },
+    ] },
+  ],
+};

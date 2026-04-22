@@ -1,0 +1,70 @@
+// Cinematography — Module 6: Camera Movement & Blocking
+export const cineMovementModule = {
+  id: "cine06",
+  title: "Camera Movement & Blocking",
+  type: "Rich Module",
+  duration: "3 hours",
+  desc: "Why and how the camera moves \u2014 and when it shouldn't. The 6 fundamental movements, handheld vs gimbal vs dolly, the 180\u00B0 rule, and actor-camera choreography.",
+  topics: ["6 Fundamental Movements", "Static vs Moving", "Movement Tools", "Actor Blocking", "180\u00B0 Rule", "Movement for Story"],
+  quiz: [
+    { q: "The 6 fundamental camera movements are:", opts: ["Just pan + tilt", "Pan, tilt, push-in, pull-out, track (lateral), crane (vertical) \u2014 each does different emotional + narrative work", "Only dolly + steadicam", "Zoom + pan"], correct: 1 },
+    { q: "The 180\u00B0 rule (axis of action) says:", opts: ["Shoot everything from 180\u00B0", "Imagine a line between two subjects; keep the camera on one side of it across cuts to maintain spatial continuity \u2014 crossing it disorients", "Always shoot 180\u00B0 wide", "Keep camera 180\u00B0 from light"], correct: 1 },
+    { q: "Handheld camera is most appropriate for:", opts: ["Every scene", "Intimacy, urgency, documentary feel, or chaos \u2014 not for dialogue scenes where stability serves the scene", "Wide establishing shots", "Stationary subjects"], correct: 1 },
+    { q: "A push-in (camera moving toward subject) typically communicates:", opts: ["Nothing", "Emotional intensification \u2014 the audience is leaning in with the camera. Used at moments of realisation, revelation, or rising emotion.", "Chaos", "Time passing"], correct: 1 },
+    { q: "A gimbal (Ronin, Move, etc.) is most useful for:", opts: ["Static shots", "Moving through space smoothly without tracks \u2014 walk-and-talks, following subjects, tight interior choreography where dolly won\u2019t fit", "Replacing tripods", "Low-angle stills"], correct: 1 },
+    { q: "Actor blocking + camera blocking should be:", opts: ["Developed independently", "Developed together in rehearsal \u2014 where actors move + where camera moves are one choreographed decision, not two separate ones", "Camera always leads", "Actors always lead"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 6", title: "Camera Movement", titleAccent: "& Blocking", subtitle: "Why and how the camera moves \u2014 and when it shouldn\u2019t. The 6 movements, the tools, the actor choreography, the 180\u00B0 rule.", meta: "Cinematography \u00B7 Tier II \u00B7 Module 6  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY MOVEMENT MATTERS", title: "Movement is the cinematographer\u2019s fourth dimension", intro: "Static frames are composed in 2D + light in 3D. Moving frames add time as the fourth dimension. Understanding when + why + how to move the camera is where cinematic storytelling lives.", stats: [
+      { num: "6", label: "fundamental camera movements \u2014 every other move is a combination of these" },
+      { num: "80%", label: "of amateur work overuses movement; stillness is usually more powerful" },
+      { num: "2\u20134 feet", label: "typical push-in distance for emotional intensification shots \u2014 subtle but felt" },
+    ], subheading: "What Deliberate Movement Does", bullets: [
+      "Matches the emotional arc of the scene \u2014 push in for revelation, pull out for realisation",
+      "Creates energy when static feels flat \u2014 used sparingly to preserve impact",
+      "Maintains spatial clarity through the 180\u00B0 rule so audiences don\u2019t lose bearings",
+      "Choreographs with actor movement rather than fighting against it",
+    ] },
+    { type: "grid", eyebrow: "THE SIX FUNDAMENTAL MOVEMENTS", title: "What each one does emotionally", subtitle: "Each movement carries meaning. Picking the right one is as deliberate as picking a shot size.", items: [
+      { num: "01", title: "Pan (horizontal rotation)", desc: "Tripod rotates horizontally. Reveals space. Slow = elegant, fast = disorienting.", icon: "\u2194\uFE0F" },
+      { num: "02", title: "Tilt (vertical rotation)", desc: "Up/down rotation. Reveals height or scale. Upward tilt = awe. Downward = observation.", icon: "\u2195\uFE0F" },
+      { num: "03", title: "Push-in (dolly in)", desc: "Camera moves toward subject. Emotional intensification. Quintessential realisation move.", icon: "\u27A1\uFE0F" },
+      { num: "04", title: "Pull-out (dolly out)", desc: "Camera moves away. Reveals context, isolation, or loss. Opposite emotional effect to push-in.", icon: "\u2B05\uFE0F" },
+      { num: "05", title: "Track (lateral)", desc: "Camera moves parallel to subject. Follows characters; energy + motion.", icon: "\u27FA" },
+      { num: "06", title: "Crane / Jib (vertical)", desc: "Camera rises or descends. Epic reveals; god\u2019s-eye perspective; emotional crescendo.", icon: "\u{1F3A2}" },
+    ], footer: "Rule: every movement should be motivated by story. If the camera moves and you can\u2019t articulate why \u2014 it probably shouldn\u2019t have." },
+    { type: "principle", num: "01", title: "When Static Is Stronger Than Moving", intro: "Most beginners over-move. They reach for slider, gimbal, and handheld because movement feels \u201Cmore cinematic.\u201D It doesn\u2019t. Stillness held deliberately often carries more weight than movement.", sectionTitle: "When To Stop Moving the Camera", sections: [
+      { heading: "1. Dialogue-heavy scenes", example: "Static two-shot + coverage. Movement distracts from performance + words.", note: "Audiences process dialogue best with a still frame. Move only when movement serves the beat specifically." },
+      { heading: "2. Moments of stillness in the story", example: "A character processes news. A reveal lands. Keep camera static \u2014 let the subject be still.", note: "Cinema rewards patience. A 6-second held frame at the right moment hits harder than any push-in." },
+      { heading: "3. When you don\u2019t have strong reason to move", example: "Default to static. Earn the move.", note: "Ask: what does this movement add that a cut wouldn\u2019t? If the answer is \u201Cnothing specific,\u201D cut or hold." },
+      { heading: "4. When budget doesn\u2019t support the move well", example: "A shaky gimbal push is worse than a stable tripod static. Execute the simpler option at higher quality.", note: "Bad execution of an ambitious shot is worse than great execution of a simple shot. Know your capability honestly." },
+    ], rule: "The best cinematographers move the camera rarely + deliberately. When they do move, the audience feels the shift because it\u2019s rare." },
+    { type: "comparison", eyebrow: "OVER-MOVED vs DELIBERATE", title: "Two versions of the same dialogue scene", subtitle: "Same dialogue, same actors. One drowned in movement; one served by stillness.", left: { title: "Over-Moved (Amateur Instinct)", color: "#EF4444", items: [
+      { strong: "Gimbal walking around actors during dialogue", note: "Audience can\u2019t focus on performance. Movement competes with words." },
+      { strong: "Slow pushes on every reaction shot", note: "Over-telegraphs emotion. Audience notices technique. Takes them out of the scene." },
+      { strong: "Slider under every wide shot", note: "Movement becomes visual noise. \u2018Cinematic\u2019 becomes \u2018trying too hard.\u2019" },
+      { strong: "Final effect: busy, distracting, amateur", note: "Motion-for-motion\u2019s-sake. Every move diminishes the next move." },
+    ] }, right: { title: "Deliberate (Pro Instinct)", color: "#10B981", items: [
+      { strong: "Static tripod two-shot for 90% of the dialogue", note: "Performances land. Audience focuses on words. Stability = attention." },
+      { strong: "One push-in at the emotional revelation point", note: "Single deliberate move. Hits hard because it\u2019s rare. Audience feels it without noticing." },
+      { strong: "Final shot held static for an extra beat after dialogue ends", note: "Stillness does the emotional work. The audience sits with the moment." },
+      { strong: "Final effect: invisible technique, strong emotion", note: "Movement felt, not noticed. The hallmark of professional cinematography." },
+    ] }, footer: "Rule: the cinematographer who moves the camera most is not the best cinematographer. The one whose movements always earn their place is." },
+    { type: "table", title: "Movement Tool Decision Matrix", subtitle: "Each tool has a sweet spot. Picking the right tool for the shot is half the battle.", columns: ["Tool", "Best For", "Avoid For"], rows: [
+      ["Tripod (static)", "Dialogue, reveals, composition-heavy shots", "Following subjects through space"],
+      ["Handheld", "Documentary, chaos, intimacy, energy", "Static dialogue scenes \u2014 shake distracts"],
+      ["Gimbal (Ronin / Move)", "Walk-and-talks, following subjects, tight spaces", "Ultra-slow moves (gimbal drift shows)"],
+      ["Slider", "Subtle parallax, small moves on static subjects", "Long-distance moves (sliders are short)"],
+      ["Dolly + track", "Clean long moves, matching actor pace, classical feel", "Time/budget-constrained shoots"],
+      ["Steadicam", "Long complex moves following actors through multiple spaces", "Quick setups \u2014 takes time to rig"],
+      ["Crane / Jib", "Vertical reveals, epic establishing shots", "Dialogue coverage"],
+    ], footer: "Rule: don\u2019t rent a tool just because you have budget. Rent the tool the shot demands \u2014 which sometimes is a tripod." },
+    { type: "exercise", title: "The 2-Minute Single-Action Scene", intro: "Film a 2-minute scene of a single actor walking through 3 spaces. Use 4 different movement types deliberately.", items: [
+      { num: "1", copy: "Plan the 4 movements: 1 static wide, 1 push-in, 1 tracking shot, 1 handheld. Map each to a story beat.", answer: "Plan on paper before you shoot. Each movement should do specific work \u2014 not just be \u2018another shot in the sequence.\u2019" },
+      { num: "2", copy: "Shoot the static wide first \u2014 establishes the space. Hold for 3\u20134 seconds.", answer: "Wide sets context. Make it long enough for audience to orient. Don\u2019t rush off it." },
+      { num: "3", copy: "Shoot the push-in + tracking shot as actor moves. Coordinate camera movement with actor pace.", answer: "Push-in should intensify. Tracking should match the actor\u2019s rhythm. If they speed up, you speed up." },
+      { num: "4", copy: "Shoot the handheld for the moment of most uncertainty or energy. Cut the sequence together + submit.", answer: "Handheld last \u2014 the break from stability is felt because the rest of the sequence is stable. Contrast = impact." },
+    ] },
+  ],
+};

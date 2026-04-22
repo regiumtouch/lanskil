@@ -1,0 +1,71 @@
+// Cinematography — Module 8: On-Set Workflow & Collaboration
+export const cineWorkflowModule = {
+  id: "cine08",
+  title: "On-Set Workflow & Collaboration",
+  type: "Rich Module",
+  duration: "2.5 hours",
+  desc: "How professional cinematographers actually work. Camera department roles, director collaboration, pre-production discipline, and the soft skills that get you rehired.",
+  topics: ["Camera Department Roles", "Director Collaboration", "Pre-Production Discipline", "On-Set Rhythm", "Budget Constraints", "Soft Skills"],
+  quiz: [
+    { q: "The 1st AC (Assistant Camera) is primarily responsible for:", opts: ["Directing the scene", "Pulling focus during takes \u2014 one of the most skilled roles on set; a missed focus pull can ruin an otherwise-perfect take", "Setting lights", "Operating the camera"], correct: 1 },
+    { q: "A \u201Ctech scout\u201D is:", opts: ["Gear review", "Key crew + director visit the location before shoot to plan camera positions, lighting setups, and anticipate problems \u2014 70% of shoot-day efficiency is set here", "Equipment shopping", "Union safety check"], correct: 1 },
+    { q: "The cinematographer\u2019s primary collaborator is:", opts: ["The editor", "The director \u2014 DP translates director\u2019s vision into image choices; the relationship is the film\u2019s visual success or failure", "The producer", "The studio"], correct: 1 },
+    { q: "Why does shot order matter on a production day?", opts: ["It doesn\u2019t", "Batching shots by lighting setup + lens change saves hours of crew time; good DPs schedule by technical efficiency, not story order", "Actors prefer it", "Tradition"], correct: 1 },
+    { q: "You have a $200 light kit + need to shoot a dialogue scene. Best mindset:", opts: ["Reschedule until you have more gear", "Constraints force creativity \u2014 one motivated key from a window + a bounce card can produce beautiful results. Gear isn\u2019t the ceiling.", "Give up", "Film in the dark"], correct: 1 },
+    { q: "The soft skill that most predicts rehiring is:", opts: ["Technical knowledge", "Communication under pressure + respectful collaboration with non-camera crew (sound, art, talent) \u2014 DPs get rehired for being good to work with, not just for good shots", "Speed", "Gear ownership"], correct: 1 },
+  ],
+  slides: [
+    { type: "cover", module: "MODULE 8", title: "On-Set Workflow", titleAccent: "& Collaboration", subtitle: "How professional cinematographers actually work. Roles, director collaboration, pre-production, and the soft skills that get you rehired.", meta: "Cinematography \u00B7 Tier II \u00B7 Module 8  |  7 Slides" },
+    { type: "stats", eyebrow: "WHY WORKFLOW = CAREER", title: "Technical skill opens doors; collaboration keeps them open", intro: "You can be the most talented DP on earth + still not work if you\u2019re difficult to collaborate with. Professional cinematographers are skilled craftspeople AND skilled colleagues.", stats: [
+      { num: "70%", label: "of shoot-day efficiency determined by pre-production planning, not on-set improvisation" },
+      { num: "60%", label: "of repeat DP hires cite \u2018easy to work with\u2019 as the #1 reason, above technical excellence" },
+      { num: "4 hrs", label: "typical tech scout time that saves 2\u20134x that much on shoot day" },
+    ], subheading: "What Pro Cinematographers Actually Do That Amateurs Don\u2019t", bullets: [
+      "Invest heavily in pre-production: lookbooks, shot lists, tech scouts, lighting diagrams",
+      "Build real relationships with directors through conversation + visual references",
+      "Batch shots by lighting + lens setup, not by story order (saves hours/day)",
+      "Communicate clearly + respectfully with every non-camera department",
+      "Show up knowing their craft cold \u2014 so creative decisions dominate the day",
+    ] },
+    { type: "grid", eyebrow: "THE CAMERA DEPARTMENT", title: "Who does what + why every role matters", subtitle: "On small shoots one person wears many hats. On larger shoots, these roles separate. Knowing each job matters for any DP.", items: [
+      { num: "01", title: "Director of Photography (DP)", desc: "Overall creative vision for image + lighting. Collaborates with director. Makes final visual decisions.", icon: "\u{1F3AC}" },
+      { num: "02", title: "Camera Operator", desc: "Physically operates camera during takes (on larger productions). On smaller productions, the DP operates.", icon: "\u{1F3A5}" },
+      { num: "03", title: "1st AC (Focus Puller)", desc: "Pulls focus during takes \u2014 one of the hardest on-set jobs. Manages lens changes, marks actors.", icon: "\u{1F50D}" },
+      { num: "04", title: "2nd AC (Loader / Slate)", desc: "Loads media, slates shots, manages paperwork + logs. Keeps continuity + pipeline moving.", icon: "\u{1F4C4}" },
+      { num: "05", title: "DIT (Data Wrangler)", desc: "Downloads + backs up + monitors footage. Ensures nothing is lost; often applies on-set look.", icon: "\u{1F4BE}" },
+      { num: "06", title: "Gaffer + Key Grip", desc: "Gaffer = head of lighting (electrical). Key Grip = head of rigging + non-electric modification (flags, nets, stands).", icon: "\u{1F4A1}" },
+    ], footer: "Rule: even if you\u2019re a one-person DP on a small shoot, understanding these roles helps you collaborate when the team grows." },
+    { type: "principle", num: "01", title: "Collaborating With the Director", intro: "The DP-director relationship is the most important professional relationship in most films. Great collaborations produce great films; misaligned ones produce compromise.", sectionTitle: "How Great DPs Collaborate With Directors", sections: [
+      { heading: "1. Read the script multiple times", example: "Not just for blocking. For mood, pacing, emotional arcs, subtext. Your job is to make the director\u2019s emotional intent visible.", note: "Show up having done the work. Show director you\u2019ve thought about the film as a whole, not just the shots." },
+      { heading: "2. Build a lookbook together", example: "5\u201315 reference images per scene or per overall film. Discuss what the feel should be \u2014 with visual evidence, not adjectives.", note: "Adjectives like \u2018moody\u2019 mean 10 things. A specific reference image means one thing. Reference images communicate faster + more accurately." },
+      { heading: "3. Walk every location before shoot day", example: "Tech scout with director. Discuss camera positions, lighting motivations, how actors will move.", note: "Problems caught on tech scout take minutes to solve. Problems found on shoot day take hours + cost thousands." },
+      { heading: "4. Be honest on-set", example: "If a shot isn\u2019t working, say so. Directors respect DPs who advocate for the scene, not for their own shot list.", note: "Honesty + craft beats deference. Directors who can trust their DP\u2019s judgement rehire them." },
+    ], rule: "Your job is not to shoot pretty pictures. Your job is to make the director\u2019s vision come to life. Pretty pictures are a byproduct of doing this job well." },
+    { type: "comparison", eyebrow: "PREPARED vs WINGING IT", title: "Two DPs on the same low-budget shoot", subtitle: "Identical gear, identical time, identical budget. One prepared, one winged it. Radically different results.", left: { title: "Winging It", color: "#EF4444", items: [
+      { strong: "Shows up without a shot list; improvises on the fly", note: "Wastes actor + crew time. Shots get repetitive; missed coverage requires reshoots." },
+      { strong: "Hasn\u2019t visited location before \u2014 discovers problems on shoot day", note: "Realizes mid-day the window light doesn\u2019t work as planned. Scrambles." },
+      { strong: "No lighting diagrams \u2014 guesses setups in the moment", note: "Each lighting setup takes 2\u00D7 longer because nothing\u2019s pre-planned. Day runs over." },
+      { strong: "Result: 70% of planned shots, inconsistent lighting, stressed crew", note: "The shoot happens but everything suffers. The DP is also unlikely to be rehired." },
+    ] }, right: { title: "Prepared", color: "#10B981", items: [
+      { strong: "Shot list per scene, shared with director + 1st AD in advance", note: "Crew knows what\u2019s coming. Setups are pre-planned. Day flows." },
+      { strong: "Tech scout 3 days before shoot \u2014 problems identified + solved", note: "Window light issue caught early; alternate plan ready. Shoot day starts smoothly." },
+      { strong: "Lighting diagrams sketched for key scenes; gaffer has these in advance", note: "Lighting setups go up in 30 min vs 90 min. Time saved spent on performance + creative refinements." },
+      { strong: "Result: 100% of shots captured, consistent visual language, on time, on budget", note: "Prepared DPs get rehired. Winging it gets you worked-with-once." },
+    ] }, footer: "Rule: pre-production is the single highest-leverage thing a cinematographer does. It\u2019s also the work that separates pros from amateurs." },
+    { type: "table", title: "Pre-Production Checklist", subtitle: "The deliverables every prepared cinematographer produces before shoot day.", columns: ["Artifact", "When", "Why"], rows: [
+      ["Lookbook (film-wide)", "Early, post-script-lock", "Shared visual language across director, designer, DP"],
+      ["Shot list (per scene)", "2\u20133 weeks before shoot", "Every shot planned: size, lens, movement, lighting"],
+      ["Storyboards (for complex sequences)", "Post shot list", "Visualises action/direction clearly for everyone"],
+      ["Lighting diagrams", "1\u20132 weeks before shoot", "Efficient lighting setups; gaffer knows what\u2019s coming"],
+      ["Tech scout (w/ director + gaffer)", "Days before shoot", "Walk the space; catch problems before shoot day"],
+      ["Shot schedule (ordered by efficiency)", "Days before shoot", "Batched by lens + lighting; saves hours on the day"],
+      ["Kit list (with backup)", "Days before shoot", "Every piece of gear accounted for; rentals confirmed"],
+    ], footer: "Rule: none of these take much time individually. Collectively they save the shoot + earn you repeat work." },
+    { type: "exercise", title: "Plan a Complete 5-Shot Scene", intro: "Plan a scene as a cinematographer. Deliverables: lookbook, shot list, and director-communication brief.", items: [
+      { num: "1", copy: "Pick a scene \u2014 any 2-minute dramatic moment (your own writing, a clip from a film, or an improvisation).", answer: "Specificity helps. Pick something with emotional intention \u2014 sad, tense, joyful, eerie. Visual choices follow from the intent." },
+      { num: "2", copy: "Create a 1-page lookbook: 5 reference images showing the visual style, color palette, and tone.", answer: "Pinterest, film stills, photography. Not arbitrary \u2014 each image should signal a specific aspect of the look (lighting style / colour / composition / mood)." },
+      { num: "3", copy: "Write a 5-shot shot list. For each shot: shot size, lens, lighting notes, camera movement.", answer: "Be specific. \u2018Medium close-up, 50mm, soft key from window camera-right, static.\u2019 If your shot list reads generically, so will the scene." },
+      { num: "4", copy: "Write a 1-paragraph brief for the director + gaffer on how you\u2019d communicate the look.", answer: "Use the lookbook images as anchors. \u2018Like this frame from [film] \u2014 soft side key, deep shadows, warm ambient.\u2019 Concrete references beat abstract adjectives." },
+    ] },
+  ],
+};
