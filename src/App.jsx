@@ -315,6 +315,7 @@ function AuthScreen({ onLogin, onBack }) {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", password: "", interests: [] });
   const [error, setError] = useState("");
+  const [errorKind, setErrorKind] = useState("");
   const [info, setInfo] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPw, setShowPw] = useState(false);
@@ -393,7 +394,7 @@ function AuthScreen({ onLogin, onBack }) {
 
   async function handleLoginSubmit(e) {
     e.preventDefault();
-    setError("");
+    setError(""); setErrorKind("");
     if (!form.email.trim() || !form.password.trim()) {
       setError("Please enter your email and password.");
       return;
@@ -404,7 +405,20 @@ function AuthScreen({ onLogin, onBack }) {
         email: form.email,
         password: form.password,
       });
-      if (loginError) { setError(loginError.message); setLoading(false); return; }
+      if (loginError) {
+        const raw = (loginError.message || "").toLowerCase();
+        if (raw.includes("email not confirmed") || raw.includes("not confirmed")) {
+          setError("Your account exists but the email isn't confirmed yet. Check your inbox for the confirmation link.");
+          setErrorKind("not_confirmed");
+        } else if (raw.includes("invalid login") || raw.includes("invalid credentials")) {
+          setError("We couldn't sign you in. Either this email isn't registered yet, or the password doesn't match.");
+          setErrorKind("invalid_credentials");
+        } else {
+          setError(loginError.message);
+          setErrorKind("");
+        }
+        setLoading(false); return;
+      }
       // Profile will be loaded by onAuthStateChange in App
       if (data.user) {
         const { data: profile } = await supabase.from("profiles").select("*").eq("id", data.user.id).single();
@@ -421,9 +435,18 @@ function AuthScreen({ onLogin, onBack }) {
     setLoading(false);
   }
 
+  async function handleResendConfirmation() {
+    if (!form.email.trim()) return;
+    setLoading(true); setInfo("");
+    const { error: resendErr } = await supabase.auth.resend({ type: "signup", email: form.email });
+    if (resendErr) { setError(resendErr.message); setErrorKind(""); }
+    else { setInfo("Confirmation email sent. Check your inbox."); setError(""); setErrorKind(""); }
+    setLoading(false);
+  }
+
   async function handleForgotPassword(e) {
     e.preventDefault();
-    setError("");
+    setError(""); setErrorKind("");
     setInfo("");
     if (!form.email.trim()) {
       setError("Please enter your email address.");
@@ -552,7 +575,27 @@ function AuthScreen({ onLogin, onBack }) {
             background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 12,
             padding: "12px 16px", marginBottom: 20, color: "#DC2626", fontSize: 13, fontWeight: 500,
           }}>
-            {error}
+            <div style={{ lineHeight: 1.55 }}>{error}</div>
+            {errorKind === "invalid_credentials" && (
+              <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+                <button type="button" onClick={() => { setMode("signup"); setStep(1); setError(""); setErrorKind(""); setInfo(""); }}
+                  style={{ padding: "8px 14px", borderRadius: 8, background: "#7C3AED", color: "white", border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+                  Create account
+                </button>
+                <button type="button" onClick={() => { setMode("reset"); setError(""); setErrorKind(""); setInfo(""); }}
+                  style={{ padding: "8px 14px", borderRadius: 8, background: "white", color: "#7C3AED", border: "1px solid #DDD6FE", fontSize: 12, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+                  Reset password
+                </button>
+              </div>
+            )}
+            {errorKind === "not_confirmed" && (
+              <div style={{ marginTop: 12 }}>
+                <button type="button" onClick={handleResendConfirmation} disabled={loading}
+                  style={{ padding: "8px 14px", borderRadius: 8, background: "#7C3AED", color: "white", border: "none", fontSize: 12, fontWeight: 700, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.6 : 1, fontFamily: "inherit" }}>
+                  {loading ? "Sending…" : "Resend confirmation email"}
+                </button>
+              </div>
+            )}
           </div>
         )}
 
