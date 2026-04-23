@@ -1343,7 +1343,15 @@ function ReadyV(props){
 
 function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs=props.qs,setQs=props.setQs,setMd=props.setMd,setQScore=props.setQScore,saveQuizScore=props.saveQuizScore;
   var qz=useMemo(function(){return getQuiz(ls);},[ls]);var _x=useState(0),qi=_x[0],setQi=_x[1];
+  var QUIZ_TOTAL=qz.length*90;
+  var _tl=useState(QUIZ_TOTAL),tl=_tl[0],setTl=_tl[1];
+  useEffect(function(){setTl(qz.length*90);},[ls.id,qz.length]);
   useEffect(function(){if(!qz.length)setMd("results");},[qz.length]);
+  useEffect(function(){
+    if(qs||!qz.length)return;
+    var id=setInterval(function(){setTl(function(t){if(t<=1){clearInterval(id);setQs(true);return 0;}return t-1;});},1000);
+    return function(){clearInterval(id);};
+  },[qs,qz.length,ls.id]);
   if(!qz.length)return null;var q=qz[qi];var sel=qa[qi];var all=Object.keys(qa).length===qz.length;var sc=qz.reduce(function(a,q2,i){return a+(qa[i]===q2.correct?1:0);},0);var pass=sc>=Math.ceil(qz.length*.66);
   if(qs)return <div className="fi">
     <div className="c" style={{padding:"40px 36px",borderTop:"4px solid "+(pass?"#10B981":"#EF4444"),overflow:"hidden"}}>
@@ -1368,14 +1376,22 @@ function QzV(props){var ls=props.ls,sk=props.sk,qa=props.qa,setQa=props.setQa,qs
 
       <div style={{display:"flex",gap:12,justifyContent:"center"}}>
         {pass?<button className="bt" onClick={function(){var score={correct:sc,total:qz.length,pct:Math.round(sc/qz.length*100)};if(setQScore)setQScore(score);if(saveQuizScore)saveQuizScore(ls.id,score);setMd("results");}} style={{padding:"14px 36px",borderRadius:50,background:"#10B981",color:"white",fontSize:15,fontWeight:700,border:"none",boxShadow:"0 4px 16px rgba(16,185,129,.3)"}}>{"\u2713"} Complete Lesson</button>
-        :<button className="bt" onClick={function(){setQa({});setQs(false);setQi(0);}} style={{padding:"14px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:600,border:"none"}}>{"\u21BB"} Try Again</button>}
+        :<button className="bt" onClick={function(){setQa({});setQs(false);setQi(0);setTl(qz.length*90);}} style={{padding:"14px 32px",borderRadius:50,background:sk.color,color:"white",fontSize:15,fontWeight:600,border:"none"}}>{"\u21BB"} Try Again</button>}
       </div>
     </div>
   </div>;
+  var tMin=Math.floor(tl/60),tSec=tl%60,tFmt=tMin+":"+(tSec<10?"0":"")+tSec;
+  var tPct=QUIZ_TOTAL?tl/QUIZ_TOTAL*100:100;
+  var tColor=tPct>50?"#10B981":tPct>20?"#F59E0B":"#EF4444";
   return <div className="fi"><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,flexWrap:"wrap",gap:10}}>
     <button className="bt" onClick={function(){setMd("slides");}} style={{padding:"8px 16px",borderRadius:50,background:"#F0F0F0",color:"#777",fontSize:12,fontWeight:600,border:"none"}}>{"\u2190"} Back to Slides</button>
-    <div style={{display:"flex",alignItems:"center",gap:8}}>
-      {qz.map(function(_,i){return <div key={i} onClick={function(){setQi(i);}} style={{width:i===qi?28:8,height:8,borderRadius:4,background:qa[i]!==undefined?(i===qi?sk.color:"#10B981"):(i===qi?sk.color:"#E0E0E0"),cursor:"pointer",transition:"all .25s",display:"flex",alignItems:"center",justifyContent:"center"}}>{i===qi&&<span style={{fontSize:9,color:"white",fontWeight:700}}>{i+1}</span>}</div>;})}
+    <div style={{display:"flex",alignItems:"center",gap:14,flexWrap:"wrap"}}>
+      <div aria-label="Time remaining" style={{display:"inline-flex",alignItems:"center",gap:6,padding:"6px 12px",borderRadius:50,background:tColor+"15",color:tColor,fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:700,letterSpacing:.5,border:"1px solid "+tColor+"40"}}>
+        <span aria-hidden="true">{"\u23F1"}</span><span style={{fontVariantNumeric:"tabular-nums"}}>{tFmt}</span>
+      </div>
+      <div style={{display:"flex",alignItems:"center",gap:8}}>
+        {qz.map(function(_,i){return <div key={i} onClick={function(){setQi(i);}} style={{width:i===qi?28:8,height:8,borderRadius:4,background:qa[i]!==undefined?(i===qi?sk.color:"#10B981"):(i===qi?sk.color:"#E0E0E0"),cursor:"pointer",transition:"all .25s",display:"flex",alignItems:"center",justifyContent:"center"}}>{i===qi&&<span style={{fontSize:9,color:"white",fontWeight:700}}>{i+1}</span>}</div>;})}
+      </div>
     </div>
   </div>
   <div className="c" style={{padding:32,marginBottom:20}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12,flexWrap:"wrap",gap:8}}><span className="bg" style={{background:sk.color+"18",color:sk.color}}>Quiz</span><span style={{fontSize:11,color:"#999"}}>Pass: {Math.ceil(qz.length*.66)}/{qz.length} correct ({Math.ceil(66.6)}%)</span></div><h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:700,marginBottom:24,lineHeight:1.5}}>{q.q}</h2><div role="radiogroup" style={{display:"flex",flexDirection:"column",gap:10}}>{q.opts.map(function(o,i){var isSel=sel===i;return <div key={i} role="radio" aria-checked={isSel} tabIndex={0} className="quiz-opt" onKeyDown={function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();setQa(function(p){var n={};Object.keys(p).forEach(function(k){n[k]=p[k]});n[qi]=i;return n;});if(qi<qz.length-1){setTimeout(function(){setQi(qi+1);},350);}}}} onClick={function(){setQa(function(p){var n={};Object.keys(p).forEach(function(k){n[k]=p[k]});n[qi]=i;return n;});if(qi<qz.length-1){setTimeout(function(){setQi(qi+1);},350);}}} style={{padding:"14px 18px",borderRadius:12,border:"2px solid "+(isSel?sk.color:"#E8E8E8"),background:isSel?sk.color+"10":"#F5F5F5",display:"flex",alignItems:"center",gap:12,cursor:"pointer",transition:"all .2s"}}><div style={{width:28,height:28,borderRadius:14,border:"2px solid "+(isSel?sk.color:"#CCC"),background:isSel?sk.color:"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{isSel&&<div style={{width:10,height:10,borderRadius:5,background:"white"}}/>}</div><span style={{fontSize:13.5,color:isSel?"#1A1A1A":"#555",fontWeight:isSel?600:400}}>{o}</span></div>;})}</div></div>

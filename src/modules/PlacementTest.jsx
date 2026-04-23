@@ -141,9 +141,12 @@ function recommendTier(score) {
   };
 }
 
+const PLACEMENT_TIME = QUESTIONS.length * 60;
+
 export default function PlacementTest({ T, onBack, onStartTier, saveScore }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [timeLeft, setTimeLeft] = useState(PLACEMENT_TIME);
 
   const totalScore = useMemo(() => Object.values(answers).reduce((a, v) => a + v, 0), [answers]);
   const recommendation = useMemo(() => recommendTier(totalScore), [totalScore]);
@@ -154,6 +157,23 @@ export default function PlacementTest({ T, onBack, onStartTier, saveScore }) {
       saveScore({ correct: totalScore, total: MAX_SCORE, pct: Math.round((totalScore / MAX_SCORE) * 100), tier: recommendation.tier });
     }
   }, [step]);
+
+  useEffect(() => {
+    if (step < 1 || step > QUESTIONS.length) return;
+    const id = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) { clearInterval(id); setStep(QUESTIONS.length + 1); return 0; }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [step]);
+
+  const tMin = Math.floor(timeLeft / 60);
+  const tSec = timeLeft % 60;
+  const tFmt = tMin + ":" + (tSec < 10 ? "0" : "") + tSec;
+  const tPctRem = (timeLeft / PLACEMENT_TIME) * 100;
+  const tColor = tPctRem > 50 ? "#10B981" : tPctRem > 20 ? "#F59E0B" : "#EF4444";
 
   function select(q, option) {
     setAnswers((prev) => ({ ...prev, [q.id]: option.score }));
@@ -208,7 +228,7 @@ export default function PlacementTest({ T, onBack, onStartTier, saveScore }) {
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <button onClick={() => onStartTier(rec.firstCourseId)} className="bt" style={{ padding: "13px 24px", borderRadius: 3, background: GRADIENT, color: "white", border: "none", fontSize: 12.5, fontWeight: 700, fontFamily: "'DM Sans',sans-serif", letterSpacing: 1, textTransform: "uppercase", cursor: "pointer", boxShadow: "0 6px 22px rgba(124,58,237,.25)" }}>Start {rec.firstCourseName} {"\u2192"}</button>
             <button onClick={onBack} className="bt" style={{ padding: "13px 24px", borderRadius: 3, background: T.subtle, color: T.text, border: "1px solid " + T.border, fontSize: 12.5, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", letterSpacing: .8, textTransform: "uppercase", cursor: "pointer" }}>Browse All Tiers</button>
-            <button onClick={() => { setStep(0); setAnswers({}); }} className="bt" style={{ padding: "13px 20px", borderRadius: 3, background: "transparent", color: T.text3, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", letterSpacing: .5, cursor: "pointer" }}>Retake Test</button>
+            <button onClick={() => { setStep(0); setAnswers({}); setTimeLeft(PLACEMENT_TIME); }} className="bt" style={{ padding: "13px 20px", borderRadius: 3, background: "transparent", color: T.text3, border: "1px solid " + T.border, fontSize: 12, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", letterSpacing: .5, cursor: "pointer" }}>Retake Test</button>
           </div>
         </div>
 
@@ -227,8 +247,11 @@ export default function PlacementTest({ T, onBack, onStartTier, saveScore }) {
       <button onClick={onBack} className="bt" style={{ marginBottom: 16, padding: "8px 16px", borderRadius: 2, background: T.subtle, color: T.text2, fontSize: 12, fontWeight: 600, border: "1px solid " + T.border, fontFamily: "'DM Sans',sans-serif" }}>{"\u2190"} Exit Test</button>
 
       <div style={{ marginBottom: 22 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, fontSize: 11, fontFamily: "'DM Sans',sans-serif", color: T.text3, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, fontSize: 11, fontFamily: "'DM Sans',sans-serif", color: T.text3, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", gap: 10, flexWrap: "wrap" }}>
           <span>Question {step} of {QUESTIONS.length}</span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 10px", borderRadius: 50, background: tColor + "18", color: tColor, border: "1px solid " + tColor + "40", letterSpacing: .5 }}>
+            <span aria-hidden="true">{"⏱"}</span><span style={{ fontVariantNumeric: "tabular-nums" }}>{tFmt}</span>
+          </span>
           <span>{questionProgress}%</span>
         </div>
         <div style={{ height: 3, background: T.border, borderRadius: 2, overflow: "hidden" }}>
