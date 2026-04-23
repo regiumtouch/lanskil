@@ -161,6 +161,26 @@ function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
   );
 }
 
+async function ensureProfile(authUser, overrides = {}) {
+  const payload = {
+    id: authUser.id,
+    first_name: overrides.first_name ?? authUser.user_metadata?.first_name ?? "",
+    last_name: overrides.last_name ?? authUser.user_metadata?.last_name ?? "",
+  };
+  if (overrides.phone !== undefined) payload.phone = overrides.phone;
+  if (overrides.interests !== undefined) payload.interests = overrides.interests;
+  const { data, error } = await supabase
+    .from("profiles")
+    .upsert(payload, { onConflict: "id" })
+    .select()
+    .maybeSingle();
+  if (error) {
+    console.error("[ensureProfile] upsert failed:", error.message);
+    return null;
+  }
+  return data;
+}
+
 export default function App() {
   const [view, setView] = useState("landing");
   const [user, setUser] = useState(null);
@@ -196,7 +216,8 @@ export default function App() {
   }, []);
 
   async function loadProfile(authUser) {
-    const { data } = await supabase.from("profiles").select("*").eq("id", authUser.id).single();
+    let { data } = await supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle();
+    if (!data) data = await ensureProfile(authUser);
     setUser({
       id: authUser.id,
       email: authUser.email,
@@ -361,9 +382,8 @@ function AuthScreen({ onLogin, onBack }) {
       });
       if (signUpError) { setError(signUpError.message); setLoading(false); return; }
       if (data.user) {
-        // Create profile
-        await supabase.from("profiles").upsert({
-          id: data.user.id,
+        // Create profile — guarded so failures are logged instead of silent
+        await ensureProfile(data.user, {
           first_name: form.firstName,
           last_name: form.lastName,
           phone: form.phone,
@@ -421,7 +441,8 @@ function AuthScreen({ onLogin, onBack }) {
       }
       // Profile will be loaded by onAuthStateChange in App
       if (data.user) {
-        const { data: profile } = await supabase.from("profiles").select("*").eq("id", data.user.id).single();
+        let { data: profile } = await supabase.from("profiles").select("*").eq("id", data.user.id).maybeSingle();
+        if (!profile) profile = await ensureProfile(data.user);
         onLogin({
           id: data.user.id,
           email: data.user.email,
