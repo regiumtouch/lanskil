@@ -108,6 +108,12 @@ const QUESTIONS = [
   },
 ];
 
+const STD_OPTIONS = [
+  { text: "None of the above", score: 0 },
+  { text: "All of the above", score: 0 },
+  { text: "I don't know", score: 0 },
+];
+
 const MAX_SCORE = QUESTIONS.reduce((a, q) => a + Math.max(...q.options.map(o => o.score)), 0);
 
 function recommendTier(score) {
@@ -258,7 +264,7 @@ export default function SalesPlacementTest({ T, onBack, onStartTier, saveScore }
       <div style={{ background: T.card, border: "1px solid " + T.border, borderRadius: 4, padding: "32px 34px" }}>
         <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, lineHeight: 1.25, color: T.text, marginBottom: 22, letterSpacing: -.2 }}>{q.text}</h2>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {q.options.map((opt, i) => {
+          {[...q.options, ...STD_OPTIONS].map((opt, i) => {
             const selected = answers[q.id] === opt.score;
             return (
               <button key={i} onClick={() => select(q, opt)} className="bt quiz-opt" style={{ textAlign: "left", padding: "16px 20px", borderRadius: 3, background: selected ? GREEN + "12" : T.subtle, border: "1.5px solid " + (selected ? GREEN : T.border), color: T.text, fontSize: 14, fontFamily: "'DM Sans',sans-serif", fontWeight: selected ? 600 : 500, cursor: "pointer", transition: "all .2s", lineHeight: 1.5, display: "flex", alignItems: "center", gap: 12 }}>

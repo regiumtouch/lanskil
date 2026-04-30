@@ -896,7 +896,7 @@ function Landing({ onExploreCourses }) {
           50% { opacity: 0.5; transform: scale(1.3); }
         }
         .hero h1 {
-          font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 5.5vw, 68px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5.5vw, 68px);
           font-weight: 900; line-height: 1.05; margin-bottom: 24px;
           animation: fadeInUp 0.8s ease-out 0.1s both;
         }
