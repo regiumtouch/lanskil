@@ -128,7 +128,7 @@ const CATS = [
   { id: "sales", name: "Sales", icon: "\u{1F4BC}", color: "#059669" },
   { id: "cinematography", name: "Cinematography", icon: "\u{1F3AC}", color: "#7C3AED" },
   { id: "train", name: "Training & Education", icon: "\u{1F393}", color: "#0EA5E9" },
-  { id: "smm", name: "Social Media \u2014 9-Day Programme", icon: "\u{1F4F1}", color: "#E11D48" },
+  { id: "smm", name: "Social Media Marketing \u2014 9-Day Programme", icon: "\u{1F4F1}", color: "#E11D48" },
 ];
 
 const SKILL_IMG = {
@@ -1000,7 +1000,7 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       var isSales=cat.id==="sales";
       var isSmm=cat.id==="smm";
       var trackEyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":isSmm?"Regium Touch \u00D7 Aurora Foundation":"The Copywriting Mastery Track";
-      var trackTitle=isCine?"Cinematography":isSales?"Sales":isSmm?"Social Media \u2014 9-Day Programme":"Copywriting";
+      var trackTitle=isCine?"Cinematography":isSales?"Sales":isSmm?"Social Media Marketing \u2014 9-Day Programme":"Copywriting";
       var trackDesc=isCine
         ?"The complete cinematography curriculum \u2014 from visual storytelling + exposure through to career + capstone project. Three tiers, twelve rich modules, one professional foundation. Earn a certificate at each tier."
         :isSales
@@ -1115,7 +1115,7 @@ function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=pr
   var isCine=cat&&cat.id==="cinematography";
   var isSales=cat&&cat.id==="sales";
   var isSmm=cat&&cat.id==="smm";
-  var crumb=isCine?"Cinematography Mastery Track":isSales?"Sales Mastery Track":isSmm?"SMM 9-Day Programme":"Copywriting Mastery Track";
+  var crumb=isCine?"Cinematography Mastery Track":isSales?"Sales Mastery Track":isSmm?"Social Media Marketing 9-Day Programme":"Copywriting Mastery Track";
   var eyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":isSmm?"Regium Touch \u00D7 Aurora Foundation":"The Copywriting Mastery Track";
   var heroTitle=isCine?"Twelve Modules. Three Tiers. One Career.":isSales?"Twelve Modules. Three Tiers. One Career.":isSmm?"Nine Days. Three Tiers. One Transformed Business.":"Ten Courses. Three Tiers. One Career.";
   var heroDesc=isCine
