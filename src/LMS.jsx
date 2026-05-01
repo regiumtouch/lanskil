@@ -81,6 +81,15 @@ import { sellNegotiationModule } from "./modules/sell-negotiation";
 import { sellMultithreadingModule } from "./modules/sell-multithreading";
 import { sellPipelineModule } from "./modules/sell-pipeline";
 import { sellCareerModule } from "./modules/sell-career";
+import { smmDay1Module } from "./modules/smm-day1";
+import { smmDay2Module } from "./modules/smm-day2";
+import { smmDay3Module } from "./modules/smm-day3";
+import { smmDay4Module } from "./modules/smm-day4";
+import { smmDay5Module } from "./modules/smm-day5";
+import { smmDay6Module } from "./modules/smm-day6";
+import { smmDay7Module } from "./modules/smm-day7";
+import { smmDay8Module } from "./modules/smm-day8";
+import { smmDay9Module } from "./modules/smm-day9";
 import { cineStorytellingModule } from "./modules/cine-storytelling";
 import { cineExposureModule } from "./modules/cine-exposure";
 import { cineCompositionModule } from "./modules/cine-composition";
@@ -119,6 +128,7 @@ const CATS = [
   { id: "sales", name: "Sales", icon: "\u{1F4BC}", color: "#059669" },
   { id: "cinematography", name: "Cinematography", icon: "\u{1F3AC}", color: "#7C3AED" },
   { id: "train", name: "Training & Education", icon: "\u{1F393}", color: "#0EA5E9" },
+  { id: "smm", name: "Social Media \u2014 9-Day Programme", icon: "\u{1F4F1}", color: "#E11D48" },
 ];
 
 const SKILL_IMG = {
@@ -160,6 +170,7 @@ const CAT_IMG = {
   sales: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
   cinematography: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=400&fit=crop",
   train: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=400&fit=crop",
+  smm: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=800&h=400&fit=crop",
 };
 
 const RT_PURPLE = "#7C3AED";
@@ -578,6 +589,21 @@ const SKILLS = [
     { id: "sell11", title: sellPipelineModule.title, type: sellPipelineModule.type, duration: sellPipelineModule.duration, desc: sellPipelineModule.desc, topics: sellPipelineModule.topics, rich: sellPipelineModule },
     { id: "sell12", title: sellCareerModule.title, type: sellCareerModule.type, duration: sellCareerModule.duration, desc: sellCareerModule.desc, topics: sellCareerModule.topics, rich: sellCareerModule },
   ]},
+  { id: "smm-foundations", name: "SMM Foundations (Days 1\u20133)", cat: "smm", tier: "foundational", lv: "Beginner", icon: "\u{1F331}", color: "#E11D48", dur: "15h", roles: ["Founder", "Solopreneur", "Small Business Owner"], desc: "Days 1\u20133 of the Regium Touch \u00D7 Aurora Foundation programme \u2014 mindset shift from posting to marketing, brand identity that holds for a year, and a 30-day calendar that runs itself.", lessons: [
+    { id: "smm01", title: smmDay1Module.title, type: smmDay1Module.type, duration: smmDay1Module.duration, desc: smmDay1Module.desc, topics: smmDay1Module.topics, rich: smmDay1Module },
+    { id: "smm02", title: smmDay2Module.title, type: smmDay2Module.type, duration: smmDay2Module.duration, desc: smmDay2Module.desc, topics: smmDay2Module.topics, rich: smmDay2Module },
+    { id: "smm03", title: smmDay3Module.title, type: smmDay3Module.type, duration: smmDay3Module.duration, desc: smmDay3Module.desc, topics: smmDay3Module.topics, rich: smmDay3Module },
+  ]},
+  { id: "smm-creation", name: "SMM Creation (Days 4\u20136)", cat: "smm", tier: "intermediate", lv: "Intermediate", icon: "\u{1F4F8}", color: "#F4A261", dur: "15h", roles: ["Founder", "Content Creator", "Marketing Lead"], desc: "Days 4\u20136 \u2014 produce professional visuals on phone + Canva + CapCut, write captions that stop the scroll, and pick the two platforms that deserve your weekly time.", lessons: [
+    { id: "smm04", title: smmDay4Module.title, type: smmDay4Module.type, duration: smmDay4Module.duration, desc: smmDay4Module.desc, topics: smmDay4Module.topics, rich: smmDay4Module },
+    { id: "smm05", title: smmDay5Module.title, type: smmDay5Module.type, duration: smmDay5Module.duration, desc: smmDay5Module.desc, topics: smmDay5Module.topics, rich: smmDay5Module },
+    { id: "smm06", title: smmDay6Module.title, type: smmDay6Module.type, duration: smmDay6Module.duration, desc: smmDay6Module.desc, topics: smmDay6Module.topics, rich: smmDay6Module },
+  ]},
+  { id: "smm-growth", name: "SMM Growth & Capstone (Days 7\u20139)", cat: "smm", tier: "advanced", lv: "Advanced", icon: "\u{1F4C8}", color: "#D946EF", dur: "15h", roles: ["Founder", "Marketing Lead", "Programme Graduate"], desc: "Days 7\u20139 \u2014 paid ads without burning money, the four metrics that drive decisions, complaint-handling protocol, and a 30-day next-step plan you walk out with.", lessons: [
+    { id: "smm07", title: smmDay7Module.title, type: smmDay7Module.type, duration: smmDay7Module.duration, desc: smmDay7Module.desc, topics: smmDay7Module.topics, rich: smmDay7Module },
+    { id: "smm08", title: smmDay8Module.title, type: smmDay8Module.type, duration: smmDay8Module.duration, desc: smmDay8Module.desc, topics: smmDay8Module.topics, rich: smmDay8Module },
+    { id: "smm09", title: smmDay9Module.title, type: smmDay9Module.type, duration: smmDay9Module.duration, desc: smmDay9Module.desc, topics: smmDay9Module.topics, rich: smmDay9Module },
+  ]},
   { id: "cine-foundations", name: "Cinematography Foundations", cat: "cinematography", tier: "foundational", lv: "Beginner", icon: "\u{1F3AC}", color: "#7C3AED", dur: "12h", roles: ["Cinematographer", "Videographer", "DP"], desc: "The four foundational pillars: visual storytelling, exposure + camera fundamentals, composition + framing, and lenses. The base every professional cinematographer stands on.", lessons: [
     { id: "cine01", title: cineStorytellingModule.title, type: cineStorytellingModule.type, duration: cineStorytellingModule.duration, desc: cineStorytellingModule.desc, topics: cineStorytellingModule.topics, rich: cineStorytellingModule },
     { id: "cine02", title: cineExposureModule.title, type: cineExposureModule.type, duration: cineExposureModule.duration, desc: cineExposureModule.desc, topics: cineExposureModule.topics, rich: cineExposureModule },
@@ -969,15 +995,18 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
       </div>
       <div style={{height:2,background:RT_GRADIENT,marginTop:20,width:"100%",opacity:.85}}/>
     </div>
-    {(cat.id==="content"||cat.id==="cinematography"||cat.id==="sales")?(function(){
+    {(cat.id==="content"||cat.id==="cinematography"||cat.id==="sales"||cat.id==="smm")?(function(){
       var isCine=cat.id==="cinematography";
       var isSales=cat.id==="sales";
-      var trackEyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":"The Copywriting Mastery Track";
-      var trackTitle=isCine?"Cinematography":isSales?"Sales":"Copywriting";
+      var isSmm=cat.id==="smm";
+      var trackEyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":isSmm?"Regium Touch \u00D7 Aurora Foundation":"The Copywriting Mastery Track";
+      var trackTitle=isCine?"Cinematography":isSales?"Sales":isSmm?"Social Media \u2014 9-Day Programme":"Copywriting";
       var trackDesc=isCine
         ?"The complete cinematography curriculum \u2014 from visual storytelling + exposure through to career + capstone project. Three tiers, twelve rich modules, one professional foundation. Earn a certificate at each tier."
         :isSales
         ?"The complete sales curriculum \u2014 from psychological preparation and cold outreach through to closing, leadership, and career. Three tiers, twelve rich modules, one career track. Earn a certificate at each tier."
+        :isSmm
+        ?"A nine-day cohort programme for women running, leading, or launching a business \u2014 mindset, brand, strategy, visuals, copy, platforms, paid ads, analytics, and a graduation capstone. Three tiers, nine days, one transformed business."
         :"The complete copywriting curriculum \u2014 from foundations of persuasion through to running your own copywriting business. Ten courses, three tiers, structured for progression. Earn a certificate at each tier.";
       var founds=cs.filter(function(s){return s.tier==="foundational"||!s.tier;});
       var inters=cs.filter(function(s){return s.tier==="intermediate";});
@@ -1085,23 +1114,26 @@ function Dash(props){var ft=props.ft,sr=props.sr,setSr=props.setSr,fc=props.fc,f
 function TrackView(props){var T=props.T,cat=props.cat,skills=props.skills,osk=props.osk,gp=props.gp,user=props.user,dn=props.dn,gb=props.gb,openPlacement=props.openPlacement;
   var isCine=cat&&cat.id==="cinematography";
   var isSales=cat&&cat.id==="sales";
-  var crumb=isCine?"Cinematography Mastery Track":isSales?"Sales Mastery Track":"Copywriting Mastery Track";
-  var eyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":"The Copywriting Mastery Track";
-  var heroTitle=isCine?"Twelve Modules. Three Tiers. One Career.":isSales?"Twelve Modules. Three Tiers. One Career.":"Ten Courses. Three Tiers. One Career.";
+  var isSmm=cat&&cat.id==="smm";
+  var crumb=isCine?"Cinematography Mastery Track":isSales?"Sales Mastery Track":isSmm?"SMM 9-Day Programme":"Copywriting Mastery Track";
+  var eyebrow=isCine?"The Cinematography Mastery Track":isSales?"The Sales Mastery Track":isSmm?"Regium Touch \u00D7 Aurora Foundation":"The Copywriting Mastery Track";
+  var heroTitle=isCine?"Twelve Modules. Three Tiers. One Career.":isSales?"Twelve Modules. Three Tiers. One Career.":isSmm?"Nine Days. Three Tiers. One Transformed Business.":"Ten Courses. Three Tiers. One Career.";
   var heroDesc=isCine
     ?"A structured progression from the foundations of visual storytelling through to building a sustainable cinematography career. Earn a certificate at each tier."
     :isSales
     ?"A structured progression from preparation and cold outreach through to closing, leadership, and the long-game career moves that compound. Earn a certificate at each tier."
+    :isSmm
+    ?"A nine-day cohort programme for women running, leading, or launching a business. From mindset through to a graduation capstone \u2014 leave with a 30-day plan you can run."
     :"A structured progression from the foundations of persuasion through to running your own copywriting business. Earn a certificate at each tier.";
   var founds=skills.filter(function(s){return s.tier==="foundational"||!s.tier;});
   var inters=skills.filter(function(s){return s.tier==="intermediate";});
   var advs=skills.filter(function(s){return s.tier==="advanced";});
-  var tier1Sub=isCine?"Start here \u2014 visual storytelling, exposure, composition, and lenses":isSales?"Start here \u2014 preparation, research, and cold outreach before the conversation":"Start here \u2014 the core foundations of modern copy";
-  var tier2Sub=isCine?"Core craft \u2014 lighting, movement, colour, and on-set workflow":isSales?"Inside the conversation \u2014 discovery, qualification, pitch, objections, and negotiation":"Deepen into conversion, SEO, sales pages, and AI-powered copy";
-  var tier3Sub=isCine?"Mastery \u2014 genre fluency, post, gear strategy, and career + capstone":isSales?"Mastery \u2014 closing, multi-threading, pipeline discipline, and the long-game career moves":"Brand voice at org scale, creative direction, and the ten-year copywriting business";
-  var tier1Heading=isCine?"Foundational Modules":isSales?"Before the Conversation":"Foundational Courses";
-  var tier2Heading=isSales?"Inside the Conversation":"Intermediate Specialisations";
-  var tier3Heading=isCine?"Mastery & Career":isSales?"Mastery & Leadership":"Mastery & Leadership";
+  var tier1Sub=isCine?"Start here \u2014 visual storytelling, exposure, composition, and lenses":isSales?"Start here \u2014 preparation, research, and cold outreach before the conversation":isSmm?"Days 1\u20133 \u2014 mindset shift, brand identity, and a 30-day content plan that runs itself":"Start here \u2014 the core foundations of modern copy";
+  var tier2Sub=isCine?"Core craft \u2014 lighting, movement, colour, and on-set workflow":isSales?"Inside the conversation \u2014 discovery, qualification, pitch, objections, and negotiation":isSmm?"Days 4\u20136 \u2014 visuals on a phone, captions that convert, and the right two platforms":"Deepen into conversion, SEO, sales pages, and AI-powered copy";
+  var tier3Sub=isCine?"Mastery \u2014 genre fluency, post, gear strategy, and career + capstone":isSales?"Mastery \u2014 closing, multi-threading, pipeline discipline, and the long-game career moves":isSmm?"Days 7\u20139 \u2014 paid ads without burning money, the metrics that matter, and your 30-day next-step plan":"Brand voice at org scale, creative direction, and the ten-year copywriting business";
+  var tier1Heading=isCine?"Foundational Modules":isSales?"Before the Conversation":isSmm?"Foundations (Days 1\u20133)":"Foundational Courses";
+  var tier2Heading=isSales?"Inside the Conversation":isSmm?"Creation (Days 4\u20136)":"Intermediate Specialisations";
+  var tier3Heading=isCine?"Mastery & Career":isSales?"Mastery & Leadership":isSmm?"Growth & Capstone (Days 7\u20139)":"Mastery & Leadership";
   return <div className="fi">
     <div className="bc" style={{marginBottom:18}}>
       <span onClick={gb}>Dashboard</span>
